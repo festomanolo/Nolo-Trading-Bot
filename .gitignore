@@ -5,3 +5,11 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# MetaTrader 5 compiled binaries & logs
+*.ex5
