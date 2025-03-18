@@ -13,3 +13,11 @@ venv/
 
 # MetaTrader 5 compiled binaries & logs
 *.ex5
+*.ex4
+*.log
+.mt5_bridge/
+
+# macOS / IDE
+.DS_Store
+.idea/
+.vscode/
