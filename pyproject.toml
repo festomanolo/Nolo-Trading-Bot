@@ -7,3 +7,12 @@ name = "nolo-trading-bot"
 version = "4.0.0"
 description = "Next-Level Real-Time Adaptive Forex Trading System (MetaTrader 5 + Python Quantitative AI Engine)"
 readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENCE.md" }
+authors = [
+    { name = "festomanolo", email = "festomanolofm@gmail.com" }
+]
+keywords = ["forex", "metatrader5", "mql5", "algorithmic-trading", "kalman-filter", "smart-money-concepts", "kelly-criterion"]
+
+[project.scripts]
+nolo-bot = "nolo.cli:main"
