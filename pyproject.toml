@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nolo-trading-bot"
+version = "4.0.0"
+description = "Next-Level Real-Time Adaptive Forex Trading System (MetaTrader 5 + Python Quantitative AI Engine)"
+readme = "README.md"
