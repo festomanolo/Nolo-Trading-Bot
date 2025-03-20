@@ -22,3 +22,12 @@ enum REGIME_TYPE
 
 enum RISK_MODEL
 {
+   FIXED,              // Fixed Risk %
+   KELLY,              // Classic Kelly Criterion
+   ADAPTIVE_KELLY,     // Streak-Adjusted Adaptive Kelly
+   BAYESIAN_KELLY,     // Bayesian Beta-Posterior + Neural Probability Kelly
+   ANTI_MARTINGALE,    // Geometric Win-Streak Scaling
+   VOLATILITY_PARITY   // Inverse ATR Volatility Risk Parity
+};
+
+enum SMC_BIAS_TYPE
