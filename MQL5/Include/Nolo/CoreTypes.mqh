@@ -39,3 +39,11 @@ enum SMC_BIAS_TYPE
    BIAS_BEARISH_CHOCH = -2
 };
 
+struct NoloRegimeSnapshot
+{
+   string        regimeName;
+   double        confidence;
+   double        hurstExponent;
+   double        efficiencyRatio;
+   double        adxValue;
+   double        plusDI;
