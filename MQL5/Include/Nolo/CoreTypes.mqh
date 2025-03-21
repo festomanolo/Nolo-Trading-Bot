@@ -47,3 +47,12 @@ struct NoloRegimeSnapshot
    double        efficiencyRatio;
    double        adxValue;
    double        plusDI;
+   double        minusDI;
+   double        bbWidthPct;
+   double        atrRatio;
+   double        kalmanVelocity;
+   double        shannonEntropy;
+   SMC_BIAS_TYPE structureBias;
+};
+
+struct NoloSMCZone
