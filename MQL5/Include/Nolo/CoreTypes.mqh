@@ -56,3 +56,11 @@ struct NoloRegimeSnapshot
 };
 
 struct NoloSMCZone
+{
+   int      zoneType;      // 1=Bull OB, -1=Bear OB, 2=Bull FVG, -2=Bear FVG
+   double   topPrice;
+   double   bottomPrice;
+   datetime createdTime;
+   int      barIndex;
+   bool     mitigated;
+   double   strength;
