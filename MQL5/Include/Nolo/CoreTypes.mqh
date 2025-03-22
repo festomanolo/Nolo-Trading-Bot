@@ -64,3 +64,11 @@ struct NoloSMCZone
    int      barIndex;
    bool     mitigated;
    double   strength;
+};
+
+struct NoloSignalPacket
+{
+   bool     isValid;
+   int      direction;     // +1 BUY, -1 SELL
+   double   entryPrice;
+   double   stopLoss;
