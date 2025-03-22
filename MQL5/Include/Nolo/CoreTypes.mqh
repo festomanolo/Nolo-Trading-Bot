@@ -72,3 +72,12 @@ struct NoloSignalPacket
    int      direction;     // +1 BUY, -1 SELL
    double   entryPrice;
    double   stopLoss;
+   double   takeProfit;
+   double   confidence;
+   double   winProbability;
+   double   riskMultiplier;
+   string   strategyName;
+   string   reasonSummary;
+};
+
+#endif // NOLO_CORE_TYPES_MQH
