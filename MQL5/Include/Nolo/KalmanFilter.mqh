@@ -31,3 +31,12 @@ public:
    void Reset()
    {
       m_initialized = false;
+      m_level = 0.0;
+      m_velocity = 0.0;
+      m_p00 = 1.0;
+      m_p01 = 0.0;
+      m_p10 = 0.0;
+      m_p11 = 1.0;
+      m_ewmaInnovationSq = m_measurementNoise;
+   }
+
