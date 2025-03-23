@@ -23,3 +23,11 @@ private:
 public:
    CKalmanTrendTracker(double processNoise = 0.0001, double measurementNoise = 0.01)
    {
+      m_processNoise = MathMax(1e-9, processNoise);
+      m_measurementNoise = MathMax(1e-9, measurementNoise);
+      Reset();
+   }
+
+   void Reset()
+   {
+      m_initialized = false;
