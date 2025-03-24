@@ -65,3 +65,11 @@ public:
       double q00 = m_processNoise * dt4;
       double q01 = m_processNoise * dt3;
       double q11 = m_processNoise * dt2;
+
+      double p00Pred = m_p00 + dt * (m_p10 + m_p01) + dt2 * m_p11 + q00;
+      double p01Pred = m_p01 + dt * m_p11 + q01;
+      double p10Pred = m_p10 + dt * m_p11 + q01;
+      double p11Pred = m_p11 + q11;
+
+      // 2. Innovation residual
+      double innovation = price - predLevel;
