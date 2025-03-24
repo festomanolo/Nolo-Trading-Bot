@@ -56,3 +56,12 @@ public:
 
       // 1. State prediction x_{k|k-1} = F * x_{k-1|k-1}
       double predLevel = m_level + m_velocity * dt;
+      double predVel   = m_velocity;
+
+      double dt2 = dt * dt;
+      double dt3 = dt2 * dt * 0.5;
+      double dt4 = dt2 * dt2 * 0.25;
+
+      double q00 = m_processNoise * dt4;
+      double q01 = m_processNoise * dt3;
+      double q11 = m_processNoise * dt2;
