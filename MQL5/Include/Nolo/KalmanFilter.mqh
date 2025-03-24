@@ -48,3 +48,11 @@ public:
          m_velocity = 0.0;
          m_p00 = m_measurementNoise;
          m_p01 = 0.0;
+         m_p10 = 0.0;
+         m_p11 = m_processNoise;
+         m_initialized = true;
+         return m_level;
+      }
+
+      // 1. State prediction x_{k|k-1} = F * x_{k-1|k-1}
+      double predLevel = m_level + m_velocity * dt;
