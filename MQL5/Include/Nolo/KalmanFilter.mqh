@@ -40,3 +40,11 @@ public:
       m_ewmaInnovationSq = m_measurementNoise;
    }
 
+   double Update(double price, double dt = 1.0)
+   {
+      if(!m_initialized)
+      {
+         m_level = price;
+         m_velocity = 0.0;
+         m_p00 = m_measurementNoise;
+         m_p01 = 0.0;
