@@ -90,3 +90,12 @@ public:
       m_p01 = oneMinusK0 * p01Pred;
       m_p10 = p10Pred - k1 * p00Pred;
       m_p11 = p11Pred - k1 * p01Pred;
+
+      return m_level;
+   }
+
+   double GetLevel()    const { return m_level; }
+   double GetVelocity() const { return m_velocity; }
+};
+
+#endif // NOLO_KALMAN_FILTER_MQH
