@@ -82,3 +82,11 @@ public:
       double k1 = p10Pred / s;
 
       // 3. State & covariance update
+      m_level    = predLevel + k0 * innovation;
+      m_velocity = predVel   + k1 * innovation;
+
+      double oneMinusK0 = 1.0 - k0;
+      m_p00 = oneMinusK0 * p00Pred;
+      m_p01 = oneMinusK0 * p01Pred;
+      m_p10 = p10Pred - k1 * p00Pred;
+      m_p11 = p11Pred - k1 * p01Pred;
