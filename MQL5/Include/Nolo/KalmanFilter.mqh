@@ -73,3 +73,12 @@ public:
 
       // 2. Innovation residual
       double innovation = price - predLevel;
+      m_ewmaInnovationSq = 0.92 * m_ewmaInnovationSq + 0.08 * (innovation * innovation);
+      double noiseScale = MathMin(5.0, MathMax(0.5, m_ewmaInnovationSq / MathMax(1e-12, m_measurementNoise)));
+      double rEff = m_measurementNoise * noiseScale;
+
+      double s = MathMax(1e-12, p00Pred + rEff);
+      double k0 = p00Pred / s;
+      double k1 = p10Pred / s;
+
+      // 3. State & covariance update
