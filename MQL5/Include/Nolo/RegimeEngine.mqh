@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_REGIME_ENGINE_MQH
+#define NOLO_REGIME_ENGINE_MQH
+
+#include "CoreTypes.mqh"
+#include "KalmanFilter.mqh"
+
+class CRegimeEngine
+{
