@@ -22,3 +22,11 @@ public:
    CRegimeEngine()
    {
       m_lastRegime = "MIXED";
+   }
+
+   double ComputeHurstExponent(const double &closes[], int count)
+   {
+      if(count < 24) return 0.50;
+      int n = count - 1;
+      double returns[];
+      ArrayResize(returns, n);
