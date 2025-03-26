@@ -14,3 +14,11 @@
 
 class CRegimeEngine
 {
+private:
+   CKalmanTrendTracker m_kalman;
+   string              m_lastRegime;
+
+public:
+   CRegimeEngine()
+   {
+      m_lastRegime = "MIXED";
