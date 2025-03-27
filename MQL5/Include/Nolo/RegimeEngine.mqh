@@ -47,3 +47,11 @@ public:
       double varSum = 0.0;
 
       for(int i = 0; i < n; i++)
+      {
+         double centered = returns[i] - meanRet;
+         cumDev += centered;
+         if(cumDev > maxDev) maxDev = cumDev;
+         if(cumDev < minDev) minDev = cumDev;
+         varSum += centered * centered;
+      }
+
