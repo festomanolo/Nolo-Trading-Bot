@@ -30,3 +30,12 @@ public:
       int n = count - 1;
       double returns[];
       ArrayResize(returns, n);
+      double sumRet = 0.0;
+
+      for(int i = 0; i < n; i++)
+      {
+         double p0 = MathMax(1e-9, closes[i + 1]);
+         double p1 = MathMax(1e-9, closes[i]);
+         returns[i] = MathLog(p1 / p0);
+         sumRet += returns[i];
+      }
