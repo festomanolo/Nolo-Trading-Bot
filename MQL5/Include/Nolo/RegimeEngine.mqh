@@ -39,3 +39,11 @@ public:
          returns[i] = MathLog(p1 / p0);
          sumRet += returns[i];
       }
+
+      double meanRet = sumRet / n;
+      double cumDev = 0.0;
+      double maxDev = -1e9;
+      double minDev = 1e9;
+      double varSum = 0.0;
+
+      for(int i = 0; i < n; i++)
