@@ -63,3 +63,11 @@ public:
       return MathMax(0.05, MathMin(0.95, h));
    }
 
+   double ComputeEfficiencyRatio(const double &closes[], int period = 14)
+   {
+      if(ArraySize(closes) <= period) return 0.30;
+      double netChange = MathAbs(closes[0] - closes[period]);
+      double pathLen = 0.0;
+      for(int i = 0; i < period; i++)
+         pathLen += MathAbs(closes[i] - closes[i + 1]);
+
