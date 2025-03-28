@@ -71,3 +71,12 @@ public:
       for(int i = 0; i < period; i++)
          pathLen += MathAbs(closes[i] - closes[i + 1]);
 
+      if(pathLen <= 1e-12) return 0.0;
+      return MathMax(0.0, MathMin(1.0, netChange / pathLen));
+   }
+
+   void EvaluateRegime(
+      const double &closes[],
+      const double &highs[],
+      const double &lows[],
+      const double &fastMA[],
