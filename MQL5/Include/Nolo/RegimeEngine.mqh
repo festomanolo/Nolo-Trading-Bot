@@ -55,3 +55,11 @@ public:
          varSum += centered * centered;
       }
 
+      double rangeR = maxDev - minDev;
+      double stdS = MathSqrt(varSum / n);
+      if(stdS <= 1e-12 || rangeR <= 0.0) return 0.50;
+
+      double h = MathLog(rangeR / stdS) / MathLog((double)n);
+      return MathMax(0.05, MathMin(0.95, h));
+   }
+
