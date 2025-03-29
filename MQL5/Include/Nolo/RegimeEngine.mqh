@@ -104,3 +104,11 @@ public:
 
       m_kalman.Reset();
       int kStart = MathMin(30, ArraySize(closes) - 1);
+      for(int i = kStart; i >= 0; i--)
+         m_kalman.Update(closes[i]);
+      double kalmanSlope = m_kalman.GetVelocity() / currATR;
+
+      bool maBull = (fastMA[0] > slowMA[0]);
+      bool maBear = (fastMA[0] < slowMA[0]);
+
+      if(adxValue > 24.0 && maBull && plusDI >= minusDI && (hurst >= 0.48 || er >= 0.30))
