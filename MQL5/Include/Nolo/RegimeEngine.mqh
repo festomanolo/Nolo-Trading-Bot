@@ -88,3 +88,11 @@ public:
       double plusDI,
       double minusDI,
       bool hasRecentHH,
+      bool hasRecentLL,
+      NoloRegimeSnapshot &outSnap)
+   {
+      double currATR = MathMax(1e-9, atr[0]);
+      double avgATR = 0.0;
+      for(int i = 0; i < 20 && i < ArraySize(atr); i++)
+         avgATR += atr[i];
+      avgATR /= 20.0;
