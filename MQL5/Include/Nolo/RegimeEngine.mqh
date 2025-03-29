@@ -96,3 +96,11 @@ public:
       for(int i = 0; i < 20 && i < ArraySize(atr); i++)
          avgATR += atr[i];
       avgATR /= 20.0;
+
+      double atrRatio = currATR / MathMax(1e-9, avgATR);
+      double bbWidth = ((upperBB[0] - lowerBB[0]) / MathMax(1e-9, closes[0])) * 100.0;
+      double hurst = ComputeHurstExponent(closes, MathMin(64, ArraySize(closes)));
+      double er = ComputeEfficiencyRatio(closes, 14);
+
+      m_kalman.Reset();
+      int kStart = MathMin(30, ArraySize(closes) - 1);
