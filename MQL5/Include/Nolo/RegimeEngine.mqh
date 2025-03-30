@@ -112,3 +112,12 @@ public:
       bool maBear = (fastMA[0] < slowMA[0]);
 
       if(adxValue > 24.0 && maBull && plusDI >= minusDI && (hurst >= 0.48 || er >= 0.30))
+      {
+         outSnap.regimeName = "TREND_UP";
+         outSnap.confidence = MathMin(0.95, 0.55 + (adxValue - 20.0) / 60.0 + (hurst - 0.5));
+      }
+      else if(adxValue > 24.0 && maBear && minusDI > plusDI && (hurst >= 0.48 || er >= 0.30))
+      {
+         outSnap.regimeName = "TREND_DOWN";
+         outSnap.confidence = MathMin(0.95, 0.55 + (adxValue - 20.0) / 60.0 + (hurst - 0.5));
+      }
