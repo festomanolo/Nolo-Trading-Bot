@@ -129,3 +129,11 @@ public:
       else if(hasRecentLL && closes[0] < lowerBB[1] && atrRatio > 1.08)
       {
          outSnap.regimeName = "BREAKOUT_DOWN";
+         outSnap.confidence = 0.78;
+      }
+      else if(atrRatio > 1.45 && bbWidth > 2.2)
+      {
+         outSnap.regimeName = "VOLATILITY";
+         outSnap.confidence = 0.74;
+      }
+      else if(adxValue < 22.0 && (hurst < 0.52 || er < 0.32))
