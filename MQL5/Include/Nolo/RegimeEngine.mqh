@@ -121,3 +121,11 @@ public:
          outSnap.regimeName = "TREND_DOWN";
          outSnap.confidence = MathMin(0.95, 0.55 + (adxValue - 20.0) / 60.0 + (hurst - 0.5));
       }
+      else if(hasRecentHH && closes[0] > upperBB[1] && atrRatio > 1.08)
+      {
+         outSnap.regimeName = "BREAKOUT_UP";
+         outSnap.confidence = 0.78;
+      }
+      else if(hasRecentLL && closes[0] < lowerBB[1] && atrRatio > 1.08)
+      {
+         outSnap.regimeName = "BREAKOUT_DOWN";
