@@ -153,3 +153,12 @@ public:
       outSnap.adxValue = adxValue;
       outSnap.plusDI = plusDI;
       outSnap.minusDI = minusDI;
+      outSnap.bbWidthPct = bbWidth;
+      outSnap.atrRatio = atrRatio;
+      outSnap.kalmanVelocity = kalmanSlope;
+      outSnap.shannonEntropy = 1.0 - er;
+      outSnap.structureBias = maBull ? BIAS_BULLISH_BOS : BIAS_BEARISH_BOS;
+   }
+};
+
+#endif // NOLO_REGIME_ENGINE_MQH
