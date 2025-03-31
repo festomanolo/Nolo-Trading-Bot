@@ -137,3 +137,11 @@ public:
          outSnap.confidence = 0.74;
       }
       else if(adxValue < 22.0 && (hurst < 0.52 || er < 0.32))
+      {
+         outSnap.regimeName = "RANGE";
+         outSnap.confidence = 0.76;
+      }
+      else
+      {
+         outSnap.regimeName = m_lastRegime != "UNKNOWN" ? m_lastRegime : "MIXED";
+         outSnap.confidence = 0.55;
