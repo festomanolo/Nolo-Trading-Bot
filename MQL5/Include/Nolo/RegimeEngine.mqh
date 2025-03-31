@@ -145,3 +145,11 @@ public:
       {
          outSnap.regimeName = m_lastRegime != "UNKNOWN" ? m_lastRegime : "MIXED";
          outSnap.confidence = 0.55;
+      }
+
+      m_lastRegime = outSnap.regimeName;
+      outSnap.hurstExponent = hurst;
+      outSnap.efficiencyRatio = er;
+      outSnap.adxValue = adxValue;
+      outSnap.plusDI = plusDI;
+      outSnap.minusDI = minusDI;
