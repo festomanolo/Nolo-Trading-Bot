@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_SMART_MONEY_CONCEPTS_MQH
+#define NOLO_SMART_MONEY_CONCEPTS_MQH
+
+#include "CoreTypes.mqh"
+
+class CSmartMoneyConcepts
+{
+private:
