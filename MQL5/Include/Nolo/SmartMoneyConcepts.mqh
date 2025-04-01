@@ -22,3 +22,11 @@ public:
    {
       m_fvgMinAtrFraction = fvgAtrFrac;
       m_sweepWickRatio = sweepWickRatio;
+   }
+
+   bool DetectBullishFVG(const double &highs[], const double &lows[], const double &closes[], const double &opens[], double atr, int shift = 0)
+   {
+      if(ArraySize(lows) <= shift + 2) return false;
+      double gap = lows[shift] - highs[shift + 2];
+      bool middleBullish = closes[shift + 1] > opens[shift + 1];
+      return (gap >= atr * m_fvgMinAtrFraction && middleBullish);
