@@ -54,3 +54,11 @@ public:
    }
 
    bool DetectBearishLiquiditySweep(const double &highs[], const double &lows[], const double &closes[], const double &opens[], int lookback = 15)
+   {
+      if(ArraySize(highs) <= lookback) return false;
+      double priorHigh = highs[1];
+      for(int i = 2; i <= lookback; i++)
+      {
+         if(highs[i] > priorHigh) priorHigh = highs[i];
+      }
+      double rng = MathMax(1e-9, highs[0] - lows[0]);
