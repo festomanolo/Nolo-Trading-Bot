@@ -46,3 +46,11 @@ public:
       double priorLow = lows[1];
       for(int i = 2; i <= lookback; i++)
       {
+         if(lows[i] < priorLow) priorLow = lows[i];
+      }
+      double rng = MathMax(1e-9, highs[0] - lows[0]);
+      double lowerWick = MathMin(opens[0], closes[0]) - lows[0];
+      return (lows[0] < priorLow && closes[0] > priorLow && (lowerWick / rng) >= m_sweepWickRatio);
+   }
+
+   bool DetectBearishLiquiditySweep(const double &highs[], const double &lows[], const double &closes[], const double &opens[], int lookback = 15)
