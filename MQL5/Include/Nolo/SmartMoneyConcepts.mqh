@@ -38,3 +38,11 @@ public:
       double gap = lows[shift + 2] - highs[shift];
       bool middleBearish = closes[shift + 1] < opens[shift + 1];
       return (gap >= atr * m_fvgMinAtrFraction && middleBearish);
+   }
+
+   bool DetectBullishLiquiditySweep(const double &highs[], const double &lows[], const double &closes[], const double &opens[], int lookback = 15)
+   {
+      if(ArraySize(lows) <= lookback) return false;
+      double priorLow = lows[1];
+      for(int i = 2; i <= lookback; i++)
+      {
