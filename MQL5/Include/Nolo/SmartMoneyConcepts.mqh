@@ -70,3 +70,11 @@ public:
    {
       int limit = MathMin(lookback, ArraySize(lows));
       double minVal = lows[0];
+      for(int i = 1; i < limit; i++)
+         if(lows[i] < minVal) minVal = lows[i];
+      return minVal;
+   }
+
+   double FindSwingHigh(const double &highs[], int lookback = 20)
+   {
+      int limit = MathMin(lookback, ArraySize(highs));
