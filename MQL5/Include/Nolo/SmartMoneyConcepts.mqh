@@ -78,3 +78,11 @@ public:
    double FindSwingHigh(const double &highs[], int lookback = 20)
    {
       int limit = MathMin(lookback, ArraySize(highs));
+      double maxVal = highs[0];
+      for(int i = 1; i < limit; i++)
+         if(highs[i] > maxVal) maxVal = highs[i];
+      return maxVal;
+   }
+};
+
+#endif // NOLO_SMART_MONEY_CONCEPTS_MQH
