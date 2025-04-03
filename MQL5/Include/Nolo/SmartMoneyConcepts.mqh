@@ -62,3 +62,11 @@ public:
          if(highs[i] > priorHigh) priorHigh = highs[i];
       }
       double rng = MathMax(1e-9, highs[0] - lows[0]);
+      double upperWick = highs[0] - MathMax(opens[0], closes[0]);
+      return (highs[0] > priorHigh && closes[0] < priorHigh && (upperWick / rng) >= m_sweepWickRatio);
+   }
+
+   double FindSwingLow(const double &lows[], int lookback = 20)
+   {
+      int limit = MathMin(lookback, ArraySize(lows));
+      double minVal = lows[0];
