@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_ORDER_FLOW_ENGINE_MQH
+#define NOLO_ORDER_FLOW_ENGINE_MQH
+
+class COrderFlowEngine
+{
+public:
+   double ComputeBuyPressureRatio(
+      const double &highs[],
