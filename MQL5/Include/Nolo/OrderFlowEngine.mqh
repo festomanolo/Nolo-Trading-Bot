@@ -22,3 +22,11 @@ public:
       int limit = MathMin(window, ArraySize(closes));
       if(limit <= 0) return 0.50;
 
+      double buyVolSum = 0.0;
+      double totalVolSum = 0.0;
+
+      for(int i = 0; i < limit; i++)
+      {
+         double rng = highs[i] - lows[i];
+         double frac = (rng > 1e-12) ? MathMax(0.0, MathMin(1.0, (closes[i] - lows[i]) / rng)) : 0.50;
+         double vol = (double)MathMax(1L, volumes[i]);
