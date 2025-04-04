@@ -14,3 +14,11 @@ class COrderFlowEngine
 public:
    double ComputeBuyPressureRatio(
       const double &highs[],
+      const double &lows[],
+      const double &closes[],
+      const long   &volumes[],
+      int window = 10)
+   {
+      int limit = MathMin(window, ArraySize(closes));
+      if(limit <= 0) return 0.50;
+
