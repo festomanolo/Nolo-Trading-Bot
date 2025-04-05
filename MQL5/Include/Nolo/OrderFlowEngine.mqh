@@ -30,3 +30,11 @@ public:
          double rng = highs[i] - lows[i];
          double frac = (rng > 1e-12) ? MathMax(0.0, MathMin(1.0, (closes[i] - lows[i]) / rng)) : 0.50;
          double vol = (double)MathMax(1L, volumes[i]);
+         buyVolSum += vol * frac;
+         totalVolSum += vol;
+      }
+
+      if(totalVolSum <= 1e-9) return 0.50;
+      return buyVolSum / totalVolSum;
+   }
+
