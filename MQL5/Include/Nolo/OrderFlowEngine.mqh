@@ -46,3 +46,11 @@ public:
       double sumVol = 0.0;
       for(int i = 1; i < limit; i++)
          sumVol += (double)MathMax(1L, volumes[i]);
+
+      double avgVol = sumVol / (limit - 1);
+      if(avgVol <= 1e-9) return 1.0;
+      return (double)volumes[0] / avgVol;
+   }
+};
+
+#endif // NOLO_ORDER_FLOW_ENGINE_MQH
