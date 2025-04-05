@@ -38,3 +38,11 @@ public:
       return buyVolSum / totalVolSum;
    }
 
+   double ComputeVolumeSurgeRatio(const long &volumes[], int window = 20)
+   {
+      int limit = MathMin(window, ArraySize(volumes));
+      if(limit <= 1) return 1.0;
+
+      double sumVol = 0.0;
+      for(int i = 1; i < limit; i++)
+         sumVol += (double)MathMax(1L, volumes[i]);
