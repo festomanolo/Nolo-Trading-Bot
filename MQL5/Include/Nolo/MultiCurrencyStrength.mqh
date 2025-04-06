@@ -14,3 +14,11 @@ class CMultiCurrencyStrength
 private:
    int m_lookbackBars;
 
+public:
+   CMultiCurrencyStrength(int lookbackBars = 20)
+   {
+      m_lookbackBars = MathMax(5, lookbackBars);
+   }
+
+   double GetPairMomentumScore(const double &closes[])
+   {
