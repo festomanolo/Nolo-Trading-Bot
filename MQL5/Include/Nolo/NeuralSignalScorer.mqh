@@ -14,3 +14,12 @@ class CNeuralSignalScorer
 private:
    double m_wTrend;
    double m_wKalman;
+   double m_wHurst;
+   double m_wADX;
+   double m_wSMC;
+   double m_wOrderFlow;
+   double m_wHTF;
+   double m_bias;
+   double m_learningRate;
+
+   double Sigmoid(double z)
