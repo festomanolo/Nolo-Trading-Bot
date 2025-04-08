@@ -23,3 +23,11 @@ private:
    double m_learningRate;
 
    double Sigmoid(double z)
+   {
+      double clamped = MathMax(-15.0, MathMin(15.0, z));
+      return 1.0 / (1.0 + MathExp(-clamped));
+   }
+
+   double LeakyReLU(double x)
+   {
+      return (x >= 0.0) ? x : 0.15 * x;
