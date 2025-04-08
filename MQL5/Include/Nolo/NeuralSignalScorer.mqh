@@ -40,3 +40,11 @@ public:
       m_wTrend       = 0.55;
       m_wKalman      = 0.42;
       m_wHurst       = 0.35;
+      m_wADX         = 0.28;
+      m_wSMC         = 0.48;
+      m_wOrderFlow   = 0.40;
+      m_wHTF         = 0.50;
+      m_bias         = -0.15;
+   }
+
+   double PredictWinProbability(
