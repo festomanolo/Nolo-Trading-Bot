@@ -48,3 +48,11 @@ public:
    }
 
    double PredictWinProbability(
+      double fTrend,
+      double fKalman,
+      double fHurst,
+      double fADX,
+      double fSMC,
+      double fOrderFlow,
+      double fHTF)
+   {
