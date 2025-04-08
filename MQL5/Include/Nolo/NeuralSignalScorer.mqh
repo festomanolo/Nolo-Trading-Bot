@@ -31,3 +31,12 @@ private:
    double LeakyReLU(double x)
    {
       return (x >= 0.0) ? x : 0.15 * x;
+   }
+
+public:
+   CNeuralSignalScorer(double learningRate = 0.015)
+   {
+      m_learningRate = learningRate;
+      m_wTrend       = 0.55;
+      m_wKalman      = 0.42;
+      m_wHurst       = 0.35;
