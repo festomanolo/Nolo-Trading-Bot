@@ -65,3 +65,11 @@ public:
                      + m_wOrderFlow * fOrderFlow
                      + m_wHTF       * fHTF;
 
+      double h1 = LeakyReLU(fTrend * fHTF);
+      double h2 = LeakyReLU(fSMC * fOrderFlow);
+      double nonLinearZ = 0.35 * h1 + 0.40 * h2;
+
+      double prob = Sigmoid(linearZ + nonLinearZ);
+      return MathMax(0.05, MathMin(0.95, prob));
+   }
+
