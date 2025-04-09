@@ -73,3 +73,12 @@ public:
       return MathMax(0.05, MathMin(0.95, prob));
    }
 
+   void PartialFit(
+      double fTrend,
+      double fKalman,
+      double fHurst,
+      double fADX,
+      double fSMC,
+      double fOrderFlow,
+      double fHTF,
+      bool   isWin)
