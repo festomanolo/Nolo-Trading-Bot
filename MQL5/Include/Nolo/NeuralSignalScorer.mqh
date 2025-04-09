@@ -56,3 +56,12 @@ public:
       double fOrderFlow,
       double fHTF)
    {
+      double linearZ = m_bias
+                     + m_wTrend     * fTrend
+                     + m_wKalman    * fKalman
+                     + m_wHurst     * fHurst
+                     + m_wADX       * fADX
+                     + m_wSMC       * fSMC
+                     + m_wOrderFlow * fOrderFlow
+                     + m_wHTF       * fHTF;
+
