@@ -82,3 +82,11 @@ public:
       double fOrderFlow,
       double fHTF,
       bool   isWin)
+   {
+      double pred = PredictWinProbability(fTrend, fKalman, fHurst, fADX, fSMC, fOrderFlow, fHTF);
+      double target = isWin ? 1.0 : 0.0;
+      double err = target - pred;
+
+      m_wTrend     += m_learningRate * err * fTrend;
+      m_wKalman    += m_learningRate * err * fKalman;
+      m_wHurst     += m_learningRate * err * fHurst;
