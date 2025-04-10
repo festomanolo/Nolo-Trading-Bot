@@ -90,3 +90,12 @@ public:
       m_wTrend     += m_learningRate * err * fTrend;
       m_wKalman    += m_learningRate * err * fKalman;
       m_wHurst     += m_learningRate * err * fHurst;
+      m_wADX       += m_learningRate * err * fADX;
+      m_wSMC       += m_learningRate * err * fSMC;
+      m_wOrderFlow += m_learningRate * err * fOrderFlow;
+      m_wHTF       += m_learningRate * err * fHTF;
+      m_bias       += m_learningRate * 0.5 * err;
+   }
+};
+
+#endif // NOLO_NEURAL_SIGNAL_SCORER_MQH
