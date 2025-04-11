@@ -13,3 +13,11 @@ class CNewsCalendarGuard
 {
 private:
    int m_preNewsMinutes;
+   int m_postNewsMinutes;
+
+public:
+   CNewsCalendarGuard(int preMinutes = 30, int postMinutes = 30)
+   {
+      m_preNewsMinutes  = preMinutes;
+      m_postNewsMinutes = postMinutes;
+   }
