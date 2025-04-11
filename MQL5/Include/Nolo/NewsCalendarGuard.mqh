@@ -29,3 +29,11 @@ public:
 
       // 1. Protect against Midnight Rollover & Bank Settlement Spread Widening (22:50 - 00:10)
       if((dt.hour == 22 && dt.min >= 50) || dt.hour == 23 || (dt.hour == 0 && dt.min <= 10))
+         return true;
+
+      // 2. US Non-Farm Payrolls (First Friday of Month 13:15 - 14:00 Server/UTC)
+      if(StringFind(symbol, "USD") >= 0 && dt.day_of_week == 5 && dt.day <= 7)
+      {
+         if(dt.hour == 13 && dt.min >= 15 && dt.min <= 59)
+            return true;
+      }
