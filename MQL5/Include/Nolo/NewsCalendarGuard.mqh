@@ -5,3 +5,11 @@
 //+------------------------------------------------------------------+
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
+
+#ifndef NOLO_NEWS_CALENDAR_GUARD_MQH
+#define NOLO_NEWS_CALENDAR_GUARD_MQH
+
+class CNewsCalendarGuard
+{
+private:
+   int m_preNewsMinutes;
