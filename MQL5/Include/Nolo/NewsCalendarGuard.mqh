@@ -37,3 +37,10 @@ public:
          if(dt.hour == 13 && dt.min >= 15 && dt.min <= 59)
             return true;
       }
+
+      // 3. Native MQL5 Economic Calendar Integration (when compiled on MT5 build >= 2000)
+#ifdef __MQL5__
+      MqlCalendarValue values[];
+      datetime fromTime = currentTime - m_preNewsMinutes * 60;
+      datetime toTime   = currentTime + m_postNewsMinutes * 60;
+      string baseCcy    = StringSubstr(symbol, 0, 3);
