@@ -44,3 +44,11 @@ public:
       datetime fromTime = currentTime - m_preNewsMinutes * 60;
       datetime toTime   = currentTime + m_postNewsMinutes * 60;
       string baseCcy    = StringSubstr(symbol, 0, 3);
+      string quoteCcy   = StringSubstr(symbol, 3, 3);
+
+      if(CalendarValueHistory(values, fromTime, toTime, NULL, baseCcy) > 0)
+      {
+         for(int i = 0; i < ArraySize(values); i++)
+         {
+            MqlCalendarEvent ev;
+            if(CalendarEventById(values[i].event_id, ev))
