@@ -68,3 +68,11 @@ public:
                if(ev.importance == CALENDAR_IMPORTANCE_HIGH)
                   return true;
             }
+         }
+      }
+#endif
+      return false;
+   }
+};
+
+#endif // NOLO_NEWS_CALENDAR_GUARD_MQH
