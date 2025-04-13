@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_RISK_AND_PORTFOLIO_MANAGER_MQH
+#define NOLO_RISK_AND_PORTFOLIO_MANAGER_MQH
+
+#include "CoreTypes.mqh"
+
+class CRiskAndPortfolioManager
+{
+private:
