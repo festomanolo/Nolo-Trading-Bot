@@ -60,3 +60,11 @@ public:
       }
       if(CalendarValueHistory(values, fromTime, toTime, NULL, quoteCcy) > 0)
       {
+         for(int i = 0; i < ArraySize(values); i++)
+         {
+            MqlCalendarEvent ev;
+            if(CalendarEventById(values[i].event_id, ev))
+            {
+               if(ev.importance == CALENDAR_IMPORTANCE_HIGH)
+                  return true;
+            }
