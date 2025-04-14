@@ -14,3 +14,11 @@
 class CRiskAndPortfolioManager
 {
 private:
+   double m_highWaterMark;
+   double m_dayStartBalance;
+   int    m_currentDayOfYear;
+   int    m_tradesToday;
+   int    m_totalTrades;
+   int    m_winningTrades;
+   int    m_consecutiveWins;
+   int    m_consecutiveLosses;
