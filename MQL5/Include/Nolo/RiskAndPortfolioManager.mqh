@@ -22,3 +22,11 @@ private:
    int    m_winningTrades;
    int    m_consecutiveWins;
    int    m_consecutiveLosses;
+   double m_betaAlpha;
+   double m_betaBeta;
+
+public:
+   CRiskAndPortfolioManager()
+   {
+      m_highWaterMark     = 0.0;
+      m_dayStartBalance   = 0.0;
