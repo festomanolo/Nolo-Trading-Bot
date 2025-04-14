@@ -30,3 +30,11 @@ public:
    {
       m_highWaterMark     = 0.0;
       m_dayStartBalance   = 0.0;
+      m_currentDayOfYear  = -1;
+      m_tradesToday       = 0;
+      m_totalTrades       = 0;
+      m_winningTrades     = 0;
+      m_consecutiveWins   = 0;
+      m_consecutiveLosses = 0;
+      m_betaAlpha         = 6.0;
+      m_betaBeta          = 4.0;
