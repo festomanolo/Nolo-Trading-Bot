@@ -38,3 +38,11 @@ public:
       m_consecutiveLosses = 0;
       m_betaAlpha         = 6.0;
       m_betaBeta          = 4.0;
+   }
+
+   void Initialize(double currentBalance)
+   {
+      m_highWaterMark   = currentBalance;
+      m_dayStartBalance = currentBalance;
+   }
+
