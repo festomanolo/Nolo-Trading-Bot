@@ -62,3 +62,11 @@ public:
 
    void RecordTradeOpened() { m_tradesToday++; }
 
+   void RecordTradeOutcome(bool isWin)
+   {
+      m_totalTrades++;
+      if(isWin)
+      {
+         m_winningTrades++;
+         m_consecutiveWins++;
+         m_consecutiveLosses = 0;
