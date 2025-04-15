@@ -54,3 +54,11 @@ public:
       {
          m_currentDayOfYear = dt.day_of_year;
          m_dayStartBalance  = MathMax(balance, equity);
+         m_tradesToday      = 0;
+      }
+      if(equity > m_highWaterMark)
+         m_highWaterMark = equity;
+   }
+
+   void RecordTradeOpened() { m_tradesToday++; }
+
