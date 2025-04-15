@@ -46,3 +46,11 @@ public:
       m_dayStartBalance = currentBalance;
    }
 
+   void OnTickRefresh(datetime currentTime, double balance, double equity)
+   {
+      MqlDateTime dt;
+      TimeToStruct(currentTime, dt);
+      if(dt.day_of_year != m_currentDayOfYear)
+      {
+         m_currentDayOfYear = dt.day_of_year;
+         m_dayStartBalance  = MathMax(balance, equity);
