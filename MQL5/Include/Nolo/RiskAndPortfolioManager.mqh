@@ -70,3 +70,11 @@ public:
          m_winningTrades++;
          m_consecutiveWins++;
          m_consecutiveLosses = 0;
+         m_betaAlpha = m_betaAlpha * 0.98 + 1.0;
+         m_betaBeta  = m_betaBeta  * 0.98;
+      }
+      else
+      {
+         m_consecutiveLosses++;
+         m_consecutiveWins = 0;
+         m_betaAlpha = m_betaAlpha * 0.98;
