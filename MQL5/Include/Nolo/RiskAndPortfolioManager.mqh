@@ -86,3 +86,11 @@ public:
    {
       return m_betaAlpha / MathMax(1e-9, m_betaAlpha + m_betaBeta);
    }
+
+   int GetTradesToday() const { return m_tradesToday; }
+
+   bool IsDrawdownExceeded(double currentEquity, double maxDailyDDPct, double maxTotalDDPct)
+   {
+      if(m_dayStartBalance > 0.0)
+      {
+         double dailyLossPct = ((m_dayStartBalance - currentEquity) / m_dayStartBalance) * 100.0;
