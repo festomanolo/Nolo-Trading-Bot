@@ -78,3 +78,11 @@ public:
          m_consecutiveLosses++;
          m_consecutiveWins = 0;
          m_betaAlpha = m_betaAlpha * 0.98;
+         m_betaBeta  = m_betaBeta  * 0.98 + 1.0;
+      }
+   }
+
+   double GetBayesianWinRate() const
+   {
+      return m_betaAlpha / MathMax(1e-9, m_betaAlpha + m_betaBeta);
+   }
