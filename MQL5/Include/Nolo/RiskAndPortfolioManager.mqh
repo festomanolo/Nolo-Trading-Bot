@@ -94,3 +94,11 @@ public:
       if(m_dayStartBalance > 0.0)
       {
          double dailyLossPct = ((m_dayStartBalance - currentEquity) / m_dayStartBalance) * 100.0;
+         if(dailyLossPct >= maxDailyDDPct) return true;
+      }
+      if(m_highWaterMark > 0.0)
+      {
+         double totalLossPct = ((m_highWaterMark - currentEquity) / m_highWaterMark) * 100.0;
+         if(totalLossPct >= maxTotalDDPct) return true;
+      }
+      return false;
