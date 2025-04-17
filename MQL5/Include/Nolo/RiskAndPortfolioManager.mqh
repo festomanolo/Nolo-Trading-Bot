@@ -110,3 +110,11 @@ public:
       double baseRiskPct,
       double stopLossPriceDist,
       double riskRewardRatio,
+      double kellyFactor,
+      double signalWinProb,
+      double tickValue,
+      double tickSize,
+      double minLot,
+      double maxLot,
+      double lotStep)
+   {
