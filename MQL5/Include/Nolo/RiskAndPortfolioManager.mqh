@@ -102,3 +102,11 @@ public:
          if(totalLossPct >= maxTotalDDPct) return true;
       }
       return false;
+   }
+
+   double ComputeLotSize(
+      RISK_MODEL model,
+      double accountBalance,
+      double baseRiskPct,
+      double stopLossPriceDist,
+      double riskRewardRatio,
