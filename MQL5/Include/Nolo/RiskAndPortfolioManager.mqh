@@ -118,3 +118,11 @@ public:
       double maxLot,
       double lotStep)
    {
+      if(accountBalance <= 0.0 || stopLossPriceDist <= 0.0 || tickSize <= 0.0 || tickValue <= 0.0)
+         return minLot;
+
+      double effectivePct = baseRiskPct;
+      double winRate = GetBayesianWinRate();
+
+      if(model == KELLY)
+      {
