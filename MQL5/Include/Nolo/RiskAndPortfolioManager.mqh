@@ -126,3 +126,11 @@ public:
 
       if(model == KELLY)
       {
+         double k = MathMax(0.002, (winRate - (1.0 - winRate) / MathMax(0.5, riskRewardRatio)) * kellyFactor);
+         effectivePct = k * 100.0;
+      }
+      else if(model == ADAPTIVE_KELLY || model == BAYESIAN_KELLY)
+      {
+         double blendedW = 0.45 * winRate + 0.55 * signalWinProb;
+         double streak = 1.0;
+         if(m_consecutiveLosses >= 2) streak = 0.55;
