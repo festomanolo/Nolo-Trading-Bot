@@ -142,3 +142,11 @@ public:
       {
          effectivePct = (m_consecutiveLosses > 0)
                         ? baseRiskPct * 0.75
+                        : baseRiskPct * MathMin(1.6, 1.0 + 0.18 * m_consecutiveWins);
+      }
+
+      double riskCurrency = accountBalance * (effectivePct / 100.0);
+      double ticksInSL = stopLossPriceDist / tickSize;
+      double lossPerLot = ticksInSL * tickValue;
+      if(lossPerLot <= 1e-9) return minLot;
+
