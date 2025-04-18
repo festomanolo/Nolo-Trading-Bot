@@ -134,3 +134,11 @@ public:
          double blendedW = 0.45 * winRate + 0.55 * signalWinProb;
          double streak = 1.0;
          if(m_consecutiveLosses >= 2) streak = 0.55;
+         else if(m_consecutiveWins >= 2) streak = 1.20;
+         double k = MathMax(0.002, (blendedW - (1.0 - blendedW) / MathMax(0.5, riskRewardRatio)) * kellyFactor * streak);
+         effectivePct = MathMin(baseRiskPct * 1.6, baseRiskPct * (0.65 + k * 4.0));
+      }
+      else if(model == ANTI_MARTINGALE)
+      {
+         effectivePct = (m_consecutiveLosses > 0)
+                        ? baseRiskPct * 0.75
