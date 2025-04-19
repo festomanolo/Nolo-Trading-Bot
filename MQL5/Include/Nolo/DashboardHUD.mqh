@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_DASHBOARD_HUD_MQH
+#define NOLO_DASHBOARD_HUD_MQH
+
+#include "CoreTypes.mqh"
+
+class CDashboardHUD
+{
+private:
