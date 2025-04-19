@@ -150,3 +150,11 @@ public:
       double lossPerLot = ticksInSL * tickValue;
       if(lossPerLot <= 1e-9) return minLot;
 
+      double rawLots = riskCurrency / lossPerLot;
+      double normalized = MathFloor(rawLots / MathMax(1e-6, lotStep)) * lotStep;
+      normalized = MathMax(minLot, MathMin(maxLot, normalized));
+      return NormalizeDouble(normalized, 2);
+   }
+};
+
+#endif // NOLO_RISK_AND_PORTFOLIO_MANAGER_MQH
