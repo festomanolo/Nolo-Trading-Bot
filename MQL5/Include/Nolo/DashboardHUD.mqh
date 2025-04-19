@@ -14,3 +14,12 @@
 class CDashboardHUD
 {
 private:
+   bool m_enabled;
+
+public:
+   CDashboardHUD(bool enabled = true)
+   {
+      m_enabled = enabled;
+   }
+
+   void Render(
