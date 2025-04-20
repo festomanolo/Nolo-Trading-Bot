@@ -23,3 +23,11 @@ public:
    }
 
    void Render(
+      string symbol,
+      const NoloRegimeSnapshot &regime,
+      double winRate,
+      double neuralProb,
+      double buyPressure,
+      int tradesToday,
+      int maxDailyTrades,
+      double equity,
