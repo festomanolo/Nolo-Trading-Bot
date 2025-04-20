@@ -39,3 +39,12 @@ public:
          "╔══════════════════════════════════════════════════════════╗\n"
          "║ NOLO TRADING BOT v4.0 — INSTITUTIONAL QUANT ENGINE       ║\n"
          "╠══════════════════════════════════════════════════════════╣\n"
+         "║ Symbol         : %-10s | Regime    : %-14s ║\n"
+         "║ Regime Conf    : %5.1f%%     | Hurst H   : %6.3f         ║\n"
+         "║ Efficiency ER  : %5.3f      | ADX (14)  : %6.2f         ║\n"
+         "║ Kalman Slope   : %+6.3f     | ATR Ratio : %6.2fx        ║\n"
+         "║ OrderFlow Buy  : %5.1f%%     | Neural P  : %5.1f%%         ║\n"
+         "║ Bayesian WinR  : %5.1f%%     | Daily Trd : %d / %d          ║\n"
+         "║ Balance        : $%9.2f | Equity    : $%9.2f     ║\n"
+         "╚══════════════════════════════════════════════════════════╝",
+         symbol,
