@@ -31,3 +31,11 @@ public:
       int tradesToday,
       int maxDailyTrades,
       double equity,
+      double balance)
+   {
+      if(!m_enabled) return;
+
+      string hud = StringFormat(
+         "╔══════════════════════════════════════════════════════════╗\n"
+         "║ NOLO TRADING BOT v4.0 — INSTITUTIONAL QUANT ENGINE       ║\n"
+         "╠══════════════════════════════════════════════════════════╣\n"
