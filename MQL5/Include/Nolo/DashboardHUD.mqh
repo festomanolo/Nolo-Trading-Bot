@@ -56,3 +56,11 @@ public:
          regime.kalmanVelocity,
          regime.atrRatio,
          buyPressure * 100.0,
+         neuralProb * 100.0,
+         winRate * 100.0,
+         tradesToday,
+         maxDailyTrades,
+         balance,
+         equity
+      );
+      Comment(hud);
