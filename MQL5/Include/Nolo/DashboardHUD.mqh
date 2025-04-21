@@ -48,3 +48,11 @@ public:
          "║ Balance        : $%9.2f | Equity    : $%9.2f     ║\n"
          "╚══════════════════════════════════════════════════════════╝",
          symbol,
+         regime.regimeName,
+         regime.confidence * 100.0,
+         regime.hurstExponent,
+         regime.efficiencyRatio,
+         regime.adxValue,
+         regime.kalmanVelocity,
+         regime.atrRatio,
+         buyPressure * 100.0,
