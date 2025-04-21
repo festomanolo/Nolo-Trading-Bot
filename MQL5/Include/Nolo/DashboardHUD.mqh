@@ -64,3 +64,12 @@ public:
          equity
       );
       Comment(hud);
+   }
+
+   void Clear()
+   {
+      Comment("");
+   }
+};
+
+#endif // NOLO_DASHBOARD_HUD_MQH
