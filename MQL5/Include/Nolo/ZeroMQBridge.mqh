@@ -14,3 +14,12 @@
 class CPythonTelemetryBridge
 {
 private:
+   bool m_enabled;
+
+public:
+   CPythonTelemetryBridge(bool enabled = false)
+   {
+      m_enabled = enabled;
+   }
+
+   bool WriteHeartbeat(string symbol, const NoloRegimeSnapshot &regime, double bid, double ask)
