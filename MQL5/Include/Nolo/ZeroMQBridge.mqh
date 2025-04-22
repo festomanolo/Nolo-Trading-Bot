@@ -6,3 +6,11 @@
 #property copyright "Nolo Quantitative Systems 2025"
 #property strict
 
+#ifndef NOLO_ZEROMQ_BRIDGE_MQH
+#define NOLO_ZEROMQ_BRIDGE_MQH
+
+#include "CoreTypes.mqh"
+
+class CPythonTelemetryBridge
+{
+private:
