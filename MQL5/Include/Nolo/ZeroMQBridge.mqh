@@ -23,3 +23,11 @@ public:
    }
 
    bool WriteHeartbeat(string symbol, const NoloRegimeSnapshot &regime, double bid, double ask)
+   {
+      if(!m_enabled) return false;
+      string filename = "nolo_" + symbol + "_state.json";
+      int handle = FileOpen(filename, FILE_WRITE | FILE_TXT | FILE_ANSI);
+      if(handle == INVALID_HANDLE) return false;
+
+      string payload = StringFormat(
+         "{\"symbol\":\"%s\",\"bid\":%.5f,\"ask\":%.5f,\"regime\":\"%s\",\"hurst\":%.4f,\"kalman\":%.4f}",
