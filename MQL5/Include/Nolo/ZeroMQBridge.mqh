@@ -31,3 +31,12 @@ public:
 
       string payload = StringFormat(
          "{\"symbol\":\"%s\",\"bid\":%.5f,\"ask\":%.5f,\"regime\":\"%s\",\"hurst\":%.4f,\"kalman\":%.4f}",
+         symbol, bid, ask, regime.regimeName, regime.hurstExponent, regime.kalmanVelocity
+      );
+      FileWriteString(handle, payload);
+      FileClose(handle);
+      return true;
+   }
+};
+
+#endif // NOLO_ZEROMQ_BRIDGE_MQH
