@@ -30,3 +30,11 @@
 input REGIME_TYPE     MarketRegimeMode           = ADAPTIVE;       // Market Regime Detection Mode
 input RISK_MODEL      RiskModelType              = BAYESIAN_KELLY; // Institutional Risk Sizing Model
 input bool            UseVolatilityFilter        = true;           // Filter entries during extreme chop
+input bool            UsePriceMomentum           = true;           // Confirm with Kalman & OrderFlow momentum
+input bool            UseMarketStructure         = true;           // Use SMC Swing/OB/FVG structure stops
+input bool            UseAlternateTimeframes     = true;           // Multi-timeframe (HTF) confirmation
+input bool            UseSmartTrailingStop       = true;           // Volatility-adaptive ATR trailing stop
+input bool            UseNeuralScorer            = true;           // Online Neural Perceptron signal filter
+input bool            UseNewsCalendarGuard       = true;           // High-impact macro news & rollover guard
+input bool            ShowDashboardHUD           = true;           // Render real-time on-chart telemetry HUD
+input bool            EnablePythonBridge         = false;          // Publish telemetry to Python Quant Engine
