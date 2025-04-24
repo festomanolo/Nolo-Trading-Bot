@@ -38,3 +38,11 @@ input bool            UseNeuralScorer            = true;           // Online Neu
 input bool            UseNewsCalendarGuard       = true;           // High-impact macro news & rollover guard
 input bool            ShowDashboardHUD           = true;           // Render real-time on-chart telemetry HUD
 input bool            EnablePythonBridge         = false;          // Publish telemetry to Python Quant Engine
+
+//--- Input Parameters: Timeframes & Moving Averages
+input ENUM_TIMEFRAMES MainTimeframe              = PERIOD_M5;      // Main trading timeframe
+input ENUM_TIMEFRAMES HigherTimeframe            = PERIOD_H1;      // Higher confirmation timeframe
+input int             FastMAPeriod               = 8;              // Fast EMA period
+input int             SlowMAPeriod               = 21;             // Slow EMA period
+input ENUM_MA_METHOD  FastMAMethod               = MODE_EMA;       // Fast MA method
+input ENUM_MA_METHOD  SlowMAMethod               = MODE_EMA;       // Slow MA method
