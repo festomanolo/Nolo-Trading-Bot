@@ -14,3 +14,11 @@
 #include <Trade\SymbolInfo.mqh>
 #include <Trade\AccountInfo.mqh>
 
+#include "..\Include\Nolo\CoreTypes.mqh"
+#include "..\Include\Nolo\KalmanFilter.mqh"
+#include "..\Include\Nolo\RegimeEngine.mqh"
+#include "..\Include\Nolo\SmartMoneyConcepts.mqh"
+#include "..\Include\Nolo\OrderFlowEngine.mqh"
+#include "..\Include\Nolo\MultiCurrencyStrength.mqh"
+#include "..\Include\Nolo\NeuralSignalScorer.mqh"
+#include "..\Include\Nolo\NewsCalendarGuard.mqh"
