@@ -22,3 +22,11 @@
 #include "..\Include\Nolo\MultiCurrencyStrength.mqh"
 #include "..\Include\Nolo\NeuralSignalScorer.mqh"
 #include "..\Include\Nolo\NewsCalendarGuard.mqh"
+#include "..\Include\Nolo\RiskAndPortfolioManager.mqh"
+#include "..\Include\Nolo\DashboardHUD.mqh"
+#include "..\Include\Nolo\ZeroMQBridge.mqh"
+
+//--- Input Parameters: Strategy & Intelligence
+input REGIME_TYPE     MarketRegimeMode           = ADAPTIVE;       // Market Regime Detection Mode
+input RISK_MODEL      RiskModelType              = BAYESIAN_KELLY; // Institutional Risk Sizing Model
+input bool            UseVolatilityFilter        = true;           // Filter entries during extreme chop
