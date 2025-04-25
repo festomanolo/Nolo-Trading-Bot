@@ -55,3 +55,11 @@ input int             StochasticKPeriod          = 5;              // Stochastic
 input int             StochasticDPeriod          = 3;              // Stochastic %D period
 input int             StochasticSlowing          = 3;              // Stochastic slowing
 input int             MACD_FastEMA               = 12;             // MACD Fast EMA
+input int             MACD_SlowEMA               = 26;             // MACD Slow EMA
+input int             MACD_SignalSMA             = 9;              // MACD Signal SMA
+
+//--- Input Parameters: Volatility, SuperTrend & Ichimoku
+input int             BollingerPeriod            = 20;             // Bollinger Bands period
+input double          BollingerDeviation         = 2.0;            // Bollinger Bands std deviation
+input int             ATRPeriod                  = 14;             // ATR period
+input double          SuperTrendMultiplier       = 2.5;            // SuperTrend ATR multiplier
