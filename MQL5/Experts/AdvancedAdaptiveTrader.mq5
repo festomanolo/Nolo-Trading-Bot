@@ -46,3 +46,12 @@ input int             FastMAPeriod               = 8;              // Fast EMA p
 input int             SlowMAPeriod               = 21;             // Slow EMA period
 input ENUM_MA_METHOD  FastMAMethod               = MODE_EMA;       // Fast MA method
 input ENUM_MA_METHOD  SlowMAMethod               = MODE_EMA;       // Slow MA method
+
+//--- Input Parameters: Oscillators & MACD
+input int             RSIPeriod                  = 14;             // RSI period
+input int             RSI_UpperLevel             = 70;             // RSI upper threshold
+input int             RSI_LowerLevel             = 30;             // RSI lower threshold
+input int             StochasticKPeriod          = 5;              // Stochastic %K period
+input int             StochasticDPeriod          = 3;              // Stochastic %D period
+input int             StochasticSlowing          = 3;              // Stochastic slowing
+input int             MACD_FastEMA               = 12;             // MACD Fast EMA
