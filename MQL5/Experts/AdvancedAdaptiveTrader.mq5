@@ -63,3 +63,11 @@ input int             BollingerPeriod            = 20;             // Bollinger 
 input double          BollingerDeviation         = 2.0;            // Bollinger Bands std deviation
 input int             ATRPeriod                  = 14;             // ATR period
 input double          SuperTrendMultiplier       = 2.5;            // SuperTrend ATR multiplier
+input int             TenkanSen                  = 9;              // Ichimoku Tenkan-sen
+input int             KijunSen                   = 26;             // Ichimoku Kijun-sen
+input int             SenkouSpanB                = 52;             // Ichimoku Senkou Span B
+
+//--- Input Parameters: Institutional Risk & Prop-Firm Guard
+input double          MaxRisk                    = 1.0;            // Base risk per trade (%)
+input double          AdaptiveRiskMultiplier     = 1.4;            // Multiplier for high-confluence signals
+input double          ATRMultiplier              = 2.0;            // ATR multiplier for Stop Loss
