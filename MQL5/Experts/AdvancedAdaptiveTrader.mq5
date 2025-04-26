@@ -87,3 +87,11 @@ input double          BreakEvenTriggerPips       = 14.0;           // Pips profi
 input double          BreakEvenPlusPips          = 2.0;            // Extra pips locked at Break-Even
 input bool            UsePartialTakeProfit       = true;           // Scale out 40% at 1.0R
 input double          TrailingStopActivationPips = 20.0;           // Pips profit to activate Smart Trail
+input double          TrailingStopDistance       = 12.0;           // Base trailing stop distance in pips
+input int             Magic                      = 202504;         // Expert Advisor Magic Number
+
+#define BUFFER_SIZE 100
+
+//--- Native MQL5 Trading & Indicator Handles
+CTrade                  g_trade;
+CPositionInfo           g_posInfo;
