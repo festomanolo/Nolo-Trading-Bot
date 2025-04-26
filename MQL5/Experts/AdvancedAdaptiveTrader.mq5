@@ -95,3 +95,12 @@ input int             Magic                      = 202504;         // Expert Adv
 //--- Native MQL5 Trading & Indicator Handles
 CTrade                  g_trade;
 CPositionInfo           g_posInfo;
+CRegimeEngine           g_regimeEngine;
+CSmartMoneyConcepts     g_smcEngine;
+COrderFlowEngine        g_orderFlow;
+CMultiCurrencyStrength  g_currencyMeter;
+CNeuralSignalScorer     g_neuralScorer;
+CNewsCalendarGuard      g_newsGuard;
+CRiskAndPortfolioManager g_riskManager;
+CDashboardHUD           g_hud;
+CPythonTelemetryBridge  g_pyBridge;
