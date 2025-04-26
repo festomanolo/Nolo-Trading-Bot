@@ -79,3 +79,11 @@ input int             MaxDailyTrades             = 6;              // Max trades
 input int             MinBarsSinceLastTrade      = 3;              // Cooldown bars between trades
 input int             MaxSpread                  = 20;             // Maximum allowed spread in points
 input double          MinNeuralWinProb           = 0.54;           // Minimum Neural Scorer win probability
+
+//--- Input Parameters: Smart Exit Management
+input double          RiskRewardRatio            = 2.2;            // Target Risk-to-Reward ratio
+input bool            UseBreakEven               = true;           // Enable Break-Even + Commission lock
+input double          BreakEvenTriggerPips       = 14.0;           // Pips profit to trigger Break-Even
+input double          BreakEvenPlusPips          = 2.0;            // Extra pips locked at Break-Even
+input bool            UsePartialTakeProfit       = true;           // Scale out 40% at 1.0R
+input double          TrailingStopActivationPips = 20.0;           // Pips profit to activate Smart Trail
