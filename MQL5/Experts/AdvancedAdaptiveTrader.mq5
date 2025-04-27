@@ -120,3 +120,11 @@ datetime           g_lastTradeTime = 0;
 double             g_lastNeuralProb = 0.60;
 double             g_lastBuyPressure = 0.50;
 
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   if(FastMAPeriod >= SlowMAPeriod)
+   {
+      Print("Error: FastMAPeriod must be strictly less than SlowMAPeriod.");
