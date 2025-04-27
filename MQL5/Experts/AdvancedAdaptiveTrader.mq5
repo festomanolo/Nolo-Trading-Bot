@@ -112,3 +112,11 @@ double FastMA[], SlowMA[], RSIValue[], MACDMain[], MACDSignal[], UpperBB[], Lowe
 double ADXMain[], PlusDI[], MinusDI[], StochMain[], StochSignal[];
 double IchimokuTenkan[], IchimokuKijun[], IchimokuSenkouA[], IchimokuSenkouB[];
 double SuperTrendValue[], SuperTrendDirection[];
+double CloseArr[], HighArr[], LowArr[], OpenArr[];
+long   VolumeArr[];
+
+NoloRegimeSnapshot g_currentRegime;
+datetime           g_lastTradeTime = 0;
+double             g_lastNeuralProb = 0.60;
+double             g_lastBuyPressure = 0.50;
+
