@@ -104,3 +104,11 @@ CNewsCalendarGuard      g_newsGuard;
 CRiskAndPortfolioManager g_riskManager;
 CDashboardHUD           g_hud;
 CPythonTelemetryBridge  g_pyBridge;
+
+int g_hFastMA, g_hSlowMA, g_hHTFFastMA, g_hHTFSlowMA;
+int g_hRSI, g_hMACD, g_hBB, g_hATR, g_hADX, g_hStoch, g_hIchimoku;
+
+double FastMA[], SlowMA[], RSIValue[], MACDMain[], MACDSignal[], UpperBB[], LowerBB[], ATRValue[];
+double ADXMain[], PlusDI[], MinusDI[], StochMain[], StochSignal[];
+double IchimokuTenkan[], IchimokuKijun[], IchimokuSenkouA[], IchimokuSenkouB[];
+double SuperTrendValue[], SuperTrendDirection[];
