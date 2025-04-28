@@ -144,3 +144,11 @@ int OnInit()
    g_hBB        = iBands(_Symbol, MainTimeframe, BollingerPeriod, 0, BollingerDeviation, PRICE_CLOSE);
    g_hATR       = iATR(_Symbol, MainTimeframe, ATRPeriod);
    g_hADX       = iADX(_Symbol, MainTimeframe, 14);
+   g_hStoch     = iStochastic(_Symbol, MainTimeframe, StochasticKPeriod, StochasticDPeriod, StochasticSlowing, MODE_SMA, STO_LOWHIGH);
+   g_hIchimoku  = iIchimoku(_Symbol, MainTimeframe, TenkanSen, KijunSen, SenkouSpanB);
+
+   if(g_hFastMA == INVALID_HANDLE || g_hSlowMA == INVALID_HANDLE || g_hRSI == INVALID_HANDLE ||
+      g_hMACD == INVALID_HANDLE || g_hBB == INVALID_HANDLE || g_hATR == INVALID_HANDLE)
+   {
+      Print("Error initializing native MQL5 indicator handles.");
+      return(INIT_FAILED);
