@@ -136,3 +136,11 @@ int OnInit()
    g_trade.SetTypeFillingBySymbol(_Symbol);
 
    g_hFastMA    = iMA(_Symbol, MainTimeframe, FastMAPeriod, 0, FastMAMethod, PRICE_CLOSE);
+   g_hSlowMA    = iMA(_Symbol, MainTimeframe, SlowMAPeriod, 0, SlowMAMethod, PRICE_CLOSE);
+   g_hHTFFastMA = iMA(_Symbol, HigherTimeframe, FastMAPeriod, 0, FastMAMethod, PRICE_CLOSE);
+   g_hHTFSlowMA = iMA(_Symbol, HigherTimeframe, SlowMAPeriod, 0, SlowMAMethod, PRICE_CLOSE);
+   g_hRSI       = iRSI(_Symbol, MainTimeframe, RSIPeriod, PRICE_CLOSE);
+   g_hMACD      = iMACD(_Symbol, MainTimeframe, MACD_FastEMA, MACD_SlowEMA, MACD_SignalSMA, PRICE_CLOSE);
+   g_hBB        = iBands(_Symbol, MainTimeframe, BollingerPeriod, 0, BollingerDeviation, PRICE_CLOSE);
+   g_hATR       = iATR(_Symbol, MainTimeframe, ATRPeriod);
+   g_hADX       = iADX(_Symbol, MainTimeframe, 14);
