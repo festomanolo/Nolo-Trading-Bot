@@ -152,3 +152,12 @@ int OnInit()
    {
       Print("Error initializing native MQL5 indicator handles.");
       return(INIT_FAILED);
+   }
+
+   ArrayResize(SuperTrendValue, BUFFER_SIZE);
+   ArrayResize(SuperTrendDirection, BUFFER_SIZE);
+
+   g_riskManager.Initialize(AccountInfoDouble(ACCOUNT_BALANCE));
+   g_hud = CDashboardHUD(ShowDashboardHUD);
+   g_pyBridge = CPythonTelemetryBridge(EnablePythonBridge);
+
