@@ -128,3 +128,11 @@ int OnInit()
    if(FastMAPeriod >= SlowMAPeriod)
    {
       Print("Error: FastMAPeriod must be strictly less than SlowMAPeriod.");
+      return(INIT_PARAMETERS_INCORRECT);
+   }
+
+   g_trade.SetExpertMagicNumber(Magic);
+   g_trade.SetDeviationInPoints(Slippage);
+   g_trade.SetTypeFillingBySymbol(_Symbol);
+
+   g_hFastMA    = iMA(_Symbol, MainTimeframe, FastMAPeriod, 0, FastMAMethod, PRICE_CLOSE);
