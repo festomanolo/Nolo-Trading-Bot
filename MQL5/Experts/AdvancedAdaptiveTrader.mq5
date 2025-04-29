@@ -161,3 +161,11 @@ int OnInit()
    g_hud = CDashboardHUD(ShowDashboardHUD);
    g_pyBridge = CPythonTelemetryBridge(EnablePythonBridge);
 
+   Print("Nolo Trading Bot v4.0 (AdvancedAdaptiveTrader) initialized successfully.");
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
