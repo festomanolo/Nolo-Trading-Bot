@@ -169,3 +169,11 @@ int OnInit()
 //| Expert deinitialization function                                 |
 //+------------------------------------------------------------------+
 void OnDeinit(const int reason)
+{
+   IndicatorRelease(g_hFastMA);
+   IndicatorRelease(g_hSlowMA);
+   IndicatorRelease(g_hHTFFastMA);
+   IndicatorRelease(g_hHTFSlowMA);
+   IndicatorRelease(g_hRSI);
+   IndicatorRelease(g_hMACD);
+   IndicatorRelease(g_hBB);
