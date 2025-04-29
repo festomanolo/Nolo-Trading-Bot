@@ -177,3 +177,11 @@ void OnDeinit(const int reason)
    IndicatorRelease(g_hRSI);
    IndicatorRelease(g_hMACD);
    IndicatorRelease(g_hBB);
+   IndicatorRelease(g_hATR);
+   IndicatorRelease(g_hADX);
+   IndicatorRelease(g_hStoch);
+   IndicatorRelease(g_hIchimoku);
+   g_hud.Clear();
+}
+
+//+------------------------------------------------------------------+
