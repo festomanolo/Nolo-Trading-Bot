@@ -193,3 +193,11 @@ void OnTick()
    double equity  = AccountInfoDouble(ACCOUNT_EQUITY);
    g_riskManager.OnTickRefresh(TimeCurrent(), balance, equity);
 
+   long spread = SymbolInfoInteger(_Symbol, SYMBOL_SPREAD);
+   if(spread > MaxSpread) return;
+
+   if(g_riskManager.IsDrawdownExceeded(equity, MaxDrawdown, MaxTotalDrawdown))
+      return;
+
+   if(!UpdateAllBuffers()) return;
+
