@@ -201,3 +201,12 @@ void OnTick()
 
    if(!UpdateAllBuffers()) return;
 
+   bool hasHH = HasRecentHigherHigh(12);
+   bool hasLL = HasRecentLowerLow(12);
+   g_regimeEngine.EvaluateRegime(
+      CloseArr, HighArr, LowArr, FastMA, SlowMA, UpperBB, LowerBB, ATRValue,
+      ADXMain[0], PlusDI[0], MinusDI[0], hasHH, hasLL, g_currentRegime
+   );
+
+   g_lastBuyPressure = g_orderFlow.ComputeBuyPressureRatio(HighArr, LowArr, CloseArr, VolumeArr, 10);
+
