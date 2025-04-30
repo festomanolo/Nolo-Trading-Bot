@@ -210,3 +210,11 @@ void OnTick()
 
    g_lastBuyPressure = g_orderFlow.ComputeBuyPressureRatio(HighArr, LowArr, CloseArr, VolumeArr, 10);
 
+   ManageOpenPositions();
+
+   g_hud.Render(
+      _Symbol, g_currentRegime, g_riskManager.GetBayesianWinRate(),
+      g_lastNeuralProb, g_lastBuyPressure, g_riskManager.GetTradesToday(),
+      MaxDailyTrades, equity, balance
+   );
+
