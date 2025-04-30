@@ -185,3 +185,11 @@ void OnDeinit(const int reason)
 }
 
 //+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   double balance = AccountInfoDouble(ACCOUNT_BALANCE);
+   double equity  = AccountInfoDouble(ACCOUNT_EQUITY);
+   g_riskManager.OnTickRefresh(TimeCurrent(), balance, equity);
+
