@@ -226,3 +226,11 @@ void OnTick()
    if(BarsSinceLastTrade() < MinBarsSinceLastTrade) return;
    if(UseNewsCalendarGuard && g_newsGuard.IsHighImpactNewsWindow(_Symbol, TimeCurrent())) return;
 
+   CheckEntrySignals();
+}
+
+//+------------------------------------------------------------------+
+//| Refresh all MQL5 indicator and price series buffers              |
+//+------------------------------------------------------------------+
+bool UpdateAllBuffers()
+{
