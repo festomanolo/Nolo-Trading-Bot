@@ -218,3 +218,11 @@ void OnTick()
       MaxDailyTrades, equity, balance
    );
 
+   double bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+   double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+   g_pyBridge.WriteHeartbeat(_Symbol, g_currentRegime, bid, ask);
+
+   if(g_riskManager.GetTradesToday() >= MaxDailyTrades) return;
+   if(BarsSinceLastTrade() < MinBarsSinceLastTrade) return;
+   if(UseNewsCalendarGuard && g_newsGuard.IsHighImpactNewsWindow(_Symbol, TimeCurrent())) return;
+
