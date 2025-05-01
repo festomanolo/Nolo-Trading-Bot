@@ -234,3 +234,11 @@ void OnTick()
 //+------------------------------------------------------------------+
 bool UpdateAllBuffers()
 {
+   ArraySetAsSeries(FastMA, true);
+   ArraySetAsSeries(SlowMA, true);
+   ArraySetAsSeries(RSIValue, true);
+   ArraySetAsSeries(MACDMain, true);
+   ArraySetAsSeries(MACDSignal, true);
+   ArraySetAsSeries(UpperBB, true);
+   ArraySetAsSeries(LowerBB, true);
+   ArraySetAsSeries(ATRValue, true);
