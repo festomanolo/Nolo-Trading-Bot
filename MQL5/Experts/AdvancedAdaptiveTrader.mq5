@@ -242,3 +242,11 @@ bool UpdateAllBuffers()
    ArraySetAsSeries(UpperBB, true);
    ArraySetAsSeries(LowerBB, true);
    ArraySetAsSeries(ATRValue, true);
+   ArraySetAsSeries(ADXMain, true);
+   ArraySetAsSeries(PlusDI, true);
+   ArraySetAsSeries(MinusDI, true);
+   ArraySetAsSeries(StochMain, true);
+   ArraySetAsSeries(StochSignal, true);
+   ArraySetAsSeries(IchimokuTenkan, true);
+   ArraySetAsSeries(IchimokuKijun, true);
+   ArraySetAsSeries(IchimokuSenkouA, true);
