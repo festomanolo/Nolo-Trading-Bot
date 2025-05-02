@@ -250,3 +250,11 @@ bool UpdateAllBuffers()
    ArraySetAsSeries(IchimokuTenkan, true);
    ArraySetAsSeries(IchimokuKijun, true);
    ArraySetAsSeries(IchimokuSenkouA, true);
+   ArraySetAsSeries(IchimokuSenkouB, true);
+   ArraySetAsSeries(CloseArr, true);
+   ArraySetAsSeries(HighArr, true);
+   ArraySetAsSeries(LowArr, true);
+   ArraySetAsSeries(OpenArr, true);
+   ArraySetAsSeries(VolumeArr, true);
+
+   if(CopyClose(_Symbol, MainTimeframe, 0, BUFFER_SIZE, CloseArr) < BUFFER_SIZE) return false;
