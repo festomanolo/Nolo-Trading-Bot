@@ -258,3 +258,12 @@ bool UpdateAllBuffers()
    ArraySetAsSeries(VolumeArr, true);
 
    if(CopyClose(_Symbol, MainTimeframe, 0, BUFFER_SIZE, CloseArr) < BUFFER_SIZE) return false;
+   if(CopyHigh(_Symbol, MainTimeframe, 0, BUFFER_SIZE, HighArr) < BUFFER_SIZE) return false;
+   if(CopyLow(_Symbol, MainTimeframe, 0, BUFFER_SIZE, LowArr) < BUFFER_SIZE) return false;
+   if(CopyOpen(_Symbol, MainTimeframe, 0, BUFFER_SIZE, OpenArr) < BUFFER_SIZE) return false;
+   if(CopyTickVolume(_Symbol, MainTimeframe, 0, BUFFER_SIZE, VolumeArr) < BUFFER_SIZE) return false;
+
+   if(CopyBuffer(g_hFastMA, 0, 0, BUFFER_SIZE, FastMA) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hSlowMA, 0, 0, BUFFER_SIZE, SlowMA) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hRSI, 0, 0, BUFFER_SIZE, RSIValue) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hMACD, 0, 0, BUFFER_SIZE, MACDMain) < BUFFER_SIZE) return false;
