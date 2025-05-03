@@ -267,3 +267,11 @@ bool UpdateAllBuffers()
    if(CopyBuffer(g_hSlowMA, 0, 0, BUFFER_SIZE, SlowMA) < BUFFER_SIZE) return false;
    if(CopyBuffer(g_hRSI, 0, 0, BUFFER_SIZE, RSIValue) < BUFFER_SIZE) return false;
    if(CopyBuffer(g_hMACD, 0, 0, BUFFER_SIZE, MACDMain) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hMACD, 1, 0, BUFFER_SIZE, MACDSignal) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hBB, 1, 0, BUFFER_SIZE, UpperBB) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hBB, 2, 0, BUFFER_SIZE, LowerBB) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hATR, 0, 0, BUFFER_SIZE, ATRValue) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hADX, 0, 0, BUFFER_SIZE, ADXMain) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hADX, 1, 0, BUFFER_SIZE, PlusDI) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hADX, 2, 0, BUFFER_SIZE, MinusDI) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hStoch, 0, 0, BUFFER_SIZE, StochMain) < BUFFER_SIZE) return false;
