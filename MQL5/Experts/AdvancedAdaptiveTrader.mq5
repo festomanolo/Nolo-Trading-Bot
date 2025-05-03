@@ -291,3 +291,11 @@ bool UpdateAllBuffers()
 void CalculateSuperTrendSeries()
 {
    double finalUpper[], finalLower[];
+   ArrayResize(finalUpper, BUFFER_SIZE);
+   ArrayResize(finalLower, BUFFER_SIZE);
+
+   for(int i = BUFFER_SIZE - 1; i >= 0; i--)
+   {
+      double hl2 = (HighArr[i] + LowArr[i]) * 0.5;
+      double basicUpper = hl2 + SuperTrendMultiplier * ATRValue[i];
+      double basicLower = hl2 - SuperTrendMultiplier * ATRValue[i];
