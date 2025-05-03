@@ -283,3 +283,11 @@ bool UpdateAllBuffers()
 
    CalculateSuperTrendSeries();
    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Ratcheting SuperTrend calculation from oldest to newest bar      |
+//+------------------------------------------------------------------+
+void CalculateSuperTrendSeries()
+{
+   double finalUpper[], finalLower[];
