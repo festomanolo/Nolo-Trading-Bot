@@ -275,3 +275,11 @@ bool UpdateAllBuffers()
    if(CopyBuffer(g_hADX, 1, 0, BUFFER_SIZE, PlusDI) < BUFFER_SIZE) return false;
    if(CopyBuffer(g_hADX, 2, 0, BUFFER_SIZE, MinusDI) < BUFFER_SIZE) return false;
    if(CopyBuffer(g_hStoch, 0, 0, BUFFER_SIZE, StochMain) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hStoch, 1, 0, BUFFER_SIZE, StochSignal) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hIchimoku, 0, 0, BUFFER_SIZE, IchimokuTenkan) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hIchimoku, 1, 0, BUFFER_SIZE, IchimokuKijun) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hIchimoku, 2, 0, BUFFER_SIZE, IchimokuSenkouA) < BUFFER_SIZE) return false;
+   if(CopyBuffer(g_hIchimoku, 3, 0, BUFFER_SIZE, IchimokuSenkouB) < BUFFER_SIZE) return false;
+
+   CalculateSuperTrendSeries();
+   return true;
