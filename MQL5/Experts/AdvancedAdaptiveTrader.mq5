@@ -299,3 +299,11 @@ void CalculateSuperTrendSeries()
       double hl2 = (HighArr[i] + LowArr[i]) * 0.5;
       double basicUpper = hl2 + SuperTrendMultiplier * ATRValue[i];
       double basicLower = hl2 - SuperTrendMultiplier * ATRValue[i];
+
+      if(i == BUFFER_SIZE - 1)
+      {
+         finalUpper[i] = basicUpper;
+         finalLower[i] = basicLower;
+         SuperTrendDirection[i] = 1.0;
+         SuperTrendValue[i] = finalLower[i];
+         continue;
