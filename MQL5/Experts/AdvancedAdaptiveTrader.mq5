@@ -307,3 +307,12 @@ void CalculateSuperTrendSeries()
          SuperTrendDirection[i] = 1.0;
          SuperTrendValue[i] = finalLower[i];
          continue;
+      }
+
+      double prevClose = CloseArr[i + 1];
+      finalUpper[i] = (basicUpper < finalUpper[i + 1] || prevClose > finalUpper[i + 1]) ? basicUpper : finalUpper[i + 1];
+      finalLower[i] = (basicLower > finalLower[i + 1] || prevClose < finalLower[i + 1]) ? basicLower : finalLower[i + 1];
+
+      double prevDir = SuperTrendDirection[i + 1];
+      if(prevDir < 0 && CloseArr[i] > finalUpper[i + 1])
+         SuperTrendDirection[i] = 1.0;
