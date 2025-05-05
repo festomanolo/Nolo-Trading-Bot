@@ -324,3 +324,11 @@ void CalculateSuperTrendSeries()
       SuperTrendValue[i] = (SuperTrendDirection[i] > 0) ? finalLower[i] : finalUpper[i];
    }
 }
+
+bool HasRecentHigherHigh(int bars)
+{
+   double highest = HighArr[1];
+   for(int i = 2; i < bars && i < BUFFER_SIZE; i++)
+      if(HighArr[i] > highest) highest = HighArr[i];
+   return CloseArr[0] > highest;
+}
