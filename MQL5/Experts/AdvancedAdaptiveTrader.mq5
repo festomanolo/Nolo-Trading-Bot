@@ -340,3 +340,11 @@ bool HasRecentLowerLow(int bars)
       if(LowArr[i] < lowest) lowest = LowArr[i];
    return CloseArr[0] < lowest;
 }
+
+int BarsSinceLastTrade()
+{
+   if(g_lastTradeTime == 0) return 999;
+   return Bars(_Symbol, MainTimeframe, g_lastTradeTime, TimeCurrent());
+}
+
+bool HasOpenPosition()
