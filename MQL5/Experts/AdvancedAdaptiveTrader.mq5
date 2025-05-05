@@ -348,3 +348,11 @@ int BarsSinceLastTrade()
 }
 
 bool HasOpenPosition()
+{
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+   {
+      if(g_posInfo.SelectByIndex(i))
+      {
+         if(g_posInfo.Symbol() == _Symbol && g_posInfo.Magic() == Magic)
+            return true;
+      }
