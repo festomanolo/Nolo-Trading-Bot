@@ -332,3 +332,11 @@ bool HasRecentHigherHigh(int bars)
       if(HighArr[i] > highest) highest = HighArr[i];
    return CloseArr[0] > highest;
 }
+
+bool HasRecentLowerLow(int bars)
+{
+   double lowest = LowArr[1];
+   for(int i = 2; i < bars && i < BUFFER_SIZE; i++)
+      if(LowArr[i] < lowest) lowest = LowArr[i];
+   return CloseArr[0] < lowest;
+}
