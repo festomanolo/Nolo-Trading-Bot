@@ -373,3 +373,11 @@ void ManageOpenPositions()
    {
       if(!g_posInfo.SelectByIndex(i)) continue;
       if(g_posInfo.Symbol() != _Symbol || g_posInfo.Magic() != Magic) continue;
+
+      ulong ticket     = g_posInfo.Ticket();
+      double openPrice = g_posInfo.PriceOpen();
+      double currSL    = g_posInfo.StopLoss();
+      double currTP    = g_posInfo.TakeProfit();
+      double markPrice = g_posInfo.PriceCurrent();
+
+      double atrRatio = (ATRValue[10] > 1e-9) ? MathMax(0.65, MathMin(1.5, ATRValue[0] / ATRValue[10])) : 1.0;
