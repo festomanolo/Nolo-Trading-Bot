@@ -365,3 +365,11 @@ bool HasOpenPosition()
 //+------------------------------------------------------------------+
 void ManageOpenPositions()
 {
+   double point = SymbolInfoDouble(_Symbol, SYMBOL_POINT);
+   int digits   = (int)SymbolInfoInteger(_Symbol, SYMBOL_DIGITS);
+   double pip   = (digits == 3 || digits == 5) ? point * 10.0 : point;
+
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+   {
+      if(!g_posInfo.SelectByIndex(i)) continue;
+      if(g_posInfo.Symbol() != _Symbol || g_posInfo.Magic() != Magic) continue;
