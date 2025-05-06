@@ -356,3 +356,12 @@ bool HasOpenPosition()
          if(g_posInfo.Symbol() == _Symbol && g_posInfo.Magic() == Magic)
             return true;
       }
+   }
+   return false;
+}
+
+//+------------------------------------------------------------------+
+//| Manage open positions (Break-Even & Smart ATR Trailing Stop)     |
+//+------------------------------------------------------------------+
+void ManageOpenPositions()
+{
