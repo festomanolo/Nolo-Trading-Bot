@@ -381,3 +381,11 @@ void ManageOpenPositions()
       double markPrice = g_posInfo.PriceCurrent();
 
       double atrRatio = (ATRValue[10] > 1e-9) ? MathMax(0.65, MathMin(1.5, ATRValue[0] / ATRValue[10])) : 1.0;
+      double adaptiveTrailPips = TrailingStopDistance * atrRatio;
+
+      if(g_posInfo.PositionType() == POSITION_TYPE_BUY)
+      {
+         double pipsProfit = (markPrice - openPrice) / pip;
+         if(UseBreakEven && pipsProfit >= BreakEvenTriggerPips && (currSL == 0.0 || currSL < openPrice))
+         {
+            double newSL = NormalizeDouble(openPrice + BreakEvenPlusPips * pip, digits);
