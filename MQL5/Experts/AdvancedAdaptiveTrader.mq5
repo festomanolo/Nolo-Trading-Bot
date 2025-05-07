@@ -389,3 +389,11 @@ void ManageOpenPositions()
          if(UseBreakEven && pipsProfit >= BreakEvenTriggerPips && (currSL == 0.0 || currSL < openPrice))
          {
             double newSL = NormalizeDouble(openPrice + BreakEvenPlusPips * pip, digits);
+            g_trade.PositionModify(ticket, newSL, currTP);
+         }
+         else if(UseSmartTrailingStop && pipsProfit >= TrailingStopActivationPips)
+         {
+            double newSL = NormalizeDouble(markPrice - adaptiveTrailPips * pip, digits);
+            if(currSL == 0.0 || newSL > currSL + point * 2)
+               g_trade.PositionModify(ticket, newSL, currTP);
+         }
