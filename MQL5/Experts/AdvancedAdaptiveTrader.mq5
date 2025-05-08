@@ -430,3 +430,11 @@ void CheckEntrySignals()
          mode = TREND_FOLLOWING;
       else if(g_currentRegime.regimeName == "RANGE")
          mode = RANGE_TRADING;
+      else if(g_currentRegime.regimeName == "BREAKOUT_UP" || g_currentRegime.regimeName == "BREAKOUT_DOWN")
+         mode = BREAKOUT;
+      else if(g_currentRegime.regimeName == "VOLATILITY")
+         mode = VOLATILITY;
+      else
+         mode = TREND_FOLLOWING;
+   }
+
