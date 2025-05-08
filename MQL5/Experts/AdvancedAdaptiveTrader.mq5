@@ -422,3 +422,11 @@ void ManageOpenPositions()
 void CheckEntrySignals()
 {
    if(HasOpenPosition()) return;
+
+   REGIME_TYPE mode = MarketRegimeMode;
+   if(mode == ADAPTIVE)
+   {
+      if(g_currentRegime.regimeName == "TREND_UP" || g_currentRegime.regimeName == "TREND_DOWN")
+         mode = TREND_FOLLOWING;
+      else if(g_currentRegime.regimeName == "RANGE")
+         mode = RANGE_TRADING;
