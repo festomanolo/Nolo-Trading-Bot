@@ -413,3 +413,12 @@ void ManageOpenPositions()
                g_trade.PositionModify(ticket, newSL, currTP);
          }
       }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Route signal generation according to detected regime             |
+//+------------------------------------------------------------------+
+void CheckEntrySignals()
+{
+   if(HasOpenPosition()) return;
