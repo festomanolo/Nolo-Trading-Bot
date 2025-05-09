@@ -454,3 +454,11 @@ bool CheckHTFConfirmation(int direction)
    if(!UseAlternateTimeframes) return true;
    double htfFast[], htfSlow[];
    ArraySetAsSeries(htfFast, true);
+   ArraySetAsSeries(htfSlow, true);
+   if(CopyBuffer(g_hHTFFastMA, 0, 0, 2, htfFast) < 2) return true;
+   if(CopyBuffer(g_hHTFSlowMA, 0, 0, 2, htfSlow) < 2) return true;
+   return (direction > 0) ? (htfFast[0] >= htfSlow[0]) : (htfFast[0] <= htfSlow[0]);
+}
+
+void EvaluateTrendFollowing()
+{
