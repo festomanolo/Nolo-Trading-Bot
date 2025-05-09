@@ -462,3 +462,12 @@ bool CheckHTFConfirmation(int direction)
 
 void EvaluateTrendFollowing()
 {
+   bool buySig = FastMA[0] > SlowMA[0] && FastMA[1] >= SlowMA[1] * 0.9998 &&
+                 MACDMain[0] > MACDSignal[0] && SuperTrendDirection[0] > 0 &&
+                 RSIValue[0] > 40.0 && RSIValue[0] < 72.0 && g_currentRegime.kalmanVelocity >= 0.0;
+
+   bool strongBuy = buySig && IchimokuTenkan[0] > IchimokuKijun[0] &&
+                    CloseArr[0] > IchimokuSenkouA[0] && CloseArr[0] > IchimokuSenkouB[0];
+
+   bool sellSig = FastMA[0] < SlowMA[0] && FastMA[1] <= SlowMA[1] * 1.0002 &&
+                  MACDMain[0] < MACDSignal[0] && SuperTrendDirection[0] < 0 &&
