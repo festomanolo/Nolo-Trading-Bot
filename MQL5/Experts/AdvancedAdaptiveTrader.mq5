@@ -446,3 +446,11 @@ void CheckEntrySignals()
       case SMC_INSTITUTIONAL: EvaluateBreakoutAndSMC(); break;
       case VOLATILITY:        EvaluateVolatilityMode(); break;
       default:                EvaluateTrendFollowing(); break;
+   }
+}
+
+bool CheckHTFConfirmation(int direction)
+{
+   if(!UseAlternateTimeframes) return true;
+   double htfFast[], htfSlow[];
+   ArraySetAsSeries(htfFast, true);
