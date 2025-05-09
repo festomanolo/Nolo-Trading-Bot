@@ -438,3 +438,11 @@ void CheckEntrySignals()
          mode = TREND_FOLLOWING;
    }
 
+   switch(mode)
+   {
+      case TREND_FOLLOWING:   EvaluateTrendFollowing(); break;
+      case RANGE_TRADING:     EvaluateRangeTrading();   break;
+      case BREAKOUT:
+      case SMC_INSTITUTIONAL: EvaluateBreakoutAndSMC(); break;
+      case VOLATILITY:        EvaluateVolatilityMode(); break;
+      default:                EvaluateTrendFollowing(); break;
