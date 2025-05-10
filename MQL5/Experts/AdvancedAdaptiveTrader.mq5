@@ -471,3 +471,11 @@ void EvaluateTrendFollowing()
 
    bool sellSig = FastMA[0] < SlowMA[0] && FastMA[1] <= SlowMA[1] * 1.0002 &&
                   MACDMain[0] < MACDSignal[0] && SuperTrendDirection[0] < 0 &&
+                  RSIValue[0] < 60.0 && RSIValue[0] > 28.0 && g_currentRegime.kalmanVelocity <= 0.0;
+
+   bool strongSell = sellSig && IchimokuTenkan[0] < IchimokuKijun[0] &&
+                     CloseArr[0] < IchimokuSenkouA[0] && CloseArr[0] < IchimokuSenkouB[0];
+
+   if(buySig && CheckHTFConfirmation(+1))
+   {
+      double risk = strongBuy ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
