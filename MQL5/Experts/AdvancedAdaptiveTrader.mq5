@@ -487,3 +487,11 @@ void EvaluateTrendFollowing()
       ExecuteInstitutionalTrade(-1, risk, strongSell ? 0.90 : 0.72, "KalmanTrend");
    }
 }
+
+void EvaluateRangeTrading()
+{
+   bool buySig  = CloseArr[0] < LowerBB[0] && RSIValue[0] < 36.0 && StochMain[0] < 25.0 && StochMain[0] >= StochSignal[0];
+   bool sellSig = CloseArr[0] > UpperBB[0] && RSIValue[0] > 64.0 && StochMain[0] > 75.0 && StochMain[0] <= StochSignal[0];
+
+   if(buySig)
+      ExecuteInstitutionalTrade(+1, MaxRisk * 0.95, 0.70, "OURangeReversion");
