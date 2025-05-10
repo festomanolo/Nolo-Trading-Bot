@@ -479,3 +479,11 @@ void EvaluateTrendFollowing()
    if(buySig && CheckHTFConfirmation(+1))
    {
       double risk = strongBuy ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
+      ExecuteInstitutionalTrade(+1, risk, strongBuy ? 0.90 : 0.72, "KalmanTrend");
+   }
+   else if(sellSig && CheckHTFConfirmation(-1))
+   {
+      double risk = strongSell ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
+      ExecuteInstitutionalTrade(-1, risk, strongSell ? 0.90 : 0.72, "KalmanTrend");
+   }
+}
