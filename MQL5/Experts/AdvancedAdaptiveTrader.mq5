@@ -495,3 +495,11 @@ void EvaluateRangeTrading()
 
    if(buySig)
       ExecuteInstitutionalTrade(+1, MaxRisk * 0.95, 0.70, "OURangeReversion");
+   else if(sellSig)
+      ExecuteInstitutionalTrade(-1, MaxRisk * 0.95, 0.70, "OURangeReversion");
+}
+
+void EvaluateBreakoutAndSMC()
+{
+   double recentHigh = g_smcEngine.FindSwingHigh(HighArr, 20);
+   double recentLow  = g_smcEngine.FindSwingLow(LowArr, 20);
