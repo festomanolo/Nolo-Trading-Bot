@@ -503,3 +503,11 @@ void EvaluateBreakoutAndSMC()
 {
    double recentHigh = g_smcEngine.FindSwingHigh(HighArr, 20);
    double recentLow  = g_smcEngine.FindSwingLow(LowArr, 20);
+   double volSurge   = g_orderFlow.ComputeVolumeSurgeRatio(VolumeArr, 20);
+   bool bullSweep    = g_smcEngine.DetectBullishLiquiditySweep(HighArr, LowArr, CloseArr, OpenArr, 15);
+   bool bearSweep    = g_smcEngine.DetectBearishLiquiditySweep(HighArr, LowArr, CloseArr, OpenArr, 15);
+   bool bullFVG      = g_smcEngine.DetectBullishFVG(HighArr, LowArr, CloseArr, OpenArr, ATRValue[0], 0);
+   bool bearFVG      = g_smcEngine.DetectBearishFVG(HighArr, LowArr, CloseArr, OpenArr, ATRValue[0], 0);
+
+   bool buySig  = ((CloseArr[0] > recentHigh && volSurge > 1.25 && RSIValue[0] > 50.0) || bullSweep || bullFVG);
+   bool sellSig = ((CloseArr[0] < recentLow  && volSurge > 1.25 && RSIValue[0] < 50.0) || bearSweep || bearFVG);
