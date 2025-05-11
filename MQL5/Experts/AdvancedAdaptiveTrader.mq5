@@ -511,3 +511,11 @@ void EvaluateBreakoutAndSMC()
 
    bool buySig  = ((CloseArr[0] > recentHigh && volSurge > 1.25 && RSIValue[0] > 50.0) || bullSweep || bullFVG);
    bool sellSig = ((CloseArr[0] < recentLow  && volSurge > 1.25 && RSIValue[0] < 50.0) || bearSweep || bearFVG);
+
+   if(buySig && CheckHTFConfirmation(+1))
+      ExecuteInstitutionalTrade(+1, MaxRisk * 0.90, 0.80, "SMCBreakout");
+   else if(sellSig && CheckHTFConfirmation(-1))
+      ExecuteInstitutionalTrade(-1, MaxRisk * 0.90, 0.80, "SMCBreakout");
+}
+
+void EvaluateVolatilityMode()
