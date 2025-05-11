@@ -519,3 +519,12 @@ void EvaluateBreakoutAndSMC()
 }
 
 void EvaluateVolatilityMode()
+{
+   bool expanding = (ATRValue[0] > ATRValue[5] * 1.25);
+   if(!expanding && UseVolatilityFilter) return;
+
+   bool buySig  = FastMA[0] > FastMA[1] && FastMA[1] > FastMA[2] && RSIValue[0] > 52.0 && g_lastBuyPressure > 0.52;
+   bool sellSig = FastMA[0] < FastMA[1] && FastMA[1] < FastMA[2] && RSIValue[0] < 48.0 && g_lastBuyPressure < 0.48;
+
+   if(buySig)
+      ExecuteInstitutionalTrade(+1, MaxRisk * 0.75, 0.72, "VolatilityMomentum");
