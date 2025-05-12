@@ -536,3 +536,11 @@ void EvaluateVolatilityMode()
 //| Execute trade with Neural Scoring & Bayesian Kelly Risk Sizing   |
 //+------------------------------------------------------------------+
 void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore, string stratLabel)
+{
+   double dirSign   = (direction > 0) ? 1.0 : -1.0;
+   double fKalman   = MathMax(-1.0, MathMin(1.0, dirSign * g_currentRegime.kalmanVelocity));
+   double fHurst    = (g_currentRegime.hurstExponent - 0.5) * 2.0;
+   double fADX      = MathMin(1.0, g_currentRegime.adxValue / 50.0);
+   double fSMC      = 0.75;
+   double fOFlow    = dirSign * (g_lastBuyPressure - 0.5) * 2.0;
+   double fHTF      = CheckHTFConfirmation(direction) ? 1.0 : -0.5;
