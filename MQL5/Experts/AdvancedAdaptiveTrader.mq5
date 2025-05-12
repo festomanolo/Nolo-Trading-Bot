@@ -528,3 +528,11 @@ void EvaluateVolatilityMode()
 
    if(buySig)
       ExecuteInstitutionalTrade(+1, MaxRisk * 0.75, 0.72, "VolatilityMomentum");
+   else if(sellSig)
+      ExecuteInstitutionalTrade(-1, MaxRisk * 0.75, 0.72, "VolatilityMomentum");
+}
+
+//+------------------------------------------------------------------+
+//| Execute trade with Neural Scoring & Bayesian Kelly Risk Sizing   |
+//+------------------------------------------------------------------+
+void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore, string stratLabel)
