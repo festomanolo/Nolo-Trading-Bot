@@ -544,3 +544,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
    double fSMC      = 0.75;
    double fOFlow    = dirSign * (g_lastBuyPressure - 0.5) * 2.0;
    double fHTF      = CheckHTFConfirmation(direction) ? 1.0 : -0.5;
+
+   double winProb = g_neuralScorer.PredictWinProbability(
+      fTrendScore, fKalman, fHurst, fADX, fSMC, fOFlow, fHTF
+   );
+   g_lastNeuralProb = winProb;
+
+   if(UseNeuralScorer && winProb < MinNeuralWinProb)
+      return;
