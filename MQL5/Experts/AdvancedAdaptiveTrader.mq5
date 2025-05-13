@@ -552,3 +552,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
 
    if(UseNeuralScorer && winProb < MinNeuralWinProb)
       return;
+
+   double point  = SymbolInfoDouble(_Symbol, SYMBOL_POINT);
+   int    digits = (int)SymbolInfoInteger(_Symbol, SYMBOL_DIGITS);
+   double pip    = (digits == 3 || digits == 5) ? point * 10.0 : point;
+   double price  = (direction > 0) ? SymbolInfoDouble(_Symbol, SYMBOL_ASK) : SymbolInfoDouble(_Symbol, SYMBOL_BID);
+
+   double slDistPrice = ATRValue[0] * ATRMultiplier;
+   if(UseMarketStructure)
