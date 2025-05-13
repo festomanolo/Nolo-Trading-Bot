@@ -568,3 +568,12 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
          if(structDist >= 8.0 * pip)
             slDistPrice = MathMin(slDistPrice, structDist);
       }
+      else
+      {
+         double swingHigh = g_smcEngine.FindSwingHigh(HighArr, 20);
+         double structDist = (swingHigh - price) * 1.08;
+         if(structDist >= 8.0 * pip)
+            slDistPrice = MathMin(slDistPrice, structDist);
+      }
+   }
+
