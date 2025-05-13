@@ -560,3 +560,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
 
    double slDistPrice = ATRValue[0] * ATRMultiplier;
    if(UseMarketStructure)
+   {
+      if(direction > 0)
+      {
+         double swingLow = g_smcEngine.FindSwingLow(LowArr, 20);
+         double structDist = (price - swingLow) * 1.08;
+         if(structDist >= 8.0 * pip)
+            slDistPrice = MathMin(slDistPrice, structDist);
+      }
