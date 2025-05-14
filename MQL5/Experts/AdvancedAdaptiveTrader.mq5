@@ -593,3 +593,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
       SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN),
       SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX),
       SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP)
+   );
+
+   double sl = (direction > 0) ? NormalizeDouble(price - slDistPrice, digits) : NormalizeDouble(price + slDistPrice, digits);
+   double tp = (direction > 0) ? NormalizeDouble(price + tpDistPrice, digits) : NormalizeDouble(price - tpDistPrice, digits);
+
+   bool ok = false;
+   if(direction > 0)
+      ok = g_trade.Buy(lots, _Symbol, price, sl, tp, "Nolo v4.0 " + stratLabel);
