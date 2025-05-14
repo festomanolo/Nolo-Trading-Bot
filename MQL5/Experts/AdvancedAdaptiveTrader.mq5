@@ -585,3 +585,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
       AccountInfoDouble(ACCOUNT_BALANCE),
       riskPct,
       slDistPrice,
+      RiskRewardRatio,
+      KellyFactor,
+      winProb,
+      SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_VALUE),
+      SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_SIZE),
+      SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN),
+      SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX),
+      SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP)
