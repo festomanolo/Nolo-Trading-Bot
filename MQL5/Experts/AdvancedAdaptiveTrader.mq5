@@ -577,3 +577,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
       }
    }
 
+   slDistPrice = MathMax(8.0 * pip, MathMin(65.0 * pip, slDistPrice));
+   double tpDistPrice = slDistPrice * RiskRewardRatio;
+
+   double lots = g_riskManager.ComputeLotSize(
+      RiskModelType,
+      AccountInfoDouble(ACCOUNT_BALANCE),
+      riskPct,
+      slDistPrice,
