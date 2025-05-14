@@ -601,3 +601,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
    bool ok = false;
    if(direction > 0)
       ok = g_trade.Buy(lots, _Symbol, price, sl, tp, "Nolo v4.0 " + stratLabel);
+   else
+      ok = g_trade.Sell(lots, _Symbol, price, sl, tp, "Nolo v4.0 " + stratLabel);
+
+   if(ok)
+   {
+      g_riskManager.RecordTradeOpened();
+      g_lastTradeTime = TimeCurrent();
+   }
