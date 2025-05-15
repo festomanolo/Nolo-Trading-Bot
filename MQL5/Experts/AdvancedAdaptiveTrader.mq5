@@ -609,3 +609,11 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
       g_riskManager.RecordTradeOpened();
       g_lastTradeTime = TimeCurrent();
    }
+}
+
+//+------------------------------------------------------------------+
+//| Strategy Tester Optimization Custom Fitness Criterion            |
+//+------------------------------------------------------------------+
+double OnTester()
+{
+   double profitFactor   = TesterStatistics(STAT_PROFIT_FACTOR);
