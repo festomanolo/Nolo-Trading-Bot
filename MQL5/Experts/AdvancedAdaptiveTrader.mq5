@@ -617,3 +617,12 @@ void ExecuteInstitutionalTrade(int direction, double riskPct, double fTrendScore
 double OnTester()
 {
    double profitFactor   = TesterStatistics(STAT_PROFIT_FACTOR);
+   double expectedPayoff = TesterStatistics(STAT_EXPECTED_PAYOFF);
+   double drawdown       = TesterStatistics(STAT_EQUITY_DD_RELATIVE);
+   double trades         = TesterStatistics(STAT_TRADES);
+   double sharpe         = TesterStatistics(STAT_SHARPE_RATIO);
+
+   if(profitFactor <= 0.0 || trades < 10) return 0.0;
+   double ddSafe = (drawdown > 1.0) ? drawdown : 1.0;
+   return (profitFactor * expectedPayoff * MathMax(1.0, sharpe)) / ddSafe;
+}
