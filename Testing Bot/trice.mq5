@@ -30,3 +30,11 @@ enum RISK_MODEL
 };
 
 // Input Parameters - Strategy Selection & Intelligence
+input REGIME_TYPE MarketRegimeMode           = ADAPTIVE;        // Market Regime Detection Method
+input RISK_MODEL  RiskModelType              = BAYESIAN_KELLY;  // Risk Management Method
+input bool        UseVolatilityFilter        = true;            // Filter trades during extreme volatility
+input bool        UsePriceMomentum           = true;            // Use Kalman & OrderFlow momentum confirmation
+input bool        UseMarketStructure         = true;            // Use SMC market structure (S/R, OB, FVG)
+input bool        UseAlternateTimeframes     = true;            // Use multi-timeframe confirmation
+input bool        UseSmartTrailingStop       = true;            // Enable volatility-adaptive trailing stop
+input bool        UseNeuralSignalFilter      = true;            // Enable Online Neural Perceptron Scorer
