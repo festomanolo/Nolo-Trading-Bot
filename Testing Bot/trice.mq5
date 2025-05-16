@@ -14,3 +14,11 @@ enum REGIME_TYPE
 {
    TREND_FOLLOWING,    // Trend Following Mode (Kalman + SuperTrend + Ichimoku)
    RANGE_TRADING,      // Range / Ornstein-Uhlenbeck Mean Reversion Mode
+   BREAKOUT,           // Institutional Breakout & SMC Mode
+   VOLATILITY,         // Volatility Squeeze & Momentum Mode
+   SMC_INSTITUTIONAL,  // Smart Money Concepts (Order Block / FVG / Sweep)
+   ADAPTIVE            // Auto-detect Regime (Bayesian + Hurst + ADX + Kalman)
+};
+
+enum RISK_MODEL 
+{
