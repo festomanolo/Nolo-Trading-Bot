@@ -55,3 +55,11 @@ input int         RSI_UpperLevel             = 70;              // RSI upper thr
 input int         RSI_LowerLevel             = 30;              // RSI lower threshold
 input int         StochasticKPeriod          = 5;               // Stochastic %K period
 input int         StochasticDPeriod          = 3;               // Stochastic %D period
+input int         StochasticSlowing          = 3;               // Stochastic slowing
+
+// Input Parameters - MACD
+input int         MACD_FastEMA               = 12;              // MACD Fast EMA
+input int         MACD_SlowEMA               = 26;              // MACD Slow EMA
+input int         MACD_SignalSMA             = 9;               // MACD Signal SMA
+
+// Input Parameters - Bollinger & ATR
