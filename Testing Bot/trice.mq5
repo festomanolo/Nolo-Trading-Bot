@@ -38,3 +38,12 @@ input bool        UseMarketStructure         = true;            // Use SMC marke
 input bool        UseAlternateTimeframes     = true;            // Use multi-timeframe confirmation
 input bool        UseSmartTrailingStop       = true;            // Enable volatility-adaptive trailing stop
 input bool        UseNeuralSignalFilter      = true;            // Enable Online Neural Perceptron Scorer
+input bool        UseMacroNewsFilter         = true;            // Enable High-Impact News & Rollover Guard
+input bool        ShowTelemetryHUD           = true;            // Show On-Chart Institutional Telemetry HUD
+
+// Input Parameters - Moving Averages
+input ENUM_TIMEFRAMES MainTimeframe          = PERIOD_M5;       // Main trading timeframe
+input ENUM_TIMEFRAMES HigherTimeframe        = PERIOD_H1;       // Higher confirmation timeframe
+input int         FastMAPeriod               = 8;               // Fast MA period (optimized)
+input int         SlowMAPeriod               = 21;              // Slow MA period
+input ENUM_MA_METHOD FastMAMethod            = MODE_EMA;        // Fast MA method
