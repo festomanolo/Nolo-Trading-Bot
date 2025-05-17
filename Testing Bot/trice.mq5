@@ -47,3 +47,11 @@ input ENUM_TIMEFRAMES HigherTimeframe        = PERIOD_H1;       // Higher confir
 input int         FastMAPeriod               = 8;               // Fast MA period (optimized)
 input int         SlowMAPeriod               = 21;              // Slow MA period
 input ENUM_MA_METHOD FastMAMethod            = MODE_EMA;        // Fast MA method
+input ENUM_MA_METHOD SlowMAMethod            = MODE_EMA;        // Slow MA method
+
+// Input Parameters - Oscillators
+input int         RSIPeriod                  = 14;              // RSI period
+input int         RSI_UpperLevel             = 70;              // RSI upper threshold
+input int         RSI_LowerLevel             = 30;              // RSI lower threshold
+input int         StochasticKPeriod          = 5;               // Stochastic %K period
+input int         StochasticDPeriod          = 3;               // Stochastic %D period
