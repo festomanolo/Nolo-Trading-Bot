@@ -71,3 +71,11 @@ input int         ATRPeriod                  = 14;              // ATR period fo
 input double      SuperTrendMultiplier       = 2.5;             // SuperTrend multiplier (optimized)
 input int         TenkanSen                  = 9;               // Ichimoku Tenkan-sen period
 input int         KijunSen                   = 26;              // Ichimoku Kijun-sen period
+input int         SenkouSpanB                = 52;              // Ichimoku Senkou Span B period
+
+// Input Parameters - Advanced Risk Management
+input double      MaxRisk                    = 1.0;             // Maximum risk per trade (%)
+input double      AdaptiveRiskMultiplier     = 1.4;             // Risk multiplier for strong signals
+input double      ATRMultiplier              = 2.0;             // ATR multiplier for stop loss
+input double      Slippage                   = 3.0;             // Maximum slippage allowed
+input int         MaxDrawdown                = 5;               // Max daily drawdown %
