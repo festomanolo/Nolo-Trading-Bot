@@ -87,3 +87,12 @@ input int         MaxSpread                  = 20;              // Maximum allow
 input double      MinNeuralWinProbability    = 0.54;            // Minimum Neural Scorer win probability
 
 // Input Parameters - Smart Exits
+input double      RiskRewardRatio            = 2.2;             // Risk-to-reward ratio
+input bool        UseBreakEven               = true;            // Use break-even stop
+input double      BreakEvenTriggerPips       = 14.0;            // Pips needed to move SL to entry
+input double      BreakEvenPlusPips          = 2.0;             // Additional pips for break-even
+input double      TrailingStopActivationPips = 20.0;            // Pips to activate trailing stop
+input double      TrailingStopDistance       = 12.0;            // Trailing stop distance in pips
+
+// Global indicator & state buffers
+#define BUFFER_SIZE 100
