@@ -63,3 +63,11 @@ input int         MACD_SlowEMA               = 26;              // MACD Slow EMA
 input int         MACD_SignalSMA             = 9;               // MACD Signal SMA
 
 // Input Parameters - Bollinger & ATR
+input int         BollingerPeriod            = 20;              // Bollinger Bands period
+input double      BollingerDeviation         = 2.0;             // Bollinger Bands deviation
+input int         ATRPeriod                  = 14;              // ATR period for volatility
+
+// Input Parameters - SuperTrend & Ichimoku
+input double      SuperTrendMultiplier       = 2.5;             // SuperTrend multiplier (optimized)
+input int         TenkanSen                  = 9;               // Ichimoku Tenkan-sen period
+input int         KijunSen                   = 26;              // Ichimoku Kijun-sen period
