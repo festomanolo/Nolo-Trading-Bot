@@ -79,3 +79,11 @@ input double      AdaptiveRiskMultiplier     = 1.4;             // Risk multipli
 input double      ATRMultiplier              = 2.0;             // ATR multiplier for stop loss
 input double      Slippage                   = 3.0;             // Maximum slippage allowed
 input int         MaxDrawdown                = 5;               // Max daily drawdown %
+input double      MaxTotalDrawdown           = 9.0;             // Max overall trailing drawdown %
+input double      KellyFactor                = 0.35;            // Kelly factor (conservative)
+input int         MaxDailyTrades             = 6;               // Maximum trades per day
+input int         MinBarsSinceLastTrade      = 3;               // Minimum bars between trades
+input int         MaxSpread                  = 20;              // Maximum allowed spread in points
+input double      MinNeuralWinProbability    = 0.54;            // Minimum Neural Scorer win probability
+
+// Input Parameters - Smart Exits
