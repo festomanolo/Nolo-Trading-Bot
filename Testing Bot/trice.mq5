@@ -96,3 +96,11 @@ input double      TrailingStopDistance       = 12.0;            // Trailing stop
 
 // Global indicator & state buffers
 #define BUFFER_SIZE 100
+double FastMA[], SlowMA[], RSIValue[], MACDMain[], MACDSignal[], UpperBB[], LowerBB[], ATRValue[];
+double SuperTrendValue[], SuperTrendDirection[], StochMain[], StochSignal[];
+double IchimokuTenkan[], IchimokuKijun[], IchimokuSenkouA[], IchimokuSenkouB[];
+
+// State-space Kalman Filter & Fractal Regime telemetry
+double KalmanLevel = 0.0;
+double KalmanVelocity = 0.0;
+double CurrentHurstExponent = 0.50;
