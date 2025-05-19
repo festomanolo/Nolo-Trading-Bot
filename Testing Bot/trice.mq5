@@ -104,3 +104,11 @@ double IchimokuTenkan[], IchimokuKijun[], IchimokuSenkouA[], IchimokuSenkouB[];
 double KalmanLevel = 0.0;
 double KalmanVelocity = 0.0;
 double CurrentHurstExponent = 0.50;
+double CurrentEfficiencyRatio = 0.40;
+double CurrentOrderFlowBuyRatio = 0.50;
+double LastNeuralWinProb = 0.60;
+
+// Risk & Performance Tracking
+double AccountStartBalance;
+double AccountHighWaterMark;
+int    CurrentSessionDay = -1;
