@@ -120,3 +120,11 @@ double WinRate = 0.58;
 double BetaAlpha = 6.0;
 double BetaBeta  = 4.0;
 int    TotalTrades = 0;
+int    WinningTrades = 0;
+string CurrentMarketRegime = "UNKNOWN";
+int    Magic = 123456;
+
+// Online Neural Scorer weights
+double W_Trend = 0.55, W_Kalman = 0.42, W_Hurst = 0.35, W_ADX = 0.28, W_SMC = 0.48, W_OFlow = 0.40, W_HTF = 0.50, W_Bias = -0.15;
+
+//+------------------------------------------------------------------+
