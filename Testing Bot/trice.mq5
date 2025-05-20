@@ -136,3 +136,12 @@ int OnInit()
    ArrayResize(SlowMA, BUFFER_SIZE);
    ArrayResize(RSIValue, BUFFER_SIZE);
    ArrayResize(MACDMain, BUFFER_SIZE);
+   ArrayResize(MACDSignal, BUFFER_SIZE);
+   ArrayResize(UpperBB, BUFFER_SIZE);
+   ArrayResize(LowerBB, BUFFER_SIZE);
+   ArrayResize(ATRValue, BUFFER_SIZE);
+   ArrayResize(SuperTrendValue, BUFFER_SIZE);
+   ArrayResize(SuperTrendDirection, BUFFER_SIZE);
+   ArrayResize(StochMain, BUFFER_SIZE);
+   ArrayResize(StochSignal, BUFFER_SIZE);
+   ArrayResize(IchimokuTenkan, BUFFER_SIZE);
