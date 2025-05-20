@@ -145,3 +145,11 @@ int OnInit()
    ArrayResize(StochMain, BUFFER_SIZE);
    ArrayResize(StochSignal, BUFFER_SIZE);
    ArrayResize(IchimokuTenkan, BUFFER_SIZE);
+   ArrayResize(IchimokuKijun, BUFFER_SIZE);
+   ArrayResize(IchimokuSenkouA, BUFFER_SIZE);
+   ArrayResize(IchimokuSenkouB, BUFFER_SIZE);
+
+   AccountStartBalance  = AccountBalance();
+   AccountHighWaterMark = AccountStartBalance;
+
+   if(FastMAPeriod >= SlowMAPeriod)
