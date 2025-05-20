@@ -128,3 +128,11 @@ int    Magic = 123456;
 double W_Trend = 0.55, W_Kalman = 0.42, W_Hurst = 0.35, W_ADX = 0.28, W_SMC = 0.48, W_OFlow = 0.40, W_HTF = 0.50, W_Bias = -0.15;
 
 //+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   ArrayResize(FastMA, BUFFER_SIZE);
+   ArrayResize(SlowMA, BUFFER_SIZE);
+   ArrayResize(RSIValue, BUFFER_SIZE);
+   ArrayResize(MACDMain, BUFFER_SIZE);
