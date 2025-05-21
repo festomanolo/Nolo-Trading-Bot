@@ -169,3 +169,11 @@ void OnDeinit(const int reason)
 {
    Comment("");
    Print("Expert removed. Reason code: ", reason);
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   RefreshDailySessionCounters();
