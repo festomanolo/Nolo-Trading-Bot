@@ -153,3 +153,11 @@ int OnInit()
    AccountHighWaterMark = AccountStartBalance;
 
    if(FastMAPeriod >= SlowMAPeriod)
+   {
+      Print("Error: Fast MA period must be less than Slow MA period");
+      return INIT_PARAMETERS_INCORRECT;
+   }
+
+   Print("Nolo Trading Bot v4.0 initialized with Kalman + Hurst + SMC + Neural Strategy System");
+   return(INIT_SUCCEEDED);
+}
