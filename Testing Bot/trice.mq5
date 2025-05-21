@@ -161,3 +161,11 @@ int OnInit()
    Print("Nolo Trading Bot v4.0 initialized with Kalman + Hurst + SMC + Neural Strategy System");
    return(INIT_SUCCEEDED);
 }
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   Comment("");
+   Print("Expert removed. Reason code: ", reason);
