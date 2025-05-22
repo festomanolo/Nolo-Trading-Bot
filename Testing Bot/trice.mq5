@@ -194,3 +194,11 @@ void OnTick()
    if(BarsSinceLastTrade() < MinBarsSinceLastTrade) return;
    if(UseMacroNewsFilter && IsHighImpactNews()) return;
 
+   CheckTradeEntrySignals();
+}
+
+//+------------------------------------------------------------------+
+//| Reset daily counters and high-water mark at new session day      |
+//+------------------------------------------------------------------+
+void RefreshDailySessionCounters()
+{
