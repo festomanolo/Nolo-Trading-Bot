@@ -177,3 +177,11 @@ void OnDeinit(const int reason)
 void OnTick()
 {
    RefreshDailySessionCounters();
+
+   if(MarketInfo(Symbol(), MODE_SPREAD) > MaxSpread)
+      return;
+
+   if(IsDailyDrawdownExceeded() || IsTotalDrawdownExceeded())
+      return;
+
+   UpdateIndicators();
