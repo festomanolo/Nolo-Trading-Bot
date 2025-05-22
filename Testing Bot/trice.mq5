@@ -185,3 +185,12 @@ void OnTick()
       return;
 
    UpdateIndicators();
+   UpdateKalmanAndMicrostructure();
+   DetectMarketRegime();
+   ManageOpenTrades();
+   RenderTelemetryHUD();
+
+   if(TotalTradesThisSession >= MaxDailyTrades) return;
+   if(BarsSinceLastTrade() < MinBarsSinceLastTrade) return;
+   if(UseMacroNewsFilter && IsHighImpactNews()) return;
+
