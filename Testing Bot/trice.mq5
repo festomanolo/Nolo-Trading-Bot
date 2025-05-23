@@ -210,3 +210,11 @@ void RefreshDailySessionCounters()
       AccountStartBalance    = AccountBalance();
       TotalTradesThisSession = 0;
    }
+   if(AccountEquity() > AccountHighWaterMark)
+      AccountHighWaterMark = AccountEquity();
+}
+
+//+------------------------------------------------------------------+
+//| Update all technical indicators (oldest-to-newest for SuperTrend)|
+//+------------------------------------------------------------------+
+void UpdateIndicators()
