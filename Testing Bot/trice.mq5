@@ -218,3 +218,11 @@ void RefreshDailySessionCounters()
 //| Update all technical indicators (oldest-to-newest for SuperTrend)|
 //+------------------------------------------------------------------+
 void UpdateIndicators()
+{
+   for(int i = BUFFER_SIZE - 1; i >= 0; i--)
+   {
+      FastMA[i]     = iMA(Symbol(), MainTimeframe, FastMAPeriod, 0, FastMAMethod, PRICE_CLOSE, i);
+      SlowMA[i]     = iMA(Symbol(), MainTimeframe, SlowMAPeriod, 0, SlowMAMethod, PRICE_CLOSE, i);
+      RSIValue[i]   = iRSI(Symbol(), MainTimeframe, RSIPeriod, PRICE_CLOSE, i);
+      MACDMain[i]   = iMACD(Symbol(), MainTimeframe, MACD_FastEMA, MACD_SlowEMA, MACD_SignalSMA, PRICE_CLOSE, MODE_MAIN, i);
+      MACDSignal[i] = iMACD(Symbol(), MainTimeframe, MACD_FastEMA, MACD_SlowEMA, MACD_SignalSMA, PRICE_CLOSE, MODE_SIGNAL, i);
