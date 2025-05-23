@@ -226,3 +226,11 @@ void UpdateIndicators()
       RSIValue[i]   = iRSI(Symbol(), MainTimeframe, RSIPeriod, PRICE_CLOSE, i);
       MACDMain[i]   = iMACD(Symbol(), MainTimeframe, MACD_FastEMA, MACD_SlowEMA, MACD_SignalSMA, PRICE_CLOSE, MODE_MAIN, i);
       MACDSignal[i] = iMACD(Symbol(), MainTimeframe, MACD_FastEMA, MACD_SlowEMA, MACD_SignalSMA, PRICE_CLOSE, MODE_SIGNAL, i);
+      UpperBB[i]    = iBands(Symbol(), MainTimeframe, BollingerPeriod, BollingerDeviation, 0, PRICE_CLOSE, MODE_UPPER, i);
+      LowerBB[i]    = iBands(Symbol(), MainTimeframe, BollingerPeriod, BollingerDeviation, 0, PRICE_CLOSE, MODE_LOWER, i);
+      ATRValue[i]   = iATR(Symbol(), MainTimeframe, ATRPeriod, i);
+
+      CalculateSuperTrend(i);
+
+      StochMain[i]       = iStochastic(Symbol(), MainTimeframe, StochasticKPeriod, StochasticDPeriod, StochasticSlowing, MODE_SMA, 0, MODE_MAIN, i);
+      StochSignal[i]     = iStochastic(Symbol(), MainTimeframe, StochasticKPeriod, StochasticDPeriod, StochasticSlowing, MODE_SMA, 0, MODE_SIGNAL, i);
