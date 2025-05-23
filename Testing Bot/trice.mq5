@@ -202,3 +202,11 @@ void OnTick()
 //+------------------------------------------------------------------+
 void RefreshDailySessionCounters()
 {
+   MqlDateTime dt;
+   TimeToStruct(TimeCurrent(), dt);
+   if(dt.day_of_year != CurrentSessionDay)
+   {
+      CurrentSessionDay      = dt.day_of_year;
+      AccountStartBalance    = AccountBalance();
+      TotalTradesThisSession = 0;
+   }
