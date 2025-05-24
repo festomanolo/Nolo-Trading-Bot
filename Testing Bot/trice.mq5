@@ -251,3 +251,11 @@ void CalculateSuperTrend(int index)
    double close     = Close[index];
    double avg_price = (high + low) * 0.5;
    double atr       = ATRValue[index];
+
+   double up_band   = avg_price + (SuperTrendMultiplier * atr);
+   double down_band = avg_price - (SuperTrendMultiplier * atr);
+
+   if(index == BUFFER_SIZE - 1)
+   {
+      SuperTrendValue[index]     = down_band;
+      SuperTrendDirection[index] = 1;
