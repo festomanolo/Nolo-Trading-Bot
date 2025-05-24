@@ -243,3 +243,11 @@ void UpdateIndicators()
 
 //+------------------------------------------------------------------+
 //| Ratcheting SuperTrend calculation (fixes band ratcheting bug)    |
+//+------------------------------------------------------------------+
+void CalculateSuperTrend(int index)
+{
+   double high      = High[index];
+   double low       = Low[index];
+   double close     = Close[index];
+   double avg_price = (high + low) * 0.5;
+   double atr       = ATRValue[index];
