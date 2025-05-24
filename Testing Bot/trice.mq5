@@ -234,3 +234,12 @@ void UpdateIndicators()
 
       StochMain[i]       = iStochastic(Symbol(), MainTimeframe, StochasticKPeriod, StochasticDPeriod, StochasticSlowing, MODE_SMA, 0, MODE_MAIN, i);
       StochSignal[i]     = iStochastic(Symbol(), MainTimeframe, StochasticKPeriod, StochasticDPeriod, StochasticSlowing, MODE_SMA, 0, MODE_SIGNAL, i);
+      IchimokuTenkan[i]  = iIchimoku(Symbol(), MainTimeframe, TenkanSen, KijunSen, SenkouSpanB, MODE_TENKANSEN, i);
+      IchimokuKijun[i]   = iIchimoku(Symbol(), MainTimeframe, TenkanSen, KijunSen, SenkouSpanB, MODE_KIJUNSEN, i);
+      IchimokuSenkouA[i] = iIchimoku(Symbol(), MainTimeframe, TenkanSen, KijunSen, SenkouSpanB, MODE_SENKOUSPANA, i);
+      IchimokuSenkouB[i] = iIchimoku(Symbol(), MainTimeframe, TenkanSen, KijunSen, SenkouSpanB, MODE_SENKOUSPANB, i);
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Ratcheting SuperTrend calculation (fixes band ratcheting bug)    |
