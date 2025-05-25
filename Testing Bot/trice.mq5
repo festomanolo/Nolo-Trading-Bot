@@ -259,3 +259,11 @@ void CalculateSuperTrend(int index)
    {
       SuperTrendValue[index]     = down_band;
       SuperTrendDirection[index] = 1;
+      return;
+   }
+
+   double prev_st    = SuperTrendValue[index + 1];
+   double prev_dir   = SuperTrendDirection[index + 1];
+   double prev_close = Close[index + 1];
+
+   if(prev_dir > 0)
