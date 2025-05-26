@@ -300,3 +300,11 @@ void CalculateSuperTrend(int index)
 
 //+------------------------------------------------------------------+
 //| State-Space Kalman Filter, Hurst Exponent & OrderFlow Pressure   |
+//+------------------------------------------------------------------+
+void UpdateKalmanAndMicrostructure()
+{
+   // 1. 2D Kinematic Kalman Filter pass over recent 30 bars
+   double level = Close[30];
+   double vel   = 0.0;
+   double p00 = 0.01, p01 = 0.0, p10 = 0.0, p11 = 0.0001;
+   double q = 0.0001, r = 0.01;
