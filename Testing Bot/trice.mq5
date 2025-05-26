@@ -308,3 +308,11 @@ void UpdateKalmanAndMicrostructure()
    double vel   = 0.0;
    double p00 = 0.01, p01 = 0.0, p10 = 0.0, p11 = 0.0001;
    double q = 0.0001, r = 0.01;
+
+   for(int i = 29; i >= 0; i--)
+   {
+      double predLevel = level + vel;
+      double p00p = p00 + p10 + p01 + p11 + q * 0.25;
+      double p01p = p01 + p11 + q * 0.5;
+      double p10p = p10 + p11 + q * 0.5;
+      double p11p = p11 + q;
