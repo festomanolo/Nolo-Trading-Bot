@@ -292,3 +292,11 @@ void CalculateSuperTrend(int index)
       }
       else
       {
+         SuperTrendDirection[index] = -1;
+         SuperTrendValue[index]     = up_band;
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| State-Space Kalman Filter, Hurst Exponent & OrderFlow Pressure   |
