@@ -324,3 +324,11 @@ void UpdateKalmanAndMicrostructure()
 
       level = predLevel + k0 * innov;
       vel   = vel + k1 * innov;
+      p00   = (1.0 - k0) * p00p;
+      p01   = (1.0 - k0) * p01p;
+      p10   = p10p - k1 * p00p;
+      p11   = p11p - k1 * p01p;
+   }
+   KalmanLevel    = level;
+   KalmanVelocity = vel / MathMax(1e-9, ATRValue[0]);
+
