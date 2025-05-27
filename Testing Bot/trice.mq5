@@ -332,3 +332,12 @@ void UpdateKalmanAndMicrostructure()
    KalmanLevel    = level;
    KalmanVelocity = vel / MathMax(1e-9, ATRValue[0]);
 
+   // 2. Rescaled Range (R/S) Hurst Exponent over 50 bars
+   int n = 48;
+   double logRet[48];
+   double sumRet = 0.0;
+   for(int i = 0; i < n; i++)
+   {
+      logRet[i] = MathLog(MathMax(1e-9, Close[i]) / MathMax(1e-9, Close[i + 1]));
+      sumRet += logRet[i];
+   }
