@@ -341,3 +341,11 @@ void UpdateKalmanAndMicrostructure()
       logRet[i] = MathLog(MathMax(1e-9, Close[i]) / MathMax(1e-9, Close[i + 1]));
       sumRet += logRet[i];
    }
+   double meanRet = sumRet / n;
+   double cum = 0.0, maxC = -1e9, minC = 1e9, varS = 0.0;
+   for(int i = 0; i < n; i++)
+   {
+      double c = logRet[i] - meanRet;
+      cum += c;
+      if(cum > maxC) maxC = cum;
+      if(cum < minC) minC = cum;
