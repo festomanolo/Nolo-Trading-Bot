@@ -316,3 +316,11 @@ void UpdateKalmanAndMicrostructure()
       double p01p = p01 + p11 + q * 0.5;
       double p10p = p10 + p11 + q * 0.5;
       double p11p = p11 + q;
+
+      double innov = Close[i] - predLevel;
+      double s     = MathMax(1e-12, p00p + r);
+      double k0    = p00p / s;
+      double k1    = p10p / s;
+
+      level = predLevel + k0 * innov;
+      vel   = vel + k1 * innov;
