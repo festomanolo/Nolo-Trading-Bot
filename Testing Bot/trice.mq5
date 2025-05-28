@@ -357,3 +357,11 @@ void UpdateKalmanAndMicrostructure()
    else
       CurrentHurstExponent = 0.50;
 
+   // 3. Kaufman Efficiency Ratio (14 bars)
+   double netMove = MathAbs(Close[0] - Close[14]);
+   double pathMove = 0.0;
+   for(int i = 0; i < 14; i++)
+      pathMove += MathAbs(Close[i] - Close[i + 1]);
+   CurrentEfficiencyRatio = (pathMove > 1e-12) ? (netMove / pathMove) : 0.30;
+
+   // 4. Order Flow Intrabar Buying Pressure
