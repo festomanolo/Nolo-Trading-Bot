@@ -365,3 +365,11 @@ void UpdateKalmanAndMicrostructure()
    CurrentEfficiencyRatio = (pathMove > 1e-12) ? (netMove / pathMove) : 0.30;
 
    // 4. Order Flow Intrabar Buying Pressure
+   double buyVol = 0.0, totVol = 0.0;
+   for(int i = 0; i < 10; i++)
+   {
+      double rng  = High[i] - Low[i];
+      double frac = (rng > 1e-12) ? ((Close[i] - Low[i]) / rng) : 0.50;
+      double v    = (double)MathMax(1, Volume[i]);
+      buyVol += v * frac;
+      totVol += v;
