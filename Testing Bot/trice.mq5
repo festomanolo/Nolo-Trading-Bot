@@ -349,3 +349,11 @@ void UpdateKalmanAndMicrostructure()
       cum += c;
       if(cum > maxC) maxC = cum;
       if(cum < minC) minC = cum;
+      varS += c * c;
+   }
+   double stdS = MathSqrt(varS / n);
+   if(stdS > 1e-12 && (maxC - minC) > 0.0)
+      CurrentHurstExponent = MathMax(0.05, MathMin(0.95, MathLog((maxC - minC) / stdS) / MathLog((double)n)));
+   else
+      CurrentHurstExponent = 0.50;
+
