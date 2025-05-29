@@ -381,3 +381,12 @@ void UpdateKalmanAndMicrostructure()
 //| Multi-Factor Bayesian & Fractal Market Regime Detection          |
 //+------------------------------------------------------------------+
 void DetectMarketRegime()
+{
+   double currentATR = ATRValue[0];
+   double avgATR = 0.0;
+   for(int i = 0; i < 20; i++) avgATR += ATRValue[i];
+   avgATR /= 20.0;
+
+   double bbWidth      = (UpperBB[0] - LowerBB[0]) / MathMax(1e-9, Close[0]) * 100.0;
+   bool   maAlignment  = FastMA[0] > SlowMA[0];
+   double adxValue     = iADX(Symbol(), MainTimeframe, 14, PRICE_CLOSE, MODE_MAIN, 0);
