@@ -390,3 +390,11 @@ void DetectMarketRegime()
    double bbWidth      = (UpperBB[0] - LowerBB[0]) / MathMax(1e-9, Close[0]) * 100.0;
    bool   maAlignment  = FastMA[0] > SlowMA[0];
    double adxValue     = iADX(Symbol(), MainTimeframe, 14, PRICE_CLOSE, MODE_MAIN, 0);
+   bool   hasRecentHH  = HasRecentHigherHigh(10);
+   bool   hasRecentLL  = HasRecentLowerLow(10);
+
+   if(adxValue > 24.0 && maAlignment && (CurrentHurstExponent >= 0.48 || CurrentEfficiencyRatio >= 0.30))
+      CurrentMarketRegime = "TREND_UP";
+   else if(adxValue > 24.0 && !maAlignment && (CurrentHurstExponent >= 0.48 || CurrentEfficiencyRatio >= 0.30))
+      CurrentMarketRegime = "TREND_DOWN";
+   else if(hasRecentHH && Close[0] > UpperBB[1] && currentATR > avgATR * 1.08)
