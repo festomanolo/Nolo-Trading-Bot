@@ -398,3 +398,11 @@ void DetectMarketRegime()
    else if(adxValue > 24.0 && !maAlignment && (CurrentHurstExponent >= 0.48 || CurrentEfficiencyRatio >= 0.30))
       CurrentMarketRegime = "TREND_DOWN";
    else if(hasRecentHH && Close[0] > UpperBB[1] && currentATR > avgATR * 1.08)
+      CurrentMarketRegime = "BREAKOUT_UP";
+   else if(hasRecentLL && Close[0] < LowerBB[1] && currentATR > avgATR * 1.08)
+      CurrentMarketRegime = "BREAKOUT_DOWN";
+   else if(bbWidth > 2.5 && currentATR > avgATR * 1.45)
+      CurrentMarketRegime = "VOLATILITY";
+   else if(adxValue < 22.0 && (CurrentHurstExponent < 0.52 || CurrentEfficiencyRatio < 0.32))
+      CurrentMarketRegime = "RANGE";
+   else
