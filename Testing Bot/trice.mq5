@@ -373,3 +373,11 @@ void UpdateKalmanAndMicrostructure()
       double v    = (double)MathMax(1, Volume[i]);
       buyVol += v * frac;
       totVol += v;
+   }
+   CurrentOrderFlowBuyRatio = (totVol > 0.0) ? (buyVol / totVol) : 0.50;
+}
+
+//+------------------------------------------------------------------+
+//| Multi-Factor Bayesian & Fractal Market Regime Detection          |
+//+------------------------------------------------------------------+
+void DetectMarketRegime()
