@@ -414,3 +414,11 @@ bool HasRecentHigherHigh(int bars)
    double previousHigh = High[1];
    for(int i = 2; i < bars; i++)
       if(previousHigh < High[i]) previousHigh = High[i];
+   return High[0] > previousHigh;
+}
+
+bool HasRecentLowerLow(int bars)
+{
+   double previousLow = Low[1];
+   for(int i = 2; i < bars; i++)
+      if(previousLow > Low[i]) previousLow = Low[i];
