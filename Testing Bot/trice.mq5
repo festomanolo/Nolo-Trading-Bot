@@ -406,3 +406,11 @@ void DetectMarketRegime()
    else if(adxValue < 22.0 && (CurrentHurstExponent < 0.52 || CurrentEfficiencyRatio < 0.32))
       CurrentMarketRegime = "RANGE";
    else
+      CurrentMarketRegime = "MIXED";
+}
+
+bool HasRecentHigherHigh(int bars)
+{
+   double previousHigh = High[1];
+   for(int i = 2; i < bars; i++)
+      if(previousHigh < High[i]) previousHigh = High[i];
