@@ -422,3 +422,11 @@ bool HasRecentLowerLow(int bars)
    double previousLow = Low[1];
    for(int i = 2; i < bars; i++)
       if(previousLow > Low[i]) previousLow = Low[i];
+   return Low[0] < previousLow;
+}
+
+bool IsDailyDrawdownExceeded()
+{
+   double currentLoss = AccountEquity() - AccountStartBalance;
+   if(currentLoss < 0 && MathAbs(currentLoss / AccountStartBalance) * 100.0 >= MaxDrawdown)
+      return true;
