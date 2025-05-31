@@ -447,3 +447,11 @@ bool IsHighImpactNews()
 {
    MqlDateTime dt;
    TimeToStruct(TimeCurrent(), dt);
+
+   // 1. Bank Rollover & Spread Widening Window (22:50 - 00:10)
+   if((dt.hour == 22 && dt.min >= 50) || dt.hour == 23 || (dt.hour == 0 && dt.min <= 10))
+      return true;
+
+   // 2. US Non-Farm Payrolls (First Friday of Month 13:15 - 14:00 UTC)
+   if(StringFind(Symbol(), "USD") >= 0 && dt.day_of_week == 5 && dt.day <= 7)
+   {
