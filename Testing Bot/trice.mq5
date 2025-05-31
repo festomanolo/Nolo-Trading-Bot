@@ -439,3 +439,11 @@ bool IsTotalDrawdownExceeded()
    double ddPct = ((AccountHighWaterMark - AccountEquity()) / AccountHighWaterMark) * 100.0;
    return (ddPct >= MaxTotalDrawdown);
 }
+
+//+------------------------------------------------------------------+
+//| Real-Time Macroeconomic News & Midnight Rollover Filter          |
+//+------------------------------------------------------------------+
+bool IsHighImpactNews()
+{
+   MqlDateTime dt;
+   TimeToStruct(TimeCurrent(), dt);
