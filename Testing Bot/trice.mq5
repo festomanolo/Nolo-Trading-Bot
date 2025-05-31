@@ -430,3 +430,12 @@ bool IsDailyDrawdownExceeded()
    double currentLoss = AccountEquity() - AccountStartBalance;
    if(currentLoss < 0 && MathAbs(currentLoss / AccountStartBalance) * 100.0 >= MaxDrawdown)
       return true;
+   return false;
+}
+
+bool IsTotalDrawdownExceeded()
+{
+   if(AccountHighWaterMark <= 0.0) return false;
+   double ddPct = ((AccountHighWaterMark - AccountEquity()) / AccountHighWaterMark) * 100.0;
+   return (ddPct >= MaxTotalDrawdown);
+}
