@@ -455,3 +455,11 @@ bool IsHighImpactNews()
    // 2. US Non-Farm Payrolls (First Friday of Month 13:15 - 14:00 UTC)
    if(StringFind(Symbol(), "USD") >= 0 && dt.day_of_week == 5 && dt.day <= 7)
    {
+      if(dt.hour == 13 && dt.min >= 15 && dt.min <= 59)
+         return true;
+   }
+   return false;
+}
+
+//+------------------------------------------------------------------+
+//| Smart Money Concepts: Fair Value Gap & Liquidity Sweep Detectors |
