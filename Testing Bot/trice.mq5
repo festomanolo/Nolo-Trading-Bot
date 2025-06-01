@@ -463,3 +463,11 @@ bool IsHighImpactNews()
 
 //+------------------------------------------------------------------+
 //| Smart Money Concepts: Fair Value Gap & Liquidity Sweep Detectors |
+//+------------------------------------------------------------------+
+bool HasBullishSMCConfluence()
+{
+   double fvgUp = Low[0] - High[2];
+   bool isBullFVG = (fvgUp >= ATRValue[0] * 0.25 && Close[1] > Open[1]);
+   double priorLow = FindRecentSwingLow(15);
+   double rng = MathMax(1e-9, High[0] - Low[0]);
+   double lowerWick = MathMin(Open[0], Close[0]) - Low[0];
