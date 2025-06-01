@@ -471,3 +471,11 @@ bool HasBullishSMCConfluence()
    double priorLow = FindRecentSwingLow(15);
    double rng = MathMax(1e-9, High[0] - Low[0]);
    double lowerWick = MathMin(Open[0], Close[0]) - Low[0];
+   bool isSweep = (Low[0] < priorLow && Close[0] > priorLow && (lowerWick / rng) >= 0.45);
+   return (isBullFVG || isSweep);
+}
+
+bool HasBearishSMCConfluence()
+{
+   double fvgDn = Low[2] - High[0];
+   bool isBearFVG = (fvgDn >= ATRValue[0] * 0.25 && Close[1] < Open[1]);
