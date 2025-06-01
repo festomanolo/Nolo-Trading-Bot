@@ -479,3 +479,12 @@ bool HasBearishSMCConfluence()
 {
    double fvgDn = Low[2] - High[0];
    bool isBearFVG = (fvgDn >= ATRValue[0] * 0.25 && Close[1] < Open[1]);
+   double priorHigh = FindRecentSwingHigh(15);
+   double rng = MathMax(1e-9, High[0] - Low[0]);
+   double upperWick = High[0] - MathMax(Open[0], Close[0]);
+   bool isSweep = (High[0] > priorHigh && Close[0] < priorHigh && (upperWick / rng) >= 0.45);
+   return (isBearFVG || isSweep);
+}
+
+//+------------------------------------------------------------------+
+//| Online Neural Perceptron Signal Probability Scorer               |
