@@ -504,3 +504,11 @@ double PredictNeuralWinProbability(int orderType, double trendConf)
             + W_Trend  * trendConf
             + W_Kalman * fKalman
             + W_Hurst  * fHurst
+            + W_ADX    * fADX
+            + W_SMC    * fSMC
+            + W_OFlow  * fOFlow
+            + W_HTF    * fHTF;
+
+   double clamped = MathMax(-15.0, MathMin(15.0, z));
+   double prob    = 1.0 / (1.0 + MathExp(-clamped));
+   LastNeuralWinProb = MathMax(0.05, MathMin(0.95, prob));
