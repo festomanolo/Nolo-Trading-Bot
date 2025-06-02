@@ -488,3 +488,11 @@ bool HasBearishSMCConfluence()
 
 //+------------------------------------------------------------------+
 //| Online Neural Perceptron Signal Probability Scorer               |
+//+------------------------------------------------------------------+
+double PredictNeuralWinProbability(int orderType, double trendConf)
+{
+   double dirSign = (orderType == OP_BUY) ? 1.0 : -1.0;
+   double fKalman = MathMax(-1.0, MathMin(1.0, dirSign * KalmanVelocity));
+   double fHurst  = (CurrentHurstExponent - 0.5) * 2.0;
+   double adxVal  = iADX(Symbol(), MainTimeframe, 14, PRICE_CLOSE, MODE_MAIN, 0);
+   double fADX    = MathMin(1.0, adxVal / 50.0);
