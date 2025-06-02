@@ -496,3 +496,11 @@ double PredictNeuralWinProbability(int orderType, double trendConf)
    double fHurst  = (CurrentHurstExponent - 0.5) * 2.0;
    double adxVal  = iADX(Symbol(), MainTimeframe, 14, PRICE_CLOSE, MODE_MAIN, 0);
    double fADX    = MathMin(1.0, adxVal / 50.0);
+   double fSMC    = (orderType == OP_BUY && HasBullishSMCConfluence()) || (orderType == OP_SELL && HasBearishSMCConfluence()) ? 0.90 : 0.45;
+   double fOFlow  = dirSign * (CurrentOrderFlowBuyRatio - 0.5) * 2.0;
+   double fHTF    = 0.75;
+
+   double z = W_Bias
+            + W_Trend  * trendConf
+            + W_Kalman * fKalman
+            + W_Hurst  * fHurst
