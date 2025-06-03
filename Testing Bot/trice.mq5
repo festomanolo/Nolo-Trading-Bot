@@ -537,3 +537,11 @@ void ManageOpenTrades()
 {
    for(int i = OrdersTotal() - 1; i >= 0; i--)
    {
+      if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES))
+      {
+         if(OrderSymbol() == Symbol() && OrderMagicNumber() == Magic)
+         {
+            if(UseBreakEven)
+               ApplyBreakEven(OrderTicket());
+            if(UseSmartTrailingStop)
+               ApplySmartTrailingStop(OrderTicket());
