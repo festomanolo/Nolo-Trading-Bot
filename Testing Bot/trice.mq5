@@ -512,3 +512,11 @@ double PredictNeuralWinProbability(int orderType, double trendConf)
    double clamped = MathMax(-15.0, MathMin(15.0, z));
    double prob    = 1.0 / (1.0 + MathExp(-clamped));
    LastNeuralWinProb = MathMax(0.05, MathMin(0.95, prob));
+   return LastNeuralWinProb;
+}
+
+int BarsSinceLastTrade()
+{
+   datetime lastTradeTime = 0;
+   for(int i = OrdersHistoryTotal() - 1; i >= 0; i--)
+   {
