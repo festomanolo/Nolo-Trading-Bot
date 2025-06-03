@@ -520,3 +520,11 @@ int BarsSinceLastTrade()
    datetime lastTradeTime = 0;
    for(int i = OrdersHistoryTotal() - 1; i >= 0; i--)
    {
+      if(OrderSelect(i, SELECT_BY_POS, MODE_HISTORY))
+      {
+         if(OrderSymbol() == Symbol() && OrderMagicNumber() == Magic)
+         {
+            if(OrderCloseTime() > lastTradeTime)
+               lastTradeTime = OrderCloseTime();
+         }
+      }
