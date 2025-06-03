@@ -528,3 +528,12 @@ int BarsSinceLastTrade()
                lastTradeTime = OrderCloseTime();
          }
       }
+   }
+   if(lastTradeTime == 0) return 999;
+   return iBarShift(Symbol(), MainTimeframe, lastTradeTime, false);
+}
+
+void ManageOpenTrades()
+{
+   for(int i = OrdersTotal() - 1; i >= 0; i--)
+   {
