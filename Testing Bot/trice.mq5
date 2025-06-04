@@ -553,3 +553,11 @@ void ManageOpenTrades()
 void ApplyBreakEven(int ticket)
 {
    if(!OrderSelect(ticket, SELECT_BY_TICKET)) return;
+   double point   = MarketInfo(OrderSymbol(), MODE_POINT);
+   double pipSize = (MarketInfo(OrderSymbol(), MODE_DIGITS) == 3 || MarketInfo(OrderSymbol(), MODE_DIGITS) == 5) ? point * 10 : point;
+
+   double openPrice = OrderOpenPrice();
+   double currentSL = OrderStopLoss();
+   double currentTP = OrderTakeProfit();
+
+   if(OrderType() == OP_BUY)
