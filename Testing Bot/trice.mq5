@@ -545,3 +545,11 @@ void ManageOpenTrades()
                ApplyBreakEven(OrderTicket());
             if(UseSmartTrailingStop)
                ApplySmartTrailingStop(OrderTicket());
+         }
+      }
+   }
+}
+
+void ApplyBreakEven(int ticket)
+{
+   if(!OrderSelect(ticket, SELECT_BY_TICKET)) return;
