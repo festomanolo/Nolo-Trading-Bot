@@ -586,3 +586,11 @@ void ApplySmartTrailingStop(int ticket)
 {
    if(!OrderSelect(ticket, SELECT_BY_TICKET)) return;
    double point   = MarketInfo(OrderSymbol(), MODE_POINT);
+   double pipSize = (MarketInfo(OrderSymbol(), MODE_DIGITS) == 3 || MarketInfo(OrderSymbol(), MODE_DIGITS) == 5) ? point * 10 : point;
+
+   double openPrice = OrderOpenPrice();
+   double currentSL = OrderStopLoss();
+   double currentTP = OrderTakeProfit();
+
+   double atrScale = (ATRValue[10] > 1e-9) ? MathMax(0.65, MathMin(1.5, ATRValue[0] / ATRValue[10])) : 1.0;
+   double adaptiveTrailPips = TrailingStopDistance * atrScale;
