@@ -594,3 +594,11 @@ void ApplySmartTrailingStop(int ticket)
 
    double atrScale = (ATRValue[10] > 1e-9) ? MathMax(0.65, MathMin(1.5, ATRValue[0] / ATRValue[10])) : 1.0;
    double adaptiveTrailPips = TrailingStopDistance * atrScale;
+
+   if(OrderType() == OP_BUY)
+   {
+      double currentPrice = MarketInfo(OrderSymbol(), MODE_BID);
+      double pipsInProfit = (currentPrice - openPrice) / pipSize;
+      if(pipsInProfit >= TrailingStopActivationPips)
+      {
+         double newSL = currentPrice - adaptiveTrailPips * pipSize;
