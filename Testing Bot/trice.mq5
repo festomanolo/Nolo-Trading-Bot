@@ -569,3 +569,11 @@ void ApplyBreakEven(int ticket)
          double newSL = openPrice + BreakEvenPlusPips * pipSize;
          OrderModify(OrderTicket(), openPrice, newSL, currentTP, 0, clrGreen);
       }
+   }
+   else if(OrderType() == OP_SELL)
+   {
+      double currentPrice = MarketInfo(OrderSymbol(), MODE_ASK);
+      double pipsInProfit = (openPrice - currentPrice) / pipSize;
+      if(pipsInProfit >= BreakEvenTriggerPips && (currentSL == 0 || currentSL > openPrice))
+      {
+         double newSL = openPrice - BreakEvenPlusPips * pipSize;
