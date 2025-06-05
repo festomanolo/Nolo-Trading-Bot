@@ -577,3 +577,12 @@ void ApplyBreakEven(int ticket)
       if(pipsInProfit >= BreakEvenTriggerPips && (currentSL == 0 || currentSL > openPrice))
       {
          double newSL = openPrice - BreakEvenPlusPips * pipSize;
+         OrderModify(OrderTicket(), openPrice, newSL, currentTP, 0, clrGreen);
+      }
+   }
+}
+
+void ApplySmartTrailingStop(int ticket)
+{
+   if(!OrderSelect(ticket, SELECT_BY_TICKET)) return;
+   double point   = MarketInfo(OrderSymbol(), MODE_POINT);
