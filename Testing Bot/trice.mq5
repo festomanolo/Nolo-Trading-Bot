@@ -610,3 +610,11 @@ void ApplySmartTrailingStop(int ticket)
    {
       double currentPrice = MarketInfo(OrderSymbol(), MODE_ASK);
       double pipsInProfit = (openPrice - currentPrice) / pipSize;
+      if(pipsInProfit >= TrailingStopActivationPips)
+      {
+         double newSL = currentPrice + adaptiveTrailPips * pipSize;
+         if(currentSL == 0 || newSL < currentSL)
+            OrderModify(OrderTicket(), openPrice, newSL, currentTP, 0, clrGreen);
+      }
+   }
+}
