@@ -618,3 +618,11 @@ void ApplySmartTrailingStop(int ticket)
       }
    }
 }
+
+void CheckTradeEntrySignals()
+{
+   if(HasOpenPosition()) return;
+
+   REGIME_TYPE effectiveRegime = MarketRegimeMode;
+   if(effectiveRegime == ADAPTIVE)
+   {
