@@ -651,3 +651,11 @@ void CheckTrendFollowingSignals()
 {
    bool buySignal = FastMA[0] > SlowMA[0] &&
                     FastMA[1] > SlowMA[1] &&
+                    MACDMain[0] > MACDSignal[0] &&
+                    SuperTrendDirection[0] > 0 &&
+                    RSIValue[0] > 40 && RSIValue[0] < 72 &&
+                    (!UsePriceMomentum || KalmanVelocity >= 0.0);
+
+   bool strongBuySignal = buySignal &&
+                          IchimokuTenkan[0] > IchimokuKijun[0] &&
+                          Close[0] > IchimokuSenkouA[0] &&
