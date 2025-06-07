@@ -643,3 +643,11 @@ void CheckTradeEntrySignals()
       case BREAKOUT:
       case SMC_INSTITUTIONAL: CheckBreakoutSignals();       break;
       case VOLATILITY:        CheckVolatilitySignals();     break;
+      default:                CheckTrendFollowingSignals(); break;
+   }
+}
+
+void CheckTrendFollowingSignals()
+{
+   bool buySignal = FastMA[0] > SlowMA[0] &&
+                    FastMA[1] > SlowMA[1] &&
