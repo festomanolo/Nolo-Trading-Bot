@@ -626,3 +626,12 @@ void CheckTradeEntrySignals()
    REGIME_TYPE effectiveRegime = MarketRegimeMode;
    if(effectiveRegime == ADAPTIVE)
    {
+      if(CurrentMarketRegime == "TREND_UP" || CurrentMarketRegime == "TREND_DOWN")
+         effectiveRegime = TREND_FOLLOWING;
+      else if(CurrentMarketRegime == "RANGE")
+         effectiveRegime = RANGE_TRADING;
+      else if(CurrentMarketRegime == "BREAKOUT_UP" || CurrentMarketRegime == "BREAKOUT_DOWN")
+         effectiveRegime = BREAKOUT;
+      else if(CurrentMarketRegime == "VOLATILITY")
+         effectiveRegime = VOLATILITY;
+   }
