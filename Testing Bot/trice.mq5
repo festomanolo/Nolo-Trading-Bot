@@ -635,3 +635,11 @@ void CheckTradeEntrySignals()
       else if(CurrentMarketRegime == "VOLATILITY")
          effectiveRegime = VOLATILITY;
    }
+
+   switch(effectiveRegime)
+   {
+      case TREND_FOLLOWING:   CheckTrendFollowingSignals(); break;
+      case RANGE_TRADING:     CheckRangeSignals();          break;
+      case BREAKOUT:
+      case SMC_INSTITUTIONAL: CheckBreakoutSignals();       break;
+      case VOLATILITY:        CheckVolatilitySignals();     break;
