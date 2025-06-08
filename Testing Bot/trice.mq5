@@ -675,3 +675,12 @@ void CheckTrendFollowingSignals()
 
    bool higherTFConfirmBuy  = true;
    bool higherTFConfirmSell = true;
+   if(UseAlternateTimeframes)
+   {
+      double htfMA1 = iMA(Symbol(), HigherTimeframe, FastMAPeriod, 0, FastMAMethod, PRICE_CLOSE, 0);
+      double htfMA2 = iMA(Symbol(), HigherTimeframe, SlowMAPeriod, 0, SlowMAMethod, PRICE_CLOSE, 0);
+      higherTFConfirmBuy  = htfMA1 > htfMA2;
+      higherTFConfirmSell = htfMA1 < htfMA2;
+   }
+
+   if((buySignal || strongBuySignal) && higherTFConfirmBuy)
