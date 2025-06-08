@@ -667,3 +667,11 @@ void CheckTrendFollowingSignals()
                      SuperTrendDirection[0] < 0 &&
                      RSIValue[0] < 60 && RSIValue[0] > 28 &&
                      (!UsePriceMomentum || KalmanVelocity <= 0.0);
+
+   bool strongSellSignal = sellSignal &&
+                           IchimokuTenkan[0] < IchimokuKijun[0] &&
+                           Close[0] < IchimokuSenkouA[0] &&
+                           Close[0] < IchimokuSenkouB[0];
+
+   bool higherTFConfirmBuy  = true;
+   bool higherTFConfirmSell = true;
