@@ -692,3 +692,11 @@ void CheckTrendFollowingSignals()
    {
       double risk = strongSellSignal ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
       ExecuteTrade(OP_SELL, risk);
+   }
+}
+
+void CheckRangeSignals()
+{
+   bool buySignal  = Close[0] < LowerBB[0] && RSIValue[0] < 36 && StochMain[0] < 24 && StochMain[0] > StochSignal[0];
+   bool sellSignal = Close[0] > UpperBB[0] && RSIValue[0] > 64 && StochMain[0] > 76 && StochMain[0] < StochSignal[0];
+
