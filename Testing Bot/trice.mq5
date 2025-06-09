@@ -700,3 +700,11 @@ void CheckRangeSignals()
    bool buySignal  = Close[0] < LowerBB[0] && RSIValue[0] < 36 && StochMain[0] < 24 && StochMain[0] > StochSignal[0];
    bool sellSignal = Close[0] > UpperBB[0] && RSIValue[0] > 64 && StochMain[0] > 76 && StochMain[0] < StochSignal[0];
 
+   bool rangeConfirm = MathAbs(FastMA[0] - SlowMA[0]) / SlowMA[0] * 100.0 < 0.55;
+   if(buySignal && rangeConfirm)
+      ExecuteTrade(OP_BUY, MaxRisk);
+   else if(sellSignal && rangeConfirm)
+      ExecuteTrade(OP_SELL, MaxRisk);
+}
+
+void CheckBreakoutSignals()
