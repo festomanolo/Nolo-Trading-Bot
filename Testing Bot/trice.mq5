@@ -708,3 +708,11 @@ void CheckRangeSignals()
 }
 
 void CheckBreakoutSignals()
+{
+   double recentHigh = High[iHighest(Symbol(), MainTimeframe, MODE_HIGH, 20, 1)];
+   double recentLow  = Low[iLowest(Symbol(), MainTimeframe, MODE_LOW, 20, 1)];
+
+   bool buySignal  = (Close[0] > recentHigh && Volume[0] > Volume[1] * 1.4 && RSIValue[0] > 50) || HasBullishSMCConfluence();
+   bool sellSignal = (Close[0] < recentLow  && Volume[0] > Volume[1] * 1.4 && RSIValue[0] < 50) || HasBearishSMCConfluence();
+
+   bool volatilityConfirm = ATRValue[0] > ATRValue[10] * 1.12;
