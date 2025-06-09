@@ -684,3 +684,11 @@ void CheckTrendFollowingSignals()
    }
 
    if((buySignal || strongBuySignal) && higherTFConfirmBuy)
+   {
+      double risk = strongBuySignal ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
+      ExecuteTrade(OP_BUY, risk);
+   }
+   else if((sellSignal || strongSellSignal) && higherTFConfirmSell)
+   {
+      double risk = strongSellSignal ? MaxRisk * AdaptiveRiskMultiplier : MaxRisk;
+      ExecuteTrade(OP_SELL, risk);
