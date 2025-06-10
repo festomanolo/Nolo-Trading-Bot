@@ -733,3 +733,11 @@ void CheckVolatilitySignals()
    if(buySignal)
       ExecuteTrade(OP_BUY, MaxRisk * 0.75);
    else if(sellSignal)
+      ExecuteTrade(OP_SELL, MaxRisk * 0.75);
+}
+
+bool HasOpenPosition()
+{
+   for(int i = 0; i < OrdersTotal(); i++)
+   {
+      if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES))
