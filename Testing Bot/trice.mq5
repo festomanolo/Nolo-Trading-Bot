@@ -716,3 +716,11 @@ void CheckBreakoutSignals()
    bool sellSignal = (Close[0] < recentLow  && Volume[0] > Volume[1] * 1.4 && RSIValue[0] < 50) || HasBearishSMCConfluence();
 
    bool volatilityConfirm = ATRValue[0] > ATRValue[10] * 1.12;
+   if(buySignal && volatilityConfirm)
+      ExecuteTrade(OP_BUY, MaxRisk * 0.85);
+   else if(sellSignal && volatilityConfirm)
+      ExecuteTrade(OP_SELL, MaxRisk * 0.85);
+}
+
+void CheckVolatilitySignals()
+{
