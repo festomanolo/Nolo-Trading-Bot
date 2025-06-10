@@ -724,3 +724,12 @@ void CheckBreakoutSignals()
 
 void CheckVolatilitySignals()
 {
+   bool expandingVolatility = ATRValue[0] > ATRValue[5] * 1.25;
+   if(!expandingVolatility && UseVolatilityFilter) return;
+
+   bool buySignal  = FastMA[0] > FastMA[1] && FastMA[1] > FastMA[2] && RSIValue[0] > 50 && RSIValue[0] > RSIValue[1] + 4;
+   bool sellSignal = FastMA[0] < FastMA[1] && FastMA[1] < FastMA[2] && RSIValue[0] < 50 && RSIValue[0] < RSIValue[1] - 4;
+
+   if(buySignal)
+      ExecuteTrade(OP_BUY, MaxRisk * 0.75);
+   else if(sellSignal)
