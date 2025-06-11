@@ -765,3 +765,11 @@ void ExecuteTrade(int orderType, double riskPercent)
       {
          double swingLow          = FindRecentSwingLow(20);
          double swingStopDistance = (price - swingLow) / Point;
+         stopLossPips = MathMin(stopLossPips, swingStopDistance * 1.1);
+         stopLossPips = MathMax(stopLossPips, 10);
+      }
+      else
+      {
+         double swingHigh         = FindRecentSwingHigh(20);
+         double swingStopDistance = (swingHigh - price) / Point;
+         stopLossPips = MathMin(stopLossPips, swingStopDistance * 1.1);
