@@ -749,3 +749,11 @@ bool HasOpenPosition()
    return false;
 }
 
+void ExecuteTrade(int orderType, double riskPercent)
+{
+   double winProb = PredictNeuralWinProbability(orderType, 0.78);
+   if(UseNeuralSignalFilter && winProb < MinNeuralWinProbability)
+      return;
+
+   double price        = (orderType == OP_BUY) ? Ask : Bid;
+   double atrValue     = ATRValue[0];
