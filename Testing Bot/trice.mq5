@@ -757,3 +757,11 @@ void ExecuteTrade(int orderType, double riskPercent)
 
    double price        = (orderType == OP_BUY) ? Ask : Bid;
    double atrValue     = ATRValue[0];
+   double stopLossPips = atrValue * ATRMultiplier / Point;
+
+   if(UseMarketStructure)
+   {
+      if(orderType == OP_BUY)
+      {
+         double swingLow          = FindRecentSwingLow(20);
+         double swingStopDistance = (price - swingLow) / Point;
