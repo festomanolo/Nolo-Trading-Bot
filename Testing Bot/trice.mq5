@@ -741,3 +741,11 @@ bool HasOpenPosition()
    for(int i = 0; i < OrdersTotal(); i++)
    {
       if(OrderSelect(i, SELECT_BY_POS, MODE_TRADES))
+      {
+         if(OrderSymbol() == Symbol() && OrderMagicNumber() == Magic)
+            return true;
+      }
+   }
+   return false;
+}
+
