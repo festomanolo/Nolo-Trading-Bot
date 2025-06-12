@@ -782,3 +782,11 @@ void ExecuteTrade(int orderType, double riskPercent)
 
    double stopLoss   = (orderType == OP_BUY) ? price - stopLossPips * Point : price + stopLossPips * Point;
    double takeProfit = (orderType == OP_BUY) ? price + takeProfitPips * Point : price - takeProfitPips * Point;
+
+   int ticket = OrderSend(Symbol(), orderType, lotSize, price, (int)Slippage, stopLoss, takeProfit,
+                          "Nolo v4.0 Adaptive", Magic, 0, (orderType == OP_BUY) ? clrBlue : clrRed);
+
+   if(ticket > 0)
+   {
+      TotalTradesThisSession++;
+      LastTradeTime = TimeCurrent();
