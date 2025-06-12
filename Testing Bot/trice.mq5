@@ -773,3 +773,12 @@ void ExecuteTrade(int orderType, double riskPercent)
          double swingHigh         = FindRecentSwingHigh(20);
          double swingStopDistance = (swingHigh - price) / Point;
          stopLossPips = MathMin(stopLossPips, swingStopDistance * 1.1);
+         stopLossPips = MathMax(stopLossPips, 10);
+      }
+   }
+
+   double takeProfitPips = stopLossPips * RiskRewardRatio;
+   double lotSize        = CalculateLotSize(riskPercent, stopLossPips);
+
+   double stopLoss   = (orderType == OP_BUY) ? price - stopLossPips * Point : price + stopLossPips * Point;
+   double takeProfit = (orderType == OP_BUY) ? price + takeProfitPips * Point : price - takeProfitPips * Point;
