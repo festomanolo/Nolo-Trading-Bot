@@ -790,3 +790,11 @@ void ExecuteTrade(int orderType, double riskPercent)
    {
       TotalTradesThisSession++;
       LastTradeTime = TimeCurrent();
+      Print("Trade executed: ", orderType == OP_BUY ? "BUY" : "SELL", " at ", price,
+            " SL:", stopLoss, " TP:", takeProfit, " Lot:", lotSize, " NeuralP:", DoubleToStr(winProb, 3));
+   }
+   else
+   {
+      Print("Order send failed with error: ", GetLastError());
+   }
+}
