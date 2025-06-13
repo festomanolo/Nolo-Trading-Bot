@@ -814,3 +814,11 @@ double FindRecentSwingHigh(int lookbackBars)
       if(High[i] > swingHigh) swingHigh = High[i];
    return swingHigh;
 }
+
+double CalculateLotSize(double riskPercent, double stopLossPips)
+{
+   double lotSize        = 0;
+   double accountBalance = AccountBalance();
+   double tickValue      = MarketInfo(Symbol(), MODE_TICKVALUE);
+   double tickSize       = MarketInfo(Symbol(), MODE_TICKSIZE);
+   double lotStep        = MarketInfo(Symbol(), MODE_LOTSTEP);
