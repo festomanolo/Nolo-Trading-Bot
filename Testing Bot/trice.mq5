@@ -798,3 +798,11 @@ void ExecuteTrade(int orderType, double riskPercent)
       Print("Order send failed with error: ", GetLastError());
    }
 }
+
+double FindRecentSwingLow(int lookbackBars)
+{
+   double swingLow = Low[0];
+   for(int i = 1; i < lookbackBars; i++)
+      if(Low[i] < swingLow) swingLow = Low[i];
+   return swingLow;
+}
