@@ -806,3 +806,11 @@ double FindRecentSwingLow(int lookbackBars)
       if(Low[i] < swingLow) swingLow = Low[i];
    return swingLow;
 }
+
+double FindRecentSwingHigh(int lookbackBars)
+{
+   double swingHigh = High[0];
+   for(int i = 1; i < lookbackBars; i++)
+      if(High[i] > swingHigh) swingHigh = High[i];
+   return swingHigh;
+}
