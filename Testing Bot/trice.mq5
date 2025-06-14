@@ -822,3 +822,12 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
    double tickValue      = MarketInfo(Symbol(), MODE_TICKVALUE);
    double tickSize       = MarketInfo(Symbol(), MODE_TICKSIZE);
    double lotStep        = MarketInfo(Symbol(), MODE_LOTSTEP);
+   double minLot         = MarketInfo(Symbol(), MODE_MINLOT);
+   double maxLot         = MarketInfo(Symbol(), MODE_MAXLOT);
+
+   double riskAmount     = accountBalance * (riskPercent / 100.0);
+   double slLossPerLot   = MathMax(1e-6, stopLossPips * Point / MathMax(1e-9, tickSize) * tickValue);
+
+   switch(RiskModelType)
+   {
+      case FIXED:
