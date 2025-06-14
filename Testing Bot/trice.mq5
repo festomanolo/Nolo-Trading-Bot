@@ -847,3 +847,11 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
          double bayesianWR = BetaAlpha / MathMax(1e-9, BetaAlpha + BetaBeta);
          double blendedWR  = 0.45 * bayesianWR + 0.55 * LastNeuralWinProb;
          double streakFactor = 1.0;
+         if(ConsecutiveLosses > 2) streakFactor = 0.55;
+         if(ConsecutiveWins > 2)   streakFactor = 1.20;
+
+         double adaptiveKelly = MathMax(0.001, (blendedWR - ((1.0 - blendedWR) / RiskRewardRatio)) * KellyFactor * streakFactor);
+         lotSize = (accountBalance * adaptiveKelly) / slLossPerLot;
+         break;
+      }
+
