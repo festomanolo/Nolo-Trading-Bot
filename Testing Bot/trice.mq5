@@ -839,3 +839,11 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
          double kellyPct = MathMax(0.001, (WinRate - ((1.0 - WinRate) / RiskRewardRatio)) * KellyFactor);
          lotSize = (accountBalance * kellyPct) / slLossPerLot;
          break;
+      }
+
+      case ADAPTIVE_KELLY:
+      case BAYESIAN_KELLY:
+      {
+         double bayesianWR = BetaAlpha / MathMax(1e-9, BetaAlpha + BetaBeta);
+         double blendedWR  = 0.45 * bayesianWR + 0.55 * LastNeuralWinProb;
+         double streakFactor = 1.0;
