@@ -831,3 +831,11 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
    switch(RiskModelType)
    {
       case FIXED:
+         lotSize = riskAmount / slLossPerLot;
+         break;
+
+      case KELLY:
+      {
+         double kellyPct = MathMax(0.001, (WinRate - ((1.0 - WinRate) / RiskRewardRatio)) * KellyFactor);
+         lotSize = (accountBalance * kellyPct) / slLossPerLot;
+         break;
