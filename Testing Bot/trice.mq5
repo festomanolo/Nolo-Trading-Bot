@@ -863,3 +863,11 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
          break;
       }
 
+      default:
+         lotSize = riskAmount / slLossPerLot;
+   }
+
+   lotSize = MathFloor(lotSize / lotStep) * lotStep;
+   lotSize = MathMax(lotSize, minLot);
+   lotSize = MathMin(lotSize, maxLot);
+   return lotSize;
