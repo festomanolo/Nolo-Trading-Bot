@@ -871,3 +871,12 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
    lotSize = MathMax(lotSize, minLot);
    lotSize = MathMin(lotSize, maxLot);
    return lotSize;
+}
+
+void UpdateTradingStats(bool isWin)
+{
+   TotalTrades++;
+   if(isWin)
+   {
+      WinningTrades++;
+      ConsecutiveWins++;
