@@ -855,3 +855,11 @@ double CalculateLotSize(double riskPercent, double stopLossPips)
          break;
       }
 
+      case ANTI_MARTINGALE:
+      {
+         double baseLot = riskAmount / slLossPerLot;
+         lotSize = baseLot * (1.0 + (ConsecutiveWins * 0.2));
+         if(ConsecutiveLosses > 0) lotSize = baseLot * 0.8;
+         break;
+      }
+
