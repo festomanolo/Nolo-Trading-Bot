@@ -880,3 +880,11 @@ void UpdateTradingStats(bool isWin)
    {
       WinningTrades++;
       ConsecutiveWins++;
+      ConsecutiveLosses = 0;
+      BetaAlpha = BetaAlpha * 0.98 + 1.0;
+      BetaBeta  = BetaBeta  * 0.98;
+   }
+   else
+   {
+      ConsecutiveLosses++;
+      ConsecutiveWins = 0;
