@@ -904,3 +904,11 @@ void RenderTelemetryHUD()
       "Daily Trades: %d/%d | Balance: $%.2f | Equity: $%.2f",
       Symbol(), CurrentMarketRegime,
       CurrentHurstExponent, CurrentEfficiencyRatio, KalmanVelocity,
+      CurrentOrderFlowBuyRatio * 100.0, LastNeuralWinProb * 100.0, WinRate * 100.0,
+      TotalTradesThisSession, MaxDailyTrades, AccountBalance(), AccountEquity()
+   );
+   Comment(hud);
+}
+
+double OnTester()
+{
