@@ -888,3 +888,11 @@ void UpdateTradingStats(bool isWin)
    {
       ConsecutiveLosses++;
       ConsecutiveWins = 0;
+      BetaAlpha = BetaAlpha * 0.98;
+      BetaBeta  = BetaBeta  * 0.98 + 1.0;
+   }
+   WinRate = (double)WinningTrades / TotalTrades;
+}
+
+void RenderTelemetryHUD()
+{
