@@ -896,3 +896,11 @@ void UpdateTradingStats(bool isWin)
 
 void RenderTelemetryHUD()
 {
+   if(!ShowTelemetryHUD) return;
+   string hud = StringFormat(
+      "NOLO TRADING BOT v4.0 | Symbol: %s | Regime: %s\n"
+      "Hurst H: %.3f | Efficiency ER: %.3f | Kalman Vel: %+.3f\n"
+      "OrderFlow Buy%%: %.1f%% | Neural WinP: %.1f%% | Bayesian WR: %.1f%%\n"
+      "Daily Trades: %d/%d | Balance: $%.2f | Equity: $%.2f",
+      Symbol(), CurrentMarketRegime,
+      CurrentHurstExponent, CurrentEfficiencyRatio, KalmanVelocity,
