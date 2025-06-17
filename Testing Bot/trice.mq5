@@ -912,3 +912,12 @@ void RenderTelemetryHUD()
 
 double OnTester()
 {
+   double profitFactor   = TesterStatistics(STAT_PROFIT_FACTOR);
+   double expectedPayoff = TesterStatistics(STAT_EXPECTED_PAYOFF);
+   double drawdown       = TesterStatistics(STAT_EQUITY_DD_RELATIVE);
+   double trades         = TesterStatistics(STAT_TRADES);
+
+   if(profitFactor <= 0 || trades < 10) return 0;
+   double score = (profitFactor * expectedPayoff) / (drawdown > 0 ? drawdown : 1);
+   return score;
+}
