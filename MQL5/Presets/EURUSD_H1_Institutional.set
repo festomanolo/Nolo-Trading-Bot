@@ -1,0 +1,8 @@
+; Nolo Trading Bot v4.0 - EURUSD H1 Institutional Adaptive Preset
+MarketRegimeMode=5
+RiskModelType=3
+UseVolatilityFilter=true
+UsePriceMomentum=true
+UseMarketStructure=true
+UseAlternateTimeframes=true
+UseSmartTrailingStop=true
