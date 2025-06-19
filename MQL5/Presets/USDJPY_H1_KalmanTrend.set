@@ -1,0 +1,8 @@
+; Nolo Trading Bot v4.0 - USDJPY H1 Kalman Trend Preset
+MarketRegimeMode=5
+RiskModelType=3
+UseVolatilityFilter=true
+UsePriceMomentum=true
+UseMarketStructure=true
+UseAlternateTimeframes=true
+UseSmartTrailingStop=true
