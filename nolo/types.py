@@ -22,3 +22,11 @@ class RegimeType(str, Enum):
 
 
 class StrategyMode(str, Enum):
+    """High-level strategy execution mode."""
+
+    TREND_FOLLOWING = "TREND_FOLLOWING"
+    RANGE_TRADING = "RANGE_TRADING"
+    BREAKOUT = "BREAKOUT"
+    VOLATILITY = "VOLATILITY"
+    SMC_INSTITUTIONAL = "SMC_INSTITUTIONAL"
+    ADAPTIVE = "ADAPTIVE"
