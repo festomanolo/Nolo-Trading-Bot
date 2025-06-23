@@ -14,3 +14,11 @@ class RegimeType(str, Enum):
     TREND_UP = "TREND_UP"
     TREND_DOWN = "TREND_DOWN"
     RANGE = "RANGE"
+    BREAKOUT_UP = "BREAKOUT_UP"
+    BREAKOUT_DOWN = "BREAKOUT_DOWN"
+    VOLATILITY = "VOLATILITY"
+    LIQUIDITY_SWEEP = "LIQUIDITY_SWEEP"
+    MIXED = "MIXED"
+
+
+class StrategyMode(str, Enum):
