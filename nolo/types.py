@@ -30,3 +30,11 @@ class StrategyMode(str, Enum):
     VOLATILITY = "VOLATILITY"
     SMC_INSTITUTIONAL = "SMC_INSTITUTIONAL"
     ADAPTIVE = "ADAPTIVE"
+
+
+class RiskModel(str, Enum):
+    """Position sizing and risk allocation models."""
+
+    FIXED = "FIXED"
+    KELLY = "KELLY"
+    ADAPTIVE_KELLY = "ADAPTIVE_KELLY"
