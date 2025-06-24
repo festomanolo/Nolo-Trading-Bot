@@ -54,3 +54,11 @@ class OrderStatus(str, Enum):
     """Lifecycle status of an order or position."""
 
     PENDING = "PENDING"
+    OPEN = "OPEN"
+    PARTIALLY_CLOSED = "PARTIALLY_CLOSED"
+    CLOSED = "CLOSED"
+    REJECTED = "REJECTED"
+
+
+class SMCZoneType(str, Enum):
+    """Smart Money Concepts structural zone types."""
