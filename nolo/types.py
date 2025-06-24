@@ -38,3 +38,11 @@ class RiskModel(str, Enum):
     FIXED = "FIXED"
     KELLY = "KELLY"
     ADAPTIVE_KELLY = "ADAPTIVE_KELLY"
+    BAYESIAN_KELLY = "BAYESIAN_KELLY"
+    ANTI_MARTINGALE = "ANTI_MARTINGALE"
+    VOLATILITY_PARITY = "VOLATILITY_PARITY"
+
+
+class OrderSide(str, Enum):
+    """Trade direction."""
+
