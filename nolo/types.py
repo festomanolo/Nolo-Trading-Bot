@@ -46,3 +46,11 @@ class RiskModel(str, Enum):
 class OrderSide(str, Enum):
     """Trade direction."""
 
+    BUY = "BUY"
+    SELL = "SELL"
+
+
+class OrderStatus(str, Enum):
+    """Lifecycle status of an order or position."""
+
+    PENDING = "PENDING"
