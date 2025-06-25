@@ -78,3 +78,11 @@ class MarketStructureBias(str, Enum):
     BEARISH_BOS = "BEARISH_BOS"
     BULLISH_CHOCH = "BULLISH_CHOCH"
     BEARISH_CHOCH = "BEARISH_CHOCH"
+    NEUTRAL = "NEUTRAL"
+
+
+@dataclass(frozen=True)
+class Tick:
+    """Real-time L1 forex quote tick."""
+
+    symbol: str
