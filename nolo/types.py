@@ -86,3 +86,11 @@ class Tick:
     """Real-time L1 forex quote tick."""
 
     symbol: str
+    timestamp: datetime
+    bid: float
+    ask: float
+    volume: float = 1.0
+
+    @property
+    def mid(self) -> float:
+        return (self.bid + self.ask) * 0.5
