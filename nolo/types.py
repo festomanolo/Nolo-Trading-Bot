@@ -70,3 +70,11 @@ class SMCZoneType(str, Enum):
     BUY_SIDE_LIQUIDITY = "BUY_SIDE_LIQUIDITY"
     SELL_SIDE_LIQUIDITY = "SELL_SIDE_LIQUIDITY"
 
+
+class MarketStructureBias(str, Enum):
+    """Institutional market structure state."""
+
+    BULLISH_BOS = "BULLISH_BOS"
+    BEARISH_BOS = "BEARISH_BOS"
+    BULLISH_CHOCH = "BULLISH_CHOCH"
+    BEARISH_CHOCH = "BEARISH_CHOCH"
