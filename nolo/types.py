@@ -62,3 +62,11 @@ class OrderStatus(str, Enum):
 
 class SMCZoneType(str, Enum):
     """Smart Money Concepts structural zone types."""
+
+    BULLISH_OB = "BULLISH_OB"
+    BEARISH_OB = "BEARISH_OB"
+    BULLISH_FVG = "BULLISH_FVG"
+    BEARISH_FVG = "BEARISH_FVG"
+    BUY_SIDE_LIQUIDITY = "BUY_SIDE_LIQUIDITY"
+    SELL_SIDE_LIQUIDITY = "SELL_SIDE_LIQUIDITY"
+
