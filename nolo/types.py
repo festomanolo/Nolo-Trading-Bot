@@ -102,3 +102,11 @@ class Tick:
     def spread_points(self, point: float = 0.00001) -> float:
         return self.spread / point if point > 0 else 0.0
 
+
+@dataclass(frozen=True)
+class Bar:
+    """OHLCV candlestick bar for a given symbol and timeframe."""
+
+    symbol: str
+    timeframe: str
+    timestamp: datetime
