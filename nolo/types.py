@@ -110,3 +110,11 @@ class Bar:
     symbol: str
     timeframe: str
     timestamp: datetime
+    open: float
+    high: float
+    low: float
+    close: float
+    volume: float
+    spread_points: float = 8.0
+
+    @property
