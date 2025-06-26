@@ -94,3 +94,11 @@ class Tick:
     @property
     def mid(self) -> float:
         return (self.bid + self.ask) * 0.5
+
+    @property
+    def spread(self) -> float:
+        return max(0.0, self.ask - self.bid)
+
+    def spread_points(self, point: float = 0.00001) -> float:
+        return self.spread / point if point > 0 else 0.0
+
