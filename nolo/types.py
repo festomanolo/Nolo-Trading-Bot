@@ -134,3 +134,12 @@ class Bar:
         return self.close >= self.open
 
     @property
+    def upper_wick(self) -> float:
+        return self.high - max(self.open, self.close)
+
+    @property
+    def lower_wick(self) -> bool | float:
+        return min(self.open, self.close) - self.low
+
+
+@dataclass
