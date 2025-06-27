@@ -126,3 +126,11 @@ class Bar:
         return max(0.0, self.high - self.low)
 
     @property
+    def body(self) -> float:
+        return abs(self.close - self.open)
+
+    @property
+    def is_bullish(self) -> bool:
+        return self.close >= self.open
+
+    @property
