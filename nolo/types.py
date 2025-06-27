@@ -118,3 +118,11 @@ class Bar:
     spread_points: float = 8.0
 
     @property
+    def mid_hl(self) -> float:
+        return (self.high + self.low) * 0.5
+
+    @property
+    def range(self) -> float:
+        return max(0.0, self.high - self.low)
+
+    @property
