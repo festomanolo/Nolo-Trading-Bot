@@ -143,3 +143,11 @@ class Bar:
 
 
 @dataclass
+class SMCZone:
+    """Represents an institutional Order Block, Fair Value Gap, or Liquidity Pool."""
+
+    zone_type: SMCZoneType
+    top: float
+    bottom: float
+    created_at: datetime
+    bar_index: int
