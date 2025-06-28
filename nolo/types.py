@@ -167,3 +167,11 @@ class SMCZone:
         return self.bottom <= price <= self.top
 
 
+@dataclass
+class RegimeState:
+    """Comprehensive output of the multi-factor Market Regime Engine."""
+
+    regime: RegimeType
+    confidence: float
+    hurst_exponent: float
+    efficiency_ratio: float
