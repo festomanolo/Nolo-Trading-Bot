@@ -151,3 +151,11 @@ class SMCZone:
     bottom: float
     created_at: datetime
     bar_index: int
+    strength: float = 1.0
+    mitigated: bool = False
+    touch_count: int = 0
+
+    @property
+    def midpoint(self) -> float:
+        return (self.top + self.bottom) * 0.5
+
