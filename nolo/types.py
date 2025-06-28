@@ -159,3 +159,11 @@ class SMCZone:
     def midpoint(self) -> float:
         return (self.top + self.bottom) * 0.5
 
+    @property
+    def height(self) -> float:
+        return max(0.0, self.top - self.bottom)
+
+    def contains(self, price: float) -> bool:
+        return self.bottom <= price <= self.top
+
+
