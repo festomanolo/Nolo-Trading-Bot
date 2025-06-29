@@ -175,3 +175,11 @@ class RegimeState:
     confidence: float
     hurst_exponent: float
     efficiency_ratio: float
+    adx: float
+    bb_width_pct: float
+    atr_ratio: float
+    kalman_slope: float
+    entropy: float
+    structure_bias: MarketStructureBias
+    probabilities: Dict[str, float] = field(default_factory=dict)
+
