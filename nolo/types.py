@@ -183,3 +183,11 @@ class RegimeState:
     structure_bias: MarketStructureBias
     probabilities: Dict[str, float] = field(default_factory=dict)
 
+
+@dataclass
+class Signal:
+    """Trading signal emitted by an alpha strategy or ensemble orchestrator."""
+
+    symbol: str
+    side: OrderSide
+    entry_price: float
