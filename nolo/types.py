@@ -191,3 +191,11 @@ class Signal:
     symbol: str
     side: OrderSide
     entry_price: float
+    stop_loss: float
+    take_profit: float
+    confidence: float
+    win_probability: float
+    strategy_name: str
+    regime: RegimeType
+    risk_multiplier: float = 1.0
+    expected_rr: float = 2.0
