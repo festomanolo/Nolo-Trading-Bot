@@ -199,3 +199,11 @@ class Signal:
     regime: RegimeType
     risk_multiplier: float = 1.0
     expected_rr: float = 2.0
+    features: Dict[str, float] = field(default_factory=dict)
+    reasons: List[str] = field(default_factory=list)
+    timestamp: Optional[datetime] = None
+
+    @property
+    def stop_distance(self) -> float:
+        return abs(self.entry_price - self.stop_loss)
+
