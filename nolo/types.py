@@ -223,3 +223,11 @@ class Position:
     open_price: float
     current_price: float
     initial_lots: float
+    current_lots: float
+    stop_loss: float
+    take_profit: float
+    initial_stop_loss: float
+    strategy_name: str
+    regime: RegimeType
+    magic: int = 123456
+    breakeven_applied: bool = False
