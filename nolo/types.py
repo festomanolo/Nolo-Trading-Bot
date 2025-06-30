@@ -215,3 +215,11 @@ class Signal:
 @dataclass
 class Position:
     """Active open position managed by the execution and trade management engine."""
+
+    ticket: int
+    symbol: str
+    side: OrderSide
+    open_time: datetime
+    open_price: float
+    current_price: float
+    initial_lots: float
