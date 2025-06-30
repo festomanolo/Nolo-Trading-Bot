@@ -207,3 +207,11 @@ class Signal:
     def stop_distance(self) -> float:
         return abs(self.entry_price - self.stop_loss)
 
+    @property
+    def reward_distance(self) -> float:
+        return abs(self.take_profit - self.entry_price)
+
+
+@dataclass
+class Position:
+    """Active open position managed by the execution and trade management engine."""
