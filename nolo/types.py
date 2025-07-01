@@ -231,3 +231,11 @@ class Position:
     regime: RegimeType
     magic: int = 123456
     breakeven_applied: bool = False
+    tp1_hit: bool = False
+    tp2_hit: bool = False
+    highest_favorable_price: float = 0.0
+    lowest_favorable_price: float = 0.0
+    realized_pnl: float = 0.0
+    commission_paid: float = 0.0
+    swap_accumulated: float = 0.0
+    entry_features: Dict[str, float] = field(default_factory=dict)
