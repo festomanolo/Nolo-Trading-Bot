@@ -239,3 +239,11 @@ class Position:
     commission_paid: float = 0.0
     swap_accumulated: float = 0.0
     entry_features: Dict[str, float] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        if self.highest_favorable_price == 0.0:
+            self.highest_favorable_price = self.open_price
+        if self.lowest_favorable_price == 0.0:
+            self.lowest_favorable_price = self.open_price
+
+    def unrealized_pips(self, pip_size: float = 0.0001) -> float:
