@@ -255,3 +255,11 @@ class Position:
 
     def unrealized_pnl(self, contract_size: float = 100000.0) -> float:
         price_diff = (
+            (self.current_price - self.open_price)
+            if self.side == OrderSide.BUY
+            else (self.open_price - self.current_price)
+        )
+        return price_diff * self.current_lots * contract_size
+
+
+@dataclass
