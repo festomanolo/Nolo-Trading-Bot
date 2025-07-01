@@ -247,3 +247,11 @@ class Position:
             self.lowest_favorable_price = self.open_price
 
     def unrealized_pips(self, pip_size: float = 0.0001) -> float:
+        if pip_size <= 0:
+            return 0.0
+        if self.side == OrderSide.BUY:
+            return (self.current_price - self.open_price) / pip_size
+        return (self.open_price - self.current_price) / pip_size
+
+    def unrealized_pnl(self, contract_size: float = 100000.0) -> float:
+        price_diff = (
