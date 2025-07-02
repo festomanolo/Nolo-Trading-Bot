@@ -279,3 +279,12 @@ class TradeRecord:
     commission: float
     swap: float
     pips: float
+    r_multiple: float
+    strategy_name: str
+    regime: RegimeType
+    exit_reason: str
+    entry_features: Dict[str, float] = field(default_factory=dict)
+
+    @property
+    def is_win(self) -> bool:
+        return self.net_pnl > 0.0
