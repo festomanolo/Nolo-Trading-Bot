@@ -263,3 +263,11 @@ class Position:
 
 
 @dataclass
+class TradeRecord:
+    """Completed historical trade record for analytics and online ML training."""
+
+    ticket: int
+    symbol: str
+    side: OrderSide
+    open_time: datetime
+    close_time: datetime
