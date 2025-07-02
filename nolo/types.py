@@ -271,3 +271,11 @@ class TradeRecord:
     side: OrderSide
     open_time: datetime
     close_time: datetime
+    open_price: float
+    close_price: float
+    lots: float
+    net_pnl: float
+    gross_pnl: float
+    commission: float
+    swap: float
+    pips: float
