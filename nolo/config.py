@@ -22,3 +22,11 @@ class SymbolSpec:
     min_lot: float = 0.01
     max_lot: float = 100.0
     lot_step: float = 0.01
+    commission_per_lot: float = 7.0
+    max_spread_points: int = 20
+
+    @property
+    def base_currency(self) -> str:
+        return self.symbol[:3].upper()
+
+    @property
