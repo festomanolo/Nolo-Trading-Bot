@@ -30,3 +30,11 @@ class SymbolSpec:
         return self.symbol[:3].upper()
 
     @property
+    def quote_currency(self) -> str:
+        return self.symbol[3:6].upper()
+
+
+DEFAULT_SYMBOL_SPECS: Dict[str, SymbolSpec] = {
+    "EURUSD": SymbolSpec("EURUSD", digits=5, point=0.00001, pip_size=0.0001, tick_value=1.0),
+    "GBPUSD": SymbolSpec("GBPUSD", digits=5, point=0.00001, pip_size=0.0001, tick_value=1.0),
+    "USDJPY": SymbolSpec("USDJPY", digits=3, point=0.001, pip_size=0.01, tick_size=0.001, tick_value=0.68),
