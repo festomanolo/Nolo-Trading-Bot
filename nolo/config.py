@@ -46,3 +46,11 @@ DEFAULT_SYMBOL_SPECS: Dict[str, SymbolSpec] = {
     "GBPJPY": SymbolSpec("GBPJPY", digits=3, point=0.001, pip_size=0.01, tick_size=0.001, tick_value=0.68, max_spread_points=30),
     "XAUUSD": SymbolSpec("XAUUSD", digits=2, point=0.01, pip_size=0.10, tick_size=0.01, tick_value=1.0, contract_size=100.0, max_spread_points=35),
 }
+
+
+@dataclass
+class IndicatorConfig:
+    """Parameters for technical, statistical, and state-space indicators."""
+
+    fast_ma_period: int = 8
+    slow_ma_period: int = 21
