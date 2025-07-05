@@ -62,3 +62,11 @@ class IndicatorConfig:
     stoch_d: int = 3
     stoch_slowing: int = 3
     macd_fast: int = 12
+    macd_slow: int = 26
+    macd_signal: int = 9
+    bollinger_period: int = 20
+    bollinger_std: float = 2.0
+    keltner_period: int = 20
+    keltner_atr_mult: float = 1.5
+    atr_period: int = 14
+    adx_period: int = 14
