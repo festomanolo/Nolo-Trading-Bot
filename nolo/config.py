@@ -54,3 +54,11 @@ class IndicatorConfig:
 
     fast_ma_period: int = 8
     slow_ma_period: int = 21
+    trend_ma_period: int = 50
+    rsi_period: int = 14
+    rsi_upper: float = 70.0
+    rsi_lower: float = 30.0
+    stoch_k: int = 5
+    stoch_d: int = 3
+    stoch_slowing: int = 3
+    macd_fast: int = 12
