@@ -70,3 +70,11 @@ class IndicatorConfig:
     keltner_atr_mult: float = 1.5
     atr_period: int = 14
     adx_period: int = 14
+    supertrend_mult: float = 2.5
+    ichimoku_tenkan: int = 9
+    ichimoku_kijun: int = 26
+    ichimoku_senkou_b: int = 52
+    hurst_window: int = 64
+    kalman_process_noise: float = 1e-4
+    kalman_measurement_noise: float = 1e-2
+
