@@ -103,3 +103,11 @@ class RiskConfig:
     atr_sl_multiplier: float = 2.0
     min_sl_pips: float = 8.0
     max_sl_pips: float = 65.0
+    risk_reward_ratio: float = 2.2
+    max_daily_drawdown_pct: float = 4.5
+    max_total_drawdown_pct: float = 9.0
+    max_daily_trades: int = 6
+    min_bars_between_trades: int = 3
+    max_open_positions: int = 4
+    max_currency_exposure_pct: float = 2.5
+    max_pair_correlation: float = 0.78
