@@ -78,3 +78,12 @@ class IndicatorConfig:
     kalman_process_noise: float = 1e-4
     kalman_measurement_noise: float = 1e-2
 
+
+@dataclass
+class SMCConfig:
+    """Parameters for institutional Smart Money Concepts detection."""
+
+    swing_length: int = 5
+    fvg_min_atr_fraction: float = 0.25
+    ob_impulse_atr_mult: float = 1.4
+    max_active_zones: int = 15
