@@ -87,3 +87,11 @@ class SMCConfig:
     fvg_min_atr_fraction: float = 0.25
     ob_impulse_atr_mult: float = 1.4
     max_active_zones: int = 15
+    liquidity_sweep_wick_ratio: float = 0.45
+    equal_hl_tolerance_pips: float = 2.5
+
+
+@dataclass
+class RiskConfig:
+    """Parameters for position sizing, drawdown protection, and trade exits."""
+
