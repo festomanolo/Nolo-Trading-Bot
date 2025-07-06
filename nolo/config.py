@@ -95,3 +95,11 @@ class SMCConfig:
 class RiskConfig:
     """Parameters for position sizing, drawdown protection, and trade exits."""
 
+    risk_model: RiskModel = RiskModel.BAYESIAN_KELLY
+    max_risk_pct: float = 1.0
+    min_risk_pct: float = 0.20
+    adaptive_risk_multiplier: float = 1.4
+    kelly_fraction: float = 0.35
+    atr_sl_multiplier: float = 2.0
+    min_sl_pips: float = 8.0
+    max_sl_pips: float = 65.0
