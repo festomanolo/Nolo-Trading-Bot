@@ -127,3 +127,11 @@ class RiskConfig:
     max_holding_bars: int = 96
 
 
+@dataclass
+class MLConfig:
+    """Parameters for the online neural signal scorer and contextual bandit."""
+
+    learning_rate: float = 0.015
+    l2_penalty: float = 1e-4
+    min_signal_probability: float = 0.54
+    strong_signal_probability: float = 0.68
