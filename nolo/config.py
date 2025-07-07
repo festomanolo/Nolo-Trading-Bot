@@ -119,3 +119,11 @@ class RiskConfig:
     use_partial_tp: bool = True
     tp1_r_multiple: float = 1.0
     tp1_close_fraction: float = 0.40
+    tp2_r_multiple: float = 1.8
+    tp2_close_fraction: float = 0.30
+    use_smart_trailing: bool = True
+    trailing_activation_pips: float = 28.0
+    trailing_distance_pips: float = 18.0
+    max_holding_bars: int = 96
+
+
