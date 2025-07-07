@@ -111,3 +111,11 @@ class RiskConfig:
     max_open_positions: int = 4
     max_currency_exposure_pct: float = 2.5
     max_pair_correlation: float = 0.78
+    use_equity_curve_filter: bool = True
+    equity_ma_period: int = 15
+    use_breakeven: bool = True
+    breakeven_trigger_pips: float = 20.0
+    breakeven_plus_pips: float = 3.0
+    use_partial_tp: bool = True
+    tp1_r_multiple: float = 1.0
+    tp1_close_fraction: float = 0.40
