@@ -159,3 +159,12 @@ class BotConfig:
     smc: SMCConfig = field(default_factory=SMCConfig)
     risk: RiskConfig = field(default_factory=RiskConfig)
     ml: MLConfig = field(default_factory=MLConfig)
+    symbol_specs: Dict[str, SymbolSpec] = field(default_factory=lambda: dict(DEFAULT_SYMBOL_SPECS))
+
+    def get_symbol_spec(self, symbol: str) -> SymbolSpec:
+        clean = symbol.upper()[:6]
+        if clean in self.symbol_specs:
+            return self.symbol_specs[clean]
+        if "JPY" in clean:
+            return SymbolSpec(clean, digits=3, point=0.001, pip_size=0.01, tick_size=0.001, tick_value=0.68)
+        return SymbolSpec(clean)
