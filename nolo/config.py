@@ -151,3 +151,11 @@ class BotConfig:
     use_market_structure: bool = True
     use_multi_timeframe: bool = True
     use_order_flow: bool = True
+    use_currency_strength: bool = True
+    use_news_filter: bool = True
+    avoid_rollover_hours: Tuple[int, ...] = (22, 23)
+    magic_number: int = 202504
+    indicators: IndicatorConfig = field(default_factory=IndicatorConfig)
+    smc: SMCConfig = field(default_factory=SMCConfig)
+    risk: RiskConfig = field(default_factory=RiskConfig)
+    ml: MLConfig = field(default_factory=MLConfig)
