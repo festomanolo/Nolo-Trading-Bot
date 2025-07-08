@@ -143,3 +143,11 @@ class MLConfig:
 class BotConfig:
     """Master configuration container for the Nolo Trading Bot."""
 
+    strategy_mode: StrategyMode = StrategyMode.ADAPTIVE
+    main_timeframe: str = "M5"
+    higher_timeframe: str = "H1"
+    use_volatility_filter: bool = True
+    use_price_momentum: bool = True
+    use_market_structure: bool = True
+    use_multi_timeframe: bool = True
+    use_order_flow: bool = True
