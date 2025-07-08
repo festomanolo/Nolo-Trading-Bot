@@ -135,3 +135,11 @@ class MLConfig:
     l2_penalty: float = 1e-4
     min_signal_probability: float = 0.54
     strong_signal_probability: float = 0.68
+    bandit_exploration_c: float = 0.65
+    bandit_discount_gamma: float = 0.97
+
+
+@dataclass
+class BotConfig:
+    """Master configuration container for the Nolo Trading Bot."""
+
