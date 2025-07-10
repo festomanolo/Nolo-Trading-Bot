@@ -30,3 +30,12 @@ class KalmanState:
         return self.innovation / self.innovation_std
 
 
+class KalmanTrendTracker:
+    """
+    2-State Kinematic Kalman Filter tracking latent price level and trend velocity.
+
+    State transition matrix F = [[1, dt], [0, 1]]
+    Observation matrix      H = [1, 0]
+    """
+
+    def __init__(
