@@ -22,3 +22,11 @@ class KalmanState:
     innovation_std: float
     kalman_gain_level: float
     kalman_gain_velocity: float
+
+    @property
+    def z_score(self) -> float:
+        if self.innovation_std <= 1e-12:
+            return 0.0
+        return self.innovation / self.innovation_std
+
+
