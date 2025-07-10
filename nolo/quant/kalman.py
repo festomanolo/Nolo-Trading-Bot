@@ -14,3 +14,11 @@ from typing import List, Sequence
 
 @dataclass(frozen=True)
 class KalmanState:
+    """Snapshot of the Kalman state vector and uncertainty."""
+
+    level: float
+    velocity: float
+    innovation: float
+    innovation_std: float
+    kalman_gain_level: float
+    kalman_gain_velocity: float
