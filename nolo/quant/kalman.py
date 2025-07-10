@@ -6,3 +6,11 @@ Models price evolution as a continuous-time kinematic system:
 with adaptive measurement noise covariance R scaled by recent volatility shocks.
 """
 
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import List, Sequence
+
+
+@dataclass(frozen=True)
+class KalmanState:
