@@ -55,3 +55,11 @@ class KalmanTrendTracker:
         self.velocity = 0.0
         # 2x2 state covariance matrix P
         self.p00 = 1.0
+        self.p01 = 0.0
+        self.p10 = 0.0
+        self.p11 = 1.0
+        self._ewma_innov_sq = self.r_base
+
+    def update(self, measurement: float, dt: float = 1.0) -> KalmanState:
+        """Process a single price observation and return updated Kalman state."""
+        if not self._initialized:
