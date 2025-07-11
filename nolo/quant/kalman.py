@@ -47,3 +47,11 @@ class KalmanTrendTracker:
         self.q = max(1e-9, process_noise)
         self.r_base = max(1e-9, measurement_noise)
         self.adaptive_noise = adaptive_noise
+        self.reset()
+
+    def reset(self) -> None:
+        self._initialized = False
+        self.level = 0.0
+        self.velocity = 0.0
+        # 2x2 state covariance matrix P
+        self.p00 = 1.0
