@@ -39,3 +39,11 @@ class KalmanTrendTracker:
     """
 
     def __init__(
+        self,
+        process_noise: float = 1e-4,
+        measurement_noise: float = 1e-2,
+        adaptive_noise: bool = True,
+    ) -> None:
+        self.q = max(1e-9, process_noise)
+        self.r_base = max(1e-9, measurement_noise)
+        self.adaptive_noise = adaptive_noise
