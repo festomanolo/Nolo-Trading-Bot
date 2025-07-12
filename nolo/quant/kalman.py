@@ -88,3 +88,11 @@ class KalmanTrendTracker:
         dt3 = dt2 * dt * 0.5
         dt4 = dt2 * dt2 * 0.25
 
+        q00 = self.q * dt4
+        q01 = self.q * dt3
+        q11 = self.q * dt2
+
+        p00_pred = self.p00 + dt * (self.p10 + self.p01) + dt2 * self.p11 + q00
+        p01_pred = self.p01 + dt * self.p11 + q01
+        p10_pred = self.p10 + dt * self.p11 + q01
+        p11_pred = self.p11 + q11
