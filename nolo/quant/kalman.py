@@ -72,3 +72,11 @@ class KalmanTrendTracker:
             self._initialized = True
             return KalmanState(
                 level=self.level,
+                velocity=0.0,
+                innovation=0.0,
+                innovation_std=self.r_base**0.5,
+                kalman_gain_level=1.0,
+                kalman_gain_velocity=0.0,
+            )
+
+        # 1. Predict step: x_{k|k-1} = F x_{k-1|k-1}
