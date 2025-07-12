@@ -80,3 +80,11 @@ class KalmanTrendTracker:
             )
 
         # 1. Predict step: x_{k|k-1} = F x_{k-1|k-1}
+        pred_level = self.level + self.velocity * dt
+        pred_vel = self.velocity
+
+        # Predict covariance: P_{k|k-1} = F P F^T + Q
+        dt2 = dt * dt
+        dt3 = dt2 * dt * 0.5
+        dt4 = dt2 * dt2 * 0.25
+
