@@ -63,3 +63,12 @@ class KalmanTrendTracker:
     def update(self, measurement: float, dt: float = 1.0) -> KalmanState:
         """Process a single price observation and return updated Kalman state."""
         if not self._initialized:
+            self.level = float(measurement)
+            self.velocity = 0.0
+            self.p00 = self.r_base
+            self.p01 = 0.0
+            self.p10 = 0.0
+            self.p11 = self.q
+            self._initialized = True
+            return KalmanState(
+                level=self.level,
