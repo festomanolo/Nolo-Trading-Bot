@@ -96,3 +96,12 @@ class KalmanTrendTracker:
         p01_pred = self.p01 + dt * self.p11 + q01
         p10_pred = self.p10 + dt * self.p11 + q01
         p11_pred = self.p11 + q11
+
+        # 2. Innovation y = z - H x_{k|k-1}
+        innovation = float(measurement) - pred_level
+
+        # Adaptive measurement noise adjustment
+        r_eff = self.r_base
+        if self.adaptive_noise:
+            self._ewma_innov_sq = 0.92 * self._ewma_innov_sq + 0.08 * (innovation * innovation)
+            ratio = min(5.0, max(0.5, self._ewma_innov_sq / max(1e-12, self.r_base)))
