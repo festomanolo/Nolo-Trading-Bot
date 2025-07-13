@@ -105,3 +105,11 @@ class KalmanTrendTracker:
         if self.adaptive_noise:
             self._ewma_innov_sq = 0.92 * self._ewma_innov_sq + 0.08 * (innovation * innovation)
             ratio = min(5.0, max(0.5, self._ewma_innov_sq / max(1e-12, self.r_base)))
+            r_eff = self.r_base * ratio
+
+        # Innovation covariance S = H P_{k|k-1} H^T + R
+        s = max(1e-12, p00_pred + r_eff)
+
+        # Kalman Gain K = P_{k|k-1} H^T S^{-1}
+        k0 = p00_pred / s
+        k1 = p10_pred / s
