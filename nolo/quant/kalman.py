@@ -113,3 +113,11 @@ class KalmanTrendTracker:
         # Kalman Gain K = P_{k|k-1} H^T S^{-1}
         k0 = p00_pred / s
         k1 = p10_pred / s
+
+        # 3. Update state estimate: x_{k|k} = x_{k|k-1} + K y
+        self.level = pred_level + k0 * innovation
+        self.velocity = pred_vel + k1 * innovation
+
+        # 4. Update state covariance: P_{k|k} = (I - K H) P_{k|k-1}
+        one_minus_k0 = 1.0 - k0
+        self.p00 = one_minus_k0 * p00_pred
