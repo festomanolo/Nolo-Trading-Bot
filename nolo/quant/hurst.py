@@ -6,3 +6,11 @@ Interpretation of Hurst Exponent H in [0, 1]:
 - H ~ 0.50: Geometric Brownian Motion / Random walk
 - H < 0.45: Anti-persistent / Mean-reverting series
 Fractal Dimension D = 2.0 - H.
+"""
+
+from __future__ import annotations
+
+import math
+from typing import Sequence
+
+
