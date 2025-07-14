@@ -121,3 +121,11 @@ class KalmanTrendTracker:
         # 4. Update state covariance: P_{k|k} = (I - K H) P_{k|k-1}
         one_minus_k0 = 1.0 - k0
         self.p00 = one_minus_k0 * p00_pred
+        self.p01 = one_minus_k0 * p01_pred
+        self.p10 = p10_pred - k1 * p00_pred
+        self.p11 = p11_pred - k1 * p01_pred
+
+        return KalmanState(
+            level=self.level,
+            velocity=self.velocity,
+            innovation=innovation,
