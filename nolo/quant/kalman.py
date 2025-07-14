@@ -129,3 +129,12 @@ class KalmanTrendTracker:
             level=self.level,
             velocity=self.velocity,
             innovation=innovation,
+            innovation_std=s**0.5,
+            kalman_gain_level=k0,
+            kalman_gain_velocity=k1,
+        )
+
+    def filter_series(self, prices: Sequence[float]) -> List[KalmanState]:
+        """Run the Kalman filter across an entire price sequence."""
+        self.reset()
+        return [self.update(p) for p in prices]
