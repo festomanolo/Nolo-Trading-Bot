@@ -31,3 +31,11 @@ class HurstAnalyzer:
             p0 = max(1e-9, float(prices[i - 1]))
             p1 = max(1e-9, float(prices[i]))
             returns.append(math.log(p1 / p0))
+
+        m = len(returns)
+        chunk_sizes = []
+        size = max(min_chunk, 8)
+        while size <= m:
+            chunk_sizes.append(size)
+            size = int(size * 1.6)
+        if chunk_sizes and chunk_sizes[-1] != m and m >= min_chunk:
