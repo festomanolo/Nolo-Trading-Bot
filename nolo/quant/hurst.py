@@ -14,3 +14,12 @@ import math
 from typing import Sequence
 
 
+class HurstAnalyzer:
+    """Computes rolling Hurst Exponent, Fractal Dimension, and Variance Ratio."""
+
+    @staticmethod
+    def compute_hurst(prices: Sequence[float], min_chunk: int = 8) -> float:
+        """
+        Estimate the Hurst exponent using multi-scale Rescaled Range (R/S) regression.
+        """
+        n = len(prices)
