@@ -23,3 +23,11 @@ class HurstAnalyzer:
         Estimate the Hurst exponent using multi-scale Rescaled Range (R/S) regression.
         """
         n = len(prices)
+        if n < 20:
+            return 0.5
+
+        returns = []
+        for i in range(1, n):
+            p0 = max(1e-9, float(prices[i - 1]))
+            p1 = max(1e-9, float(prices[i]))
+            returns.append(math.log(p1 / p0))
