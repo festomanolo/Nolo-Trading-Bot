@@ -39,3 +39,12 @@ class HurstAnalyzer:
             chunk_sizes.append(size)
             size = int(size * 1.6)
         if chunk_sizes and chunk_sizes[-1] != m and m >= min_chunk:
+            chunk_sizes.append(m)
+
+        if len(chunk_sizes) < 2:
+            return HurstAnalyzer._single_scale_hurst(returns)
+
+        log_sizes = []
+        log_rs = []
+
+        for w in chunk_sizes:
