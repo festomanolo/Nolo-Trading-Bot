@@ -56,3 +56,12 @@ class HurstAnalyzer:
                 sub = returns[c * w : (c + 1) * w]
                 mean_val = sum(sub) / w
                 centered = [x - mean_val for x in sub]
+                cum_dev = []
+                acc = 0.0
+                for x in centered:
+                    acc += x
+                    cum_dev.append(acc)
+                r = max(cum_dev) - min(cum_dev)
+                variance = sum(x * x for x in centered) / w
+                s = math.sqrt(variance)
+                if s > 1e-12 and r > 0:
