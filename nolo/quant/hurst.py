@@ -48,3 +48,11 @@ class HurstAnalyzer:
         log_rs = []
 
         for w in chunk_sizes:
+            num_chunks = m // w
+            if num_chunks < 1:
+                continue
+            rs_vals = []
+            for c in range(num_chunks):
+                sub = returns[c * w : (c + 1) * w]
+                mean_val = sum(sub) / w
+                centered = [x - mean_val for x in sub]
