@@ -73,3 +73,11 @@ class HurstAnalyzer:
                     log_rs.append(math.log(avg_rs))
 
         if len(log_sizes) < 2:
+            return HurstAnalyzer._single_scale_hurst(returns)
+
+        # Ordinary Least Squares slope of log(R/S) vs log(n)
+        k = len(log_sizes)
+        mean_x = sum(log_sizes) / k
+        mean_y = sum(log_rs) / k
+        num = sum((log_sizes[i] - mean_x) * (log_rs[i] - mean_y) for i in range(k))
+        den = sum((log_sizes[i] - mean_x) ** 2 for i in range(k))
