@@ -90,3 +90,11 @@ class HurstAnalyzer:
     @staticmethod
     def _single_scale_hurst(returns: Sequence[float]) -> float:
         m = len(returns)
+        if m < 4:
+            return 0.5
+        mean_val = sum(returns) / m
+        centered = [x - mean_val for x in returns]
+        acc = 0.0
+        cum = []
+        for x in centered:
+            acc += x
