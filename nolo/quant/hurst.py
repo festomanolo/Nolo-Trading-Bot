@@ -81,3 +81,12 @@ class HurstAnalyzer:
         mean_y = sum(log_rs) / k
         num = sum((log_sizes[i] - mean_x) * (log_rs[i] - mean_y) for i in range(k))
         den = sum((log_sizes[i] - mean_x) ** 2 for i in range(k))
+        if den <= 1e-12:
+            return 0.5
+
+        h = num / den
+        return max(0.05, min(0.95, h))
+
+    @staticmethod
+    def _single_scale_hurst(returns: Sequence[float]) -> float:
+        m = len(returns)
