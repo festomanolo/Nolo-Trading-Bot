@@ -65,3 +65,11 @@ class HurstAnalyzer:
                 variance = sum(x * x for x in centered) / w
                 s = math.sqrt(variance)
                 if s > 1e-12 and r > 0:
+                    rs_vals.append(r / s)
+            if rs_vals:
+                avg_rs = sum(rs_vals) / len(rs_vals)
+                if avg_rs > 0:
+                    log_sizes.append(math.log(w))
+                    log_rs.append(math.log(avg_rs))
+
+        if len(log_sizes) < 2:
