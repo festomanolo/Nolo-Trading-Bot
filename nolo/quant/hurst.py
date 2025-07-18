@@ -98,3 +98,11 @@ class HurstAnalyzer:
         cum = []
         for x in centered:
             acc += x
+            cum.append(acc)
+        r = max(cum) - min(cum)
+        s = math.sqrt(sum(x * x for x in centered) / m)
+        if s <= 1e-12 or r <= 0:
+            return 0.5
+        h = math.log(r / s) / math.log(m)
+        return max(0.05, min(0.95, h))
+
