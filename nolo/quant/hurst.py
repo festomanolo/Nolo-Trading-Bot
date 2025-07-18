@@ -106,3 +106,12 @@ class HurstAnalyzer:
         h = math.log(r / s) / math.log(m)
         return max(0.05, min(0.95, h))
 
+    @staticmethod
+    def fractal_dimension(prices: Sequence[float]) -> float:
+        """Compute Fractal Dimension D = 2 - H."""
+        return 2.0 - HurstAnalyzer.compute_hurst(prices)
+
+    @staticmethod
+    def variance_ratio(prices: Sequence[float], lag: int = 4) -> float:
+        """
+        Lo-MacKinlay Variance Ratio VR(q) = Var(r_t(q)) / (q * Var(r_t(1))).
