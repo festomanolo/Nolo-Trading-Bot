@@ -115,3 +115,11 @@ class HurstAnalyzer:
     def variance_ratio(prices: Sequence[float], lag: int = 4) -> float:
         """
         Lo-MacKinlay Variance Ratio VR(q) = Var(r_t(q)) / (q * Var(r_t(1))).
+        VR > 1 implies positive autocorrelation (trending); VR < 1 implies mean reversion.
+        """
+        n = len(prices)
+        if n <= lag + 4 or lag < 2:
+            return 1.0
+        log_p = [math.log(max(1e-9, float(p))) for p in prices]
+        r1 = [log_p[i] - log_p[i - 1] for i in range(1, n)]
+        rq = [log_p[i] - log_p[i - lag] for i in range(lag, n)]
