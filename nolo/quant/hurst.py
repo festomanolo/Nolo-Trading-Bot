@@ -123,3 +123,12 @@ class HurstAnalyzer:
         log_p = [math.log(max(1e-9, float(p))) for p in prices]
         r1 = [log_p[i] - log_p[i - 1] for i in range(1, n)]
         rq = [log_p[i] - log_p[i - lag] for i in range(lag, n)]
+
+        mean1 = sum(r1) / len(r1)
+        var1 = sum((x - mean1) ** 2 for x in r1) / max(1, len(r1) - 1)
+        if var1 <= 1e-14:
+            return 1.0
+
+        meanq = sum(rq) / len(rq)
+        varq = sum((x - meanq) ** 2 for x in rq) / max(1, len(rq) - 1)
+        return max(0.1, min(3.0, varq / (lag * var1)))
