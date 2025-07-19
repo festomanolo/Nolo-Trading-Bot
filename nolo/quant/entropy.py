@@ -5,3 +5,11 @@ Used to distinguish structured directional impulse moves from high-entropy rando
 """
 
 from __future__ import annotations
+
+import math
+from typing import Sequence
+
+
+class MarketEntropy:
+    """Calculates Shannon Entropy of return distributions, Kaufman ER, and Choppiness Index."""
+
