@@ -21,3 +21,11 @@ class MarketEntropy:
         """
         n = len(prices)
         if n < 10 or bins < 2:
+            return 0.5
+
+        diffs = [float(prices[i]) - float(prices[i - 1]) for i in range(1, n)]
+        lo = min(diffs)
+        hi = max(diffs)
+        span = hi - lo
+        if span <= 1e-12:
+            return 0.0
