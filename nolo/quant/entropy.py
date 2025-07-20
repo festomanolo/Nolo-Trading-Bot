@@ -29,3 +29,11 @@ class MarketEntropy:
         span = hi - lo
         if span <= 1e-12:
             return 0.0
+
+        counts = [0] * bins
+        for d in diffs:
+            idx = int(((d - lo) / span) * (bins - 1))
+            idx = max(0, min(bins - 1, idx))
+            counts[idx] += 1
+
+        total = len(diffs)
