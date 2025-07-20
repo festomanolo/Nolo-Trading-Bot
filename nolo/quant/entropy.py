@@ -37,3 +37,11 @@ class MarketEntropy:
             counts[idx] += 1
 
         total = len(diffs)
+        ent = 0.0
+        for c in counts:
+            if c > 0:
+                p = c / total
+                ent -= p * math.log(p)
+
+        max_ent = math.log(bins)
+        return min(1.0, max(0.0, ent / max_ent)) if max_ent > 0 else 0.5
