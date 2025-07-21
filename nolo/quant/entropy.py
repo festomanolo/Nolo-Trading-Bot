@@ -53,3 +53,11 @@ class MarketEntropy:
         ER -> 1.0 means clean directional trend; ER -> 0.0 means choppy range.
         """
         n = len(prices)
+        if n < 2:
+            return 0.0
+        window = min(period, n - 1)
+        start_idx = n - 1 - window
+        net_change = abs(float(prices[-1]) - float(prices[start_idx]))
+        path_length = sum(
+            abs(float(prices[i]) - float(prices[i - 1])) for i in range(start_idx + 1, n)
+        )
