@@ -61,3 +61,11 @@ class MarketEntropy:
         path_length = sum(
             abs(float(prices[i]) - float(prices[i - 1])) for i in range(start_idx + 1, n)
         )
+        if path_length <= 1e-12:
+            return 0.0
+        return max(0.0, min(1.0, net_change / path_length))
+
+    @staticmethod
+    def choppiness_index(
+        highs: Sequence[float],
+        lows: Sequence[float],
