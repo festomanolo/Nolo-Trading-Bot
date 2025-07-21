@@ -69,3 +69,11 @@ class MarketEntropy:
     def choppiness_index(
         highs: Sequence[float],
         lows: Sequence[float],
+        closes: Sequence[float],
+        period: int = 14,
+    ) -> float:
+        """
+        Dreiss Choppiness Index (0 to 100).
+        Values > 61.8 indicate consolidation/sideways chop; values < 38.2 indicate strong trend.
+        """
+        n = min(len(highs), len(lows), len(closes))
