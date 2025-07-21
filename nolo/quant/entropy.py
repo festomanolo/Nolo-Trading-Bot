@@ -45,3 +45,11 @@ class MarketEntropy:
 
         max_ent = math.log(bins)
         return min(1.0, max(0.0, ent / max_ent)) if max_ent > 0 else 0.5
+
+    @staticmethod
+    def efficiency_ratio(prices: Sequence[float], period: int = 14) -> float:
+        """
+        Kaufman's Efficiency Ratio ER = |Net Direction| / Sum(|Step Volatility|) in [0, 1].
+        ER -> 1.0 means clean directional trend; ER -> 0.0 means choppy range.
+        """
+        n = len(prices)
