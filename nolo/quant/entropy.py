@@ -93,3 +93,11 @@ class MarketEntropy:
             if h > max_high:
                 max_high = h
             if l < min_low:
+                min_low = l
+
+        hl_range = max_high - min_low
+        if hl_range <= 1e-12 or tr_sum <= 1e-12:
+            return 50.0
+
+        chop = 100.0 * math.log10(tr_sum / hl_range) / math.log10(period)
+        return max(0.0, min(100.0, chop))
