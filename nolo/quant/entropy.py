@@ -77,3 +77,11 @@ class MarketEntropy:
         Values > 61.8 indicate consolidation/sideways chop; values < 38.2 indicate strong trend.
         """
         n = min(len(highs), len(lows), len(closes))
+        if n < period + 1 or period < 2:
+            return 50.0
+
+        tr_sum = 0.0
+        max_high = float(highs[-period])
+        min_low = float(lows[-period])
+
+        for i in range(n - period, n):
