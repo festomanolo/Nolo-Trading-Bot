@@ -85,3 +85,11 @@ class MarketEntropy:
         min_low = float(lows[-period])
 
         for i in range(n - period, n):
+            h = float(highs[i])
+            l = float(lows[i])
+            prev_c = float(closes[i - 1])
+            tr = max(h - l, abs(h - prev_c), abs(l - prev_c))
+            tr_sum += tr
+            if h > max_high:
+                max_high = h
+            if l < min_low:
