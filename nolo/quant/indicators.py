@@ -14,3 +14,11 @@ Provides exact, streaming-safe implementations of:
 - Volume-Weighted Average Price (VWAP)
 """
 
+from __future__ import annotations
+
+import math
+from typing import Dict, List, Sequence, Tuple
+
+from nolo.types import Bar
+
+
