@@ -22,3 +22,11 @@ from typing import Dict, List, Sequence, Tuple
 from nolo.types import Bar
 
 
+class IndicatorEngine:
+    """Pure-Python high-precision quantitative indicator calculator."""
+
+    @staticmethod
+    def sma(values: Sequence[float], period: int) -> List[float]:
+        n = len(values)
+        if n == 0 or period <= 1:
+            return [float(x) for x in values]
