@@ -46,3 +46,11 @@ class IndicatorEngine:
     def ema(values: Sequence[float], period: int) -> List[float]:
         n = len(values)
         if n == 0:
+            return []
+        if period <= 1:
+            return [float(x) for x in values]
+        alpha = 2.0 / (period + 1.0)
+        out: List[float] = [float(values[0])]
+        for i in range(1, n):
+            prev = out[-1]
+            out.append(alpha * float(values[i]) + (1.0 - alpha) * prev)
