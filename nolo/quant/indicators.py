@@ -30,3 +30,11 @@ class IndicatorEngine:
         n = len(values)
         if n == 0 or period <= 1:
             return [float(x) for x in values]
+        out: List[float] = []
+        running_sum = 0.0
+        for i, val in enumerate(values):
+            v = float(val)
+            running_sum += v
+            if i >= period:
+                running_sum -= float(values[i - period])
+                out.append(running_sum / period)
