@@ -38,3 +38,11 @@ class IndicatorEngine:
             if i >= period:
                 running_sum -= float(values[i - period])
                 out.append(running_sum / period)
+            else:
+                out.append(running_sum / (i + 1))
+        return out
+
+    @staticmethod
+    def ema(values: Sequence[float], period: int) -> List[float]:
+        n = len(values)
+        if n == 0:
