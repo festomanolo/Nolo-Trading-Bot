@@ -70,3 +70,11 @@ class IndicatorEngine:
             out.append(alpha * float(values[i]) + (1.0 - alpha) * out[-1])
         return out
 
+    @staticmethod
+    def rsi(closes: Sequence[float], period: int = 14) -> List[float]:
+        n = len(closes)
+        if n == 0:
+            return []
+        if n == 1:
+            return [50.0]
+
