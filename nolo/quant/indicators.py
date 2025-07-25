@@ -62,3 +62,11 @@ class IndicatorEngine:
         n = len(values)
         if n == 0:
             return []
+        if period <= 1:
+            return [float(x) for x in values]
+        alpha = 1.0 / period
+        out: List[float] = [float(values[0])]
+        for i in range(1, n):
+            out.append(alpha * float(values[i]) + (1.0 - alpha) * out[-1])
+        return out
+
