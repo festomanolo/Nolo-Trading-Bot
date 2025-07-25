@@ -54,3 +54,11 @@ class IndicatorEngine:
         for i in range(1, n):
             prev = out[-1]
             out.append(alpha * float(values[i]) + (1.0 - alpha) * prev)
+        return out
+
+    @staticmethod
+    def rma(values: Sequence[float], period: int) -> List[float]:
+        """Wilder's Smoothing Moving Average (alpha = 1 / period)."""
+        n = len(values)
+        if n == 0:
+            return []
