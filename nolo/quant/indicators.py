@@ -103,3 +103,11 @@ class IndicatorEngine:
     def macd(
         closes: Sequence[float],
         fast_period: int = 12,
+        slow_period: int = 26,
+        signal_period: int = 9,
+    ) -> Tuple[List[float], List[float], List[float]]:
+        """Return (macd_main, macd_signal, macd_histogram)."""
+        if not closes:
+            return [], [], []
+        fast_ema = IndicatorEngine.ema(closes, fast_period)
+        slow_ema = IndicatorEngine.ema(closes, slow_period)
