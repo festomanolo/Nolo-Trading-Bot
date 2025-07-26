@@ -86,3 +86,12 @@ class IndicatorEngine:
             losses.append(max(0.0, -diff))
 
         avg_gains = IndicatorEngine.rma(gains, period)
+        avg_losses = IndicatorEngine.rma(losses, period)
+
+        result: List[float] = []
+        for g, l in zip(avg_gains, avg_losses):
+            if l <= 1e-12 and g <= 1e-12:
+                result.append(50.0)
+            elif l <= 1e-12:
+                result.append(100.0)
+            else:
