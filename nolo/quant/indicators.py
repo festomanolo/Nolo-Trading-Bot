@@ -78,3 +78,11 @@ class IndicatorEngine:
         if n == 1:
             return [50.0]
 
+        gains = [0.0]
+        losses = [0.0]
+        for i in range(1, n):
+            diff = float(closes[i]) - float(closes[i - 1])
+            gains.append(max(0.0, diff))
+            losses.append(max(0.0, -diff))
+
+        avg_gains = IndicatorEngine.rma(gains, period)
