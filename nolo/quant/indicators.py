@@ -95,3 +95,11 @@ class IndicatorEngine:
             elif l <= 1e-12:
                 result.append(100.0)
             else:
+                rs = g / l
+                result.append(100.0 - (100.0 / (1.0 + rs)))
+        return result
+
+    @staticmethod
+    def macd(
+        closes: Sequence[float],
+        fast_period: int = 12,
