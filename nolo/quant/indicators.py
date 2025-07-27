@@ -119,3 +119,11 @@ class IndicatorEngine:
     @staticmethod
     def bollinger_bands(
         closes: Sequence[float],
+        period: int = 20,
+        std_dev: float = 2.0,
+    ) -> Tuple[List[float], List[float], List[float]]:
+        """Return (upper_band, middle_band, lower_band)."""
+        n = len(closes)
+        if n == 0:
+            return [], [], []
+        mid = IndicatorEngine.sma(closes, period)
