@@ -127,3 +127,11 @@ class IndicatorEngine:
         if n == 0:
             return [], [], []
         mid = IndicatorEngine.sma(closes, period)
+        upper: List[float] = []
+        lower: List[float] = []
+        for i in range(n):
+            start = max(0, i - period + 1)
+            window = [float(closes[j]) for j in range(start, i + 1)]
+            m = mid[i]
+            var = sum((x - m) ** 2 for x in window) / len(window)
+            sd = math.sqrt(var)
