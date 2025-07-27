@@ -111,3 +111,11 @@ class IndicatorEngine:
             return [], [], []
         fast_ema = IndicatorEngine.ema(closes, fast_period)
         slow_ema = IndicatorEngine.ema(closes, slow_period)
+        main = [f - s for f, s in zip(fast_ema, slow_ema)]
+        signal = IndicatorEngine.ema(main, signal_period)
+        hist = [m - s for m, s in zip(main, signal)]
+        return main, signal, hist
+
+    @staticmethod
+    def bollinger_bands(
+        closes: Sequence[float],
