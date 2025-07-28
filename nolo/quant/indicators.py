@@ -159,3 +159,11 @@ class IndicatorEngine:
 
     @staticmethod
     def adx(
+        highs: Sequence[float],
+        lows: Sequence[float],
+        closes: Sequence[float],
+        period: int = 14,
+    ) -> Tuple[List[float], List[float], List[float]]:
+        """Return (adx_values, plus_di, minus_di)."""
+        n = min(len(highs), len(lows), len(closes))
+        if n == 0:
