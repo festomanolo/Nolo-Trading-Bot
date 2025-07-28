@@ -151,3 +151,11 @@ class IndicatorEngine:
             return []
         tr: List[float] = [max(1e-9, float(highs[0]) - float(lows[0]))]
         for i in range(1, n):
+            h = float(highs[i])
+            l = float(lows[i])
+            pc = float(closes[i - 1])
+            tr.append(max(h - l, abs(h - pc), abs(l - pc)))
+        return IndicatorEngine.rma(tr, period)
+
+    @staticmethod
+    def adx(
