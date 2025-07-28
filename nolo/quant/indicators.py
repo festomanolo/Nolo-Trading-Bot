@@ -143,3 +143,11 @@ class IndicatorEngine:
     def atr(
         highs: Sequence[float],
         lows: Sequence[float],
+        closes: Sequence[float],
+        period: int = 14,
+    ) -> List[float]:
+        n = min(len(highs), len(lows), len(closes))
+        if n == 0:
+            return []
+        tr: List[float] = [max(1e-9, float(highs[0]) - float(lows[0]))]
+        for i in range(1, n):
