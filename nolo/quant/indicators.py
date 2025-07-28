@@ -135,3 +135,11 @@ class IndicatorEngine:
             m = mid[i]
             var = sum((x - m) ** 2 for x in window) / len(window)
             sd = math.sqrt(var)
+            upper.append(m + std_dev * sd)
+            lower.append(m - std_dev * sd)
+        return upper, mid, lower
+
+    @staticmethod
+    def atr(
+        highs: Sequence[float],
+        lows: Sequence[float],
