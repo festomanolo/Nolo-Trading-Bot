@@ -175,3 +175,11 @@ class IndicatorEngine:
 
         for i in range(1, n):
             up_move = float(highs[i]) - float(highs[i - 1])
+            down_move = float(lows[i - 1]) - float(lows[i])
+            plus_dm.append(up_move if (up_move > down_move and up_move > 0) else 0.0)
+            minus_dm.append(down_move if (down_move > up_move and down_move > 0) else 0.0)
+            h = float(highs[i])
+            l = float(lows[i])
+            pc = float(closes[i - 1])
+            tr.append(max(h - l, abs(h - pc), abs(l - pc)))
+
