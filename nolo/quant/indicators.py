@@ -167,3 +167,11 @@ class IndicatorEngine:
         """Return (adx_values, plus_di, minus_di)."""
         n = min(len(highs), len(lows), len(closes))
         if n == 0:
+            return [], [], []
+
+        plus_dm = [0.0]
+        minus_dm = [0.0]
+        tr = [max(1e-9, float(highs[0]) - float(lows[0]))]
+
+        for i in range(1, n):
+            up_move = float(highs[i]) - float(highs[i - 1])
