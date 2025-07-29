@@ -183,3 +183,12 @@ class IndicatorEngine:
             pc = float(closes[i - 1])
             tr.append(max(h - l, abs(h - pc), abs(l - pc)))
 
+        atr_vals = IndicatorEngine.rma(tr, period)
+        sm_plus = IndicatorEngine.rma(plus_dm, period)
+        sm_minus = IndicatorEngine.rma(minus_dm, period)
+
+        plus_di: List[float] = []
+        minus_di: List[float] = []
+        dx: List[float] = []
+
+        for p, m, a in zip(sm_plus, sm_minus, atr_vals):
