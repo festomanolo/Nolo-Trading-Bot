@@ -192,3 +192,11 @@ class IndicatorEngine:
         dx: List[float] = []
 
         for p, m, a in zip(sm_plus, sm_minus, atr_vals):
+            if a <= 1e-12:
+                p_di, m_di = 0.0, 0.0
+            else:
+                p_di = 100.0 * (p / a)
+                m_di = 100.0 * (m / a)
+            plus_di.append(p_di)
+            minus_di.append(m_di)
+            denom = p_di + m_di
