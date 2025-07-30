@@ -200,3 +200,11 @@ class IndicatorEngine:
             plus_di.append(p_di)
             minus_di.append(m_di)
             denom = p_di + m_di
+            dx.append(100.0 * abs(p_di - m_di) / denom if denom > 1e-12 else 0.0)
+
+        adx_vals = IndicatorEngine.rma(dx, period)
+        return adx_vals, plus_di, minus_di
+
+    @staticmethod
+    def supertrend(
+        highs: Sequence[float],
