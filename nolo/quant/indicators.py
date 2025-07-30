@@ -216,3 +216,11 @@ class IndicatorEngine:
         """
         Calculate SuperTrend line and direction (+1 bullish, -1 bearish).
         Fixes standard band ratcheting so bands only tighten in the trend direction.
+        """
+        n = min(len(highs), len(lows), len(closes))
+        if n == 0:
+            return [], []
+
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, atr_period)
+        st_line: List[float] = [0.0] * n
+        st_dir: List[int] = [1] * n
