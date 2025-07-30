@@ -208,3 +208,11 @@ class IndicatorEngine:
     @staticmethod
     def supertrend(
         highs: Sequence[float],
+        lows: Sequence[float],
+        closes: Sequence[float],
+        atr_period: int = 14,
+        multiplier: float = 2.5,
+    ) -> Tuple[List[float], List[int]]:
+        """
+        Calculate SuperTrend line and direction (+1 bullish, -1 bearish).
+        Fixes standard band ratcheting so bands only tighten in the trend direction.
