@@ -232,3 +232,11 @@ class IndicatorEngine:
             basic_upper = hl2 + multiplier * atr_vals[i]
             basic_lower = hl2 - multiplier * atr_vals[i]
 
+            if i == 0:
+                final_upper[i] = basic_upper
+                final_lower[i] = basic_lower
+                st_dir[i] = 1
+                st_line[i] = final_lower[i]
+                continue
+
+            prev_close = float(closes[i - 1])
