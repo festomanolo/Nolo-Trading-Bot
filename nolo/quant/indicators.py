@@ -240,3 +240,11 @@ class IndicatorEngine:
                 continue
 
             prev_close = float(closes[i - 1])
+            if basic_upper < final_upper[i - 1] or prev_close > final_upper[i - 1]:
+                final_upper[i] = basic_upper
+            else:
+                final_upper[i] = final_upper[i - 1]
+
+            if basic_lower > final_lower[i - 1] or prev_close < final_lower[i - 1]:
+                final_lower[i] = basic_lower
+            else:
