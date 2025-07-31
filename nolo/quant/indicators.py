@@ -224,3 +224,11 @@ class IndicatorEngine:
         atr_vals = IndicatorEngine.atr(highs, lows, closes, atr_period)
         st_line: List[float] = [0.0] * n
         st_dir: List[int] = [1] * n
+        final_upper: List[float] = [0.0] * n
+        final_lower: List[float] = [0.0] * n
+
+        for i in range(n):
+            hl2 = (float(highs[i]) + float(lows[i])) * 0.5
+            basic_upper = hl2 + multiplier * atr_vals[i]
+            basic_lower = hl2 - multiplier * atr_vals[i]
+
