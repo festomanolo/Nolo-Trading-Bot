@@ -256,3 +256,11 @@ class IndicatorEngine:
                 st_dir[i] = 1
             elif prev_dir == 1 and curr_close < final_lower[i - 1]:
                 st_dir[i] = -1
+            else:
+                st_dir[i] = prev_dir
+
+            st_line[i] = final_lower[i] if st_dir[i] == 1 else final_upper[i]
+
+        return st_line, st_dir
+
+    @staticmethod
