@@ -264,3 +264,11 @@ class IndicatorEngine:
         return st_line, st_dir
 
     @staticmethod
+    def ichimoku(
+        highs: Sequence[float],
+        lows: Sequence[float],
+        tenkan_period: int = 9,
+        kijun_period: int = 26,
+        senkou_b_period: int = 52,
+    ) -> Dict[str, List[float]]:
+        """Compute Tenkan-sen, Kijun-sen, Senkou Span A, and Senkou Span B."""
