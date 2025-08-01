@@ -248,3 +248,11 @@ class IndicatorEngine:
             if basic_lower > final_lower[i - 1] or prev_close < final_lower[i - 1]:
                 final_lower[i] = basic_lower
             else:
+                final_lower[i] = final_lower[i - 1]
+
+            curr_close = float(closes[i])
+            prev_dir = st_dir[i - 1]
+            if prev_dir == -1 and curr_close > final_upper[i - 1]:
+                st_dir[i] = 1
+            elif prev_dir == 1 and curr_close < final_lower[i - 1]:
+                st_dir[i] = -1
