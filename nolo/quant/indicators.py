@@ -272,3 +272,11 @@ class IndicatorEngine:
         senkou_b_period: int = 52,
     ) -> Dict[str, List[float]]:
         """Compute Tenkan-sen, Kijun-sen, Senkou Span A, and Senkou Span B."""
+        n = min(len(highs), len(lows))
+        if n == 0:
+            return {"tenkan": [], "kijun": [], "senkou_a": [], "senkou_b": []}
+
+        def midpoint_series(period: int) -> List[float]:
+            out: List[float] = []
+            for i in range(n):
+                start = max(0, i - period + 1)
