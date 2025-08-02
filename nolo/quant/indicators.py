@@ -297,3 +297,11 @@ class IndicatorEngine:
         }
 
     @staticmethod
+    def stochastic(
+        highs: Sequence[float],
+        lows: Sequence[float],
+        closes: Sequence[float],
+        k_period: int = 5,
+        d_period: int = 3,
+        slowing: int = 3,
+    ) -> Tuple[List[float], List[float]]:
