@@ -289,3 +289,11 @@ class IndicatorEngine:
         kijun = midpoint_series(kijun_period)
         senkou_a = [(t + k) * 0.5 for t, k in zip(tenkan, kijun)]
         senkou_b = midpoint_series(senkou_b_period)
+        return {
+            "tenkan": tenkan,
+            "kijun": kijun,
+            "senkou_a": senkou_a,
+            "senkou_b": senkou_b,
+        }
+
+    @staticmethod
