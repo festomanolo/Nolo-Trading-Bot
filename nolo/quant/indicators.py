@@ -280,3 +280,12 @@ class IndicatorEngine:
             out: List[float] = []
             for i in range(n):
                 start = max(0, i - period + 1)
+                hh = max(float(highs[j]) for j in range(start, i + 1))
+                ll = min(float(lows[j]) for j in range(start, i + 1))
+                out.append((hh + ll) * 0.5)
+            return out
+
+        tenkan = midpoint_series(tenkan_period)
+        kijun = midpoint_series(kijun_period)
+        senkou_a = [(t + k) * 0.5 for t, k in zip(tenkan, kijun)]
+        senkou_b = midpoint_series(senkou_b_period)
