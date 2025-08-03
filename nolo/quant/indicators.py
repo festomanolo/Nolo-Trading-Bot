@@ -329,3 +329,11 @@ class IndicatorEngine:
     def ttm_squeeze(
         highs: Sequence[float],
         lows: Sequence[float],
+        closes: Sequence[float],
+        period: int = 20,
+        bb_std: float = 2.0,
+        kc_atr_mult: float = 1.5,
+    ) -> Tuple[List[bool], List[float]]:
+        """
+        Detect TTM Volatility Squeeze (Bollinger Bands inside Keltner Channels)
+        and compute momentum oscillator.
