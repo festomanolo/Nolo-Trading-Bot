@@ -321,3 +321,11 @@ class IndicatorEngine:
 
         sm_num = IndicatorEngine.sma(raw_num, slowing)
         sm_den = IndicatorEngine.sma(raw_den, slowing)
+        k_vals = [max(0.0, min(100.0, 100.0 * (num / den))) for num, den in zip(sm_num, sm_den)]
+        d_vals = IndicatorEngine.sma(k_vals, d_period)
+        return k_vals, d_vals
+
+    @staticmethod
+    def ttm_squeeze(
+        highs: Sequence[float],
+        lows: Sequence[float],
