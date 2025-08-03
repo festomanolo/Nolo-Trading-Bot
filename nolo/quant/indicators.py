@@ -313,3 +313,11 @@ class IndicatorEngine:
         raw_num: List[float] = []
         raw_den: List[float] = []
         for i in range(n):
+            start = max(0, i - k_period + 1)
+            hh = max(float(highs[j]) for j in range(start, i + 1))
+            ll = min(float(lows[j]) for j in range(start, i + 1))
+            raw_num.append(float(closes[i]) - ll)
+            raw_den.append(max(1e-12, hh - ll))
+
+        sm_num = IndicatorEngine.sma(raw_num, slowing)
+        sm_den = IndicatorEngine.sma(raw_den, slowing)
