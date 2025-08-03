@@ -305,3 +305,11 @@ class IndicatorEngine:
         d_period: int = 3,
         slowing: int = 3,
     ) -> Tuple[List[float], List[float]]:
+        """Return (stoch_main_%K, stoch_signal_%D)."""
+        n = min(len(highs), len(lows), len(closes))
+        if n == 0:
+            return [], []
+
+        raw_num: List[float] = []
+        raw_den: List[float] = []
+        for i in range(n):
