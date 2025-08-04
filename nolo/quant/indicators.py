@@ -345,3 +345,11 @@ class IndicatorEngine:
         bb_up, bb_mid, bb_low = IndicatorEngine.bollinger_bands(closes, period, bb_std)
         atr_vals = IndicatorEngine.atr(highs, lows, closes, period)
         kc_up = [m + kc_atr_mult * a for m, a in zip(bb_mid, atr_vals)]
+        kc_low = [m - kc_atr_mult * a for m, a in zip(bb_mid, atr_vals)]
+
+        squeeze_on = [bu < ku and bl > kl for bu, bl, ku, kl in zip(bb_up, bb_low, kc_up, kc_low)]
+        momentum: List[float] = []
+        for i in range(n):
+            start = max(0, i - period + 1)
+            hh = max(float(highs[j]) for j in range(start, i + 1))
+            ll = min(float(lows[j]) for j in range(start, i + 1))
