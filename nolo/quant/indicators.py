@@ -353,3 +353,11 @@ class IndicatorEngine:
             start = max(0, i - period + 1)
             hh = max(float(highs[j]) for j in range(start, i + 1))
             ll = min(float(lows[j]) for j in range(start, i + 1))
+            mid_donchian = (hh + ll) * 0.5
+            anchor = (mid_donchian + bb_mid[i]) * 0.5
+            momentum.append(float(closes[i]) - anchor)
+
+        return squeeze_on, momentum
+
+    @staticmethod
+    def vwap(bars: Sequence[Bar], window: int = 48) -> List[float]:
