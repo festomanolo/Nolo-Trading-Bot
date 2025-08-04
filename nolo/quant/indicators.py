@@ -337,3 +337,11 @@ class IndicatorEngine:
         """
         Detect TTM Volatility Squeeze (Bollinger Bands inside Keltner Channels)
         and compute momentum oscillator.
+        """
+        n = min(len(highs), len(lows), len(closes))
+        if n == 0:
+            return [], []
+
+        bb_up, bb_mid, bb_low = IndicatorEngine.bollinger_bands(closes, period, bb_std)
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, period)
+        kc_up = [m + kc_atr_mult * a for m, a in zip(bb_mid, atr_vals)]
