@@ -361,3 +361,11 @@ class IndicatorEngine:
 
     @staticmethod
     def vwap(bars: Sequence[Bar], window: int = 48) -> List[float]:
+        """Compute rolling Volume-Weighted Average Price."""
+        n = len(bars)
+        if n == 0:
+            return []
+        out: List[float] = []
+        for i in range(n):
+            start = max(0, i - window + 1)
+            pv_sum = 0.0
