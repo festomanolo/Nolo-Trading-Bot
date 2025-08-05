@@ -369,3 +369,12 @@ class IndicatorEngine:
         for i in range(n):
             start = max(0, i - window + 1)
             pv_sum = 0.0
+            v_sum = 0.0
+            for j in range(start, i + 1):
+                b = bars[j]
+                typical = (b.high + b.low + b.close) / 3.0
+                vol = max(1e-6, b.volume)
+                pv_sum += typical * vol
+                v_sum += vol
+            out.append(pv_sum / v_sum if v_sum > 0 else bars[i].close)
+        return out
