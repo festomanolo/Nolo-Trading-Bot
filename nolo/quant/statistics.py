@@ -14,3 +14,11 @@ from typing import Sequence
 class OUProcessState:
     """Parameters of a fitted Ornstein-Uhlenbeck mean-reverting process dX_t = theta*(mu - X_t)dt + sigma*dW_t."""
 
+    theta: float
+    mu: float
+    sigma: float
+    half_life_bars: float
+    z_score: float
+    is_mean_reverting: bool
+
+
