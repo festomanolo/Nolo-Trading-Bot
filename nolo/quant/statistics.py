@@ -31,3 +31,11 @@ class OrnsteinUhlenbeckEstimator:
         if n < 10:
             last = float(prices[-1]) if n > 0 else 0.0
             return OUProcessState(0.0, last, 0.0, 999.0, 0.0, False)
+
+        sub = [float(p) for p in prices[-min(n, window) :]]
+        m = len(sub)
+        x_prev = sub[:-1]
+        dx = [sub[i] - sub[i - 1] for i in range(1, m)]
+
+        mean_x = sum(x_prev) / len(x_prev)
+        mean_dx = sum(dx) / len(dx)
