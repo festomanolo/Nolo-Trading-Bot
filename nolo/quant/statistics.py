@@ -55,3 +55,12 @@ class OrnsteinUhlenbeckEstimator:
             std_sub = math.sqrt(var_x / max(1, len(x_prev)))
             z = (sub[-1] - mean_x) / std_sub if std_sub > 1e-12 else 0.0
             return OUProcessState(0.0, mean_x, std_sub, 999.0, z, False)
+
+        theta = -math.log(max(1e-6, 1.0 + b))
+        mu = -a / b
+        residuals = [dx[i] - (a + b * x_prev[i]) for i in range(len(dx))]
+        sigma = math.sqrt(sum(r * r for r in residuals) / max(1, len(residuals) - 1))
+        half_life = math.log(2.0) / max(1e-6, theta)
+
+        # Stationary standard deviation of OU process: sigma / sqrt(2 * theta)
+        ou_std = sigma / math.sqrt(max(1e-9, 2.0 * theta))
