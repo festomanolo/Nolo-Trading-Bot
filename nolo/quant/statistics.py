@@ -39,3 +39,11 @@ class OrnsteinUhlenbeckEstimator:
 
         mean_x = sum(x_prev) / len(x_prev)
         mean_dx = sum(dx) / len(dx)
+
+        cov = sum((x_prev[i] - mean_x) * (dx[i] - mean_dx) for i in range(len(dx)))
+        var_x = sum((x - mean_x) ** 2 for x in x_prev)
+
+        if var_x <= 1e-14:
+            return OUProcessState(0.0, mean_x, 0.0, 999.0, 0.0, False)
+
+        # dx_t = a + b * x_{t-1} + eps_t, where b = -theta
