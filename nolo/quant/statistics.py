@@ -47,3 +47,11 @@ class OrnsteinUhlenbeckEstimator:
             return OUProcessState(0.0, mean_x, 0.0, 999.0, 0.0, False)
 
         # dx_t = a + b * x_{t-1} + eps_t, where b = -theta
+        b = cov / var_x
+        a = mean_dx - b * mean_x
+
+        if b >= -1e-5 or b <= -1.95:
+            # Non-stationary or explosive
+            std_sub = math.sqrt(var_x / max(1, len(x_prev)))
+            z = (sub[-1] - mean_x) / std_sub if std_sub > 1e-12 else 0.0
+            return OUProcessState(0.0, mean_x, std_sub, 999.0, z, False)
