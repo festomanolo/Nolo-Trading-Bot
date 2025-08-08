@@ -88,3 +88,12 @@ class QuantitativeStatistics:
         sub = [float(x) for x in values[-min(n, window) :]]
         mean = sum(sub) / len(sub)
         var = sum((x - mean) ** 2 for x in sub) / len(sub)
+        sd = math.sqrt(var)
+        if sd <= 1e-12:
+            return 0.0
+        return (sub[-1] - mean) / sd
+
+    @staticmethod
+    def parkinson_volatility(
+        highs: Sequence[float],
+        lows: Sequence[float],
