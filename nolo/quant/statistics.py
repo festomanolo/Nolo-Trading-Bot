@@ -80,3 +80,11 @@ class OrnsteinUhlenbeckEstimator:
 class QuantitativeStatistics:
     """High-efficiency statistical estimators for volatility and cross-asset correlation."""
 
+    @staticmethod
+    def rolling_zscore(values: Sequence[float], window: int = 20) -> float:
+        n = len(values)
+        if n < 2:
+            return 0.0
+        sub = [float(x) for x in values[-min(n, window) :]]
+        mean = sum(sub) / len(sub)
+        var = sum((x - mean) ** 2 for x in sub) / len(sub)
