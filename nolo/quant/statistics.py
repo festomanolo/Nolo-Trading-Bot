@@ -64,3 +64,11 @@ class OrnsteinUhlenbeckEstimator:
 
         # Stationary standard deviation of OU process: sigma / sqrt(2 * theta)
         ou_std = sigma / math.sqrt(max(1e-9, 2.0 * theta))
+        z_score = (sub[-1] - mu) / ou_std if ou_std > 1e-12 else 0.0
+        is_mr = 1.5 <= half_life <= 45.0
+
+        return OUProcessState(
+            theta=theta,
+            mu=mu,
+            sigma=sigma,
+            half_life_bars=half_life,
