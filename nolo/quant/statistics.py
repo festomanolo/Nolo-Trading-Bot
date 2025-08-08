@@ -72,3 +72,11 @@ class OrnsteinUhlenbeckEstimator:
             mu=mu,
             sigma=sigma,
             half_life_bars=half_life,
+            z_score=z_score,
+            is_mean_reverting=is_mr,
+        )
+
+
+class QuantitativeStatistics:
+    """High-efficiency statistical estimators for volatility and cross-asset correlation."""
+
