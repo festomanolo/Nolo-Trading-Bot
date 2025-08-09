@@ -97,3 +97,11 @@ class QuantitativeStatistics:
     def parkinson_volatility(
         highs: Sequence[float],
         lows: Sequence[float],
+        window: int = 20,
+    ) -> float:
+        """High-Low range Parkinson volatility estimator (5x more efficient than close-to-close)."""
+        n = min(len(highs), len(lows))
+        if n == 0:
+            return 0.0
+        w = min(n, window)
+        acc = 0.0
