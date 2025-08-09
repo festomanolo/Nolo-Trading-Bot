@@ -113,3 +113,11 @@ class QuantitativeStatistics:
         factor = 1.0 / (4.0 * w * math.log(2.0))
         return math.sqrt(max(0.0, factor * acc))
 
+    @staticmethod
+    def pearson_correlation(series_a: Sequence[float], series_b: Sequence[float]) -> float:
+        """Compute Pearson correlation coefficient in [-1, 1] between two sequences."""
+        n = min(len(series_a), len(series_b))
+        if n < 3:
+            return 0.0
+        a = [float(x) for x in series_a[-n:]]
+        b = [float(x) for x in series_b[-n:]]
