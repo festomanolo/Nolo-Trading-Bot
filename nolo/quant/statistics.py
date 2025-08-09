@@ -105,3 +105,11 @@ class QuantitativeStatistics:
             return 0.0
         w = min(n, window)
         acc = 0.0
+        for i in range(n - w, n):
+            h = max(1e-9, float(highs[i]))
+            l = max(1e-9, float(lows[i]))
+            ratio = math.log(h / l) if h >= l else 0.0
+            acc += ratio * ratio
+        factor = 1.0 / (4.0 * w * math.log(2.0))
+        return math.sqrt(max(0.0, factor * acc))
+
