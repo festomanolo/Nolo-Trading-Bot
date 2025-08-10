@@ -121,3 +121,12 @@ class QuantitativeStatistics:
             return 0.0
         a = [float(x) for x in series_a[-n:]]
         b = [float(x) for x in series_b[-n:]]
+        ma = sum(a) / n
+        mb = sum(b) / n
+        num = sum((a[i] - ma) * (b[i] - mb) for i in range(n))
+        da = sum((a[i] - ma) ** 2 for i in range(n))
+        db = sum((b[i] - mb) ** 2 for i in range(n))
+        denom = math.sqrt(da * db)
+        if denom <= 1e-12:
+            return 0.0
+        return max(-1.0, min(1.0, num / denom))
