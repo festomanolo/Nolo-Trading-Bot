@@ -22,3 +22,11 @@ from nolo.types import Bar, MarketStructureBias, SMCZone, SMCZoneType
 
 @dataclass
 class SMCSnapshot:
+    """Complete institutional structure snapshot at the current bar."""
+
+    structure_bias: MarketStructureBias
+    last_swing_high: float
+    last_swing_low: float
+    dealing_range_position: float  # 0.0 = extreme discount, 0.5 = equilibrium, 1.0 = extreme premium
+    in_bullish_ob: bool
+    in_bearish_ob: bool
