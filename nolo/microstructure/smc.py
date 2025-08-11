@@ -14,3 +14,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import List, Optional, Sequence
+
+from nolo.config import SMCConfig
+from nolo.quant.indicators import IndicatorEngine
+from nolo.types import Bar, MarketStructureBias, SMCZone, SMCZoneType
+
+
+@dataclass
+class SMCSnapshot:
