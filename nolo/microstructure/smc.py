@@ -38,3 +38,11 @@ class SMCSnapshot:
     nearest_support: float = 0.0
     nearest_resistance: float = 0.0
 
+
+class SmartMoneyAnalyzer:
+    """Analyzes OHLCV bars for institutional Smart Money footprints."""
+
+    def __init__(self, config: Optional[SMCConfig] = None) -> None:
+        self.config = config or SMCConfig()
+
+    def analyze(self, bars: Sequence[Bar]) -> SMCSnapshot:
