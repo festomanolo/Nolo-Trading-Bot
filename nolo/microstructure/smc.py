@@ -30,3 +30,11 @@ class SMCSnapshot:
     dealing_range_position: float  # 0.0 = extreme discount, 0.5 = equilibrium, 1.0 = extreme premium
     in_bullish_ob: bool
     in_bearish_ob: bool
+    in_bullish_fvg: bool
+    in_bearish_fvg: bool
+    bullish_liquidity_sweep: bool
+    bearish_liquidity_sweep: bool
+    active_zones: List[SMCZone] = field(default_factory=list)
+    nearest_support: float = 0.0
+    nearest_resistance: float = 0.0
+
