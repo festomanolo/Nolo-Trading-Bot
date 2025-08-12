@@ -55,3 +55,11 @@ class SmartMoneyAnalyzer:
                 last_swing_low=last_p,
                 dealing_range_position=0.5,
                 in_bullish_ob=False,
+                in_bearish_ob=False,
+                in_bullish_fvg=False,
+                in_bearish_fvg=False,
+                bullish_liquidity_sweep=False,
+                bearish_liquidity_sweep=False,
+                nearest_support=last_p,
+                nearest_resistance=last_p,
+            )
