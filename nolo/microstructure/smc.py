@@ -46,3 +46,12 @@ class SmartMoneyAnalyzer:
         self.config = config or SMCConfig()
 
     def analyze(self, bars: Sequence[Bar]) -> SMCSnapshot:
+        n = len(bars)
+        if n < 15:
+            last_p = bars[-1].close if n > 0 else 0.0
+            return SMCSnapshot(
+                structure_bias=MarketStructureBias.NEUTRAL,
+                last_swing_high=last_p,
+                last_swing_low=last_p,
+                dealing_range_position=0.5,
+                in_bullish_ob=False,
