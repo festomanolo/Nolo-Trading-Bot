@@ -63,3 +63,11 @@ class SmartMoneyAnalyzer:
                 nearest_support=last_p,
                 nearest_resistance=last_p,
             )
+
+        highs = [b.high for b in bars]
+        lows = [b.low for b in bars]
+        closes = [b.close for b in bars]
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, 14)
+
+        swing_highs, swing_lows = self._find_swing_points(bars)
+        last_sh = swing_highs[-1][1] if swing_highs else max(highs[-20:])
