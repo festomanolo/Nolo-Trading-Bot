@@ -71,3 +71,11 @@ class SmartMoneyAnalyzer:
 
         swing_highs, swing_lows = self._find_swing_points(bars)
         last_sh = swing_highs[-1][1] if swing_highs else max(highs[-20:])
+        last_sl = swing_lows[-1][1] if swing_lows else min(lows[-20:])
+
+        prev_sh = swing_highs[-2][1] if len(swing_highs) >= 2 else last_sh
+        prev_sl = swing_lows[-2][1] if len(swing_lows) >= 2 else last_sl
+
+        curr_close = closes[-1]
+        structure_bias = self._classify_structure(curr_close, last_sh, prev_sh, last_sl, prev_sl)
+
