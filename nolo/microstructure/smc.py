@@ -79,3 +79,11 @@ class SmartMoneyAnalyzer:
         curr_close = closes[-1]
         structure_bias = self._classify_structure(curr_close, last_sh, prev_sh, last_sl, prev_sl)
 
+        # Dealing range (50-bar institutional range)
+        range_high = max(highs[-min(n, 50) :])
+        range_low = min(lows[-min(n, 50) :])
+        span = max(1e-9, range_high - range_low)
+        dealing_pos = max(0.0, min(1.0, (curr_close - range_low) / span))
+
+        zones = self._detect_zones(bars, atr_vals)
+
