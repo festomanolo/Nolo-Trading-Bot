@@ -103,3 +103,12 @@ class SmartMoneyAnalyzer:
             z.zone_type == SMCZoneType.BEARISH_FVG and not z.mitigated and z.contains(curr_close)
             for z in zones
         )
+
+        bull_sweep, bear_sweep = self._detect_liquidity_sweep(bars, last_sh, last_sl)
+
+        supports = [z.bottom for z in zones if z.midpoint <= curr_close and not z.mitigated]
+        resistances = [z.top for z in zones if z.midpoint >= curr_close and not z.mitigated]
+
+        nearest_sup = max(supports) if supports else min(lows[-20:])
+        nearest_res = min(resistances) if resistances else max(highs[-20:])
+
