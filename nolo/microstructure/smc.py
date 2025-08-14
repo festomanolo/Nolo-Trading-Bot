@@ -112,3 +112,11 @@ class SmartMoneyAnalyzer:
         nearest_sup = max(supports) if supports else min(lows[-20:])
         nearest_res = min(resistances) if resistances else max(highs[-20:])
 
+        return SMCSnapshot(
+            structure_bias=structure_bias,
+            last_swing_high=last_sh,
+            last_swing_low=last_sl,
+            dealing_range_position=dealing_pos,
+            in_bullish_ob=in_bull_ob,
+            in_bearish_ob=in_bear_ob,
+            in_bullish_fvg=in_bull_fvg,
