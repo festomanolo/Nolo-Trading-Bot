@@ -95,3 +95,11 @@ class SmartMoneyAnalyzer:
             z.zone_type == SMCZoneType.BEARISH_OB and not z.mitigated and z.contains(curr_close)
             for z in zones
         )
+        in_bull_fvg = any(
+            z.zone_type == SMCZoneType.BULLISH_FVG and not z.mitigated and z.contains(curr_close)
+            for z in zones
+        )
+        in_bear_fvg = any(
+            z.zone_type == SMCZoneType.BEARISH_FVG and not z.mitigated and z.contains(curr_close)
+            for z in zones
+        )
