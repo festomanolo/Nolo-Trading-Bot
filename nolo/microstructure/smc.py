@@ -87,3 +87,11 @@ class SmartMoneyAnalyzer:
 
         zones = self._detect_zones(bars, atr_vals)
 
+        in_bull_ob = any(
+            z.zone_type == SMCZoneType.BULLISH_OB and not z.mitigated and z.contains(curr_close)
+            for z in zones
+        )
+        in_bear_ob = any(
+            z.zone_type == SMCZoneType.BEARISH_OB and not z.mitigated and z.contains(curr_close)
+            for z in zones
+        )
