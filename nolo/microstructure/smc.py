@@ -128,3 +128,11 @@ class SmartMoneyAnalyzer:
             nearest_resistance=nearest_res,
         )
 
+    def _find_swing_points(
+        self, bars: Sequence[Bar]
+    ) -> tuple[List[tuple[int, float]], List[tuple[int, float]]]:
+        w = max(2, self.config.swing_length)
+        n = len(bars)
+        swing_highs: List[tuple[int, float]] = []
+        swing_lows: List[tuple[int, float]] = []
+
