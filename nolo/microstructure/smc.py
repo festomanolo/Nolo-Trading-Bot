@@ -136,3 +136,11 @@ class SmartMoneyAnalyzer:
         swing_highs: List[tuple[int, float]] = []
         swing_lows: List[tuple[int, float]] = []
 
+        for i in range(w, n - w):
+            h = bars[i].high
+            l = bars[i].low
+            is_sh = all(h >= bars[j].high for j in range(i - w, i + w + 1) if j != i)
+            is_sl = all(l <= bars[j].low for j in range(i - w, i + w + 1) if j != i)
+            if is_sh:
+                swing_highs.append((i, h))
+            if is_sl:
