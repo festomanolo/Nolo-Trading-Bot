@@ -120,3 +120,11 @@ class SmartMoneyAnalyzer:
             in_bullish_ob=in_bull_ob,
             in_bearish_ob=in_bear_ob,
             in_bullish_fvg=in_bull_fvg,
+            in_bearish_fvg=in_bear_fvg,
+            bullish_liquidity_sweep=bull_sweep,
+            bearish_liquidity_sweep=bear_sweep,
+            active_zones=zones[-self.config.max_active_zones :],
+            nearest_support=nearest_sup,
+            nearest_resistance=nearest_res,
+        )
+
