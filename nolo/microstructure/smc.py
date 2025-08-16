@@ -160,3 +160,12 @@ class SmartMoneyAnalyzer:
                 return MarketStructureBias.BULLISH_CHOCH
             return MarketStructureBias.BULLISH_BOS
         if curr_close < last_sl:
+            if last_sh > prev_sh:
+                return MarketStructureBias.BEARISH_CHOCH
+            return MarketStructureBias.BEARISH_BOS
+        if last_sh > prev_sh and last_sl >= prev_sl:
+            return MarketStructureBias.BULLISH_BOS
+        if last_sh <= prev_sh and last_sl < prev_sl:
+            return MarketStructureBias.BEARISH_BOS
+        return MarketStructureBias.NEUTRAL
+
