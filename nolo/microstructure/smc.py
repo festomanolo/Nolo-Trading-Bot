@@ -144,3 +144,11 @@ class SmartMoneyAnalyzer:
             if is_sh:
                 swing_highs.append((i, h))
             if is_sl:
+                swing_lows.append((i, l))
+        return swing_highs, swing_lows
+
+    @staticmethod
+    def _classify_structure(
+        curr_close: float,
+        last_sh: float,
+        prev_sh: float,
