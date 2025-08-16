@@ -152,3 +152,11 @@ class SmartMoneyAnalyzer:
         curr_close: float,
         last_sh: float,
         prev_sh: float,
+        last_sl: float,
+        prev_sl: float,
+    ) -> MarketStructureBias:
+        if curr_close > last_sh:
+            if last_sl < prev_sl:
+                return MarketStructureBias.BULLISH_CHOCH
+            return MarketStructureBias.BULLISH_BOS
+        if curr_close < last_sl:
