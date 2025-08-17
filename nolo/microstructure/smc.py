@@ -193,3 +193,11 @@ class SmartMoneyAnalyzer:
                         strength=min(3.0, gap_up / atr),
                     )
                 )
+                # Corresponding Bullish Order Block (last bearish candle prior to impulse)
+                if not b_prev2.is_bullish:
+                    zones.append(
+                        SMCZone(
+                            zone_type=SMCZoneType.BULLISH_OB,
+                            top=max(b_prev2.open, b_prev2.close),
+                            bottom=b_prev2.low,
+                            created_at=b_prev2.timestamp,
