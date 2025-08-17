@@ -177,3 +177,11 @@ class SmartMoneyAnalyzer:
         for i in range(start, n):
             atr = max(1e-9, atr_vals[i])
             b_prev2 = bars[i - 2]
+            b_prev1 = bars[i - 1]
+            b_curr = bars[i]
+
+            # 1. Bullish Fair Value Gap (b_curr.low > b_prev2.high with strong middle impulse)
+            gap_up = b_curr.low - b_prev2.high
+            if gap_up >= atr * self.config.fvg_min_atr_fraction and b_prev1.is_bullish:
+                zones.append(
+                    SMCZone(
