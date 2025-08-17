@@ -185,3 +185,11 @@ class SmartMoneyAnalyzer:
             if gap_up >= atr * self.config.fvg_min_atr_fraction and b_prev1.is_bullish:
                 zones.append(
                     SMCZone(
+                        zone_type=SMCZoneType.BULLISH_FVG,
+                        top=b_curr.low,
+                        bottom=b_prev2.high,
+                        created_at=b_curr.timestamp,
+                        bar_index=i,
+                        strength=min(3.0, gap_up / atr),
+                    )
+                )
