@@ -169,3 +169,11 @@ class SmartMoneyAnalyzer:
             return MarketStructureBias.BEARISH_BOS
         return MarketStructureBias.NEUTRAL
 
+    def _detect_zones(self, bars: Sequence[Bar], atr_vals: Sequence[float]) -> List[SMCZone]:
+        n = len(bars)
+        start = max(2, n - 80)
+        zones: List[SMCZone] = []
+
+        for i in range(start, n):
+            atr = max(1e-9, atr_vals[i])
+            b_prev2 = bars[i - 2]
