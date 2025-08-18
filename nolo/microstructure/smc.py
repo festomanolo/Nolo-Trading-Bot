@@ -217,3 +217,12 @@ class SmartMoneyAnalyzer:
                         created_at=b_curr.timestamp,
                         bar_index=i,
                         strength=min(3.0, gap_down / atr),
+                    )
+                )
+                if b_prev2.is_bullish:
+                    zones.append(
+                        SMCZone(
+                            zone_type=SMCZoneType.BEARISH_OB,
+                            top=b_prev2.high,
+                            bottom=min(b_prev2.open, b_prev2.close),
+                            created_at=b_prev2.timestamp,
