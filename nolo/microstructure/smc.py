@@ -201,3 +201,11 @@ class SmartMoneyAnalyzer:
                             top=max(b_prev2.open, b_prev2.close),
                             bottom=b_prev2.low,
                             created_at=b_prev2.timestamp,
+                            bar_index=i - 2,
+                            strength=min(3.0, b_prev1.body / atr),
+                        )
+                    )
+
+            # 2. Bearish Fair Value Gap (b_prev2.low > b_curr.high with strong middle impulse)
+            gap_down = b_prev2.low - b_curr.high
+            if gap_down >= atr * self.config.fvg_min_atr_fraction and not b_prev1.is_bullish:
