@@ -209,3 +209,11 @@ class SmartMoneyAnalyzer:
             # 2. Bearish Fair Value Gap (b_prev2.low > b_curr.high with strong middle impulse)
             gap_down = b_prev2.low - b_curr.high
             if gap_down >= atr * self.config.fvg_min_atr_fraction and not b_prev1.is_bullish:
+                zones.append(
+                    SMCZone(
+                        zone_type=SMCZoneType.BEARISH_FVG,
+                        top=b_prev2.low,
+                        bottom=b_curr.high,
+                        created_at=b_curr.timestamp,
+                        bar_index=i,
+                        strength=min(3.0, gap_down / atr),
