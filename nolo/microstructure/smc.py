@@ -242,3 +242,11 @@ class SmartMoneyAnalyzer:
                         z.mitigated = True
                 elif z.zone_type in (SMCZoneType.BEARISH_OB, SMCZoneType.BEARISH_FVG):
                     if b_curr.high >= z.bottom:
+                        z.touch_count += 1
+                    if b_curr.close > z.top:
+                        z.mitigated = True
+
+        return [z for z in zones if not z.mitigated]
+
+    def _detect_liquidity_sweep(
+        self, bars: Sequence[Bar], swing_high: float, swing_low: float
