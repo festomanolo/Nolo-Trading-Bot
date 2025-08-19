@@ -234,3 +234,11 @@ class SmartMoneyAnalyzer:
             # Update mitigation status of earlier zones
             for z in zones:
                 if z.bar_index >= i - 1 or z.mitigated:
+                    continue
+                if z.zone_type in (SMCZoneType.BULLISH_OB, SMCZoneType.BULLISH_FVG):
+                    if b_curr.low <= z.top:
+                        z.touch_count += 1
+                    if b_curr.close < z.bottom:
+                        z.mitigated = True
+                elif z.zone_type in (SMCZoneType.BEARISH_OB, SMCZoneType.BEARISH_FVG):
+                    if b_curr.high >= z.bottom:
