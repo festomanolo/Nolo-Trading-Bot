@@ -226,3 +226,11 @@ class SmartMoneyAnalyzer:
                             top=b_prev2.high,
                             bottom=min(b_prev2.open, b_prev2.close),
                             created_at=b_prev2.timestamp,
+                            bar_index=i - 2,
+                            strength=min(3.0, b_prev1.body / atr),
+                        )
+                    )
+
+            # Update mitigation status of earlier zones
+            for z in zones:
+                if z.bar_index >= i - 1 or z.mitigated:
