@@ -250,3 +250,11 @@ class SmartMoneyAnalyzer:
 
     def _detect_liquidity_sweep(
         self, bars: Sequence[Bar], swing_high: float, swing_low: float
+    ) -> tuple[bool, bool]:
+        """
+        Detect institutional stop-hunts:
+        - Bullish sweep: bar pierces below prior swing_low/recent support and closes back above with long lower wick.
+        - Bearish sweep: bar pierces above prior swing_high/recent resistance and closes back below with long upper wick.
+        """
+        b = bars[-1]
+        rng = max(1e-9, b.range)
