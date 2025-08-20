@@ -258,3 +258,11 @@ class SmartMoneyAnalyzer:
         """
         b = bars[-1]
         rng = max(1e-9, b.range)
+        prior_low = min(bar.low for bar in bars[-15:-1])
+        prior_high = max(bar.high for bar in bars[-15:-1])
+
+        ref_low = min(swing_low, prior_low)
+        ref_high = max(swing_high, prior_high)
+
+        bull_sweep = (
+            b.low < ref_low
