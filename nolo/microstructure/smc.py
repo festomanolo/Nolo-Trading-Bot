@@ -266,3 +266,12 @@ class SmartMoneyAnalyzer:
 
         bull_sweep = (
             b.low < ref_low
+            and b.close > ref_low
+            and (float(b.lower_wick) / rng) >= self.config.liquidity_sweep_wick_ratio
+        )
+        bear_sweep = (
+            b.high > ref_high
+            and b.close < ref_high
+            and (b.upper_wick / rng) >= self.config.liquidity_sweep_wick_ratio
+        )
+        return bull_sweep, bear_sweep
