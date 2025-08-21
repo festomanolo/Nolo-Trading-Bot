@@ -30,3 +30,11 @@ class OrderFlowSnapshot:
     val_price: float
     volume_surge_ratio: float
     bullish_cvd_divergence: bool
+    bearish_cvd_divergence: bool
+    spread_shock: bool
+
+
+class OrderFlowAnalyzer:
+    """Analyzes tick streams and OHLCV bars to extract institutional order flow metrics."""
+
+    def __init__(self, profile_bins: int = 20) -> None:
