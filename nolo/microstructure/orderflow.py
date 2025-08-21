@@ -14,3 +14,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Sequence
 
+from nolo.types import Bar, Tick
+
+
+@dataclass(frozen=True)
+class OrderFlowSnapshot:
+    """Snapshot of real-time order flow imbalance and liquidity conditions."""
+
+    bar_delta: float
