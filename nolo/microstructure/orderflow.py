@@ -22,3 +22,11 @@ class OrderFlowSnapshot:
     """Snapshot of real-time order flow imbalance and liquidity conditions."""
 
     bar_delta: float
+    cumulative_delta_slope: float
+    buy_pressure_ratio: float
+    vpin_toxicity: float
+    poc_price: float
+    vah_price: float
+    val_price: float
+    volume_surge_ratio: float
+    bullish_cvd_divergence: bool
