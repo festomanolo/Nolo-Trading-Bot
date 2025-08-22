@@ -38,3 +38,11 @@ class OrderFlowAnalyzer:
     """Analyzes tick streams and OHLCV bars to extract institutional order flow metrics."""
 
     def __init__(self, profile_bins: int = 20) -> None:
+        self.profile_bins = max(5, profile_bins)
+        self._tick_deltas: List[float] = []
+
+    def record_tick(self, prev_tick: Tick, curr_tick: Tick) -> float:
+        """Apply Lee-Ready tick rule to classify tick volume as buyer or seller initiated."""
+        mid_diff = curr_tick.mid - prev_tick.mid
+        if mid_diff > 0:
+            delta = curr_tick.volume
