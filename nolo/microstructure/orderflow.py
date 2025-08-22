@@ -54,3 +54,11 @@ class OrderFlowAnalyzer:
         if len(self._tick_deltas) > 500:
             self._tick_deltas = self._tick_deltas[-500:]
         return delta
+
+    def analyze_bars(self, bars: Sequence[Bar], max_spread_points: float = 20.0) -> OrderFlowSnapshot:
+        n = len(bars)
+        if n < 10:
+            p = bars[-1].close if n > 0 else 0.0
+            return OrderFlowSnapshot(
+                bar_delta=0.0,
+                cumulative_delta_slope=0.0,
