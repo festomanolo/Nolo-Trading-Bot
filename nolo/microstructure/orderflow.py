@@ -46,3 +46,11 @@ class OrderFlowAnalyzer:
         mid_diff = curr_tick.mid - prev_tick.mid
         if mid_diff > 0:
             delta = curr_tick.volume
+        elif mid_diff < 0:
+            delta = -curr_tick.volume
+        else:
+            delta = 0.0
+        self._tick_deltas.append(delta)
+        if len(self._tick_deltas) > 500:
+            self._tick_deltas = self._tick_deltas[-500:]
+        return delta
