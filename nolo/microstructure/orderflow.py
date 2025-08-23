@@ -70,3 +70,11 @@ class OrderFlowAnalyzer:
                 volume_surge_ratio=1.0,
                 bullish_cvd_divergence=False,
                 bearish_cvd_divergence=False,
+                spread_shock=False,
+            )
+
+        # Intrabar buying vs selling volume decomposition using close position within high-low range
+        deltas: List[float] = []
+        buy_vols: List[float] = []
+        sell_vols: List[float] = []
+        cvd: List[float] = []
