@@ -86,3 +86,12 @@ class OrderFlowAnalyzer:
             if rng <= 1e-12:
                 buy_frac = 0.5
             else:
+                buy_frac = max(0.0, min(1.0, (b.close - b.low) / rng))
+            b_vol = b.volume * buy_frac
+            s_vol = b.volume * (1.0 - buy_frac)
+            delta = b_vol - s_vol
+            buy_vols.append(b_vol)
+            sell_vols.append(s_vol)
+            deltas.append(delta)
+            running_cvd += delta
+            cvd.append(running_cvd)
