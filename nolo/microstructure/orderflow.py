@@ -78,3 +78,11 @@ class OrderFlowAnalyzer:
         buy_vols: List[float] = []
         sell_vols: List[float] = []
         cvd: List[float] = []
+        running_cvd = 0.0
+
+        window_bars = bars[-min(n, 60) :]
+        for b in window_bars:
+            rng = b.range
+            if rng <= 1e-12:
+                buy_frac = 0.5
+            else:
