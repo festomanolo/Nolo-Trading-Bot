@@ -62,3 +62,11 @@ class OrderFlowAnalyzer:
             return OrderFlowSnapshot(
                 bar_delta=0.0,
                 cumulative_delta_slope=0.0,
+                buy_pressure_ratio=0.5,
+                vpin_toxicity=0.2,
+                poc_price=p,
+                vah_price=p,
+                val_price=p,
+                volume_surge_ratio=1.0,
+                bullish_cvd_divergence=False,
+                bearish_cvd_divergence=False,
