@@ -111,3 +111,11 @@ class OrderFlowAnalyzer:
         )
 
         # CVD slope normalized by average volume
+        avg_vol = sum(b.volume for b in window_bars[-20:]) / min(20, len(window_bars))
+        cvd_change = cvd[-1] - cvd[-min(6, len(cvd))]
+        cvd_slope = cvd_change / max(1e-6, avg_vol * 5.0)
+
+        # Volume surge ratio
+        vol_surge = window_bars[-1].volume / max(1e-6, avg_vol)
+
+        # CVD Divergence detection over last 10 bars
