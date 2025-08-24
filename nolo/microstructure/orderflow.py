@@ -103,3 +103,11 @@ class OrderFlowAnalyzer:
 
         # VPIN estimate: average |buy_vol - sell_vol| / total_vol over last 20 bars
         vpin_window = min(20, len(window_bars))
+        vpin_vol = sum(b.volume for b in window_bars[-vpin_window:])
+        vpin = (
+            sum(abs(d) for d in deltas[-vpin_window:]) / vpin_vol
+            if vpin_vol > 1e-9
+            else 0.2
+        )
+
+        # CVD slope normalized by average volume
