@@ -95,3 +95,11 @@ class OrderFlowAnalyzer:
             deltas.append(delta)
             running_cvd += delta
             cvd.append(running_cvd)
+
+        recent_vol_sum = sum(b.volume for b in window_bars[-10:])
+        buy_pressure = (
+            sum(buy_vols[-10:]) / recent_vol_sum if recent_vol_sum > 1e-9 else 0.5
+        )
+
+        # VPIN estimate: average |buy_vol - sell_vol| / total_vol over last 20 bars
+        vpin_window = min(20, len(window_bars))
