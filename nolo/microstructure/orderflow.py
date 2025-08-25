@@ -135,3 +135,11 @@ class OrderFlowAnalyzer:
             buy_pressure_ratio=buy_pressure,
             vpin_toxicity=max(0.0, min(1.0, vpin)),
             poc_price=poc,
+            vah_price=vah,
+            val_price=val,
+            volume_surge_ratio=vol_surge,
+            bullish_cvd_divergence=bull_div,
+            bearish_cvd_divergence=bear_div,
+            spread_shock=spread_shock,
+        )
+
