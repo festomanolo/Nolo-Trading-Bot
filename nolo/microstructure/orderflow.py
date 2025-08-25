@@ -127,3 +127,11 @@ class OrderFlowAnalyzer:
         # Volume Profile POC, VAH, VAL
         poc, vah, val = self._compute_volume_profile(window_bars)
 
+        spread_shock = window_bars[-1].spread_points > max_spread_points
+
+        return OrderFlowSnapshot(
+            bar_delta=deltas[-1],
+            cumulative_delta_slope=cvd_slope,
+            buy_pressure_ratio=buy_pressure,
+            vpin_toxicity=max(0.0, min(1.0, vpin)),
+            poc_price=poc,
