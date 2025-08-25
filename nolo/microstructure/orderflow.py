@@ -119,3 +119,11 @@ class OrderFlowAnalyzer:
         vol_surge = window_bars[-1].volume / max(1e-6, avg_vol)
 
         # CVD Divergence detection over last 10 bars
+        price_change = window_bars[-1].close - window_bars[-10].close
+        cvd_10_change = cvd[-1] - cvd[-10]
+        bull_div = price_change < 0 and cvd_10_change > 0 and buy_pressure > 0.52
+        bear_div = price_change > 0 and cvd_10_change < 0 and buy_pressure < 0.48
+
+        # Volume Profile POC, VAH, VAL
+        poc, vah, val = self._compute_volume_profile(window_bars)
+
