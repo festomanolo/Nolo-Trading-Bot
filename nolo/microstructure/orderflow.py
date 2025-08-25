@@ -143,3 +143,11 @@ class OrderFlowAnalyzer:
             spread_shock=spread_shock,
         )
 
+    def _compute_volume_profile(self, bars: Sequence[Bar]) -> tuple[float, float, float]:
+        lo = min(b.low for b in bars)
+        hi = max(b.high for b in bars)
+        span = hi - lo
+        if span <= 1e-12:
+            c = bars[-1].close
+            return c, c, c
+
