@@ -159,3 +159,11 @@ class OrderFlowAnalyzer:
             idx = int((typical - lo) / bin_size)
             idx = max(0, min(self.profile_bins - 1, idx))
             bins[idx] += b.volume
+
+        poc_idx = max(range(self.profile_bins), key=lambda k: bins[k])
+        poc_price = lo + (poc_idx + 0.5) * bin_size
+
+        total_vol = sum(bins)
+        target_vol = total_vol * 0.70
+        accum = bins[poc_idx]
+        left = poc_idx
