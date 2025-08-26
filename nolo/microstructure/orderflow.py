@@ -167,3 +167,11 @@ class OrderFlowAnalyzer:
         target_vol = total_vol * 0.70
         accum = bins[poc_idx]
         left = poc_idx
+        right = poc_idx
+
+        while accum < target_vol and (left > 0 or right < self.profile_bins - 1):
+            left_vol = bins[left - 1] if left > 0 else -1.0
+            right_vol = bins[right + 1] if right < self.profile_bins - 1 else -1.0
+            if right_vol >= left_vol and right < self.profile_bins - 1:
+                right += 1
+                accum += bins[right]
