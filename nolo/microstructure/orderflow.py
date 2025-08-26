@@ -151,3 +151,11 @@ class OrderFlowAnalyzer:
             c = bars[-1].close
             return c, c, c
 
+        bins = [0.0] * self.profile_bins
+        bin_size = span / self.profile_bins
+
+        for b in bars:
+            typical = (b.high + b.low + b.close) / 3.0
+            idx = int((typical - lo) / bin_size)
+            idx = max(0, min(self.profile_bins - 1, idx))
+            bins[idx] += b.volume
