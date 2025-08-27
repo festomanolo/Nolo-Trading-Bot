@@ -175,3 +175,12 @@ class OrderFlowAnalyzer:
             if right_vol >= left_vol and right < self.profile_bins - 1:
                 right += 1
                 accum += bins[right]
+            elif left > 0:
+                left -= 1
+                accum += bins[left]
+            else:
+                break
+
+        val_price = lo + left * bin_size
+        vah_price = lo + (right + 1) * bin_size
+        return poc_price, vah_price, val_price
