@@ -13,3 +13,11 @@ from typing import Dict, List, Sequence, Tuple
 
 from nolo.quant.statistics import QuantitativeStatistics
 
+MAJOR_CURRENCIES: Tuple[str, ...] = ("EUR", "USD", "GBP", "JPY", "AUD", "CAD", "CHF", "NZD")
+
+
+class CurrencyStrengthMeter:
+    """Computes G8 currency strength scores and cross-pair correlation matrices."""
+
+    def __init__(self, lookback: int = 20) -> None:
+        self.lookback = max(5, lookback)
