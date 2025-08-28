@@ -29,3 +29,11 @@ class CurrencyStrengthMeter:
 
     def compute_strengths(self) -> Dict[str, float]:
         """
+        Return normalized strength scores in [-100, +100] for each major currency.
+        """
+        scores: Dict[str, List[float]] = {c: [] for c in MAJOR_CURRENCIES}
+
+        for pair, series in self._pair_prices.items():
+            if len(pair) < 6 or len(series) < 2:
+                continue
+            base = pair[:3]
