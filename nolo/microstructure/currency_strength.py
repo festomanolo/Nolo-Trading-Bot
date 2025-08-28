@@ -37,3 +37,11 @@ class CurrencyStrengthMeter:
             if len(pair) < 6 or len(series) < 2:
                 continue
             base = pair[:3]
+            quote = pair[3:6]
+            w = min(len(series) - 1, self.lookback)
+            p0 = max(1e-9, series[-1 - w])
+            p1 = series[-1]
+            pct_return = ((p1 - p0) / p0) * 100.0
+            scaled = max(-100.0, min(100.0, pct_return * 40.0))
+
+            if base in scores:
