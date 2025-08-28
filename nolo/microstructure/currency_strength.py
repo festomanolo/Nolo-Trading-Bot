@@ -21,3 +21,11 @@ class CurrencyStrengthMeter:
 
     def __init__(self, lookback: int = 20) -> None:
         self.lookback = max(5, lookback)
+        self._pair_prices: Dict[str, List[float]] = {}
+
+    def update_pair_prices(self, symbol: str, closes: Sequence[float]) -> None:
+        clean = symbol.upper()[:6]
+        self._pair_prices[clean] = [float(x) for x in closes[-max(100, self.lookback * 3) :]]
+
+    def compute_strengths(self) -> Dict[str, float]:
+        """
