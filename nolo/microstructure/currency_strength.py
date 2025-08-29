@@ -60,3 +60,11 @@ class CurrencyStrengthMeter:
         Return base_strength - quote_strength for `symbol`.
         Positive values favor BUY; negative values favor SELL.
         """
+        clean = symbol.upper()[:6]
+        base = clean[:3]
+        quote = clean[3:6]
+        strengths = self.compute_strengths()
+        return strengths.get(base, 0.0) - strengths.get(quote, 0.0)
+
+    def correlation_between(self, symbol_a: str, symbol_b: str, window: int = 30) -> float:
+        """Compute rolling return correlation between two currency pairs."""
