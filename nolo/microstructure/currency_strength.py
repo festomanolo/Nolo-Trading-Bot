@@ -52,3 +52,11 @@ class CurrencyStrengthMeter:
         result: Dict[str, float] = {}
         for c in MAJOR_CURRENCIES:
             vals = scores[c]
+            result[c] = sum(vals) / len(vals) if vals else 0.0
+        return result
+
+    def pair_divergence_score(self, symbol: str) -> float:
+        """
+        Return base_strength - quote_strength for `symbol`.
+        Positive values favor BUY; negative values favor SELL.
+        """
