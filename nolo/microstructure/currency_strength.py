@@ -45,3 +45,10 @@ class CurrencyStrengthMeter:
             scaled = max(-100.0, min(100.0, pct_return * 40.0))
 
             if base in scores:
+                scores[base].append(scaled)
+            if quote in scores:
+                scores[quote].append(-scaled)
+
+        result: Dict[str, float] = {}
+        for c in MAJOR_CURRENCIES:
+            vals = scores[c]
