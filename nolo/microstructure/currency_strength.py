@@ -84,3 +84,11 @@ class CurrencyStrengthMeter:
         return QuantitativeStatistics.pearson_correlation(ret_a, ret_b)
 
     @staticmethod
+    def _structural_currency_correlation(pair_a: str, pair_b: str) -> float:
+        """Fallback structural correlation when historical cross-series are not yet populated."""
+        if pair_a == pair_b:
+            return 1.0
+        base_a, quote_a = pair_a[:3], pair_a[3:6]
+        base_b, quote_b = pair_b[:3], pair_b[3:6]
+        score = 0.0
+        if base_a == base_b:
