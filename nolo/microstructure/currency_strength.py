@@ -76,3 +76,11 @@ class CurrencyStrengthMeter:
         sa = self._pair_prices.get(a_clean, [])
         sb = self._pair_prices.get(b_clean, [])
         n = min(len(sa), len(sb), window + 1)
+        if n < 5:
+            return self._structural_currency_correlation(a_clean, b_clean)
+
+        ret_a = [(sa[-n + i] - sa[-n + i - 1]) / max(1e-9, sa[-n + i - 1]) for i in range(1, n)]
+        ret_b = [(sb[-n + i] - sb[-n + i - 1]) / max(1e-9, sb[-n + i - 1]) for i in range(1, n)]
+        return QuantitativeStatistics.pearson_correlation(ret_a, ret_b)
+
+    @staticmethod
