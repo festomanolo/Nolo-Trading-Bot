@@ -92,3 +92,11 @@ class CurrencyStrengthMeter:
         base_b, quote_b = pair_b[:3], pair_b[3:6]
         score = 0.0
         if base_a == base_b:
+            score += 0.65
+        if quote_a == quote_b:
+            score += 0.65
+        if base_a == quote_b:
+            score -= 0.65
+        if quote_a == base_b:
+            score -= 0.65
+        return max(-1.0, min(1.0, score))
