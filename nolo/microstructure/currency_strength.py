@@ -68,3 +68,11 @@ class CurrencyStrengthMeter:
 
     def correlation_between(self, symbol_a: str, symbol_b: str, window: int = 30) -> float:
         """Compute rolling return correlation between two currency pairs."""
+        a_clean = symbol_a.upper()[:6]
+        b_clean = symbol_b.upper()[:6]
+        if a_clean == b_clean:
+            return 1.0
+
+        sa = self._pair_prices.get(a_clean, [])
+        sb = self._pair_prices.get(b_clean, [])
+        n = min(len(sa), len(sb), window + 1)
