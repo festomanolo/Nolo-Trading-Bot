@@ -23,3 +23,11 @@ from nolo.quant.indicators import IndicatorEngine
 from nolo.quant.kalman import KalmanTrendTracker
 from nolo.types import Bar, MarketStructureBias, RegimeState, RegimeType
 
+
+class AdaptiveRegimeEngine:
+    """Classifies real-time market state into 7 distinct institutional regimes with posterior probabilities."""
+
+    def __init__(self, config: Optional[IndicatorConfig] = None) -> None:
+        self.config = config or IndicatorConfig()
+        self.kalman = KalmanTrendTracker(
+            process_noise=self.config.kalman_process_noise,
