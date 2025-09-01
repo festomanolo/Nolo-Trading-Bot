@@ -31,3 +31,11 @@ class AdaptiveRegimeEngine:
         self.config = config or IndicatorConfig()
         self.kalman = KalmanTrendTracker(
             process_noise=self.config.kalman_process_noise,
+            measurement_noise=self.config.kalman_measurement_noise,
+        )
+        self.smc = SmartMoneyAnalyzer()
+        self._prev_regime: RegimeType = RegimeType.MIXED
+
+    def detect(self, bars: Sequence[Bar]) -> RegimeState:
+        n = len(bars)
+        if n < 25:
