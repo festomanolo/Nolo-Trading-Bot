@@ -48,3 +48,11 @@ class AdaptiveRegimeEngine:
                 bb_width_pct=1.0,
                 atr_ratio=1.0,
                 kalman_slope=0.0,
+                entropy=0.5,
+                structure_bias=MarketStructureBias.NEUTRAL,
+                probabilities={r.value: 1.0 / 7.0 for r in RegimeType if r != RegimeType.MIXED},
+            )
+
+        highs = [b.high for b in bars]
+        lows = [b.low for b in bars]
+        closes = [b.close for b in bars]
