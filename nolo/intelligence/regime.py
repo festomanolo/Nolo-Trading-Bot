@@ -56,3 +56,11 @@ class AdaptiveRegimeEngine:
         highs = [b.high for b in bars]
         lows = [b.low for b in bars]
         closes = [b.close for b in bars]
+
+        # 1. Moving Averages & ADX
+        fast_ma = IndicatorEngine.ema(closes, self.config.fast_ma_period)
+        slow_ma = IndicatorEngine.ema(closes, self.config.slow_ma_period)
+        trend_ma = IndicatorEngine.ema(closes, self.config.trend_ma_period)
+        adx_vals, plus_di, minus_di = IndicatorEngine.adx(
+            highs, lows, closes, self.config.adx_period
+        )
