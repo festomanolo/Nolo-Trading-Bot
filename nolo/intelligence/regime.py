@@ -39,3 +39,12 @@ class AdaptiveRegimeEngine:
     def detect(self, bars: Sequence[Bar]) -> RegimeState:
         n = len(bars)
         if n < 25:
+            return RegimeState(
+                regime=RegimeType.MIXED,
+                confidence=0.35,
+                hurst_exponent=0.5,
+                efficiency_ratio=0.3,
+                adx=15.0,
+                bb_width_pct=1.0,
+                atr_ratio=1.0,
+                kalman_slope=0.0,
