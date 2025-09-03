@@ -64,3 +64,12 @@ class AdaptiveRegimeEngine:
         adx_vals, plus_di, minus_di = IndicatorEngine.adx(
             highs, lows, closes, self.config.adx_period
         )
+
+        # 2. Volatility & Bollinger Bandwidth
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, self.config.atr_period)
+        curr_atr = max(1e-9, atr_vals[-1])
+        avg_atr = sum(atr_vals[-20:]) / min(20, len(atr_vals))
+        atr_ratio = curr_atr / max(1e-9, avg_atr)
+
+        bb_up, _, bb_low = IndicatorEngine.bollinger_bands(
+            closes, self.config.bollinger_period, self.config.bollinger_std
