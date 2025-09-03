@@ -81,3 +81,11 @@ class AdaptiveRegimeEngine:
         hurst_win = closes[-min(n, self.config.hurst_window) :]
         hurst = HurstAnalyzer.compute_hurst(hurst_win)
         er = MarketEntropy.efficiency_ratio(closes, period=14)
+        entropy = MarketEntropy.shannon_entropy(closes[-30:])
+
+        # 4. Kalman Velocity normalized by ATR
+        k_states = self.kalman.filter_series(closes[-35:])
+        kalman_slope = k_states[-1].velocity / curr_atr
+
+        # 5. Smart Money Structure
+        smc_snap = self.smc.analyze(bars)
