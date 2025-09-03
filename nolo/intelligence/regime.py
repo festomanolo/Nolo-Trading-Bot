@@ -89,3 +89,12 @@ class AdaptiveRegimeEngine:
 
         # 5. Smart Money Structure
         smc_snap = self.smc.analyze(bars)
+
+        # Score each candidate regime
+        adx_now = adx_vals[-1]
+        ma_bull = fast_ma[-1] > slow_ma[-1] and closes[-1] > trend_ma[-1]
+        ma_bear = fast_ma[-1] < slow_ma[-1] and closes[-1] < trend_ma[-1]
+        recent_hh = closes[-1] > max(highs[-15:-1])
+        recent_ll = closes[-1] < min(lows[-15:-1])
+
+        scores: Dict[RegimeType, float] = {
