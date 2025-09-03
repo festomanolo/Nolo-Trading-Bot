@@ -73,3 +73,11 @@ class AdaptiveRegimeEngine:
 
         bb_up, _, bb_low = IndicatorEngine.bollinger_bands(
             closes, self.config.bollinger_period, self.config.bollinger_std
+        )
+        curr_close = max(1e-9, closes[-1])
+        bb_width_pct = ((bb_up[-1] - bb_low[-1]) / curr_close) * 100.0
+
+        # 3. Hurst Exponent & Entropy & Efficiency Ratio
+        hurst_win = closes[-min(n, self.config.hurst_window) :]
+        hurst = HurstAnalyzer.compute_hurst(hurst_win)
+        er = MarketEntropy.efficiency_ratio(closes, period=14)
