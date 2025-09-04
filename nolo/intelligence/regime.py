@@ -114,3 +114,12 @@ class AdaptiveRegimeEngine:
                 scores[RegimeType.TREND_UP] += 0.8
             if er > 0.35:
                 scores[RegimeType.TREND_UP] += 0.6
+            if kalman_slope > 0.10:
+                scores[RegimeType.TREND_UP] += 0.5
+
+        # Trend Down scoring
+        if ma_bear and minus_di[-1] > plus_di[-1]:
+            scores[RegimeType.TREND_DOWN] += 1.2 + max(0.0, (adx_now - 20.0) / 25.0)
+            if hurst > 0.53:
+                scores[RegimeType.TREND_DOWN] += 0.8
+            if er > 0.35:
