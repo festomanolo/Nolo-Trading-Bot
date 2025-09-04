@@ -98,3 +98,11 @@ class AdaptiveRegimeEngine:
         recent_ll = closes[-1] < min(lows[-15:-1])
 
         scores: Dict[RegimeType, float] = {
+            RegimeType.TREND_UP: 0.10,
+            RegimeType.TREND_DOWN: 0.10,
+            RegimeType.RANGE: 0.10,
+            RegimeType.BREAKOUT_UP: 0.05,
+            RegimeType.BREAKOUT_DOWN: 0.05,
+            RegimeType.VOLATILITY: 0.05,
+            RegimeType.LIQUIDITY_SWEEP: 0.05,
+        }
