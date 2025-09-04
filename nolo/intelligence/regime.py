@@ -106,3 +106,11 @@ class AdaptiveRegimeEngine:
             RegimeType.VOLATILITY: 0.05,
             RegimeType.LIQUIDITY_SWEEP: 0.05,
         }
+
+        # Trend Up scoring
+        if ma_bull and plus_di[-1] >= minus_di[-1]:
+            scores[RegimeType.TREND_UP] += 1.2 + max(0.0, (adx_now - 20.0) / 25.0)
+            if hurst > 0.53:
+                scores[RegimeType.TREND_UP] += 0.8
+            if er > 0.35:
+                scores[RegimeType.TREND_UP] += 0.6
