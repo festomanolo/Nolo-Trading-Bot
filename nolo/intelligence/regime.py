@@ -148,3 +148,11 @@ class AdaptiveRegimeEngine:
         # High Volatility regime
         if atr_ratio > 1.55 and entropy > 0.65:
             scores[RegimeType.VOLATILITY] += 2.5
+
+        # Markov persistence bonus to prevent regime whipsaws
+        if self._prev_regime in scores:
+            scores[self._prev_regime] *= 1.12
+
+        total_score = sum(scores.values())
+        probs = {k.value: v / total_score for k, v in scores.items()}
+
