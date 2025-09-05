@@ -123,3 +123,11 @@ class AdaptiveRegimeEngine:
             if hurst > 0.53:
                 scores[RegimeType.TREND_DOWN] += 0.8
             if er > 0.35:
+                scores[RegimeType.TREND_DOWN] += 0.6
+            if kalman_slope < -0.10:
+                scores[RegimeType.TREND_DOWN] += 0.5
+
+        # Range / Mean-Reversion scoring
+        if adx_now < 22.0 and er < 0.32:
+            scores[RegimeType.RANGE] += 1.5
+        if hurst < 0.48:
