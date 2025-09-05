@@ -131,3 +131,11 @@ class AdaptiveRegimeEngine:
         if adx_now < 22.0 and er < 0.32:
             scores[RegimeType.RANGE] += 1.5
         if hurst < 0.48:
+            scores[RegimeType.RANGE] += 1.1
+        if atr_ratio < 1.05 and not recent_hh and not recent_ll:
+            scores[RegimeType.RANGE] += 0.7
+
+        # Breakout Up / Down scoring
+        if recent_hh and closes[-1] > bb_up[-2] and atr_ratio > 1.10:
+            scores[RegimeType.BREAKOUT_UP] += 2.6
+        if recent_ll and closes[-1] < bb_low[-2] and atr_ratio > 1.10:
