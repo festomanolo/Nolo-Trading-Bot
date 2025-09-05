@@ -139,3 +139,12 @@ class AdaptiveRegimeEngine:
         if recent_hh and closes[-1] > bb_up[-2] and atr_ratio > 1.10:
             scores[RegimeType.BREAKOUT_UP] += 2.6
         if recent_ll and closes[-1] < bb_low[-2] and atr_ratio > 1.10:
+            scores[RegimeType.BREAKOUT_DOWN] += 2.6
+
+        # Liquidity Sweep scoring
+        if smc_snap.bullish_liquidity_sweep or smc_snap.bearish_liquidity_sweep:
+            scores[RegimeType.LIQUIDITY_SWEEP] += 2.8
+
+        # High Volatility regime
+        if atr_ratio > 1.55 and entropy > 0.65:
+            scores[RegimeType.VOLATILITY] += 2.5
