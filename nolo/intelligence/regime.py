@@ -156,3 +156,11 @@ class AdaptiveRegimeEngine:
         total_score = sum(scores.values())
         probs = {k.value: v / total_score for k, v in scores.items()}
 
+        best_regime = max(scores.keys(), key=lambda r: scores[r])
+        confidence = probs[best_regime.value]
+        self._prev_regime = best_regime
+
+        return RegimeState(
+            regime=best_regime,
+            confidence=min(0.99, max(0.25, confidence)),
+            hurst_exponent=hurst,
