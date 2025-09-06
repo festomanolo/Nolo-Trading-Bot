@@ -164,3 +164,12 @@ class AdaptiveRegimeEngine:
             regime=best_regime,
             confidence=min(0.99, max(0.25, confidence)),
             hurst_exponent=hurst,
+            efficiency_ratio=er,
+            adx=adx_now,
+            bb_width_pct=bb_width_pct,
+            atr_ratio=atr_ratio,
+            kalman_slope=kalman_slope,
+            entropy=entropy,
+            structure_bias=smc_snap.structure_bias,
+            probabilities=probs,
+        )
