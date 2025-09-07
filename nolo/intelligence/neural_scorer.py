@@ -14,3 +14,12 @@ from typing import Dict, List, Optional
 
 from nolo.config import MLConfig
 
+FEATURE_NAMES: List[str] = [
+    "trend_alignment",       # [-1, +1] MTF EMA + SuperTrend + Ichimoku alignment
+    "kalman_velocity",       # [-1, +1] normalized Kalman velocity in signal direction
+    "hurst_persistence",     # [-1, +1] Hurst regime match for strategy type
+    "efficiency_ratio",      # [0, 1] Kaufman efficiency ratio
+    "adx_strength",          # [0, 1] normalized ADX trend strength
+    "rsi_confluence",        # [0, 1] RSI non-exhaustion / reversal quality
+    "macd_impulse",          # [-1, +1] MACD histogram acceleration in trade direction
+    "smc_zone_confluence",   # [0, 1] Order Block / FVG / Sweep alignment
