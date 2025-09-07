@@ -23,3 +23,11 @@ FEATURE_NAMES: List[str] = [
     "rsi_confluence",        # [0, 1] RSI non-exhaustion / reversal quality
     "macd_impulse",          # [-1, +1] MACD histogram acceleration in trade direction
     "smc_zone_confluence",   # [0, 1] Order Block / FVG / Sweep alignment
+    "orderflow_pressure",    # [-1, +1] CVD & intrabar buying/selling pressure
+    "currency_divergence",   # [-1, +1] G8 Currency Strength divergence support
+    "htf_confirmation",      # [-1, +1] Higher timeframe trend agreement
+    "volatility_quality",    # [0, 1] ATR expansion without spread toxicity
+]
+
+
+class AdaptiveNeuralScorer:
