@@ -48,3 +48,11 @@ class AdaptiveNeuralScorer:
             "rsi_confluence": 0.14,
             "macd_impulse": 0.13,
             "smc_zone_confluence": 0.22,
+            "orderflow_pressure": 0.18,
+            "currency_divergence": 0.15,
+            "htf_confirmation": 0.22,
+            "volatility_quality": 0.12,
+        }
+        self.bias: float = -0.25
+        self.samples_seen: int = 0
+        self.ewma_accuracy: float = 0.60
