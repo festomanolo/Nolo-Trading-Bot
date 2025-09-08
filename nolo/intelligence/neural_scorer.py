@@ -31,3 +31,11 @@ FEATURE_NAMES: List[str] = [
 
 
 class AdaptiveNeuralScorer:
+    """
+    Hybrid Prior + Online Neural Signal Scorer.
+    Outputs calibrated win probability P(win) in [0.05, 0.95].
+    """
+
+    def __init__(self, config: Optional[MLConfig] = None) -> None:
+        self.config = config or MLConfig()
+        # Domain-calibrated institutional base weights
