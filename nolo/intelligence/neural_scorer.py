@@ -39,3 +39,12 @@ class AdaptiveNeuralScorer:
     def __init__(self, config: Optional[MLConfig] = None) -> None:
         self.config = config or MLConfig()
         # Domain-calibrated institutional base weights
+        self.weights: Dict[str, float] = {
+            "trend_alignment": 0.24,
+            "kalman_velocity": 0.18,
+            "hurst_persistence": 0.15,
+            "efficiency_ratio": 0.14,
+            "adx_strength": 0.12,
+            "rsi_confluence": 0.14,
+            "macd_impulse": 0.13,
+            "smc_zone_confluence": 0.22,
