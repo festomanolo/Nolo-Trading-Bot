@@ -56,3 +56,12 @@ class AdaptiveNeuralScorer:
         self.bias: float = -0.25
         self.samples_seen: int = 0
         self.ewma_accuracy: float = 0.60
+
+        # Second-order non-linear interaction terms (SMC * OrderFlow, Trend * HTF, Kalman * Hurst)
+        self.interaction_weights: Dict[str, float] = {
+            "trend_x_htf": 0.15,
+            "smc_x_orderflow": 0.18,
+            "kalman_x_hurst": 0.12,
+        }
+
+    @staticmethod
