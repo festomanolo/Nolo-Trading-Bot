@@ -65,3 +65,11 @@ class AdaptiveNeuralScorer:
         }
 
     @staticmethod
+    def _sigmoid(z: float) -> float:
+        z_clamped = max(-15.0, min(15.0, z))
+        return 1.0 / (1.0 + math.exp(-z_clamped))
+
+    @staticmethod
+    def _leaky_relu(x: float) -> float:
+        return x if x >= 0.0 else 0.15 * x
+
