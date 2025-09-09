@@ -73,3 +73,11 @@ class AdaptiveNeuralScorer:
     def _leaky_relu(x: float) -> float:
         return x if x >= 0.0 else 0.15 * x
 
+    def predict_probability(self, features: Dict[str, float]) -> float:
+        """Compute calibrated probability of trade success given normalized feature vector."""
+        linear_z = self.bias
+        for name in FEATURE_NAMES:
+            val = max(-2.0, min(2.0, float(features.get(name, 0.0))))
+            linear_z += self.weights.get(name, 0.0) * val
+
+        # Non-linear hidden layer interactions
