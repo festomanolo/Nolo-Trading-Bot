@@ -81,3 +81,12 @@ class AdaptiveNeuralScorer:
             linear_z += self.weights.get(name, 0.0) * val
 
         # Non-linear hidden layer interactions
+        t_align = float(features.get("trend_alignment", 0.0))
+        htf = float(features.get("htf_confirmation", 0.0))
+        smc = float(features.get("smc_zone_confluence", 0.0))
+        oflow = float(features.get("orderflow_pressure", 0.0))
+        kal = float(features.get("kalman_velocity", 0.0))
+        hurst = float(features.get("hurst_persistence", 0.0))
+
+        h1 = self._leaky_relu(t_align * htf)
+        h2 = self._leaky_relu(smc * oflow)
