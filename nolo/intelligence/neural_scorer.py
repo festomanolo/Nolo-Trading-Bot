@@ -115,3 +115,11 @@ class AdaptiveNeuralScorer:
         target = 1.0 if is_win else 0.0
 
         # Weight sample importance by realized R-multiple magnitude
+        sample_weight = max(0.5, min(2.5, abs(r_multiple)))
+        error = (target - pred) * sample_weight
+
+        lr = self.config.learning_rate
+        l2 = self.config.l2_penalty
+
+        for name in FEATURE_NAMES:
+            if name in features:
