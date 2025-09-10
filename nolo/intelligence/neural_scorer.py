@@ -106,3 +106,12 @@ class AdaptiveNeuralScorer:
         features: Dict[str, float],
         is_win: bool,
         r_multiple: float = 1.0,
+    ) -> float:
+        """
+        Perform an online gradient update using realized trade outcome and R-multiple magnitude.
+        Returns the pre-update predicted probability.
+        """
+        pred = self.predict_probability(features)
+        target = 1.0 if is_win else 0.0
+
+        # Weight sample importance by realized R-multiple magnitude
