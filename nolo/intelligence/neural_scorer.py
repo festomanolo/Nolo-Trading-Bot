@@ -98,3 +98,11 @@ class AdaptiveNeuralScorer:
             + self.interaction_weights["kalman_x_hurst"] * h3
         )
 
+        prob = self._sigmoid(linear_z + nonlinear_z)
+        return max(0.05, min(0.95, prob))
+
+    def partial_fit(
+        self,
+        features: Dict[str, float],
+        is_win: bool,
+        r_multiple: float = 1.0,
