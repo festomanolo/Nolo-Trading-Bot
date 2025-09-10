@@ -90,3 +90,11 @@ class AdaptiveNeuralScorer:
 
         h1 = self._leaky_relu(t_align * htf)
         h2 = self._leaky_relu(smc * oflow)
+        h3 = self._leaky_relu(kal * hurst)
+
+        nonlinear_z = (
+            self.interaction_weights["trend_x_htf"] * h1
+            + self.interaction_weights["smc_x_orderflow"] * h2
+            + self.interaction_weights["kalman_x_hurst"] * h3
+        )
+
