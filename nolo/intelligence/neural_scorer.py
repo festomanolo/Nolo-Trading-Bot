@@ -123,3 +123,12 @@ class AdaptiveNeuralScorer:
 
         for name in FEATURE_NAMES:
             if name in features:
+                x = max(-2.0, min(2.0, float(features[name])))
+                grad = error * x - l2 * self.weights[name]
+                self.weights[name] = max(-2.0, min(2.0, self.weights[name] + lr * grad))
+
+        self.bias = max(-1.5, min(1.5, self.bias + lr * 0.5 * error))
+        self.samples_seen += 1
+        correct = 1.0 if ((pred >= 0.5 and is_win) or (pred < 0.5 and not is_win)) else 0.0
+        self.ewma_accuracy = 0.95 * self.ewma_accuracy + 0.05 * correct
+        return pred
