@@ -31,3 +31,12 @@ class ArmStats:
     def mean_r(self) -> float:
         return self.cum_r / max(1.0, self.pulls)
 
+
+class RegimeContextualBandit:
+    """
+    Contextual Multi-Armed Bandit that learns optimal strategy weights per Market Regime.
+    Uses discounted statistics so non-stationary market shifts are adapted to quickly.
+    """
+
+    def __init__(
+        self,
