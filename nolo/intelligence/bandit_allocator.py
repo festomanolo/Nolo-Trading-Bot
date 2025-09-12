@@ -23,3 +23,11 @@ class ArmStats:
     pulls: float = 1.0
     cum_r: float = 0.5
 
+    @property
+    def expected_win_rate(self) -> float:
+        return self.alpha / max(1e-9, self.alpha + self.beta)
+
+    @property
+    def mean_r(self) -> float:
+        return self.cum_r / max(1.0, self.pulls)
+
