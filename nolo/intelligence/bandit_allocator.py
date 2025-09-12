@@ -40,3 +40,11 @@ class RegimeContextualBandit:
 
     def __init__(
         self,
+        strategy_names: Iterable[str],
+        exploration_c: float = 0.65,
+        discount_gamma: float = 0.97,
+    ) -> None:
+        self.strategy_names: List[str] = list(strategy_names)
+        self.exploration_c = exploration_c
+        self.discount_gamma = max(0.80, min(1.0, discount_gamma))
+        self._table: Dict[str, Dict[str, ArmStats]] = {}
