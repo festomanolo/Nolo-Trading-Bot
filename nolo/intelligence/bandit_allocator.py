@@ -65,3 +65,12 @@ class RegimeContextualBandit:
         )
         base_score = 0.6 * arm.expected_win_rate + 0.4 * max(0.0, min(1.0, (arm.mean_r + 1.0) / 3.0))
         raw = base_score + 0.25 * min(1.5, ucb_bonus)
+        return max(0.50, min(1.60, 0.50 + raw))
+
+    def record_outcome(
+        self,
+        regime: RegimeType,
+        strategy_name: str,
+        is_win: bool,
+        r_multiple: float,
+    ) -> None:
