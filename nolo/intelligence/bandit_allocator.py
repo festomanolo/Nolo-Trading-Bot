@@ -57,3 +57,11 @@ class RegimeContextualBandit:
         using Upper Confidence Bound (UCB1) + Bayesian win rate posterior.
         """
         regime_arms = self._table.setdefault(regime.value, {})
+        arm = regime_arms.setdefault(strategy_name, ArmStats())
+
+        total_pulls = sum(a.pulls for a in regime_arms.values())
+        ucb_bonus = self.exploration_c * math.sqrt(
+            math.log(max(2.0, total_pulls)) / max(1.0, arm.pulls)
+        )
+        base_score = 0.6 * arm.expected_win_rate + 0.4 * max(0.0, min(1.0, (arm.mean_r + 1.0) / 3.0))
+        raw = base_score + 0.25 * min(1.5, ucb_bonus)
