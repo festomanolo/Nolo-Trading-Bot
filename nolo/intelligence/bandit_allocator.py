@@ -48,3 +48,12 @@ class RegimeContextualBandit:
         self.exploration_c = exploration_c
         self.discount_gamma = max(0.80, min(1.0, discount_gamma))
         self._table: Dict[str, Dict[str, ArmStats]] = {}
+        for r in RegimeType:
+            self._table[r.value] = {s: ArmStats() for s in self.strategy_names}
+
+    def get_strategy_weight(self, regime: RegimeType, strategy_name: str) -> float:
+        """
+        Return a dynamic multiplier in [0.5, 1.6] for `strategy_name` in `regime`
+        using Upper Confidence Bound (UCB1) + Bayesian win rate posterior.
+        """
+        regime_arms = self._table.setdefault(regime.value, {})
