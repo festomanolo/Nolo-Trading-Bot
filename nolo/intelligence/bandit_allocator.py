@@ -74,3 +74,11 @@ class RegimeContextualBandit:
         is_win: bool,
         r_multiple: float,
     ) -> None:
+        """Update bandit arm posteriors with exponential discounting for non-stationarity."""
+        regime_arms = self._table.setdefault(regime.value, {})
+        arm = regime_arms.setdefault(strategy_name, ArmStats())
+
+        g = self.discount_gamma
+        arm.alpha = max(1.0, arm.alpha * g + (1.0 if is_win else 0.0))
+        arm.beta = max(1.0, arm.beta * g + (0.0 if is_win else 1.0))
+        arm.pulls = max(1.0, arm.pulls * g + 1.0)
