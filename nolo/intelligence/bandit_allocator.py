@@ -82,3 +82,12 @@ class RegimeContextualBandit:
         arm.alpha = max(1.0, arm.alpha * g + (1.0 if is_win else 0.0))
         arm.beta = max(1.0, arm.beta * g + (0.0 if is_win else 1.0))
         arm.pulls = max(1.0, arm.pulls * g + 1.0)
+        arm.cum_r = arm.cum_r * g + max(-2.0, min(5.0, r_multiple))
+
+    def summary(self) -> Dict[str, Dict[str, float]]:
+        out: Dict[str, Dict[str, float]] = {}
+        for r_key, arms in self._table.items():
+            out[r_key] = {
+                s_name: round(arm.expected_win_rate, 4) for s_name, arm in arms.items()
+            }
+        return out
