@@ -6,3 +6,11 @@ embargo engine supporting scheduled macro events (NFP, CPI, FOMC, ECB, BOE, BOJ,
 plus recurring intraday session fix/rollover volatility windows.
 """
 
+from __future__ import annotations
+
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from typing import List, Optional, Sequence
+
+
+@dataclass(frozen=True)
