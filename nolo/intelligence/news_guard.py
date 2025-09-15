@@ -14,3 +14,12 @@ from typing import List, Optional, Sequence
 
 
 @dataclass(frozen=True)
+class NewsEvent:
+    """Scheduled macroeconomic calendar event."""
+
+    title: str
+    currency: str
+    timestamp: datetime
+    impact: str = "HIGH"  # "HIGH", "MEDIUM", "LOW"
+    pre_embargo_minutes: int = 30
+    post_embargo_minutes: int = 30
