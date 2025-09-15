@@ -31,3 +31,12 @@ class EconomicCalendarGuard:
     def __init__(self, events: Optional[Sequence[NewsEvent]] = None) -> None:
         self._events: List[NewsEvent] = list(events) if events else []
 
+    def add_event(self, event: NewsEvent) -> None:
+        self._events.append(event)
+
+    def clear_events(self) -> None:
+        self._events.clear()
+
+    def is_embargoed(self, symbol: str, current_time: datetime) -> tuple[bool, Optional[str]]:
+        """
+        Check if `symbol` (e.g. 'EURUSD') is inside a pre-news or post-news embargo window,
