@@ -23,3 +23,11 @@ class NewsEvent:
     impact: str = "HIGH"  # "HIGH", "MEDIUM", "LOW"
     pre_embargo_minutes: int = 30
     post_embargo_minutes: int = 30
+
+
+class EconomicCalendarGuard:
+    """Evaluates whether trading on a given currency pair is restricted by macro news."""
+
+    def __init__(self, events: Optional[Sequence[NewsEvent]] = None) -> None:
+        self._events: List[NewsEvent] = list(events) if events else []
+
