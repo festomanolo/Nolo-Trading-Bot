@@ -56,3 +56,12 @@ class EconomicCalendarGuard:
             if start_win <= current_time <= end_win:
                 return True, f"{ev.currency} {ev.title} ({ev.impact})"
 
+        # Built-in structural rule: US Non-Farm Payrolls (First Friday of month 13:15-14:00 UTC)
+        if "USD" in (base, quote):
+            if current_time.weekday() == 4 and 1 <= current_time.day <= 7:
+                if current_time.hour == 13 and 15 <= current_time.minute <= 59:
+                    return True, "USD Non-Farm Payrolls (Automatic First-Friday Guard)"
+
+        return False, None
+
+    def risk_scaling_factor(self, symbol: str, current_time: datetime) -> float:
