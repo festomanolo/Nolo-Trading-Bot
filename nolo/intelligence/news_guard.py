@@ -40,3 +40,11 @@ class EconomicCalendarGuard:
     def is_embargoed(self, symbol: str, current_time: datetime) -> tuple[bool, Optional[str]]:
         """
         Check if `symbol` (e.g. 'EURUSD') is inside a pre-news or post-news embargo window,
+        or inside the First-Friday NFP release window (13:15 - 14:00 UTC).
+        """
+        clean = symbol.upper()[:6]
+        base = clean[:3]
+        quote = clean[3:6]
+
+        for ev in self._events:
+            if ev.impact.upper() not in ("HIGH", "CRITICAL"):
