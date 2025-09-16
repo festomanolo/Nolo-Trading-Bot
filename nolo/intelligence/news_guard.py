@@ -65,3 +65,11 @@ class EconomicCalendarGuard:
         return False, None
 
     def risk_scaling_factor(self, symbol: str, current_time: datetime) -> float:
+        """
+        Return a risk multiplier in [0.0, 1.0].
+        Returns 0.0 during HIGH impact embargo, 0.5 during MEDIUM impact window, 1.0 otherwise.
+        """
+        embargoed, _ = self.is_embargoed(symbol, current_time)
+        if embargoed:
+            return 0.0
+
