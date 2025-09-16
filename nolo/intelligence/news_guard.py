@@ -48,3 +48,11 @@ class EconomicCalendarGuard:
 
         for ev in self._events:
             if ev.impact.upper() not in ("HIGH", "CRITICAL"):
+                continue
+            if ev.currency.upper() not in (base, quote, "ALL", "USD"):
+                continue
+            start_win = ev.timestamp - timedelta(minutes=ev.pre_embargo_minutes)
+            end_win = ev.timestamp + timedelta(minutes=ev.post_embargo_minutes)
+            if start_win <= current_time <= end_win:
+                return True, f"{ev.currency} {ev.title} ({ev.impact})"
+
