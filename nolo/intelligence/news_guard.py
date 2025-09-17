@@ -73,3 +73,12 @@ class EconomicCalendarGuard:
         if embargoed:
             return 0.0
 
+        clean = symbol.upper()[:6]
+        base, quote = clean[:3], clean[3:6]
+        for ev in self._events:
+            if ev.impact.upper() == "MEDIUM" and ev.currency.upper() in (base, quote):
+                start_win = ev.timestamp - timedelta(minutes=15)
+                end_win = ev.timestamp + timedelta(minutes=15)
+                if start_win <= current_time <= end_win:
+                    return 0.5
+        return 1.0
