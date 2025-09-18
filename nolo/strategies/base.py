@@ -13,3 +13,11 @@ from nolo.types import Bar, OrderSide, RegimeState, Signal
 
 
 @dataclass
+class StrategyContext:
+    """Rich pre-computed market context passed to every strategy on each bar/tick."""
+
+    symbol: str
+    bars: Sequence[Bar]
+    htf_bars: Optional[Sequence[Bar]]
+    regime_state: RegimeState
+    smc_snapshot: SMCSnapshot
