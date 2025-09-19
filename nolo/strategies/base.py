@@ -21,3 +21,11 @@ class StrategyContext:
     htf_bars: Optional[Sequence[Bar]]
     regime_state: RegimeState
     smc_snapshot: SMCSnapshot
+    orderflow: OrderFlowSnapshot
+    currency_divergence: float
+    config: BotConfig
+
+
+class BaseStrategy(ABC):
+    """Base interface for specialized regime-aware trading strategies."""
+
