@@ -37,3 +37,11 @@ class BaseStrategy(ABC):
     @abstractmethod
     def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
         """Inspect market context and emit a trading Signal if institutional criteria are met."""
+
+    def compute_structural_stops(
+        self,
+        ctx: StrategyContext,
+        side: OrderSide,
+        entry_price: float,
+        atr: float,
+        atr_mult_override: Optional[float] = None,
