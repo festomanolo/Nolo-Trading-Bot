@@ -29,3 +29,11 @@ class StrategyContext:
 class BaseStrategy(ABC):
     """Base interface for specialized regime-aware trading strategies."""
 
+    name: str = "BaseStrategy"
+
+    def __init__(self, config: Optional[BotConfig] = None) -> None:
+        self.config = config or BotConfig()
+
+    @abstractmethod
+    def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
+        """Inspect market context and emit a trading Signal if institutional criteria are met."""
