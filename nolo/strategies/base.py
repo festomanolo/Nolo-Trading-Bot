@@ -45,3 +45,10 @@ class BaseStrategy(ABC):
         entry_price: float,
         atr: float,
         atr_mult_override: Optional[float] = None,
+    ) -> tuple[float, float]:
+        """
+        Calculate intelligent Stop Loss and Take Profit combining ATR and Smart Money Swing Structure.
+        """
+        spec = self.config.get_symbol_spec(ctx.symbol)
+        mult = atr_mult_override if atr_mult_override is not None else self.config.risk.atr_sl_multiplier
+        atr_dist = max(atr * mult, self.config.risk.min_sl_pips * spec.pip_size)
