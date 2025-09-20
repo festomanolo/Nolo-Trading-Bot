@@ -52,3 +52,11 @@ class BaseStrategy(ABC):
         spec = self.config.get_symbol_spec(ctx.symbol)
         mult = atr_mult_override if atr_mult_override is not None else self.config.risk.atr_sl_multiplier
         atr_dist = max(atr * mult, self.config.risk.min_sl_pips * spec.pip_size)
+
+        if self.config.use_market_structure:
+            if side == OrderSide.BUY:
+                swing_low = min(ctx.smc_snapshot.last_swing_low, ctx.smc_snapshot.nearest_support)
+                struct_dist = (entry_price - swing_low) * 1.12
+                if struct_dist >= atr * 1.4:
+                    atr_dist = (atr_dist * 0.5) + (struct_dist * 0.5)
+            else:
