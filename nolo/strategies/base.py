@@ -60,3 +60,11 @@ class BaseStrategy(ABC):
                 if struct_dist >= atr * 1.4:
                     atr_dist = (atr_dist * 0.5) + (struct_dist * 0.5)
             else:
+                swing_high = max(ctx.smc_snapshot.last_swing_high, ctx.smc_snapshot.nearest_resistance)
+                struct_dist = (swing_high - entry_price) * 1.12
+                if struct_dist >= atr * 1.4:
+                    atr_dist = (atr_dist * 0.5) + (struct_dist * 0.5)
+
+        min_dist = self.config.risk.min_sl_pips * spec.pip_size
+        max_dist = self.config.risk.max_sl_pips * spec.pip_size
+        sl_dist = max(min_dist, min(max_dist, atr_dist))
