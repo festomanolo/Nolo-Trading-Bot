@@ -68,3 +68,11 @@ class BaseStrategy(ABC):
         min_dist = self.config.risk.min_sl_pips * spec.pip_size
         max_dist = self.config.risk.max_sl_pips * spec.pip_size
         sl_dist = max(min_dist, min(max_dist, atr_dist))
+        tp_dist = sl_dist * self.config.risk.risk_reward_ratio
+
+        if side == OrderSide.BUY:
+            sl = round(entry_price - sl_dist, spec.digits)
+            tp = round(entry_price + tp_dist, spec.digits)
+        else:
+            sl = round(entry_price + sl_dist, spec.digits)
+            tp = round(entry_price - tp_dist, spec.digits)
