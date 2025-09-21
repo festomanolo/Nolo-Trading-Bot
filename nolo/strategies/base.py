@@ -84,3 +84,11 @@ class BaseStrategy(ABC):
         """
         if not self.config.use_multi_timeframe or not ctx.htf_bars or len(ctx.htf_bars) < 22:
             return 0.5
+        from nolo.quant.indicators import IndicatorEngine
+
+        htf_closes = [b.close for b in ctx.htf_bars]
+        fast = IndicatorEngine.ema(htf_closes, self.config.indicators.fast_ma_period)[-1]
+        slow = IndicatorEngine.ema(htf_closes, self.config.indicators.slow_ma_period)[-1]
+        if side == OrderSide.BUY:
+            return 1.0 if fast >= slow else -0.8
+        return 1.0 if fast <= slow else -0.8
