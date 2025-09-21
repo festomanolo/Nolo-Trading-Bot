@@ -76,3 +76,11 @@ class BaseStrategy(ABC):
         else:
             sl = round(entry_price + sl_dist, spec.digits)
             tp = round(entry_price - tp_dist, spec.digits)
+        return sl, tp
+
+    def check_htf_alignment(self, ctx: StrategyContext, side: OrderSide) -> float:
+        """
+        Return +1.0 if Higher Timeframe trend confirms `side`, -1.0 if opposed, 0.5 if no HTF data.
+        """
+        if not self.config.use_multi_timeframe or not ctx.htf_bars or len(ctx.htf_bars) < 22:
+            return 0.5
