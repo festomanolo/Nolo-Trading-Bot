@@ -14,3 +14,11 @@ from typing import Dict, List, Optional
 
 from nolo.quant.indicators import IndicatorEngine
 from nolo.strategies.base import BaseStrategy, StrategyContext
+from nolo.types import OrderSide, Signal
+
+
+class KalmanTrendStrategy(BaseStrategy):
+    """Institutional trend-following alpha engine."""
+
+    name = "KalmanTrendFollowing"
+
