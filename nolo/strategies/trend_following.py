@@ -30,3 +30,11 @@ class KalmanTrendStrategy(BaseStrategy):
         highs = [b.high for b in bars]
         lows = [b.low for b in bars]
         closes = [b.close for b in bars]
+        ind_cfg = self.config.indicators
+
+        fast_ma = IndicatorEngine.ema(closes, ind_cfg.fast_ma_period)
+        slow_ma = IndicatorEngine.ema(closes, ind_cfg.slow_ma_period)
+        rsi_vals = IndicatorEngine.rsi(closes, ind_cfg.rsi_period)
+        macd_main, macd_sig, macd_hist = IndicatorEngine.macd(
+            closes, ind_cfg.macd_fast, ind_cfg.macd_slow, ind_cfg.macd_signal
+        )
