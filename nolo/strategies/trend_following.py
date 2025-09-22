@@ -22,3 +22,11 @@ class KalmanTrendStrategy(BaseStrategy):
 
     name = "KalmanTrendFollowing"
 
+    def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
+        bars = ctx.bars
+        if len(bars) < 55:
+            return None
+
+        highs = [b.high for b in bars]
+        lows = [b.low for b in bars]
+        closes = [b.close for b in bars]
