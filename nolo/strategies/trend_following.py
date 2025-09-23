@@ -38,3 +38,11 @@ class KalmanTrendStrategy(BaseStrategy):
         macd_main, macd_sig, macd_hist = IndicatorEngine.macd(
             closes, ind_cfg.macd_fast, ind_cfg.macd_slow, ind_cfg.macd_signal
         )
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, ind_cfg.atr_period)
+        _, st_dir = IndicatorEngine.supertrend(
+            highs, lows, closes, ind_cfg.atr_period, ind_cfg.supertrend_mult
+        )
+        ichi = IndicatorEngine.ichimoku(
+            highs, lows, ind_cfg.ichimoku_tenkan, ind_cfg.ichimoku_kijun, ind_cfg.ichimoku_senkou_b
+        )
+
