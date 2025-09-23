@@ -62,3 +62,12 @@ class KalmanTrendStrategy(BaseStrategy):
             buy_core
             and ichi["tenkan"][-1] > ichi["kijun"][-1]
             and curr_close > ichi["senkou_a"][-1]
+            and curr_close > ichi["senkou_b"][-1]
+        )
+
+        sell_core = (
+            fast_ma[-1] < slow_ma[-1]
+            and fast_ma[-2] <= slow_ma[-2] * 1.0002
+            and macd_main[-1] < macd_sig[-1]
+            and st_dir[-1] < 0
+            and 28.0 < rsi_vals[-1] < 60.0
