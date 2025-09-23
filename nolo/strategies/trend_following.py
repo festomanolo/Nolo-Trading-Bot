@@ -46,3 +46,11 @@ class KalmanTrendStrategy(BaseStrategy):
             highs, lows, ind_cfg.ichimoku_tenkan, ind_cfg.ichimoku_kijun, ind_cfg.ichimoku_senkou_b
         )
 
+        curr_close = closes[-1]
+        curr_atr = max(1e-9, atr_vals[-1])
+
+        buy_core = (
+            fast_ma[-1] > slow_ma[-1]
+            and fast_ma[-2] >= slow_ma[-2] * 0.9998
+            and macd_main[-1] > macd_sig[-1]
+            and st_dir[-1] > 0
