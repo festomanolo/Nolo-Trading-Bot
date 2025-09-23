@@ -54,3 +54,11 @@ class KalmanTrendStrategy(BaseStrategy):
             and fast_ma[-2] >= slow_ma[-2] * 0.9998
             and macd_main[-1] > macd_sig[-1]
             and st_dir[-1] > 0
+            and 40.0 < rsi_vals[-1] < 72.0
+            and ctx.regime_state.kalman_slope >= 0.0
+        )
+
+        strong_buy = (
+            buy_core
+            and ichi["tenkan"][-1] > ichi["kijun"][-1]
+            and curr_close > ichi["senkou_a"][-1]
