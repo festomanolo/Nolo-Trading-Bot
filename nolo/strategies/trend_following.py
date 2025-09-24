@@ -87,3 +87,11 @@ class KalmanTrendStrategy(BaseStrategy):
         side = OrderSide.BUY if buy_core else OrderSide.SELL
         is_strong = strong_buy if side == OrderSide.BUY else strong_sell
         htf_score = self.check_htf_alignment(ctx, side)
+        if htf_score < 0.0:
+            return None
+
+        sl, tp = self.compute_structural_stops(ctx, side, curr_close, curr_atr)
+        dir_sign = 1.0 if side == OrderSide.BUY else -1.0
+
+        reasons: List[str] = [
+            f"EMA({ind_cfg.fast_ma_period})>{'above' if side == OrderSide.BUY else 'below'} EMA({ind_cfg.slow_ma_period})",
