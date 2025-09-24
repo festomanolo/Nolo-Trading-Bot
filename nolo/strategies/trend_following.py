@@ -79,3 +79,11 @@ class KalmanTrendStrategy(BaseStrategy):
             and ichi["tenkan"][-1] < ichi["kijun"][-1]
             and curr_close < ichi["senkou_a"][-1]
             and curr_close < ichi["senkou_b"][-1]
+        )
+
+        if not buy_core and not sell_core:
+            return None
+
+        side = OrderSide.BUY if buy_core else OrderSide.SELL
+        is_strong = strong_buy if side == OrderSide.BUY else strong_sell
+        htf_score = self.check_htf_alignment(ctx, side)
