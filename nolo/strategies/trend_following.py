@@ -103,3 +103,11 @@ class KalmanTrendStrategy(BaseStrategy):
 
         features: Dict[str, float] = {
             "trend_alignment": 1.0 if is_strong else 0.72,
+            "kalman_velocity": min(1.0, max(-1.0, dir_sign * ctx.regime_state.kalman_slope)),
+            "hurst_persistence": (ctx.regime_state.hurst_exponent - 0.5) * 2.0,
+            "efficiency_ratio": ctx.regime_state.efficiency_ratio,
+            "adx_strength": min(1.0, ctx.regime_state.adx / 50.0),
+            "rsi_confluence": 1.0 - abs(rsi_vals[-1] - 55.0 * (1 if side == OrderSide.BUY else 0.8)) / 50.0,
+            "macd_impulse": min(1.0, max(-1.0, dir_sign * macd_hist[-1] / curr_atr * 5.0)),
+            "smc_zone_confluence": 0.8 if (
+                (side == OrderSide.BUY and (ctx.smc_snapshot.in_bullish_ob or ctx.smc_snapshot.in_bullish_fvg))
