@@ -95,3 +95,11 @@ class KalmanTrendStrategy(BaseStrategy):
 
         reasons: List[str] = [
             f"EMA({ind_cfg.fast_ma_period})>{'above' if side == OrderSide.BUY else 'below'} EMA({ind_cfg.slow_ma_period})",
+            f"SuperTrend direction={'BULL' if side == OrderSide.BUY else 'BEAR'}",
+            f"Kalman slope={ctx.regime_state.kalman_slope:+.3f}",
+        ]
+        if is_strong:
+            reasons.append("Ichimoku Kumo Cloud & Tenkan/Kijun full alignment")
+
+        features: Dict[str, float] = {
+            "trend_alignment": 1.0 if is_strong else 0.72,
