@@ -111,3 +111,11 @@ class KalmanTrendStrategy(BaseStrategy):
             "macd_impulse": min(1.0, max(-1.0, dir_sign * macd_hist[-1] / curr_atr * 5.0)),
             "smc_zone_confluence": 0.8 if (
                 (side == OrderSide.BUY and (ctx.smc_snapshot.in_bullish_ob or ctx.smc_snapshot.in_bullish_fvg))
+                or (side == OrderSide.SELL and (ctx.smc_snapshot.in_bearish_ob or ctx.smc_snapshot.in_bearish_fvg))
+            ) else 0.35,
+            "orderflow_pressure": dir_sign * (ctx.orderflow.buy_pressure_ratio - 0.5) * 2.0,
+            "currency_divergence": min(1.0, max(-1.0, dir_sign * ctx.currency_divergence / 50.0)),
+            "htf_confirmation": htf_score,
+            "volatility_quality": 0.85 if 0.75 <= ctx.regime_state.atr_ratio <= 1.8 else 0.45,
+        }
+
