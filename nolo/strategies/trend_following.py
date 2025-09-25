@@ -119,3 +119,11 @@ class KalmanTrendStrategy(BaseStrategy):
             "volatility_quality": 0.85 if 0.75 <= ctx.regime_state.atr_ratio <= 1.8 else 0.45,
         }
 
+        risk_mult = self.config.risk.adaptive_risk_multiplier if is_strong else 1.0
+        return Signal(
+            symbol=ctx.symbol,
+            side=side,
+            entry_price=curr_close,
+            stop_loss=sl,
+            take_profit=tp,
+            confidence=0.82 if is_strong else 0.68,
