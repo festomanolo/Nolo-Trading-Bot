@@ -127,3 +127,12 @@ class KalmanTrendStrategy(BaseStrategy):
             stop_loss=sl,
             take_profit=tp,
             confidence=0.82 if is_strong else 0.68,
+            win_probability=0.65,
+            strategy_name=self.name,
+            regime=ctx.regime_state.regime,
+            risk_multiplier=risk_mult,
+            expected_rr=self.config.risk.risk_reward_ratio,
+            features=features,
+            reasons=reasons,
+            timestamp=bars[-1].timestamp,
+        )
