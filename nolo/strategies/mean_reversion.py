@@ -14,3 +14,11 @@ from nolo.quant.statistics import OrnsteinUhlenbeckEstimator
 from nolo.strategies.base import BaseStrategy, StrategyContext
 from nolo.types import OrderSide, Signal
 
+
+class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
+    """Statistical mean-reversion alpha engine for range-bound markets."""
+
+    name = "OrnsteinUhlenbeckRange"
+
+    def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
+        bars = ctx.bars
