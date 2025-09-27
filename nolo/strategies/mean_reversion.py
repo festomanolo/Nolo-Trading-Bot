@@ -30,3 +30,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
         closes = [b.close for b in bars]
         ind_cfg = self.config.indicators
 
+        bb_up, bb_mid, bb_low = IndicatorEngine.bollinger_bands(
+            closes, ind_cfg.bollinger_period, ind_cfg.bollinger_std
+        )
+        rsi_vals = IndicatorEngine.rsi(closes, ind_cfg.rsi_period)
+        stoch_k, stoch_d = IndicatorEngine.stochastic(
+            highs, lows, closes, ind_cfg.stoch_k, ind_cfg.stoch_d, ind_cfg.stoch_slowing
+        )
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, ind_cfg.atr_period)
