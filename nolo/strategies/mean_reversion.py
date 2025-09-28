@@ -54,3 +54,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
         # Sell extreme premium / upper band / positive OU Z-score
         sell_signal = (
             (curr_close >= bb_up[-1] * 0.9995 or ou_state.z_score >= 1.65)
+            and rsi_vals[-1] > 62.0
+            and stoch_k[-1] > 72.0
+            and stoch_k[-1] <= stoch_d[-1] * 1.05
+        )
+
+        if not buy_signal and not sell_signal:
+            return None
+
