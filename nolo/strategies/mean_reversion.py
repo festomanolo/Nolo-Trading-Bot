@@ -62,3 +62,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
         if not buy_signal and not sell_signal:
             return None
 
+        side = OrderSide.BUY if buy_signal else OrderSide.SELL
+        sl, tp = self.compute_structural_stops(ctx, side, curr_close, curr_atr, atr_mult_override=1.7)
+
+        # Target equilibrium mean if closer/more realistic than default RR
+        if side == OrderSide.BUY and bb_mid[-1] > curr_close + abs(curr_close - sl) * 1.3:
+            tp = round(bb_mid[-1], self.config.get_symbol_spec(ctx.symbol).digits)
+        elif side == OrderSide.SELL and bb_mid[-1] < curr_close - abs(curr_close - sl) * 1.3:
+            tp = round(bb_mid[-1], self.config.get_symbol_spec(ctx.symbol).digits)
