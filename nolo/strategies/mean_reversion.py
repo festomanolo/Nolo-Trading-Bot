@@ -38,3 +38,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
             highs, lows, closes, ind_cfg.stoch_k, ind_cfg.stoch_d, ind_cfg.stoch_slowing
         )
         atr_vals = IndicatorEngine.atr(highs, lows, closes, ind_cfg.atr_period)
+        ou_state = OrnsteinUhlenbeckEstimator.fit(closes, window=40)
+
+        curr_close = closes[-1]
+        curr_atr = max(1e-9, atr_vals[-1])
+
+        # Buy extreme discount / lower band / negative OU Z-score
+        buy_signal = (
+            (curr_close <= bb_low[-1] * 1.0005 or ou_state.z_score <= -1.65)
