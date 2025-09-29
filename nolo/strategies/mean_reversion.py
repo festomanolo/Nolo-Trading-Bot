@@ -70,3 +70,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
             tp = round(bb_mid[-1], self.config.get_symbol_spec(ctx.symbol).digits)
         elif side == OrderSide.SELL and bb_mid[-1] < curr_close - abs(curr_close - sl) * 1.3:
             tp = round(bb_mid[-1], self.config.get_symbol_spec(ctx.symbol).digits)
+
+        dir_sign = 1.0 if side == OrderSide.BUY else -1.0
+        features: Dict[str, float] = {
+            "trend_alignment": 0.45,
+            "kalman_velocity": 0.30,
+            "hurst_persistence": (0.55 - ctx.regime_state.hurst_exponent) * 2.0,
+            "efficiency_ratio": 1.0 - ctx.regime_state.efficiency_ratio,
+            "adx_strength": max(0.0, 1.0 - ctx.regime_state.adx / 40.0),
