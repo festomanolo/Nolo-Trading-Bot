@@ -78,3 +78,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
             "hurst_persistence": (0.55 - ctx.regime_state.hurst_exponent) * 2.0,
             "efficiency_ratio": 1.0 - ctx.regime_state.efficiency_ratio,
             "adx_strength": max(0.0, 1.0 - ctx.regime_state.adx / 40.0),
+            "rsi_confluence": min(1.0, abs(50.0 - rsi_vals[-1]) / 30.0),
+            "macd_impulse": 0.35,
+            "smc_zone_confluence": 0.85 if (
+                (side == OrderSide.BUY and (ctx.smc_snapshot.bullish_liquidity_sweep or ctx.smc_snapshot.dealing_range_position < 0.25))
+                or (side == OrderSide.SELL and (ctx.smc_snapshot.bearish_liquidity_sweep or ctx.smc_snapshot.dealing_range_position > 0.75))
+            ) else 0.45,
+            "orderflow_pressure": dir_sign * (ctx.orderflow.buy_pressure_ratio - 0.5) * 2.0,
+            "currency_divergence": min(1.0, max(-1.0, dir_sign * ctx.currency_divergence / 50.0)),
