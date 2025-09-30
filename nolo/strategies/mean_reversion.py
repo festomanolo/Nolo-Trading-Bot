@@ -102,3 +102,11 @@ class OrnsteinUhlenbeckRangeStrategy(BaseStrategy):
             regime=ctx.regime_state.regime,
             risk_multiplier=0.95,
             expected_rr=self.config.risk.risk_reward_ratio,
+            features=features,
+            reasons=[
+                f"OU Z-score={ou_state.z_score:+.2f} (half-life={ou_state.half_life_bars:.1f} bars)",
+                f"RSI={rsi_vals[-1]:.1f}, Stoch %K={stoch_k[-1]:.1f}",
+                "Bollinger Band exhaustion reversal",
+            ],
+            timestamp=bars[-1].timestamp,
+        )
