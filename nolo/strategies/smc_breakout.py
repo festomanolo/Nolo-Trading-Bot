@@ -13,3 +13,11 @@ from typing import Dict, List, Optional
 from nolo.quant.indicators import IndicatorEngine
 from nolo.strategies.base import BaseStrategy, StrategyContext
 from nolo.types import MarketStructureBias, OrderSide, Signal
+
+
+class SMCLiquidityBreakoutStrategy(BaseStrategy):
+    """Trades institutional breakouts (BOS) and liquidity stop-hunt sweeps."""
+
+    name = "SMCLiquidityBreakout"
+
+    def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
