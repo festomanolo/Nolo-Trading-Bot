@@ -29,3 +29,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
         lows = [b.low for b in bars]
         closes = [b.close for b in bars]
         ind_cfg = self.config.indicators
+
+        rsi_vals = IndicatorEngine.rsi(closes, ind_cfg.rsi_period)
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, ind_cfg.atr_period)
+
+        curr_close = closes[-1]
+        curr_atr = max(1e-9, atr_vals[-1])
+        recent_high = max(highs[-21:-1])
+        recent_low = min(lows[-21:-1])
