@@ -37,3 +37,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
         curr_atr = max(1e-9, atr_vals[-1])
         recent_high = max(highs[-21:-1])
         recent_low = min(lows[-21:-1])
+
+        vol_surge = ctx.orderflow.volume_surge_ratio >= 1.25 or bars[-1].volume > bars[-2].volume * 1.35
+        vol_confirm = ctx.regime_state.atr_ratio >= 1.05
+
+        # Setup A: Structural Breakout (BOS) with volume surge
+        bos_buy = (
+            curr_close > recent_high
+            and vol_surge
