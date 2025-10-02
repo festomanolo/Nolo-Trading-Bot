@@ -53,3 +53,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             and vol_surge
             and vol_confirm
             and rsi_vals[-1] < 48.0
+        )
+
+        # Setup B: Institutional Liquidity Sweep / Order Block Mitigation
+        smc_buy = (
+            ctx.smc_snapshot.bullish_liquidity_sweep
+            or (
+                (ctx.smc_snapshot.in_bullish_ob or ctx.smc_snapshot.in_bullish_fvg)
+                and ctx.smc_snapshot.structure_bias
