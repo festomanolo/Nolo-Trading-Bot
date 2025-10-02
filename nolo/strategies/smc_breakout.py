@@ -45,3 +45,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
         bos_buy = (
             curr_close > recent_high
             and vol_surge
+            and vol_confirm
+            and rsi_vals[-1] > 52.0
+        )
+        bos_sell = (
+            curr_close < recent_low
+            and vol_surge
+            and vol_confirm
+            and rsi_vals[-1] < 48.0
