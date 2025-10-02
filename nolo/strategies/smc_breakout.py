@@ -61,3 +61,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             or (
                 (ctx.smc_snapshot.in_bullish_ob or ctx.smc_snapshot.in_bullish_fvg)
                 and ctx.smc_snapshot.structure_bias
+                in (MarketStructureBias.BULLISH_BOS, MarketStructureBias.BULLISH_CHOCH)
+                and bars[-1].is_bullish
+            )
+        )
+        smc_sell = (
+            ctx.smc_snapshot.bearish_liquidity_sweep
+            or (
+                (ctx.smc_snapshot.in_bearish_ob or ctx.smc_snapshot.in_bearish_fvg)
