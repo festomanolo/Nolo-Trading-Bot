@@ -77,3 +77,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
 
         is_buy = bos_buy or smc_buy
         is_sell = bos_sell or smc_sell
+        if not is_buy and not is_sell:
+            return None
+
+        side = OrderSide.BUY if is_buy else OrderSide.SELL
+        htf_score = self.check_htf_alignment(ctx, side)
+        if htf_score < -0.5 and not (ctx.smc_snapshot.bullish_liquidity_sweep or ctx.smc_snapshot.bearish_liquidity_sweep):
+            return None
+
