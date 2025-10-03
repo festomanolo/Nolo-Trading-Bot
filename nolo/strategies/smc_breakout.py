@@ -85,3 +85,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
         if htf_score < -0.5 and not (ctx.smc_snapshot.bullish_liquidity_sweep or ctx.smc_snapshot.bearish_liquidity_sweep):
             return None
 
+        sl, tp = self.compute_structural_stops(ctx, side, curr_close, curr_atr, atr_mult_override=1.8)
+        dir_sign = 1.0 if side == OrderSide.BUY else -1.0
+
+        reasons: List[str] = []
+        if bos_buy or bos_sell:
+            reasons.append(f"20-bar Structural Breakout with volume surge ({ctx.orderflow.volume_surge_ratio:.2f}x)")
+        if smc_buy or smc_sell:
+            reasons.append(f"SMC Institutional Zone / Liquidity Sweep ({ctx.smc_snapshot.structure_bias.value})")
