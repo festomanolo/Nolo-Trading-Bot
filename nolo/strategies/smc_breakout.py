@@ -117,3 +117,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             take_profit=tp,
             confidence=0.78 if (smc_buy or smc_sell) else 0.70,
             win_probability=0.64,
+            strategy_name=self.name,
+            regime=ctx.regime_state.regime,
+            risk_multiplier=0.88 if (bos_buy or bos_sell) else 1.05,
+            expected_rr=self.config.risk.risk_reward_ratio,
+            features=features,
+            reasons=reasons,
+            timestamp=bars[-1].timestamp,
+        )
