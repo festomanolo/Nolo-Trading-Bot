@@ -101,3 +101,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             "efficiency_ratio": ctx.regime_state.efficiency_ratio,
             "adx_strength": min(1.0, ctx.regime_state.adx / 45.0),
             "rsi_confluence": 0.75,
+            "macd_impulse": 0.60,
+            "smc_zone_confluence": 0.92 if (smc_buy or smc_sell) else 0.65,
+            "orderflow_pressure": dir_sign * (ctx.orderflow.buy_pressure_ratio - 0.5) * 2.0,
+            "currency_divergence": min(1.0, max(-1.0, dir_sign * ctx.currency_divergence / 50.0)),
+            "htf_confirmation": max(0.0, htf_score),
+            "volatility_quality": min(1.0, ctx.regime_state.atr_ratio / 1.5),
+        }
+
