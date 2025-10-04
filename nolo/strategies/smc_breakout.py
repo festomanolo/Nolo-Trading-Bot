@@ -109,3 +109,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             "volatility_quality": min(1.0, ctx.regime_state.atr_ratio / 1.5),
         }
 
+        return Signal(
+            symbol=ctx.symbol,
+            side=side,
+            entry_price=curr_close,
+            stop_loss=sl,
+            take_profit=tp,
+            confidence=0.78 if (smc_buy or smc_sell) else 0.70,
+            win_probability=0.64,
