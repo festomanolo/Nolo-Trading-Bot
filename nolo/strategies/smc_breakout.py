@@ -93,3 +93,11 @@ class SMCLiquidityBreakoutStrategy(BaseStrategy):
             reasons.append(f"20-bar Structural Breakout with volume surge ({ctx.orderflow.volume_surge_ratio:.2f}x)")
         if smc_buy or smc_sell:
             reasons.append(f"SMC Institutional Zone / Liquidity Sweep ({ctx.smc_snapshot.structure_bias.value})")
+
+        features: Dict[str, float] = {
+            "trend_alignment": 0.70,
+            "kalman_velocity": min(1.0, max(-1.0, dir_sign * ctx.regime_state.kalman_slope)),
+            "hurst_persistence": (ctx.regime_state.hurst_exponent - 0.48) * 2.0,
+            "efficiency_ratio": ctx.regime_state.efficiency_ratio,
+            "adx_strength": min(1.0, ctx.regime_state.adx / 45.0),
+            "rsi_confluence": 0.75,
