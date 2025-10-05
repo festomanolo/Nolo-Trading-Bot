@@ -14,3 +14,12 @@ from typing import Dict, Optional
 from nolo.quant.indicators import IndicatorEngine
 from nolo.strategies.base import BaseStrategy, StrategyContext
 from nolo.types import OrderSide, Signal
+
+
+class VolatilitySqueezeMomentumStrategy(BaseStrategy):
+    """High-velocity momentum strategy for volatility expansion regimes."""
+
+    name = "VolatilitySqueezeMomentum"
+
+    def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
+        bars = ctx.bars
