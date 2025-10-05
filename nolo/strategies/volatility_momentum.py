@@ -6,3 +6,11 @@ Designed for explosive volatility regimes:
 - Confirms momentum acceleration via Fast EMA slope, RSI surge, and Order Flow CVD delta
 - Uses tighter dynamic stop-loss (1.5x ATR) to protect capital during high volatility
 """
+
+from __future__ import annotations
+
+from typing import Dict, Optional
+
+from nolo.quant.indicators import IndicatorEngine
+from nolo.strategies.base import BaseStrategy, StrategyContext
+from nolo.types import OrderSide, Signal
