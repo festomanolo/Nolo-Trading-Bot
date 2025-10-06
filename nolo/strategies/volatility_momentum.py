@@ -31,3 +31,12 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
         closes = [b.close for b in bars]
         ind_cfg = self.config.indicators
 
+        fast_ma = IndicatorEngine.ema(closes, ind_cfg.fast_ma_period)
+        rsi_vals = IndicatorEngine.rsi(closes, ind_cfg.rsi_period)
+        atr_vals = IndicatorEngine.atr(highs, lows, closes, ind_cfg.atr_period)
+        squeeze_on, squeeze_mom = IndicatorEngine.ttm_squeeze(
+            highs, lows, closes, ind_cfg.bollinger_period, ind_cfg.bollinger_std, ind_cfg.keltner_atr_mult
+        )
+
+        curr_atr = max(1e-9, atr_vals[-1])
+        expanding_vol = curr_atr > atr_vals[-6] * 1.22 or (any(squeeze_on[-5:-1]) and not squeeze_on[-1])
