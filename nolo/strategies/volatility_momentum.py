@@ -40,3 +40,11 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
 
         curr_atr = max(1e-9, atr_vals[-1])
         expanding_vol = curr_atr > atr_vals[-6] * 1.22 or (any(squeeze_on[-5:-1]) and not squeeze_on[-1])
+        if not expanding_vol and self.config.use_volatility_filter:
+            return None
+
+        buy_signal = (
+            fast_ma[-1] > fast_ma[-2] > fast_ma[-3]
+            and rsi_vals[-1] > 52.0
+            and (rsi_vals[-1] >= rsi_vals[-2] + 3.5 or squeeze_mom[-1] > squeeze_mom[-2] > 0)
+            and ctx.orderflow.buy_pressure_ratio >= 0.52
