@@ -48,3 +48,11 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
             and rsi_vals[-1] > 52.0
             and (rsi_vals[-1] >= rsi_vals[-2] + 3.5 or squeeze_mom[-1] > squeeze_mom[-2] > 0)
             and ctx.orderflow.buy_pressure_ratio >= 0.52
+        )
+
+        sell_signal = (
+            fast_ma[-1] < fast_ma[-2] < fast_ma[-3]
+            and rsi_vals[-1] < 48.0
+            and (rsi_vals[-1] <= rsi_vals[-2] - 3.5 or squeeze_mom[-1] < squeeze_mom[-2] < 0)
+            and ctx.orderflow.buy_pressure_ratio <= 0.48
+        )
