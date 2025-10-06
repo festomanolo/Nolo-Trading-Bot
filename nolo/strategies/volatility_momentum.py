@@ -23,3 +23,11 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
 
     def evaluate(self, ctx: StrategyContext) -> Optional[Signal]:
         bars = ctx.bars
+        if len(bars) < 30:
+            return None
+
+        highs = [b.high for b in bars]
+        lows = [b.low for b in bars]
+        closes = [b.close for b in bars]
+        ind_cfg = self.config.indicators
+
