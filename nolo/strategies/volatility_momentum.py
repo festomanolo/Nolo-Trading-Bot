@@ -73,3 +73,12 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
             "adx_strength": min(1.0, ctx.regime_state.adx / 45.0),
             "rsi_confluence": 0.72,
             "macd_impulse": min(1.0, max(-1.0, dir_sign * squeeze_mom[-1] / curr_atr)),
+            "smc_zone_confluence": 0.55,
+            "orderflow_pressure": dir_sign * (ctx.orderflow.buy_pressure_ratio - 0.5) * 2.0,
+            "currency_divergence": min(1.0, max(-1.0, dir_sign * ctx.currency_divergence / 50.0)),
+            "htf_confirmation": max(0.0, self.check_htf_alignment(ctx, side)),
+            "volatility_quality": 0.80,
+        }
+
+        return Signal(
+            symbol=ctx.symbol,
