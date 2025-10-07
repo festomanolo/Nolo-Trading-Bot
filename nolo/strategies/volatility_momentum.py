@@ -65,3 +65,11 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
         sl, tp = self.compute_structural_stops(ctx, side, curr_close, curr_atr, atr_mult_override=1.5)
         dir_sign = 1.0 if side == OrderSide.BUY else -1.0
 
+        features: Dict[str, float] = {
+            "trend_alignment": 0.68,
+            "kalman_velocity": min(1.0, max(-1.0, dir_sign * ctx.regime_state.kalman_slope)),
+            "hurst_persistence": (ctx.regime_state.hurst_exponent - 0.5) * 2.0,
+            "efficiency_ratio": ctx.regime_state.efficiency_ratio,
+            "adx_strength": min(1.0, ctx.regime_state.adx / 45.0),
+            "rsi_confluence": 0.72,
+            "macd_impulse": min(1.0, max(-1.0, dir_sign * squeeze_mom[-1] / curr_atr)),
