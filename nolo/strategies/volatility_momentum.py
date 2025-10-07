@@ -56,3 +56,12 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
             and (rsi_vals[-1] <= rsi_vals[-2] - 3.5 or squeeze_mom[-1] < squeeze_mom[-2] < 0)
             and ctx.orderflow.buy_pressure_ratio <= 0.48
         )
+
+        if not buy_signal and not sell_signal:
+            return None
+
+        side = OrderSide.BUY if buy_signal else OrderSide.SELL
+        curr_close = closes[-1]
+        sl, tp = self.compute_structural_stops(ctx, side, curr_close, curr_atr, atr_mult_override=1.5)
+        dir_sign = 1.0 if side == OrderSide.BUY else -1.0
+
