@@ -82,3 +82,11 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
 
         return Signal(
             symbol=ctx.symbol,
+            side=side,
+            entry_price=curr_close,
+            stop_loss=sl,
+            take_profit=tp,
+            confidence=0.72,
+            win_probability=0.61,
+            strategy_name=self.name,
+            regime=ctx.regime_state.regime,
