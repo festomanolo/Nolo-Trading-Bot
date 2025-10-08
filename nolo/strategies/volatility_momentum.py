@@ -90,3 +90,12 @@ class VolatilitySqueezeMomentumStrategy(BaseStrategy):
             win_probability=0.61,
             strategy_name=self.name,
             regime=ctx.regime_state.regime,
+            risk_multiplier=0.75,  # Conservative multiplier during high volatility
+            expected_rr=self.config.risk.risk_reward_ratio,
+            features=features,
+            reasons=[
+                f"Volatility expansion ATR ratio={ctx.regime_state.atr_ratio:.2f}",
+                f"Momentum burst RSI={rsi_vals[-1]:.1f}, OrderFlow BuyRatio={ctx.orderflow.buy_pressure_ratio:.2f}",
+            ],
+            timestamp=bars[-1].timestamp,
+        )
