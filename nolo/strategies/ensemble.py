@@ -30,3 +30,12 @@ from nolo.types import Bar, RegimeType, Signal, StrategyMode
 
 
 class IntelligentEnsembleOrchestrator:
+    """Master AI/Quant orchestrator selecting and scoring the best signal for current market conditions."""
+
+    def __init__(self, config: Optional[BotConfig] = None) -> None:
+        self.config = config or BotConfig()
+        self.regime_engine = AdaptiveRegimeEngine(self.config.indicators)
+        self.smc_analyzer = SmartMoneyAnalyzer(self.config.smc)
+        self.orderflow_analyzer = OrderFlowAnalyzer()
+        self.currency_meter = CurrencyStrengthMeter()
+        self.neural_scorer = AdaptiveNeuralScorer(self.config.ml)
