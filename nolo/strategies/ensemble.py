@@ -47,3 +47,11 @@ class IntelligentEnsembleOrchestrator:
 
         self.all_strategies: List[BaseStrategy] = [
             self.trend_strategy,
+            self.range_strategy,
+            self.breakout_strategy,
+            self.volatility_strategy,
+        ]
+        self.bandit = RegimeContextualBandit(
+            strategy_names=[s.name for s in self.all_strategies],
+            exploration_c=self.config.ml.bandit_exploration_c,
+            discount_gamma=self.config.ml.bandit_discount_gamma,
