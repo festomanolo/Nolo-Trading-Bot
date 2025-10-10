@@ -39,3 +39,11 @@ class IntelligentEnsembleOrchestrator:
         self.orderflow_analyzer = OrderFlowAnalyzer()
         self.currency_meter = CurrencyStrengthMeter()
         self.neural_scorer = AdaptiveNeuralScorer(self.config.ml)
+
+        self.trend_strategy = KalmanTrendStrategy(self.config)
+        self.range_strategy = OrnsteinUhlenbeckRangeStrategy(self.config)
+        self.breakout_strategy = SMCLiquidityBreakoutStrategy(self.config)
+        self.volatility_strategy = VolatilitySqueezeMomentumStrategy(self.config)
+
+        self.all_strategies: List[BaseStrategy] = [
+            self.trend_strategy,
