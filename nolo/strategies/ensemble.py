@@ -55,3 +55,11 @@ class IntelligentEnsembleOrchestrator:
             strategy_names=[s.name for s in self.all_strategies],
             exploration_c=self.config.ml.bandit_exploration_c,
             discount_gamma=self.config.ml.bandit_discount_gamma,
+        )
+
+    def generate_signal(
+        self,
+        symbol: str,
+        bars: Sequence[Bar],
+        htf_bars: Optional[Sequence[Bar]] = None,
+    ) -> Optional[Signal]:
