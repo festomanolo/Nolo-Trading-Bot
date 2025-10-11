@@ -88,3 +88,11 @@ class IntelligentEnsembleOrchestrator:
             bars=bars,
             htf_bars=htf_bars,
             regime_state=regime_state,
+            smc_snapshot=smc_snap,
+            orderflow=oflow_snap,
+            currency_divergence=curr_div,
+            config=self.config,
+        )
+
+        candidates = self._candidate_strategies(regime_state.regime)
+        scored_signals: List[Signal] = []
