@@ -80,3 +80,11 @@ class IntelligentEnsembleOrchestrator:
         curr_div = (
             self.currency_meter.pair_divergence_score(symbol)
             if self.config.use_currency_strength
+            else 0.0
+        )
+
+        ctx = StrategyContext(
+            symbol=symbol,
+            bars=bars,
+            htf_bars=htf_bars,
+            regime_state=regime_state,
