@@ -63,3 +63,12 @@ class IntelligentEnsembleOrchestrator:
         bars: Sequence[Bar],
         htf_bars: Optional[Sequence[Bar]] = None,
     ) -> Optional[Signal]:
+        """Run full quantitative & ML pipeline on `bars` and emit the highest-edge calibrated Signal."""
+        if len(bars) < 35:
+            return None
+
+        spec = self.config.get_symbol_spec(symbol)
+        closes = [b.close for b in bars]
+        self.currency_meter.update_pair_prices(symbol, closes)
+
+        regime_state = self.regime_engine.detect(bars)
