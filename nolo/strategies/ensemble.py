@@ -72,3 +72,11 @@ class IntelligentEnsembleOrchestrator:
         self.currency_meter.update_pair_prices(symbol, closes)
 
         regime_state = self.regime_engine.detect(bars)
+        smc_snap = self.smc_analyzer.analyze(bars)
+        oflow_snap = self.orderflow_analyzer.analyze_bars(bars, max_spread_points=spec.max_spread_points)
+        if oflow_snap.spread_shock:
+            return None
+
+        curr_div = (
+            self.currency_meter.pair_divergence_score(symbol)
+            if self.config.use_currency_strength
