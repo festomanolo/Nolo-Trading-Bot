@@ -105,3 +105,11 @@ class IntelligentEnsembleOrchestrator:
             # Enforce directional alignment in strong trending/breakout regimes
             if regime_state.regime in (RegimeType.TREND_UP, RegimeType.BREAKOUT_UP) and sig.side.value != "BUY":
                 continue
+            if regime_state.regime in (RegimeType.TREND_DOWN, RegimeType.BREAKOUT_DOWN) and sig.side.value != "SELL":
+                continue
+
+            # Score with Online Neural Network
+            win_prob = self.neural_scorer.predict_probability(sig.features)
+            if win_prob < self.config.ml.min_signal_probability:
+                continue
+
