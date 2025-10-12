@@ -96,3 +96,12 @@ class IntelligentEnsembleOrchestrator:
 
         candidates = self._candidate_strategies(regime_state.regime)
         scored_signals: List[Signal] = []
+
+        for strat in candidates:
+            sig = strat.evaluate(ctx)
+            if sig is None:
+                continue
+
+            # Enforce directional alignment in strong trending/breakout regimes
+            if regime_state.regime in (RegimeType.TREND_UP, RegimeType.BREAKOUT_UP) and sig.side.value != "BUY":
+                continue
