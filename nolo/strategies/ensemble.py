@@ -113,3 +113,11 @@ class IntelligentEnsembleOrchestrator:
             if win_prob < self.config.ml.min_signal_probability:
                 continue
 
+            bandit_weight = self.bandit.get_strategy_weight(regime_state.regime, strat.name)
+            # Primary regime strategy receives a 15% structural alignment bonus
+            primary_bonus = 1.15 if strat is candidates[0] else 1.0
+            combined_conf = min(0.99, (sig.confidence * 0.55 + win_prob * 0.45) * primary_bonus)
+
+            risk_mult = sig.risk_multiplier * bandit_weight
+            if win_prob >= self.config.ml.strong_signal_probability:
+                risk_mult *= 1.15
