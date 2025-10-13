@@ -129,3 +129,12 @@ class IntelligentEnsembleOrchestrator:
 
         if not scored_signals:
             return None
+
+        # Select candidate with highest expected edge (win_probability * confidence * risk_multiplier)
+        scored_signals.sort(
+            key=lambda s: s.win_probability * s.confidence * s.risk_multiplier,
+            reverse=True,
+        )
+        return scored_signals[0]
+
+    def _candidate_strategies(self, regime: RegimeType) -> List[BaseStrategy]:
