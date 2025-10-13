@@ -146,3 +146,11 @@ class IntelligentEnsembleOrchestrator:
         if mode == StrategyMode.BREAKOUT or mode == StrategyMode.SMC_INSTITUTIONAL:
             return [self.breakout_strategy]
         if mode == StrategyMode.VOLATILITY:
+            return [self.volatility_strategy]
+
+        # ADAPTIVE mode routes primary + secondary complementary strategies
+        if regime in (RegimeType.TREND_UP, RegimeType.TREND_DOWN):
+            return [self.trend_strategy, self.breakout_strategy]
+        if regime == RegimeType.RANGE:
+            return [self.range_strategy, self.breakout_strategy]
+        if regime in (RegimeType.BREAKOUT_UP, RegimeType.BREAKOUT_DOWN, RegimeType.LIQUIDITY_SWEEP):
