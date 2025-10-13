@@ -138,3 +138,11 @@ class IntelligentEnsembleOrchestrator:
         return scored_signals[0]
 
     def _candidate_strategies(self, regime: RegimeType) -> List[BaseStrategy]:
+        mode = self.config.strategy_mode
+        if mode == StrategyMode.TREND_FOLLOWING:
+            return [self.trend_strategy]
+        if mode == StrategyMode.RANGE_TRADING:
+            return [self.range_strategy]
+        if mode == StrategyMode.BREAKOUT or mode == StrategyMode.SMC_INSTITUTIONAL:
+            return [self.breakout_strategy]
+        if mode == StrategyMode.VOLATILITY:
