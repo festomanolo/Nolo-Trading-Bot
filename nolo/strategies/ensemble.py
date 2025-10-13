@@ -121,3 +121,11 @@ class IntelligentEnsembleOrchestrator:
             risk_mult = sig.risk_multiplier * bandit_weight
             if win_prob >= self.config.ml.strong_signal_probability:
                 risk_mult *= 1.15
+
+            sig.win_probability = round(win_prob, 4)
+            sig.confidence = round(combined_conf, 4)
+            sig.risk_multiplier = round(max(0.4, min(1.8, risk_mult)), 4)
+            scored_signals.append(sig)
+
+        if not scored_signals:
+            return None
