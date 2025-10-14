@@ -162,3 +162,12 @@ class IntelligentEnsembleOrchestrator:
     def record_trade_feedback(
         self,
         regime: RegimeType,
+        strategy_name: str,
+        features: dict[str, float],
+        is_win: bool,
+        r_multiple: float,
+    ) -> None:
+        """Feed realized trade outcome back to both the Neural Scorer and Contextual Bandit."""
+        if features:
+            self.neural_scorer.partial_fit(features, is_win=is_win, r_multiple=r_multiple)
+        self.bandit.record_outcome(regime, strategy_name, is_win=is_win, r_multiple=r_multiple)
