@@ -154,3 +154,11 @@ class IntelligentEnsembleOrchestrator:
         if regime == RegimeType.RANGE:
             return [self.range_strategy, self.breakout_strategy]
         if regime in (RegimeType.BREAKOUT_UP, RegimeType.BREAKOUT_DOWN, RegimeType.LIQUIDITY_SWEEP):
+            return [self.breakout_strategy, self.trend_strategy]
+        if regime == RegimeType.VOLATILITY:
+            return [self.volatility_strategy, self.breakout_strategy]
+        return [self.trend_strategy, self.breakout_strategy, self.range_strategy]
+
+    def record_trade_feedback(
+        self,
+        regime: RegimeType,
