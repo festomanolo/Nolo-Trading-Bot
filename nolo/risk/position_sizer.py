@@ -6,3 +6,11 @@ Implements:
 - KELLY: Classic Kelly Criterion f* = (p - (1 - p) / b) * kelly_fraction
 - ADAPTIVE_KELLY: Streak-adjusted Kelly Criterion
 - BAYESIAN_KELLY: Beta-Bernoulli posterior win-rate blended with Neural Scorer probability
+- ANTI_MARTINGALE: Geometric win-streak expansion with immediate loss-streak contraction
+- VOLATILITY_PARITY: Inverse ATR volatility risk parity
+"""
+
+from __future__ import annotations
+
+import math
+from typing import Optional
