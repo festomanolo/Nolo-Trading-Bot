@@ -14,3 +14,11 @@ from __future__ import annotations
 
 import math
 from typing import Optional
+
+from nolo.config import BotConfig, SymbolSpec
+from nolo.types import RiskModel
+
+
+class PositionSizer:
+    """Computes normalized lot size and effective risk percentage for trade signals."""
+
