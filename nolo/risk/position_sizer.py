@@ -47,3 +47,12 @@ class PositionSizer:
             self.winning_trades += 1
             self.consecutive_wins += 1
             self.consecutive_losses = 0
+            self._beta_alpha = self._beta_alpha * 0.98 + 1.0
+            self._beta_beta = self._beta_beta * 0.98
+        else:
+            self.consecutive_losses += 1
+            self.consecutive_wins = 0
+            self._beta_alpha = self._beta_alpha * 0.98
+            self._beta_beta = self._beta_beta * 0.98 + 1.0
+
+    def compute_effective_risk_pct(
