@@ -39,3 +39,11 @@ class PositionSizer:
 
     @property
     def bayesian_win_rate(self) -> float:
+        return self._beta_alpha / max(1e-9, self._beta_alpha + self._beta_beta)
+
+    def update_stats(self, is_win: bool) -> None:
+        self.total_trades += 1
+        if is_win:
+            self.winning_trades += 1
+            self.consecutive_wins += 1
+            self.consecutive_losses = 0
