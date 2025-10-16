@@ -31,3 +31,11 @@ class PositionSizer:
         self._beta_alpha: float = 6.0  # Prior equivalent to 6 wins / 4 losses (60% prior)
         self._beta_beta: float = 4.0
 
+    @property
+    def historical_win_rate(self) -> float:
+        if self.total_trades == 0:
+            return 0.55
+        return self.winning_trades / self.total_trades
+
+    @property
+    def bayesian_win_rate(self) -> float:
