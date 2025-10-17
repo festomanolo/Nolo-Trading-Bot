@@ -80,3 +80,12 @@ class PositionSizer:
         elif model == RiskModel.ADAPTIVE_KELLY:
             w = self.historical_win_rate
             streak_factor = 1.0
+            if self.consecutive_losses >= 2:
+                streak_factor = 0.55
+            elif self.consecutive_wins >= 2:
+                streak_factor = 1.20
+            kelly = max(0.002, (w - (1.0 - w) / rr) * rcfg.kelly_fraction * streak_factor)
+            eff_pct = min(base * 1.6, kelly * 100.0 * 0.15)
+
+        elif model == RiskModel.BAYESIAN_KELLY:
+            # Blend Bayesian posterior win rate with real-time Neural Scorer win probability
