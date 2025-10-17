@@ -56,3 +56,11 @@ class PositionSizer:
             self._beta_beta = self._beta_beta * 0.98 + 1.0
 
     def compute_effective_risk_pct(
+        self,
+        base_risk_pct: Optional[float] = None,
+        signal_win_prob: float = 0.60,
+        risk_multiplier: float = 1.0,
+        equity_throttle: float = 1.0,
+        atr_ratio: float = 1.0,
+    ) -> float:
+        """Calculate effective risk % of account balance after model and streak adjustments."""
