@@ -72,3 +72,11 @@ class PositionSizer:
         if model == RiskModel.FIXED:
             eff_pct = base
 
+        elif model == RiskModel.KELLY:
+            w = self.historical_win_rate
+            kelly = max(0.002, (w - (1.0 - w) / rr) * rcfg.kelly_fraction)
+            eff_pct = min(base * 1.5, kelly * 100.0 * 0.15)
+
+        elif model == RiskModel.ADAPTIVE_KELLY:
+            w = self.historical_win_rate
+            streak_factor = 1.0
