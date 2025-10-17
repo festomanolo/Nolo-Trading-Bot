@@ -64,3 +64,11 @@ class PositionSizer:
         atr_ratio: float = 1.0,
     ) -> float:
         """Calculate effective risk % of account balance after model and streak adjustments."""
+        rcfg = self.config.risk
+        base = base_risk_pct if base_risk_pct is not None else rcfg.max_risk_pct
+        rr = max(0.5, rcfg.risk_reward_ratio)
+        model = rcfg.risk_model
+
+        if model == RiskModel.FIXED:
+            eff_pct = base
+
