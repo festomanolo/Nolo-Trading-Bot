@@ -105,3 +105,12 @@ class PositionSizer:
                 eff_pct = base * min(1.6, 1.0 + 0.18 * self.consecutive_wins)
 
         elif model == RiskModel.VOLATILITY_PARITY:
+            vol_scale = 1.0 / max(0.5, min(2.0, atr_ratio))
+            eff_pct = base * vol_scale
+
+        else:
+            eff_pct = base
+
+        eff_pct *= max(0.3, min(1.8, risk_multiplier)) * max(0.25, min(1.0, equity_throttle))
+        return max(rcfg.min_risk_pct, min(rcfg.max_risk_pct * 1.8, eff_pct))
+
