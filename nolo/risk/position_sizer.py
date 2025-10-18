@@ -97,3 +97,11 @@ class PositionSizer:
                 streak_factor = min(1.30, 1.0 + 0.08 * self.consecutive_wins)
             kelly_edge = max(0.002, (blended_w - (1.0 - blended_w) / rr) * rcfg.kelly_fraction)
             eff_pct = base * (0.65 + kelly_edge * 4.0) * streak_factor
+
+        elif model == RiskModel.ANTI_MARTINGALE:
+            if self.consecutive_losses > 0:
+                eff_pct = base * 0.75
+            else:
+                eff_pct = base * min(1.6, 1.0 + 0.18 * self.consecutive_wins)
+
+        elif model == RiskModel.VOLATILITY_PARITY:
