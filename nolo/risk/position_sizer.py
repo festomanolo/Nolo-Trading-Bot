@@ -122,3 +122,11 @@ class PositionSizer:
         effective_risk_pct: float,
     ) -> float:
         """
+        Convert effective risk % and price stop-loss distance into broker-normalized lot size.
+        Fixes the MQL4/5 tickValue/tickSize formula across 2, 3, and 5 digit symbols.
+        """
+        if account_balance <= 0 or stop_loss_distance_price <= 0:
+            return spec.min_lot
+
+        risk_amount = account_balance * (effective_risk_pct / 100.0)
+        ticks_in_sl = stop_loss_distance_price / max(1e-9, spec.tick_size)
