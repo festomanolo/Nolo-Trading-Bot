@@ -114,3 +114,11 @@ class PositionSizer:
         eff_pct *= max(0.3, min(1.8, risk_multiplier)) * max(0.25, min(1.0, equity_throttle))
         return max(rcfg.min_risk_pct, min(rcfg.max_risk_pct * 1.8, eff_pct))
 
+    def calculate_lots(
+        self,
+        account_balance: float,
+        stop_loss_distance_price: float,
+        spec: SymbolSpec,
+        effective_risk_pct: float,
+    ) -> float:
+        """
