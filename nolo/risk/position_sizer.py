@@ -130,3 +130,12 @@ class PositionSizer:
 
         risk_amount = account_balance * (effective_risk_pct / 100.0)
         ticks_in_sl = stop_loss_distance_price / max(1e-9, spec.tick_size)
+        loss_per_lot = ticks_in_sl * max(1e-6, spec.tick_value)
+
+        if loss_per_lot <= 1e-9:
+            return spec.min_lot
+
+        raw_lots = risk_amount / loss_per_lot
+        steps = math.floor(raw_lots / max(1e-6, spec.lot_step))
+        normalized = round(steps * spec.lot_step, 2)
+        return max(spec.min_lot, min(spec.max_lot, normalized))
