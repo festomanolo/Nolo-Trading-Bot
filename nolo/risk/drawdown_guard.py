@@ -14,3 +14,12 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import List, Optional
 
+from nolo.config import BotConfig
+
+
+class DrawdownAndPropGuard:
+    """Monitors account equity, daily high-water marks, and session safety rules."""
+
+    def __init__(self, initial_balance: float, config: Optional[BotConfig] = None) -> None:
+        self.config = config or BotConfig()
+        self.initial_balance = max(1.0, float(initial_balance))
