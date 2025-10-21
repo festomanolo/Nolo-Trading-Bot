@@ -48,3 +48,12 @@ class DrawdownAndPropGuard:
             self.equity_history = self.equity_history[-200:]
         if new_balance > self.high_water_mark:
             self.high_water_mark = new_balance
+
+    def daily_drawdown_pct(self, current_equity: float) -> float:
+        if self.day_start_balance <= 0:
+            return 0.0
+        drop = self.day_start_balance - current_equity
+        return max(0.0, (drop / self.day_start_balance) * 100.0)
+
+    def total_drawdown_pct(self, current_equity: float) -> float:
+        if self.high_water_mark <= 0:
