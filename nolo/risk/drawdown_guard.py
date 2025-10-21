@@ -31,3 +31,12 @@ class DrawdownAndPropGuard:
 
     def on_new_bar_or_tick(self, current_time: datetime, balance: float, equity: float) -> None:
         today = current_time.date()
+        if self.current_day != today:
+            self.current_day = today
+            self.day_start_balance = max(balance, equity)
+            self.trades_today = 0
+
+        if equity > self.high_water_mark:
+            self.high_water_mark = equity
+
+    def record_trade_opened(self) -> None:
