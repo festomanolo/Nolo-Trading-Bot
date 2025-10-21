@@ -40,3 +40,11 @@ class DrawdownAndPropGuard:
             self.high_water_mark = equity
 
     def record_trade_opened(self) -> None:
+        self.trades_today += 1
+
+    def record_trade_closed(self, new_balance: float) -> None:
+        self.equity_history.append(new_balance)
+        if len(self.equity_history) > 200:
+            self.equity_history = self.equity_history[-200:]
+        if new_balance > self.high_water_mark:
+            self.high_water_mark = new_balance
