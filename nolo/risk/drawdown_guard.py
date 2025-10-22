@@ -65,3 +65,12 @@ class DrawdownAndPropGuard:
         self,
         current_time: datetime,
         balance: float,
+        equity: float,
+        bars_since_last_trade: int,
+    ) -> tuple[bool, Optional[str]]:
+        """Verify all Prop-Firm and risk circuit breakers before allowing trade entry."""
+        self.on_new_bar_or_tick(current_time, balance, equity)
+        rcfg = self.config.risk
+
+        daily_dd = self.daily_drawdown_pct(equity)
+        if daily_dd >= rcfg.max_daily_drawdown_pct:
