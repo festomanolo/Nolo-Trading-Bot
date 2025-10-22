@@ -74,3 +74,11 @@ class DrawdownAndPropGuard:
 
         daily_dd = self.daily_drawdown_pct(equity)
         if daily_dd >= rcfg.max_daily_drawdown_pct:
+            return False, f"Daily drawdown limit reached ({daily_dd:.2f}% >= {rcfg.max_daily_drawdown_pct:.2f}%)"
+
+        total_dd = self.total_drawdown_pct(equity)
+        if total_dd >= rcfg.max_total_drawdown_pct:
+            return False, f"Max trailing drawdown reached ({total_dd:.2f}% >= {rcfg.max_total_drawdown_pct:.2f}%)"
+
+        if self.trades_today >= rcfg.max_daily_trades:
+            return False, f"Max daily trades reached ({self.trades_today}/{rcfg.max_daily_trades})"
