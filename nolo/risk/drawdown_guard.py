@@ -57,3 +57,11 @@ class DrawdownAndPropGuard:
 
     def total_drawdown_pct(self, current_equity: float) -> float:
         if self.high_water_mark <= 0:
+            return 0.0
+        drop = self.high_water_mark - current_equity
+        return max(0.0, (drop / self.high_water_mark) * 100.0)
+
+    def can_open_trade(
+        self,
+        current_time: datetime,
+        balance: float,
