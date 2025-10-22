@@ -82,3 +82,12 @@ class DrawdownAndPropGuard:
 
         if self.trades_today >= rcfg.max_daily_trades:
             return False, f"Max daily trades reached ({self.trades_today}/{rcfg.max_daily_trades})"
+
+        if bars_since_last_trade < rcfg.min_bars_between_trades:
+            return False, f"Cooldown active ({bars_since_last_trade} < {rcfg.min_bars_between_trades} bars)"
+
+        if current_time.hour in self.config.avoid_rollover_hours:
+            return False, f"Rollover spread protection active (hour={current_time.hour}:00)"
+
+        return True, None
+
