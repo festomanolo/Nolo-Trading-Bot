@@ -99,3 +99,12 @@ class DrawdownAndPropGuard:
         if not self.config.risk.use_equity_curve_filter:
             return 1.0
         w = self.config.risk.equity_ma_period
+        if len(self.equity_history) < 5:
+            return 1.0
+        sub = self.equity_history[-min(len(self.equity_history), w) :]
+        sma_eq = sum(sub) / len(sub)
+        if current_equity < sma_eq * 0.992:
+            return 0.60
+        if current_equity > sma_eq * 1.01:
+            return 1.05
+        return 1.0
