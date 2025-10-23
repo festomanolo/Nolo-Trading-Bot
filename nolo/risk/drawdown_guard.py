@@ -91,3 +91,11 @@ class DrawdownAndPropGuard:
 
         return True, None
 
+    def equity_curve_throttle(self, current_equity: float) -> float:
+        """
+        Return 1.0 when equity is above its moving average, or 0.60 when below
+        to automatically dampen drawdowns during losing streaks.
+        """
+        if not self.config.risk.use_equity_curve_filter:
+            return 1.0
+        w = self.config.risk.equity_ma_period
