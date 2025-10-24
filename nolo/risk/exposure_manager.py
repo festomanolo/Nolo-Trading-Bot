@@ -30,3 +30,11 @@ class CurrencyExposureManager:
     ) -> Dict[str, float]:
         """Compute signed net lot exposure per currency (+lots = net long, -lots = net short)."""
         exposure: Dict[str, float] = {}
+        for pos in open_positions:
+            clean = pos.symbol.upper()[:6]
+            if len(clean) < 6:
+                continue
+            base, quote = clean[:3], clean[3:6]
+            sign = 1.0 if pos.side == OrderSide.BUY else -1.0
+            exposure[base] = exposure.get(base, 0.0) + sign * pos.current_lots
+            exposure[quote] = exposure.get(quote, 0.0) - sign * pos.current_lots
