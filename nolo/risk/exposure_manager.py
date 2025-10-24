@@ -14,3 +14,11 @@ from nolo.microstructure.currency_strength import CurrencyStrengthMeter
 from nolo.types import OrderSide, Position
 
 
+class CurrencyExposureManager:
+    """Enforces net single-currency risk limits and pairwise correlation caps."""
+
+    def __init__(
+        self,
+        config: Optional[BotConfig] = None,
+        currency_meter: Optional[CurrencyStrengthMeter] = None,
+    ) -> None:
