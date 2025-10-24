@@ -22,3 +22,11 @@ class CurrencyExposureManager:
         config: Optional[BotConfig] = None,
         currency_meter: Optional[CurrencyStrengthMeter] = None,
     ) -> None:
+        self.config = config or BotConfig()
+        self.currency_meter = currency_meter or CurrencyStrengthMeter()
+
+    def compute_net_currency_exposure_lots(
+        self, open_positions: Sequence[Position]
+    ) -> Dict[str, float]:
+        """Compute signed net lot exposure per currency (+lots = net long, -lots = net short)."""
+        exposure: Dict[str, float] = {}
