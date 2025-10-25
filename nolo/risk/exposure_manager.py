@@ -38,3 +38,11 @@ class CurrencyExposureManager:
             sign = 1.0 if pos.side == OrderSide.BUY else -1.0
             exposure[base] = exposure.get(base, 0.0) + sign * pos.current_lots
             exposure[quote] = exposure.get(quote, 0.0) - sign * pos.current_lots
+        return exposure
+
+    def can_add_position(
+        self,
+        symbol: str,
+        side: OrderSide,
+        open_positions: Sequence[Position],
+    ) -> tuple[bool, Optional[str]]:
