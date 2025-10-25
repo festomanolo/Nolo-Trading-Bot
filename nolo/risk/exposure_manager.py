@@ -54,3 +54,11 @@ class CurrencyExposureManager:
         """
         rcfg = self.config.risk
         if len(open_positions) >= rcfg.max_open_positions:
+            return False, f"Max open positions reached ({len(open_positions)}/{rcfg.max_open_positions})"
+
+        clean = symbol.upper()[:6]
+        for pos in open_positions:
+            if pos.symbol.upper()[:6] == clean:
+                return False, f"Position already open on {clean}"
+
+            corr = self.currency_meter.correlation_between(clean, pos.symbol)
