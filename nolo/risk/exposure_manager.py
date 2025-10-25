@@ -46,3 +46,11 @@ class CurrencyExposureManager:
         side: OrderSide,
         open_positions: Sequence[Position],
     ) -> tuple[bool, Optional[str]]:
+        """
+        Check:
+        1. Max total open positions
+        2. Duplicate position on the same symbol
+        3. Excessive correlation with existing open positions in the same directional bet
+        """
+        rcfg = self.config.risk
+        if len(open_positions) >= rcfg.max_open_positions:
