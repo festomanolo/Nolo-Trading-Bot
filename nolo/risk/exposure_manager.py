@@ -62,3 +62,12 @@ class CurrencyExposureManager:
                 return False, f"Position already open on {clean}"
 
             corr = self.currency_meter.correlation_between(clean, pos.symbol)
+            same_side = pos.side == side
+            effective_corr = corr if same_side else -corr
+            if effective_corr >= rcfg.max_pair_correlation:
+                return (
+                    False,
+                    f"Correlated exposure blocked: {clean} ({side.value}) vs {pos.symbol} ({pos.side.value}) corr={effective_corr:.2f}",
+                )
+
+        return True, None
