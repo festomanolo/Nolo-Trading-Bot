@@ -14,3 +14,11 @@ from typing import List, Optional
 
 from nolo.config import BotConfig
 from nolo.types import OrderSide, Position
+
+
+@dataclass
+class TradeAction:
+    """Instruction produced by SmartTradeManager for an open position."""
+
+    ticket: int
+    action_type: str  # "MODIFY_SL", "PARTIAL_CLOSE", "FULL_CLOSE"
