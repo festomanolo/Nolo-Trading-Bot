@@ -22,3 +22,11 @@ class TradeAction:
 
     ticket: int
     action_type: str  # "MODIFY_SL", "PARTIAL_CLOSE", "FULL_CLOSE"
+    new_sl: Optional[float] = None
+    close_lots: float = 0.0
+    reason: str = ""
+
+
+class SmartTradeManager:
+    """Evaluates open positions on every tick/bar for break-even, partial TP, and adaptive trailing stops."""
+
