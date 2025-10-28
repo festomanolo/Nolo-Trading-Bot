@@ -55,3 +55,11 @@ class SmartTradeManager:
 
         pips_profit = pos.unrealized_pips(spec.pip_size)
         initial_risk_price = max(spec.pip_size * 5.0, abs(pos.open_price - pos.initial_stop_loss))
+        current_r = (
+            (mark_price - pos.open_price) / initial_risk_price
+            if pos.side == OrderSide.BUY
+            else (pos.open_price - mark_price) / initial_risk_price
+        )
+
+        # 1. Partial Take-Profit Scaling (TP1 & TP2)
+        if rcfg.use_partial_tp and pos.current_lots >= spec.min_lot * 2:
