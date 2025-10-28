@@ -39,3 +39,11 @@ class SmartTradeManager:
         bid: float,
         ask: float,
         current_atr: float,
+        reference_atr: float,
+    ) -> List[TradeAction]:
+        """Inspect a single open position and return any required modification/close actions."""
+        actions: List[TradeAction] = []
+        spec = self.config.get_symbol_spec(pos.symbol)
+        rcfg = self.config.risk
+
+        mark_price = bid if pos.side == OrderSide.BUY else ask
