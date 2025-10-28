@@ -30,3 +30,12 @@ class TradeAction:
 class SmartTradeManager:
     """Evaluates open positions on every tick/bar for break-even, partial TP, and adaptive trailing stops."""
 
+    def __init__(self, config: Optional[BotConfig] = None) -> None:
+        self.config = config or BotConfig()
+
+    def manage_position(
+        self,
+        pos: Position,
+        bid: float,
+        ask: float,
+        current_atr: float,
