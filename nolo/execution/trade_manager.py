@@ -47,3 +47,11 @@ class SmartTradeManager:
         rcfg = self.config.risk
 
         mark_price = bid if pos.side == OrderSide.BUY else ask
+        pos.current_price = mark_price
+        if pos.side == OrderSide.BUY:
+            pos.highest_favorable_price = max(pos.highest_favorable_price, mark_price)
+        else:
+            pos.lowest_favorable_price = min(pos.lowest_favorable_price, mark_price)
+
+        pips_profit = pos.unrealized_pips(spec.pip_size)
+        initial_risk_price = max(spec.pip_size * 5.0, abs(pos.open_price - pos.initial_stop_loss))
