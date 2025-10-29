@@ -80,3 +80,11 @@ class SmartTradeManager:
                     )
 
             elif pos.tp1_hit and not pos.tp2_hit and current_r >= rcfg.tp2_r_multiple:
+                close_qty = round(
+                    max(spec.min_lot, round((pos.initial_lots * rcfg.tp2_close_fraction) / spec.lot_step) * spec.lot_step),
+                    2,
+                )
+                if close_qty < pos.current_lots:
+                    pos.tp2_hit = True
+                    actions.append(
+                        TradeAction(
