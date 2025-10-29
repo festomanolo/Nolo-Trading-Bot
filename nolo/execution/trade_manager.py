@@ -63,3 +63,11 @@ class SmartTradeManager:
 
         # 1. Partial Take-Profit Scaling (TP1 & TP2)
         if rcfg.use_partial_tp and pos.current_lots >= spec.min_lot * 2:
+            if not pos.tp1_hit and current_r >= rcfg.tp1_r_multiple:
+                close_qty = round(
+                    max(spec.min_lot, round((pos.initial_lots * rcfg.tp1_close_fraction) / spec.lot_step) * spec.lot_step),
+                    2,
+                )
+                if close_qty < pos.current_lots:
+                    pos.tp1_hit = True
+                    actions.append(
