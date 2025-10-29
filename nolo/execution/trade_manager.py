@@ -71,3 +71,12 @@ class SmartTradeManager:
                 if close_qty < pos.current_lots:
                     pos.tp1_hit = True
                     actions.append(
+                        TradeAction(
+                            ticket=pos.ticket,
+                            action_type="PARTIAL_CLOSE",
+                            close_lots=close_qty,
+                            reason=f"TP1 reached ({current_r:.2f}R >= {rcfg.tp1_r_multiple:.2f}R)",
+                        )
+                    )
+
+            elif pos.tp1_hit and not pos.tp2_hit and current_r >= rcfg.tp2_r_multiple:
