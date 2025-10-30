@@ -96,3 +96,11 @@ class SmartTradeManager:
                     )
 
         # 2. Break-Even Stop Lock (triggered once 1.0R / TP1 is reached so normal pullbacks don't clip early)
+        if rcfg.use_breakeven and (current_r >= 1.0 or pips_profit >= rcfg.breakeven_trigger_pips * 1.4):
+            if pos.side == OrderSide.BUY:
+                be_sl = round(pos.open_price + rcfg.breakeven_plus_pips * spec.pip_size, spec.digits)
+                if pos.stop_loss == 0.0 or pos.stop_loss < pos.open_price:
+                    pos.breakeven_applied = True
+                    actions.append(
+                        TradeAction(
+                            ticket=pos.ticket,
