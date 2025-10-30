@@ -88,3 +88,11 @@ class SmartTradeManager:
                     pos.tp2_hit = True
                     actions.append(
                         TradeAction(
+                            ticket=pos.ticket,
+                            action_type="PARTIAL_CLOSE",
+                            close_lots=close_qty,
+                            reason=f"TP2 reached ({current_r:.2f}R >= {rcfg.tp2_r_multiple:.2f}R)",
+                        )
+                    )
+
+        # 2. Break-Even Stop Lock (triggered once 1.0R / TP1 is reached so normal pullbacks don't clip early)
