@@ -137,3 +137,11 @@ class SmartTradeManager:
                         TradeAction(
                             ticket=pos.ticket,
                             action_type="MODIFY_SL",
+                            new_sl=candidate_sl,
+                            reason=f"Smart ATR Trailing Stop ({adaptive_trail_pips:.1f} pips)",
+                        )
+                    )
+            else:
+                candidate_sl = round(mark_price + trail_dist_price, spec.digits)
+                if pos.stop_loss == 0.0 or candidate_sl < pos.stop_loss - spec.point * 2:
+                    actions.append(
