@@ -129,3 +129,11 @@ class SmartTradeManager:
                 atr_scale = max(0.65, min(1.50, current_atr / reference_atr))
             adaptive_trail_pips = rcfg.trailing_distance_pips * atr_scale
             trail_dist_price = adaptive_trail_pips * spec.pip_size
+
+            if pos.side == OrderSide.BUY:
+                candidate_sl = round(mark_price - trail_dist_price, spec.digits)
+                if pos.stop_loss == 0.0 or candidate_sl > pos.stop_loss + spec.point * 2:
+                    actions.append(
+                        TradeAction(
+                            ticket=pos.ticket,
+                            action_type="MODIFY_SL",
