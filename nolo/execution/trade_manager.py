@@ -112,3 +112,12 @@ class SmartTradeManager:
             else:
                 be_sl = round(pos.open_price - rcfg.breakeven_plus_pips * spec.pip_size, spec.digits)
                 if pos.stop_loss == 0.0 or pos.stop_loss > pos.open_price:
+                    pos.breakeven_applied = True
+                    actions.append(
+                        TradeAction(
+                            ticket=pos.ticket,
+                            action_type="MODIFY_SL",
+                            new_sl=be_sl,
+                            reason=f"Break-even lock (+{rcfg.breakeven_plus_pips} pips)",
+                        )
+                    )
