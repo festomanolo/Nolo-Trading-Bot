@@ -121,3 +121,11 @@ class SmartTradeManager:
                             reason=f"Break-even lock (+{rcfg.breakeven_plus_pips} pips)",
                         )
                     )
+
+        # 3. Volatility-Adaptive Smart Trailing Stop
+        if rcfg.use_smart_trailing and pips_profit >= rcfg.trailing_activation_pips:
+            atr_scale = 1.0
+            if reference_atr > 1e-9 and current_atr > 0:
+                atr_scale = max(0.65, min(1.50, current_atr / reference_atr))
+            adaptive_trail_pips = rcfg.trailing_distance_pips * atr_scale
+            trail_dist_price = adaptive_trail_pips * spec.pip_size
