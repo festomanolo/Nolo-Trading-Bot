@@ -30,3 +30,12 @@ class RealisticECNBroker:
 
     @property
     def equity(self) -> float:
+        unrealized = 0.0
+        for pos in self.open_positions.values():
+            spec = self.config.get_symbol_spec(pos.symbol)
+            unrealized += pos.unrealized_pnl(spec.contract_size)
+        return self.balance + unrealized
+
+    def open_order(
+        self,
+        signal: Signal,
