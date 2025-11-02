@@ -22,3 +22,11 @@ class RealisticECNBroker:
 
     def __init__(self, initial_balance: float = 10000.0, config: Optional[BotConfig] = None) -> None:
         self.config = config or BotConfig()
+        self.initial_balance = float(initial_balance)
+        self.balance = float(initial_balance)
+        self.open_positions: Dict[int, Position] = {}
+        self.closed_trades: List[TradeRecord] = []
+        self._next_ticket: int = 1001
+
+    @property
+    def equity(self) -> float:
