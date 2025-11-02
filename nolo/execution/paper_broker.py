@@ -39,3 +39,11 @@ class RealisticECNBroker:
     def open_order(
         self,
         signal: Signal,
+        lots: float,
+        timestamp: datetime,
+        spread_points: float = 8.0,
+    ) -> Position:
+        spec = self.config.get_symbol_spec(signal.symbol)
+        half_spread = (spread_points * spec.point) * 0.5
+        fill_price = (
+            round(signal.entry_price + half_spread, spec.digits)
