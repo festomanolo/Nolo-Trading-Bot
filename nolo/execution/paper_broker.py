@@ -47,3 +47,11 @@ class RealisticECNBroker:
         half_spread = (spread_points * spec.point) * 0.5
         fill_price = (
             round(signal.entry_price + half_spread, spec.digits)
+            if signal.side == OrderSide.BUY
+            else round(signal.entry_price - half_spread, spec.digits)
+        )
+        commission = round(lots * spec.commission_per_lot, 2)
+        self.balance -= commission
+
+        ticket = self._next_ticket
+        self._next_ticket += 1
