@@ -55,3 +55,11 @@ class RealisticECNBroker:
 
         ticket = self._next_ticket
         self._next_ticket += 1
+
+        pos = Position(
+            ticket=ticket,
+            symbol=signal.symbol,
+            side=signal.side,
+            open_time=timestamp,
+            open_price=fill_price,
+            current_price=fill_price,
