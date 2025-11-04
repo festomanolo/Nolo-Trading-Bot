@@ -80,3 +80,11 @@ class RealisticECNBroker:
     def modify_stop_loss(self, ticket: int, new_sl: float) -> bool:
         pos = self.open_positions.get(ticket)
         if pos is None:
+            return False
+        pos.stop_loss = new_sl
+        return True
+
+    def partial_close(
+        self,
+        ticket: int,
+        close_lots: float,
