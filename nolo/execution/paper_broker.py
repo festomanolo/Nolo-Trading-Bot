@@ -88,3 +88,11 @@ class RealisticECNBroker:
         self,
         ticket: int,
         close_lots: float,
+        close_price: float,
+        timestamp: datetime,
+        reason: str = "PARTIAL_TP",
+    ) -> Optional[ float ]:
+        pos = self.open_positions.get(ticket)
+        if pos is None or close_lots <= 0 or close_lots >= pos.current_lots:
+            return None
+
