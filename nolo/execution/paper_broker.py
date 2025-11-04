@@ -96,3 +96,11 @@ class RealisticECNBroker:
         if pos is None or close_lots <= 0 or close_lots >= pos.current_lots:
             return None
 
+        spec = self.config.get_symbol_spec(pos.symbol)
+        price_diff = (
+            (close_price - pos.open_price)
+            if pos.side == OrderSide.BUY
+            else (pos.open_price - close_price)
+        )
+        gross_pnl = price_diff * close_lots * spec.contract_size
+        pos.current_lots = round(pos.current_lots - close_lots, 2)
