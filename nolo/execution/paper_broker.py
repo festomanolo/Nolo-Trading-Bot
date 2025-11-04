@@ -71,3 +71,12 @@ class RealisticECNBroker:
             strategy_name=signal.strategy_name,
             regime=signal.regime,
             magic=self.config.magic_number,
+            commission_paid=commission,
+            entry_features=dict(signal.features),
+        )
+        self.open_positions[ticket] = pos
+        return pos
+
+    def modify_stop_loss(self, ticket: int, new_sl: float) -> bool:
+        pos = self.open_positions.get(ticket)
+        if pos is None:
