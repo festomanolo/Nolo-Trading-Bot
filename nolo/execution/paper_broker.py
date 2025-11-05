@@ -121,3 +121,11 @@ class RealisticECNBroker:
 
         spec = self.config.get_symbol_spec(pos.symbol)
         price_diff = (
+            (close_price - pos.open_price)
+            if pos.side == OrderSide.BUY
+            else (pos.open_price - close_price)
+        )
+        remaining_gross = price_diff * pos.current_lots * spec.contract_size
+        self.balance += remaining_gross
+
+        total_gross = pos.realized_pnl + remaining_gross
