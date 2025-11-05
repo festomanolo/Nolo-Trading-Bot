@@ -112,3 +112,12 @@ class RealisticECNBroker:
         self,
         ticket: int,
         close_price: float,
+        timestamp: datetime,
+        exit_reason: str = "SIGNAL_EXIT",
+    ) -> Optional[TradeRecord]:
+        pos = self.open_positions.pop(ticket, None)
+        if pos is None:
+            return None
+
+        spec = self.config.get_symbol_spec(pos.symbol)
+        price_diff = (
