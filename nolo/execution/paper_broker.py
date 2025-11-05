@@ -104,3 +104,11 @@ class RealisticECNBroker:
         )
         gross_pnl = price_diff * close_lots * spec.contract_size
         pos.current_lots = round(pos.current_lots - close_lots, 2)
+        pos.realized_pnl += gross_pnl
+        self.balance += gross_pnl
+        return gross_pnl
+
+    def close_position(
+        self,
+        ticket: int,
+        close_price: float,
