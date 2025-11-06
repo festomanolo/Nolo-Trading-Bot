@@ -137,3 +137,11 @@ class RealisticECNBroker:
         r_mult = net_pnl / max(1.0, init_risk_currency)
 
         record = TradeRecord(
+            ticket=pos.ticket,
+            symbol=pos.symbol,
+            side=pos.side,
+            open_time=pos.open_time,
+            close_time=timestamp,
+            open_price=pos.open_price,
+            close_price=close_price,
+            lots=pos.initial_lots,
