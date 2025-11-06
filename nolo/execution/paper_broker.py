@@ -153,3 +153,12 @@ class RealisticECNBroker:
             r_multiple=round(r_mult, 3),
             strategy_name=pos.strategy_name,
             regime=pos.regime,
+            exit_reason=exit_reason,
+            entry_features=pos.entry_features,
+        )
+        self.closed_trades.append(record)
+        return record
+
+    def process_bar_stops(self, bar: Bar) -> List[TradeRecord]:
+        """Check intrabar High/Low against active Stop-Loss and Take-Profit levels."""
+        closed: List[TradeRecord] = []
