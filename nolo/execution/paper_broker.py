@@ -129,3 +129,11 @@ class RealisticECNBroker:
         self.balance += remaining_gross
 
         total_gross = pos.realized_pnl + remaining_gross
+        net_pnl = total_gross - pos.commission_paid + pos.swap_accumulated
+        pips = price_diff / max(1e-9, spec.pip_size)
+
+        init_risk_price = max(spec.pip_size * 5.0, abs(pos.open_price - pos.initial_stop_loss))
+        init_risk_currency = (init_risk_price / spec.tick_size) * spec.tick_value * pos.initial_lots
+        r_mult = net_pnl / max(1.0, init_risk_currency)
+
+        record = TradeRecord(
