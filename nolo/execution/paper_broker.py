@@ -170,3 +170,11 @@ class RealisticECNBroker:
                 continue
 
             if pos.side == OrderSide.BUY:
+                bid_low = bar.low - half_spread
+                bid_high = bar.high - half_spread
+                if pos.stop_loss > 0 and bid_low <= pos.stop_loss:
+                    rec = self.close_position(
+                        ticket,
+                        pos.stop_loss,
+                        bar.timestamp,
+                        "TRAILING_STOP" if pos.breakeven_applied else "STOP_LOSS",
