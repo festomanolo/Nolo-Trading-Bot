@@ -162,3 +162,11 @@ class RealisticECNBroker:
     def process_bar_stops(self, bar: Bar) -> List[TradeRecord]:
         """Check intrabar High/Low against active Stop-Loss and Take-Profit levels."""
         closed: List[TradeRecord] = []
+        spec = self.config.get_symbol_spec(bar.symbol)
+        half_spread = (bar.spread_points * spec.point) * 0.5
+
+        for ticket, pos in list(self.open_positions.items()):
+            if pos.symbol != bar.symbol:
+                continue
+
+            if pos.side == OrderSide.BUY:
