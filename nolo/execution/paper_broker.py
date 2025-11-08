@@ -186,3 +186,11 @@ class RealisticECNBroker:
                     if rec:
                         closed.append(rec)
             else:
+                ask_high = bar.high + half_spread
+                ask_low = bar.low + half_spread
+                if pos.stop_loss > 0 and ask_high >= pos.stop_loss:
+                    rec = self.close_position(
+                        ticket,
+                        pos.stop_loss,
+                        bar.timestamp,
+                        "TRAILING_STOP" if pos.breakeven_applied else "STOP_LOSS",
