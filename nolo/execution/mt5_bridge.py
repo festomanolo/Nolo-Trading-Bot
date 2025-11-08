@@ -6,3 +6,11 @@ Allows Nolo Bot's Python AI/Quant Engine to:
 2. Exchange real-time JSON signal & regime telemetry with `AdvancedAdaptiveTrader.mq5` / `trice.mq5`
    via MT5's `Common/Files/nolo_bridge/` shared memory / file pipe.
 """
+
+from __future__ import annotations
+
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, Optional
+
