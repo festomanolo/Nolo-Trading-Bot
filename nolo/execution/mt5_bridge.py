@@ -23,3 +23,11 @@ class MT5RealTimeBridge:
     def __init__(self, bridge_dir: Optional[Path] = None) -> None:
         self.bridge_dir = bridge_dir or Path("/volumes/macx/projects/nolobo/.mt5_bridge")
         self.bridge_dir.mkdir(parents=True, exist_ok=True)
+        self._mt5_module: Any = None
+        self._connected: bool = False
+
+    def try_connect_native_mt5(self) -> bool:
+        """Attempt to initialize native MetaTrader5 Python binding if installed."""
+        try:
+            import MetaTrader5 as mt5  # type: ignore
+
