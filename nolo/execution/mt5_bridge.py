@@ -14,3 +14,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from nolo.types import RegimeState, Signal
+
+
+class MT5RealTimeBridge:
+    """Bi-directional real-time bridge between Python Quant Engine and MetaTrader 5 EA."""
+
+    def __init__(self, bridge_dir: Optional[Path] = None) -> None:
+        self.bridge_dir = bridge_dir or Path("/volumes/macx/projects/nolobo/.mt5_bridge")
+        self.bridge_dir.mkdir(parents=True, exist_ok=True)
