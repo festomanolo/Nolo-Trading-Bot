@@ -31,3 +31,11 @@ class MT5RealTimeBridge:
         try:
             import MetaTrader5 as mt5  # type: ignore
 
+            if mt5.initialize():
+                self._mt5_module = mt5
+                self._connected = True
+                return True
+        except Exception:
+            self._connected = False
+        return False
+
