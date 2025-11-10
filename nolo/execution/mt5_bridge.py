@@ -56,3 +56,11 @@ class MT5RealTimeBridge:
                 "confidence": round(regime_state.confidence, 4),
                 "hurst": round(regime_state.hurst_exponent, 4),
                 "efficiency_ratio": round(regime_state.efficiency_ratio, 4),
+                "adx": round(regime_state.adx, 2),
+                "kalman_slope": round(regime_state.kalman_slope, 4),
+                "entropy": round(regime_state.entropy, 4),
+                "structure_bias": regime_state.structure_bias.value,
+            },
+            "signal": None,
+        }
+        if signal is not None:
