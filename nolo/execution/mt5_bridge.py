@@ -48,3 +48,11 @@ class MT5RealTimeBridge:
         """
         Write atomic real-time telemetry packet consumed by `ZeroMQBridge.mqh` in MT5.
         """
+        payload: Dict[str, Any] = {
+            "symbol": symbol,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "regime": {
+                "name": regime_state.regime.value,
+                "confidence": round(regime_state.confidence, 4),
+                "hurst": round(regime_state.hurst_exponent, 4),
+                "efficiency_ratio": round(regime_state.efficiency_ratio, 4),
