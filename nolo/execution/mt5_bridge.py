@@ -39,3 +39,12 @@ class MT5RealTimeBridge:
             self._connected = False
         return False
 
+    def publish_signal_and_regime(
+        self,
+        symbol: str,
+        regime_state: RegimeState,
+        signal: Optional[Signal] = None,
+    ) -> Path:
+        """
+        Write atomic real-time telemetry packet consumed by `ZeroMQBridge.mqh` in MT5.
+        """
