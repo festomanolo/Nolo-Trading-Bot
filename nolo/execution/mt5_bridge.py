@@ -73,3 +73,11 @@ class MT5RealTimeBridge:
                 "win_probability": signal.win_probability,
                 "risk_multiplier": signal.risk_multiplier,
                 "strategy_name": signal.strategy_name,
+                "reasons": signal.reasons,
+            }
+
+        target = self.bridge_dir / f"{symbol.upper()[:6]}_telemetry.json"
+        tmp = self.bridge_dir / f".{symbol.upper()[:6]}_telemetry.tmp"
+        tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        tmp.replace(target)
+        return target
