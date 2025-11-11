@@ -64,3 +64,12 @@ class MT5RealTimeBridge:
             "signal": None,
         }
         if signal is not None:
+            payload["signal"] = {
+                "side": signal.side.value,
+                "entry_price": signal.entry_price,
+                "stop_loss": signal.stop_loss,
+                "take_profit": signal.take_profit,
+                "confidence": signal.confidence,
+                "win_probability": signal.win_probability,
+                "risk_multiplier": signal.risk_multiplier,
+                "strategy_name": signal.strategy_name,
