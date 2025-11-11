@@ -81,3 +81,12 @@ class MT5RealTimeBridge:
         tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         tmp.replace(target)
         return target
+
+    def read_latest_telemetry(self, symbol: str) -> Optional[Dict[str, Any]]:
+        target = self.bridge_dir / f"{symbol.upper()[:6]}_telemetry.json"
+        if not target.exists():
+            return None
+        try:
+            return json.loads(target.read_text(encoding="utf-8"))
+        except Exception:
+            return None
