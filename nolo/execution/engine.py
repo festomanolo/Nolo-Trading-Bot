@@ -22,3 +22,11 @@ from nolo.execution.paper_broker import RealisticECNBroker
 from nolo.execution.trade_manager import SmartTradeManager
 from nolo.intelligence.news_guard import EconomicCalendarGuard
 from nolo.quant.indicators import IndicatorEngine
+from nolo.risk.drawdown_guard import DrawdownAndPropGuard
+from nolo.risk.exposure_manager import CurrencyExposureManager
+from nolo.risk.position_sizer import PositionSizer
+from nolo.strategies.ensemble import IntelligentEnsembleOrchestrator
+from nolo.types import Bar, RegimeState
+
+
+class RealTimeTradingEngine:
