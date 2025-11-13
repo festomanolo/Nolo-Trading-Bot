@@ -54,3 +54,11 @@ class RealTimeTradingEngine:
         self._bar_counter: Dict[str, int] = {}
         self.latest_regimes: Dict[str, RegimeState] = {}
         self.equity_curve: List[tuple[str, float]] = []
+
+    def on_bar(
+        self,
+        symbol: str,
+        bars: Sequence[Bar],
+        htf_bars: Optional[Sequence[Bar]] = None,
+    ) -> Optional[Dict[str, object]]:
+        """Process a newly closed or updated bar for `symbol`."""
