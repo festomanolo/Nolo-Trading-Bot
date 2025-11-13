@@ -30,3 +30,11 @@ from nolo.types import Bar, RegimeState
 
 
 class RealTimeTradingEngine:
+    """Full-stack autonomous real-time Forex trading engine."""
+
+    def __init__(
+        self,
+        initial_balance: float = 10000.0,
+        config: Optional[BotConfig] = None,
+        enable_mt5_bridge: bool = False,
+    ) -> None:
