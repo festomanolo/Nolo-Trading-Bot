@@ -38,3 +38,11 @@ class RealTimeTradingEngine:
         config: Optional[BotConfig] = None,
         enable_mt5_bridge: bool = False,
     ) -> None:
+        self.config = config or BotConfig()
+        self.broker = RealisticECNBroker(initial_balance=initial_balance, config=self.config)
+        self.orchestrator = IntelligentEnsembleOrchestrator(self.config)
+        self.position_sizer = PositionSizer(self.config)
+        self.drawdown_guard = DrawdownAndPropGuard(initial_balance=initial_balance, config=self.config)
+        self.exposure_manager = CurrencyExposureManager(
+            config=self.config, currency_meter=self.orchestrator.currency_meter
+        )
