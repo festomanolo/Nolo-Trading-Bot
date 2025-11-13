@@ -46,3 +46,11 @@ class RealTimeTradingEngine:
         self.exposure_manager = CurrencyExposureManager(
             config=self.config, currency_meter=self.orchestrator.currency_meter
         )
+        self.trade_manager = SmartTradeManager(self.config)
+        self.news_guard = EconomicCalendarGuard()
+        self.mt5_bridge = MT5RealTimeBridge() if enable_mt5_bridge else None
+
+        self._last_trade_bar_idx: Dict[str, int] = {}
+        self._bar_counter: Dict[str, int] = {}
+        self.latest_regimes: Dict[str, RegimeState] = {}
+        self.equity_curve: List[tuple[str, float]] = []
