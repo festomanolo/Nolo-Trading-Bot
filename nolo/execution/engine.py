@@ -62,3 +62,11 @@ class RealTimeTradingEngine:
         htf_bars: Optional[Sequence[Bar]] = None,
     ) -> Optional[Dict[str, object]]:
         """Process a newly closed or updated bar for `symbol`."""
+        if not bars:
+            return None
+
+        curr_bar = bars[-1]
+        clean_sym = symbol.upper()[:6]
+        spec = self.config.get_symbol_spec(clean_sym)
+
+        idx = self._bar_counter.get(clean_sym, 0) + 1
