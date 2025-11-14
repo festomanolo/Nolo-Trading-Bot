@@ -70,3 +70,11 @@ class RealTimeTradingEngine:
         spec = self.config.get_symbol_spec(clean_sym)
 
         idx = self._bar_counter.get(clean_sym, 0) + 1
+        self._bar_counter[clean_sym] = idx
+
+        half_spread = (curr_bar.spread_points * spec.point) * 0.5
+        bid_close = curr_bar.close - half_spread
+        ask_close = curr_bar.close + half_spread
+
+        if len(bars) >= 35:
+            highs = [b.high for b in bars[-30:]]
