@@ -78,3 +78,11 @@ class RealTimeTradingEngine:
 
         if len(bars) >= 35:
             highs = [b.high for b in bars[-30:]]
+            lows = [b.low for b in bars[-30:]]
+            closes = [b.close for b in bars[-30:]]
+            atr_series = IndicatorEngine.atr(highs, lows, closes, self.config.indicators.atr_period)
+            curr_atr = atr_series[-1] if atr_series else spec.pip_size * 10.0
+            ref_atr = atr_series[-min(10, len(atr_series))] if atr_series else curr_atr
+
+            # Check favorable excursion for TP1/TP2 partial scaling first
+            for ticket, pos in list(self.broker.open_positions.items()):
