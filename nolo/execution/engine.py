@@ -111,3 +111,11 @@ class RealTimeTradingEngine:
         self.equity_curve.append((curr_bar.timestamp.isoformat(), round(self.broker.equity, 2)))
 
         if len(bars) < 35:
+            return None
+
+        # 4. Spread Guard
+        if curr_bar.spread_points > spec.max_spread_points:
+            return {"status": "SKIPPED_SPREAD", "spread": curr_bar.spread_points}
+
+        # 5. Check Drawdown, Daily Trade Limit, Cooldown, and Rollover Guard
+        last_idx = self._last_trade_bar_idx.get(clean_sym, -999)
