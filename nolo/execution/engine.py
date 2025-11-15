@@ -86,3 +86,11 @@ class RealTimeTradingEngine:
 
             # Check favorable excursion for TP1/TP2 partial scaling first
             for ticket, pos in list(self.broker.open_positions.items()):
+                if pos.symbol != clean_sym:
+                    continue
+                fav_bid = (curr_bar.high - half_spread) if pos.side.value == "BUY" else bid_close
+                fav_ask = (curr_bar.low + half_spread) if pos.side.value == "SELL" else ask_close
+                actions = self.trade_manager.manage_position(pos, fav_bid, fav_ask, curr_atr, ref_atr)
+                for act in actions:
+                    if act.action_type == "PARTIAL_CLOSE" and act.close_lots > 0:
+                        self.broker.partial_close(
