@@ -94,3 +94,12 @@ class RealTimeTradingEngine:
                 for act in actions:
                     if act.action_type == "PARTIAL_CLOSE" and act.close_lots > 0:
                         self.broker.partial_close(
+                            ticket, act.close_lots, pos.current_price, curr_bar.timestamp, act.reason
+                        )
+                    elif act.action_type == "MODIFY_SL" and act.new_sl is not None:
+                        self.broker.modify_stop_loss(ticket, act.new_sl)
+
+        # Process intrabar SL/TP hits on remaining position
+        closed_records = self.broker.process_bar_stops(curr_bar)
+        for rec in closed_records:
+            self._handle_closed_trade(rec)
