@@ -103,3 +103,11 @@ class RealTimeTradingEngine:
         closed_records = self.broker.process_bar_stops(curr_bar)
         for rec in closed_records:
             self._handle_closed_trade(rec)
+
+        # Update drawdown guard & equity curve
+        self.drawdown_guard.on_new_bar_or_tick(
+            curr_bar.timestamp, self.broker.balance, self.broker.equity
+        )
+        self.equity_curve.append((curr_bar.timestamp.isoformat(), round(self.broker.equity, 2)))
+
+        if len(bars) < 35:
