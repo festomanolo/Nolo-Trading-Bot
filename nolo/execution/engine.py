@@ -127,3 +127,11 @@ class RealTimeTradingEngine:
             return {"status": "BLOCKED_RISK", "reason": block_reason}
 
         # 6. Check Economic Calendar News Filter
+        if self.config.use_news_filter:
+            embargoed, news_reason = self.news_guard.is_embargoed(clean_sym, curr_bar.timestamp)
+            if embargoed:
+                return {"status": "BLOCKED_NEWS", "reason": news_reason}
+
+        # 7. Run Ensemble Signal Orchestrator
+        signal = self.orchestrator.generate_signal(clean_sym, bars, htf_bars)
+        regime_state = self.orchestrator.regime_engine.detect(bars)
