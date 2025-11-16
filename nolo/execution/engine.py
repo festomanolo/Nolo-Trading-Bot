@@ -119,3 +119,11 @@ class RealTimeTradingEngine:
 
         # 5. Check Drawdown, Daily Trade Limit, Cooldown, and Rollover Guard
         last_idx = self._last_trade_bar_idx.get(clean_sym, -999)
+        bars_since = idx - last_idx
+        allowed, block_reason = self.drawdown_guard.can_open_trade(
+            curr_bar.timestamp, self.broker.balance, self.broker.equity, bars_since
+        )
+        if not allowed:
+            return {"status": "BLOCKED_RISK", "reason": block_reason}
+
+        # 6. Check Economic Calendar News Filter
