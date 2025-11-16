@@ -135,3 +135,11 @@ class RealTimeTradingEngine:
         # 7. Run Ensemble Signal Orchestrator
         signal = self.orchestrator.generate_signal(clean_sym, bars, htf_bars)
         regime_state = self.orchestrator.regime_engine.detect(bars)
+        self.latest_regimes[clean_sym] = regime_state
+
+        if self.mt5_bridge is not None:
+            self.mt5_bridge.publish_signal_and_regime(clean_sym, regime_state, signal)
+
+        if signal is None:
+            return {"status": "NO_SIGNAL", "regime": regime_state.regime.value}
+
