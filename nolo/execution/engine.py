@@ -143,3 +143,11 @@ class RealTimeTradingEngine:
         if signal is None:
             return {"status": "NO_SIGNAL", "regime": regime_state.regime.value}
 
+        # 8. Check Portfolio Exposure & Cross-Pair Correlation Guard
+        can_add, exp_reason = self.exposure_manager.can_add_position(
+            clean_sym, signal.side, list(self.broker.open_positions.values())
+        )
+        if not can_add:
+            return {"status": "BLOCKED_EXPOSURE", "reason": exp_reason}
+
+        # 9. Compute Position Size via Bayesian Kelly + Equity Curve Throttle
