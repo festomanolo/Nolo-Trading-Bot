@@ -159,3 +159,11 @@ class RealTimeTradingEngine:
             equity_throttle=eq_throttle,
             atr_ratio=regime_state.atr_ratio,
         )
+        lots = self.position_sizer.calculate_lots(
+            account_balance=self.broker.balance,
+            stop_loss_distance_price=signal.stop_distance,
+            spec=spec,
+            effective_risk_pct=eff_risk_pct,
+        )
+
+        # 10. Execute Order
