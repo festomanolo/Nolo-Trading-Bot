@@ -167,3 +167,11 @@ class RealTimeTradingEngine:
         )
 
         # 10. Execute Order
+        pos = self.broker.open_order(
+            signal=signal,
+            lots=lots,
+            timestamp=curr_bar.timestamp,
+            spread_points=curr_bar.spread_points,
+        )
+        self.drawdown_guard.record_trade_opened()
+        self._last_trade_bar_idx[clean_sym] = idx
