@@ -151,3 +151,11 @@ class RealTimeTradingEngine:
             return {"status": "BLOCKED_EXPOSURE", "reason": exp_reason}
 
         # 9. Compute Position Size via Bayesian Kelly + Equity Curve Throttle
+        eq_throttle = self.drawdown_guard.equity_curve_throttle(self.broker.equity)
+        news_scale = self.news_guard.risk_scaling_factor(clean_sym, curr_bar.timestamp)
+        eff_risk_pct = self.position_sizer.compute_effective_risk_pct(
+            signal_win_prob=signal.win_probability,
+            risk_multiplier=signal.risk_multiplier * news_scale,
+            equity_throttle=eq_throttle,
+            atr_ratio=regime_state.atr_ratio,
+        )
