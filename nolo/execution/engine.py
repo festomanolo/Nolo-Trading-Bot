@@ -175,3 +175,11 @@ class RealTimeTradingEngine:
         )
         self.drawdown_guard.record_trade_opened()
         self._last_trade_bar_idx[clean_sym] = idx
+
+        return {
+            "status": "ORDER_OPENED",
+            "ticket": pos.ticket,
+            "symbol": pos.symbol,
+            "side": pos.side.value,
+            "lots": pos.initial_lots,
+            "entry": pos.open_price,
