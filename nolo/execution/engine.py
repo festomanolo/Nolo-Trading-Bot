@@ -183,3 +183,11 @@ class RealTimeTradingEngine:
             "side": pos.side.value,
             "lots": pos.initial_lots,
             "entry": pos.open_price,
+            "sl": pos.stop_loss,
+            "tp": pos.take_profit,
+            "strategy": pos.strategy_name,
+            "regime": pos.regime.value,
+            "win_probability": signal.win_probability,
+        }
+
+    def _handle_closed_trade(self, rec) -> None:
