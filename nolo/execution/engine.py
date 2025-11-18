@@ -191,3 +191,12 @@ class RealTimeTradingEngine:
         }
 
     def _handle_closed_trade(self, rec) -> None:
+        self.position_sizer.update_stats(rec.is_win)
+        self.drawdown_guard.record_trade_closed(self.broker.balance)
+        self.orchestrator.record_trade_feedback(
+            regime=rec.regime,
+            strategy_name=rec.strategy_name,
+            features=rec.entry_features,
+            is_win=rec.is_win,
+            r_multiple=rec.r_multiple,
+        )
