@@ -7,3 +7,12 @@ from nolo.backtest.monte_carlo import MonteCarloResult, MonteCarloStressTester
 from nolo.backtest.walk_forward import WalkForwardOptimizer
 
 __all__ = [
+    "BacktestResult",
+    "EventDrivenBacktester",
+    "MonteCarloResult",
+    "MonteCarloStressTester",
+    "PerformanceAnalytics",
+    "PerformanceReport",
+    "RealisticForexDataGenerator",
+    "WalkForwardOptimizer",
+]
