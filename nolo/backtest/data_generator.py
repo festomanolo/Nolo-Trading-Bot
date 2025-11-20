@@ -23,3 +23,11 @@ from nolo.types import Bar
 class RealisticForexDataGenerator:
     """Produces deterministic or seeded realistic multi-regime Forex candlestick series."""
 
+    @staticmethod
+    def generate_bars(
+        symbol: str = "EURUSD",
+        timeframe: str = "M5",
+        num_bars: int = 500,
+        start_price: float = 1.0850,
+        seed: int = 2025,
+    ) -> List[Bar]:
