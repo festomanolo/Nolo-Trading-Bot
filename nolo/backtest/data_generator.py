@@ -14,3 +14,12 @@ import csv
 import math
 import random
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import List, Sequence
+
+from nolo.types import Bar
+
+
+class RealisticForexDataGenerator:
+    """Produces deterministic or seeded realistic multi-regime Forex candlestick series."""
+
