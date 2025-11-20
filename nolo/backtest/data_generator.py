@@ -31,3 +31,11 @@ class RealisticForexDataGenerator:
         start_price: float = 1.0850,
         seed: int = 2025,
     ) -> List[Bar]:
+        rng = random.Random(seed)
+        is_jpy = "JPY" in symbol.upper()
+        pip = 0.01 if is_jpy else 0.0001
+        digits = 3 if is_jpy else 5
+
+        tf_minutes = {"M1": 1, "M5": 5, "M15": 15, "H1": 60, "H4": 240, "D1": 1440}.get(
+            timeframe.upper(), 5
+        )
