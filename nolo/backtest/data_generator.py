@@ -48,3 +48,11 @@ class RealisticForexDataGenerator:
             phase = (i // 160) % 4
             if phase == 0:
                 # Institutional Uptrend phase
+                drift = 1.9 * pip
+                vol = 3.2 * pip
+            elif phase == 1:
+                # Mean-reverting consolidation range
+                anchor = price if i % 160 == 0 else bars[-1].close
+                drift = -0.30 * (price - anchor)
+                vol = 2.5 * pip
+            elif phase == 2:
