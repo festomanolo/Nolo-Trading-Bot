@@ -56,3 +56,11 @@ class RealisticForexDataGenerator:
                 drift = -0.30 * (price - anchor)
                 vol = 2.5 * pip
             elif phase == 2:
+                # Institutional Downtrend phase
+                drift = -1.8 * pip
+                vol = 3.4 * pip
+            else:
+                # Persistent Breakout / Momentum expansion
+                drift = 2.1 * pip
+                vol = 3.8 * pip
+
