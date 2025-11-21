@@ -39,3 +39,12 @@ class RealisticForexDataGenerator:
         tf_minutes = {"M1": 1, "M5": 5, "M15": 15, "H1": 60, "H4": 240, "D1": 1440}.get(
             timeframe.upper(), 5
         )
+        curr_time = datetime(2025, 1, 6, 8, 0, tzinfo=timezone.utc)
+        price = start_price
+        bars: List[Bar] = []
+
+        # Cycle through realistic multi-session market regimes
+        for i in range(num_bars):
+            phase = (i // 160) % 4
+            if phase == 0:
+                # Institutional Uptrend phase
