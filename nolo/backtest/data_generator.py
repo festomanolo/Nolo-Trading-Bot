@@ -81,3 +81,11 @@ class RealisticForexDataGenerator:
             session_mult = 1.6 if 12 <= curr_time.hour <= 17 else 1.0
             volume = round(max(50.0, (120.0 + abs(shock / pip) * 35.0) * session_mult), 1)
             spread = 7.0 if 7 <= curr_time.hour <= 20 else 12.0
+
+            bars.append(
+                Bar(
+                    symbol=symbol.upper()[:6],
+                    timeframe=timeframe.upper(),
+                    timestamp=curr_time,
+                    open=open_p,
+                    high=high_p,
