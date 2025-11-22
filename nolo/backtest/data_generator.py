@@ -64,3 +64,12 @@ class RealisticForexDataGenerator:
                 drift = 2.1 * pip
                 vol = 3.8 * pip
 
+            # Skip rollover hours (22-23 UTC) to keep active trading sessions
+            if curr_time.hour in (22, 23):
+                curr_time += timedelta(hours=2)
+
+            open_p = round(price, digits)
+            shock = rng.gauss(drift, vol)
+            close_p = round(max(pip * 100, open_p + shock), digits)
+
+            wick_up = abs(rng.gauss(0, vol * 0.42))
