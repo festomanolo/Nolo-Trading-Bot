@@ -89,3 +89,12 @@ class RealisticForexDataGenerator:
                     timestamp=curr_time,
                     open=open_p,
                     high=high_p,
+                    low=low_p,
+                    close=close_p,
+                    volume=volume,
+                    spread_points=spread,
+                )
+            )
+            price = close_p
+            curr_time += timedelta(minutes=tf_minutes)
+
