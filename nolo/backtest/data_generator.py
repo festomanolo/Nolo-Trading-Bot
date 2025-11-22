@@ -73,3 +73,11 @@ class RealisticForexDataGenerator:
             close_p = round(max(pip * 100, open_p + shock), digits)
 
             wick_up = abs(rng.gauss(0, vol * 0.42))
+            wick_dn = abs(rng.gauss(0, vol * 0.42))
+            high_p = round(max(open_p, close_p) + wick_up, digits)
+            low_p = round(min(open_p, close_p) - wick_dn, digits)
+
+            # Volume higher during London/NY overlap (12-17 UTC)
+            session_mult = 1.6 if 12 <= curr_time.hour <= 17 else 1.0
+            volume = round(max(50.0, (120.0 + abs(shock / pip) * 35.0) * session_mult), 1)
+            spread = 7.0 if 7 <= curr_time.hour <= 20 else 12.0
