@@ -98,3 +98,11 @@ class RealisticForexDataGenerator:
             price = close_p
             curr_time += timedelta(minutes=tf_minutes)
 
+        return bars
+
+    @staticmethod
+    def aggregate_to_higher_timeframe(bars: Sequence[Bar], ratio: int = 12, htf_name: str = "H1") -> List[Bar]:
+        """Aggregate lower-timeframe bars (e.g. M5) into higher-timeframe bars (e.g. H1)."""
+        if not bars or ratio <= 1:
+            return list(bars)
+        htf: List[Bar] = []
