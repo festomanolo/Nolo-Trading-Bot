@@ -114,3 +114,12 @@ class RealisticForexDataGenerator:
                 Bar(
                     symbol=chunk[0].symbol,
                     timeframe=htf_name,
+                    timestamp=chunk[-1].timestamp,
+                    open=chunk[0].open,
+                    high=max(b.high for b in chunk),
+                    low=min(b.low for b in chunk),
+                    close=chunk[-1].close,
+                    volume=sum(b.volume for b in chunk),
+                    spread_points=sum(b.spread_points for b in chunk) / len(chunk),
+                )
+            )
