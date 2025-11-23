@@ -106,3 +106,11 @@ class RealisticForexDataGenerator:
         if not bars or ratio <= 1:
             return list(bars)
         htf: List[Bar] = []
+        for i in range(0, len(bars), ratio):
+            chunk = bars[i : i + ratio]
+            if not chunk:
+                continue
+            htf.append(
+                Bar(
+                    symbol=chunk[0].symbol,
+                    timeframe=htf_name,
