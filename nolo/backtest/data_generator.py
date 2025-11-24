@@ -123,3 +123,11 @@ class RealisticForexDataGenerator:
                     spread_points=sum(b.spread_points for b in chunk) / len(chunk),
                 )
             )
+        return htf
+
+    @staticmethod
+    def load_csv(path: Path, symbol: str = "EURUSD", timeframe: str = "H1") -> List[Bar]:
+        """Load historical OHLCV bars from a standard MetaTrader CSV export."""
+        bars: List[Bar] = []
+        with path.open("r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
