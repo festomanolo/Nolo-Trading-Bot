@@ -139,3 +139,12 @@ class RealisticForexDataGenerator:
                         symbol=symbol,
                         timeframe=timeframe,
                         timestamp=ts,
+                        open=float(row["open"]),
+                        high=float(row["high"]),
+                        low=float(row["low"]),
+                        close=float(row["close"]),
+                        volume=float(row.get("volume", 100.0)),
+                        spread_points=float(row.get("spread", 8.0)),
+                    )
+                )
+        return bars
