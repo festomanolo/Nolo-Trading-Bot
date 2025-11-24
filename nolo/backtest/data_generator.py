@@ -131,3 +131,11 @@ class RealisticForexDataGenerator:
         bars: List[Bar] = []
         with path.open("r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
+            for row in reader:
+                ts_str = row.get("timestamp") or row.get("time") or row.get("Date") or ""
+                ts = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                bars.append(
+                    Bar(
+                        symbol=symbol,
+                        timeframe=timeframe,
+                        timestamp=ts,
