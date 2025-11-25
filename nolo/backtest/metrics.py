@@ -22,3 +22,11 @@ from nolo.types import TradeRecord
 @dataclass
 class PerformanceReport:
     """Comprehensive institutional backtest and live performance summary."""
+
+    initial_balance: float
+    final_balance: float
+    net_profit: float
+    roi_pct: float
+    total_trades: int
+    winning_trades: int
+    losing_trades: int
