@@ -46,3 +46,11 @@ class PerformanceReport:
 class PerformanceAnalytics:
     """Computes institutional metrics from trade records and equity curves."""
 
+    @staticmethod
+    def analyze(
+        initial_balance: float,
+        trades: Sequence[TradeRecord],
+        equity_curve: Sequence[float],
+    ) -> PerformanceReport:
+        total = len(trades)
+        wins = [t for t in trades if t.net_pnl > 0]
