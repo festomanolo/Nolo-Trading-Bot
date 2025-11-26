@@ -38,3 +38,11 @@ class PerformanceReport:
     sharpe_ratio: float
     sortino_ratio: float
     calmar_ratio: float
+    on_tester_score: float
+    regime_breakdown: Dict[str, int] = field(default_factory=dict)
+    strategy_breakdown: Dict[str, int] = field(default_factory=dict)
+
+
+class PerformanceAnalytics:
+    """Computes institutional metrics from trade records and equity curves."""
+
