@@ -30,3 +30,11 @@ class PerformanceReport:
     total_trades: int
     winning_trades: int
     losing_trades: int
+    win_rate_pct: float
+    profit_factor: float
+    expected_payoff: float
+    avg_r_multiple: float
+    max_drawdown_pct: float
+    sharpe_ratio: float
+    sortino_ratio: float
+    calmar_ratio: float
