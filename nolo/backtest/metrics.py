@@ -54,3 +54,11 @@ class PerformanceAnalytics:
     ) -> PerformanceReport:
         total = len(trades)
         wins = [t for t in trades if t.net_pnl > 0]
+        losses = [t for t in trades if t.net_pnl <= 0]
+
+        gross_profit = sum(t.net_pnl for t in wins)
+        gross_loss = abs(sum(t.net_pnl for t in losses))
+        net_profit = gross_profit - gross_loss
+        final_balance = initial_balance + net_profit
+        roi_pct = (net_profit / max(1.0, initial_balance)) * 100.0
+
