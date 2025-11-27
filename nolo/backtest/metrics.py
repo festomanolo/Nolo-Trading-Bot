@@ -78,3 +78,11 @@ class PerformanceAnalytics:
         max_dd_pct = 0.0
         series = list(equity_curve) if equity_curve else [initial_balance, final_balance]
         for eq in series:
+            if eq > hwm:
+                hwm = eq
+            if hwm > 0:
+                dd = ((hwm - eq) / hwm) * 100.0
+                if dd > max_dd_pct:
+                    max_dd_pct = dd
+
+        # Trade return Sharpe & Sortino
