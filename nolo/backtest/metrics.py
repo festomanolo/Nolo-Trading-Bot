@@ -62,3 +62,11 @@ class PerformanceAnalytics:
         final_balance = initial_balance + net_profit
         roi_pct = (net_profit / max(1.0, initial_balance)) * 100.0
 
+        win_rate = (len(wins) / total * 100.0) if total > 0 else 0.0
+        if gross_loss > 1e-6:
+            pf = gross_profit / gross_loss
+        elif gross_profit > 0:
+            pf = 10.0
+        else:
+            pf = 0.0
+
