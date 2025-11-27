@@ -70,3 +70,11 @@ class PerformanceAnalytics:
         else:
             pf = 0.0
 
+        expected_payoff = net_profit / total if total > 0 else 0.0
+        avg_r = sum(t.r_multiple for t in trades) / total if total > 0 else 0.0
+
+        # Max relative drawdown
+        hwm = initial_balance
+        max_dd_pct = 0.0
+        series = list(equity_curve) if equity_curve else [initial_balance, final_balance]
+        for eq in series:
