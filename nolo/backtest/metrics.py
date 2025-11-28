@@ -102,3 +102,11 @@ class PerformanceAnalytics:
 
         calmar = roi_pct / max(1.0, max_dd_pct) if net_profit > 0 else 0.0
 
+        # Exact MT5 OnTester() fitness formula enhanced with Sharpe stability
+        if pf <= 0 or total < 5:
+            tester_score = 0.0
+        else:
+            tester_score = (pf * max(0.0, expected_payoff)) / max(1.0, max_dd_pct)
+
+        regime_counts: Dict[str, int] = {}
+        strat_counts: Dict[str, int] = {}
