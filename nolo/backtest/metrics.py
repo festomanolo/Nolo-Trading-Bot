@@ -86,3 +86,11 @@ class PerformanceAnalytics:
                     max_dd_pct = dd
 
         # Trade return Sharpe & Sortino
+        if total >= 2:
+            r_vals = [t.r_multiple for t in trades]
+            mean_r = sum(r_vals) / total
+            var_r = sum((r - mean_r) ** 2 for r in r_vals) / (total - 1)
+            std_r = math.sqrt(max(1e-12, var_r))
+            sharpe = (mean_r / std_r) * math.sqrt(min(252, max(12, total)))
+
+            downside_sq = [min(0.0, r) ** 2 for r in r_vals]
