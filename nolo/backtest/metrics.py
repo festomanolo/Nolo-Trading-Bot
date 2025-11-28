@@ -94,3 +94,11 @@ class PerformanceAnalytics:
             sharpe = (mean_r / std_r) * math.sqrt(min(252, max(12, total)))
 
             downside_sq = [min(0.0, r) ** 2 for r in r_vals]
+            downside_std = math.sqrt(max(1e-12, sum(downside_sq) / total))
+            sortino = (mean_r / downside_std) * math.sqrt(min(252, max(12, total)))
+        else:
+            sharpe = 0.0
+            sortino = 0.0
+
+        calmar = roi_pct / max(1.0, max_dd_pct) if net_profit > 0 else 0.0
+
