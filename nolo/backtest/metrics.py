@@ -110,3 +110,11 @@ class PerformanceAnalytics:
 
         regime_counts: Dict[str, int] = {}
         strat_counts: Dict[str, int] = {}
+        for t in trades:
+            regime_counts[t.regime.value] = regime_counts.get(t.regime.value, 0) + 1
+            strat_counts[t.strategy_name] = strat_counts.get(t.strategy_name, 0) + 1
+
+        return PerformanceReport(
+            initial_balance=round(initial_balance, 2),
+            final_balance=round(final_balance, 2),
+            net_profit=round(net_profit, 2),
