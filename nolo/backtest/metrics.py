@@ -126,3 +126,11 @@ class PerformanceAnalytics:
             profit_factor=round(pf, 3),
             expected_payoff=round(expected_payoff, 2),
             avg_r_multiple=round(avg_r, 3),
+            max_drawdown_pct=round(max_dd_pct, 2),
+            sharpe_ratio=round(sharpe, 3),
+            sortino_ratio=round(sortino, 3),
+            calmar_ratio=round(calmar, 3),
+            on_tester_score=round(tester_score, 3),
+            regime_breakdown=regime_counts,
+            strategy_breakdown=strat_counts,
+        )
