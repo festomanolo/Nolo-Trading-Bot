@@ -23,3 +23,12 @@ class BacktestResult:
 
     symbol: str
     report: PerformanceReport
+    trades: List[TradeRecord]
+    equity_curve: List[float]
+
+
+class EventDrivenBacktester:
+    """Runs chronological event-driven backtests on `RealTimeTradingEngine`."""
+
+    def __init__(self, initial_balance: float = 10000.0, config: Optional[BotConfig] = None) -> None:
+        self.initial_balance = float(initial_balance)
