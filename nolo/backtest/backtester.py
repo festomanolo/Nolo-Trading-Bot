@@ -15,3 +15,11 @@ from nolo.backtest.metrics import PerformanceAnalytics, PerformanceReport
 from nolo.config import BotConfig
 from nolo.execution.engine import RealTimeTradingEngine
 from nolo.types import Bar, TradeRecord
+
+
+@dataclass
+class BacktestResult:
+    """Output of a complete event-driven backtest run."""
+
+    symbol: str
+    report: PerformanceReport
