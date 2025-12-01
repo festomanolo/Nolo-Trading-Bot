@@ -49,3 +49,11 @@ class EventDrivenBacktester:
         n = len(bars)
         start_idx = min(max(35, warmup_bars), n)
 
+        for i in range(start_idx, n):
+            window = bars[max(0, i - 100) : i + 1]
+            htf_bars = RealisticForexDataGenerator.aggregate_to_higher_timeframe(
+                bars[: i + 1], ratio=htf_ratio, htf_name=self.config.higher_timeframe
+            )
+            engine.on_bar(symbol, window, htf_bars)
+
+        # Close any remaining open positions at end of test
