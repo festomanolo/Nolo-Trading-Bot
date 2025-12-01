@@ -32,3 +32,11 @@ class EventDrivenBacktester:
 
     def __init__(self, initial_balance: float = 10000.0, config: Optional[BotConfig] = None) -> None:
         self.initial_balance = float(initial_balance)
+        self.config = config or BotConfig()
+
+    def run(
+        self,
+        bars: Sequence[Bar],
+        htf_ratio: int = 12,
+        warmup_bars: int = 55,
+    ) -> BacktestResult:
