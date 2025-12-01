@@ -40,3 +40,12 @@ class EventDrivenBacktester:
         htf_ratio: int = 12,
         warmup_bars: int = 55,
     ) -> BacktestResult:
+        if not bars:
+            empty_report = PerformanceAnalytics.analyze(self.initial_balance, [], [self.initial_balance])
+            return BacktestResult("UNKNOWN", empty_report, [], [self.initial_balance])
+
+        symbol = bars[0].symbol
+        engine = RealTimeTradingEngine(initial_balance=self.initial_balance, config=self.config)
+        n = len(bars)
+        start_idx = min(max(35, warmup_bars), n)
+
