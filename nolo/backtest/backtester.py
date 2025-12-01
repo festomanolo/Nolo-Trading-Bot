@@ -57,3 +57,12 @@ class EventDrivenBacktester:
             engine.on_bar(symbol, window, htf_bars)
 
         # Close any remaining open positions at end of test
+        last_bar = bars[-1]
+        for ticket in list(engine.broker.open_positions.keys()):
+            rec = engine.broker.close_position(
+                ticket, last_bar.close, last_bar.timestamp, "END_OF_BACKTEST"
+            )
+            if rec:
+                engine._handle_closed_trade(rec)
+
+        eq_series = [eq for _, eq in engine.equity_curve] or [self.initial_balance, engine.broker.balance]
