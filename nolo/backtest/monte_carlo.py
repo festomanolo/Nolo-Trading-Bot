@@ -6,3 +6,11 @@ across N simulations to estimate 95% and 99% Value-at-Risk (VaR) and Conditional
 of maximum drawdown.
 """
 
+from __future__ import annotations
+
+import random
+from dataclasses import dataclass
+from typing import List, Sequence
+
+from nolo.types import TradeRecord
+
