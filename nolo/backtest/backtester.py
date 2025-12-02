@@ -66,3 +66,12 @@ class EventDrivenBacktester:
                 engine._handle_closed_trade(rec)
 
         eq_series = [eq for _, eq in engine.equity_curve] or [self.initial_balance, engine.broker.balance]
+        report = PerformanceAnalytics.analyze(
+            self.initial_balance, engine.broker.closed_trades, eq_series
+        )
+        return BacktestResult(
+            symbol=symbol,
+            report=report,
+            trades=list(engine.broker.closed_trades),
+            equity_curve=eq_series,
+        )
