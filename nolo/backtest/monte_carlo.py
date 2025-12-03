@@ -22,3 +22,12 @@ class MonteCarloResult:
     iterations: int
     median_net_profit: float
     p5_net_profit: float
+    p95_net_profit: float
+    median_max_drawdown_pct: float
+    var_95_max_drawdown_pct: float
+    cvar_99_max_drawdown_pct: float
+    probability_of_profit_pct: float
+
+
+class MonteCarloStressTester:
+    """Performs bootstrap resampling and permutation stress tests on trade histories."""
