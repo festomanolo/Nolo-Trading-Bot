@@ -31,3 +31,11 @@ class MonteCarloResult:
 
 class MonteCarloStressTester:
     """Performs bootstrap resampling and permutation stress tests on trade histories."""
+
+    @staticmethod
+    def run_simulations(
+        initial_balance: float,
+        trades: Sequence[TradeRecord],
+        iterations: int = 500,
+        seed: int = 2025,
+    ) -> MonteCarloResult:
