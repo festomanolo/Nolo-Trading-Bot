@@ -14,3 +14,11 @@ from typing import List, Sequence
 
 from nolo.types import TradeRecord
 
+
+@dataclass(frozen=True)
+class MonteCarloResult:
+    """Tail-risk confidence intervals from Monte Carlo trade permutation simulations."""
+
+    iterations: int
+    median_net_profit: float
+    p5_net_profit: float
