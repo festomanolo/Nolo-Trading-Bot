@@ -39,3 +39,11 @@ class MonteCarloStressTester:
         iterations: int = 500,
         seed: int = 2025,
     ) -> MonteCarloResult:
+        if not trades or iterations <= 0:
+            return MonteCarloResult(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+        rng = random.Random(seed)
+        pnls = [t.net_pnl for t in trades]
+        n = len(pnls)
+
+        net_profits: List[float] = []
