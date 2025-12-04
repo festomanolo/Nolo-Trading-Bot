@@ -64,3 +64,11 @@ class MonteCarloStressTester:
                     if dd > max_dd:
                         max_dd = dd
             net = eq - initial_balance
+            net_profits.append(net)
+            max_dds.append(max_dd)
+            if net > 0:
+                profitable_runs += 1
+
+        net_profits.sort()
+        max_dds.sort()
+
