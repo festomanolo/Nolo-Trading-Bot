@@ -47,3 +47,11 @@ class MonteCarloStressTester:
         n = len(pnls)
 
         net_profits: List[float] = []
+        max_dds: List[float] = []
+        profitable_runs = 0
+
+        for _ in range(iterations):
+            sampled = [rng.choice(pnls) for _ in range(n)]
+            eq = initial_balance
+            hwm = initial_balance
+            max_dd = 0.0
