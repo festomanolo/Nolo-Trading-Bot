@@ -55,3 +55,12 @@ class MonteCarloStressTester:
             eq = initial_balance
             hwm = initial_balance
             max_dd = 0.0
+            for p in sampled:
+                eq += p
+                if eq > hwm:
+                    hwm = eq
+                if hwm > 0:
+                    dd = ((hwm - eq) / hwm) * 100.0
+                    if dd > max_dd:
+                        max_dd = dd
+            net = eq - initial_balance
