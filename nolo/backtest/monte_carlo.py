@@ -72,3 +72,11 @@ class MonteCarloStressTester:
         net_profits.sort()
         max_dds.sort()
 
+        def pct(arr: List[float], q: float) -> float:
+            idx = max(0, min(len(arr) - 1, int(q * (len(arr) - 1))))
+            return arr[idx]
+
+        tail_start = max(0, int(0.95 * len(max_dds)))
+        cvar_99 = sum(max_dds[tail_start:]) / max(1, len(max_dds) - tail_start)
+
+        return MonteCarloResult(
