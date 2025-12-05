@@ -80,3 +80,12 @@ class MonteCarloStressTester:
         cvar_99 = sum(max_dds[tail_start:]) / max(1, len(max_dds) - tail_start)
 
         return MonteCarloResult(
+            iterations=iterations,
+            median_net_profit=round(pct(net_profits, 0.50), 2),
+            p5_net_profit=round(pct(net_profits, 0.05), 2),
+            p95_net_profit=round(pct(net_profits, 0.95), 2),
+            median_max_drawdown_pct=round(pct(max_dds, 0.50), 2),
+            var_95_max_drawdown_pct=round(pct(max_dds, 0.95), 2),
+            cvar_99_max_drawdown_pct=round(cvar_99, 2),
+            probability_of_profit_pct=round((profitable_runs / iterations) * 100.0, 2),
+        )
