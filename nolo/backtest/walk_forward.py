@@ -21,3 +21,11 @@ class OptimizationCandidate:
     """Result of evaluating a parameter set during Walk-Forward Optimization."""
 
     params: Dict[str, float]
+    fitness_score: float
+    profit_factor: float
+    win_rate_pct: float
+    max_drawdown_pct: float
+    net_profit: float
+
+
+class WalkForwardOptimizer:
