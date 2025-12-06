@@ -13,3 +13,11 @@ from typing import Dict, List, Sequence
 
 from nolo.backtest.backtester import EventDrivenBacktester
 from nolo.config import BotConfig
+from nolo.types import Bar
+
+
+@dataclass
+class OptimizationCandidate:
+    """Result of evaluating a parameter set during Walk-Forward Optimization."""
+
+    params: Dict[str, float]
