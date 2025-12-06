@@ -29,3 +29,11 @@ class OptimizationCandidate:
 
 
 class WalkForwardOptimizer:
+    """Optimizes SuperTrend multiplier, Fast/Slow EMA periods, and Risk-Reward ratio."""
+
+    def __init__(self, base_config: BotConfig | None = None) -> None:
+        self.base_config = base_config or BotConfig()
+
+    def optimize(
+        self,
+        bars: Sequence[Bar],
