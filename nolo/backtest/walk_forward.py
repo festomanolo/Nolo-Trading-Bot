@@ -60,3 +60,11 @@ class WalkForwardOptimizer:
                         rep.on_tester_score + rep.profit_factor * 2.0 + rep.roi_pct * 0.2 - rep.max_drawdown_pct * 0.3
                     )
                     results.append(
+                        OptimizationCandidate(
+                            params={
+                                "supertrend_mult": float(st_mult),
+                                "fast_ma_period": float(fast_ma),
+                                "risk_reward_ratio": float(rr),
+                            },
+                            fitness_score=round(composite_score, 4),
+                            profit_factor=rep.profit_factor,
