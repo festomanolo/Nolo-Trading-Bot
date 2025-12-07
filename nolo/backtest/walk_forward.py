@@ -37,3 +37,10 @@ class WalkForwardOptimizer:
     def optimize(
         self,
         bars: Sequence[Bar],
+        supertrend_mults: Sequence[float] = (2.0, 2.5, 3.0),
+        fast_ma_periods: Sequence[int] = (8, 10),
+        risk_reward_ratios: Sequence[float] = (1.8, 2.2),
+    ) -> List[OptimizationCandidate]:
+        results: List[OptimizationCandidate] = []
+
+        for st_mult in supertrend_mults:
