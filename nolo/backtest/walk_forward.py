@@ -44,3 +44,11 @@ class WalkForwardOptimizer:
         results: List[OptimizationCandidate] = []
 
         for st_mult in supertrend_mults:
+            for fast_ma in fast_ma_periods:
+                for rr in risk_reward_ratios:
+                    cfg = copy.deepcopy(self.base_config)
+                    cfg.indicators.supertrend_mult = float(st_mult)
+                    cfg.indicators.fast_ma_period = int(fast_ma)
+                    cfg.risk.risk_reward_ratio = float(rr)
+
+                    bt = EventDrivenBacktester(initial_balance=10000.0, config=cfg)
