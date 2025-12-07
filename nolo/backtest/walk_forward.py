@@ -52,3 +52,11 @@ class WalkForwardOptimizer:
                     cfg.risk.risk_reward_ratio = float(rr)
 
                     bt = EventDrivenBacktester(initial_balance=10000.0, config=cfg)
+                    res = bt.run(bars, warmup_bars=55)
+                    rep = res.report
+
+                    # Combined composite fitness balancing profit factor, ROI, and low drawdown
+                    composite_score = (
+                        rep.on_tester_score + rep.profit_factor * 2.0 + rep.roi_pct * 0.2 - rep.max_drawdown_pct * 0.3
+                    )
+                    results.append(
