@@ -68,3 +68,11 @@ class WalkForwardOptimizer:
                             },
                             fitness_score=round(composite_score, 4),
                             profit_factor=rep.profit_factor,
+                            win_rate_pct=rep.win_rate_pct,
+                            max_drawdown_pct=rep.max_drawdown_pct,
+                            net_profit=rep.net_profit,
+                        )
+                    )
+
+        results.sort(key=lambda c: c.fitness_score, reverse=True)
+        return results
