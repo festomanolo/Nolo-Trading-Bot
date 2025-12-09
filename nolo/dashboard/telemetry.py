@@ -21,3 +21,11 @@ class TelemetryBuilder:
     @staticmethod
     def build_snapshot(engine: RealTimeTradingEngine) -> Dict[str, Any]:
         eq_values = [eq for _, eq in engine.equity_curve] or [engine.broker.initial_balance]
+        perf = PerformanceAnalytics.analyze(
+            engine.broker.initial_balance,
+            engine.broker.closed_trades,
+            eq_values,
+        )
+        regimes: Dict[str, Any] = {}
+        for sym, r in engine.latest_regimes.items():
+            regimes[sym] = {
