@@ -29,3 +29,11 @@ class TelemetryBuilder:
         regimes: Dict[str, Any] = {}
         for sym, r in engine.latest_regimes.items():
             regimes[sym] = {
+                "regime": r.regime.value,
+                "confidence": round(r.confidence, 4),
+                "hurst": round(r.hurst_exponent, 4),
+                "efficiency_ratio": round(r.efficiency_ratio, 4),
+                "adx": round(r.adx, 2),
+                "kalman_slope": round(r.kalman_slope, 4),
+                "entropy": round(r.entropy, 4),
+                "structure_bias": r.structure_bias.value,
