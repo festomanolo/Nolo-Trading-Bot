@@ -13,3 +13,11 @@ from typing import Any, Dict
 
 from nolo.backtest.metrics import PerformanceAnalytics
 from nolo.execution.engine import RealTimeTradingEngine
+
+
+class TelemetryBuilder:
+    """Extracts complete real-time telemetry state from `RealTimeTradingEngine`."""
+
+    @staticmethod
+    def build_snapshot(engine: RealTimeTradingEngine) -> Dict[str, Any]:
+        eq_values = [eq for _, eq in engine.equity_curve] or [engine.broker.initial_balance]
