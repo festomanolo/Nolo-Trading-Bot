@@ -52,3 +52,11 @@ class TelemetryBuilder:
                 ),
                 "open_positions_count": len(engine.broker.open_positions),
             },
+            "performance": {
+                "net_profit": perf.net_profit,
+                "roi_pct": perf.roi_pct,
+                "total_trades": perf.total_trades,
+                "win_rate_pct": perf.win_rate_pct,
+                "profit_factor": perf.profit_factor,
+                "sharpe_ratio": perf.sharpe_ratio,
+                "sortino_ratio": perf.sortino_ratio,
