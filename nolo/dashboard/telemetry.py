@@ -37,3 +37,10 @@ class TelemetryBuilder:
                 "kalman_slope": round(r.kalman_slope, 4),
                 "entropy": round(r.entropy, 4),
                 "structure_bias": r.structure_bias.value,
+            }
+
+        return {
+            "account": {
+                "initial_balance": engine.broker.initial_balance,
+                "balance": round(engine.broker.balance, 2),
+                "equity": round(engine.broker.equity, 2),
