@@ -44,3 +44,11 @@ class TelemetryBuilder:
                 "initial_balance": engine.broker.initial_balance,
                 "balance": round(engine.broker.balance, 2),
                 "equity": round(engine.broker.equity, 2),
+                "daily_drawdown_pct": round(
+                    engine.drawdown_guard.daily_drawdown_pct(engine.broker.equity), 2
+                ),
+                "total_drawdown_pct": round(
+                    engine.drawdown_guard.total_drawdown_pct(engine.broker.equity), 2
+                ),
+                "open_positions_count": len(engine.broker.open_positions),
+            },
