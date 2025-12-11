@@ -60,3 +60,11 @@ class TelemetryBuilder:
                 "profit_factor": perf.profit_factor,
                 "sharpe_ratio": perf.sharpe_ratio,
                 "sortino_ratio": perf.sortino_ratio,
+                "max_drawdown_pct": perf.max_drawdown_pct,
+            },
+            "regimes": regimes,
+            "currency_strengths": engine.orchestrator.currency_meter.compute_strengths(),
+            "bandit_weights": engine.orchestrator.bandit.summary(),
+            "neural_weights": {
+                k: round(v, 4) for k, v in engine.orchestrator.neural_scorer.weights.items()
+            },
