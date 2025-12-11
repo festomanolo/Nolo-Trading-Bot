@@ -68,3 +68,11 @@ class TelemetryBuilder:
             "neural_weights": {
                 k: round(v, 4) for k, v in engine.orchestrator.neural_scorer.weights.items()
             },
+        }
+
+    @staticmethod
+    def save_json(engine: RealTimeTradingEngine, path: Path) -> Path:
+        snap = TelemetryBuilder.build_snapshot(engine)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(snap, indent=2), encoding="utf-8")
+        return path
