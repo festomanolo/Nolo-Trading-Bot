@@ -14,3 +14,11 @@ import argparse
 import json
 import sys
 from typing import List
+
+from nolo.backtest.backtester import EventDrivenBacktester
+from nolo.backtest.data_generator import RealisticForexDataGenerator
+from nolo.backtest.monte_carlo import MonteCarloStressTester
+from nolo.backtest.walk_forward import WalkForwardOptimizer
+from nolo.config import BotConfig
+
+
