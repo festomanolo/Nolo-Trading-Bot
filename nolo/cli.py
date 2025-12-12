@@ -22,3 +22,11 @@ from nolo.backtest.walk_forward import WalkForwardOptimizer
 from nolo.config import BotConfig
 
 
+def cmd_backtest(symbol: str, num_bars: int, seed: int) -> int:
+    start_price = 152.50 if "JPY" in symbol.upper() else 1.0850
+    bars = RealisticForexDataGenerator.generate_bars(
+        symbol=symbol, timeframe="M5", num_bars=num_bars, start_price=start_price, seed=seed
+    )
+    bt = EventDrivenBacktester(initial_balance=10000.0, config=BotConfig())
+    result = bt.run(bars)
+    rep = result.report
