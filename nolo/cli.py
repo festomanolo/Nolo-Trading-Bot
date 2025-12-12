@@ -30,3 +30,11 @@ def cmd_backtest(symbol: str, num_bars: int, seed: int) -> int:
     bt = EventDrivenBacktester(initial_balance=10000.0, config=BotConfig())
     result = bt.run(bars)
     rep = result.report
+    print(f"=== NOLO TRADING BOT v4.0 BACKTEST REPORT ({symbol}) ===")
+    print(f"Initial Balance : ${rep.initial_balance:,.2f}")
+    print(f"Final Balance   : ${rep.final_balance:,.2f} (Net: ${rep.net_profit:+,.2f} | ROI: {rep.roi_pct:+.2f}%)")
+    print(f"Total Trades    : {rep.total_trades} (Wins: {rep.winning_trades}, Losses: {rep.losing_trades})")
+    print(f"Win Rate        : {rep.win_rate_pct:.2f}%")
+    print(f"Profit Factor   : {rep.profit_factor:.3f}")
+    print(f"Sharpe / Sortino: {rep.sharpe_ratio:.2f} / {rep.sortino_ratio:.2f}")
+    print(f"Max Drawdown    : {rep.max_drawdown_pct:.2f}%")
