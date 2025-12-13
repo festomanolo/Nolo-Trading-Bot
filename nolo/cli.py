@@ -55,3 +55,11 @@ def cmd_montecarlo(symbol: str, num_bars: int, iterations: int, seed: int) -> in
     print(f"=== MONTE CARLO STRESS TEST ({iterations} runs on {symbol}) ===")
     print(f"Median Net Profit     : ${mc.median_net_profit:+,.2f}")
     print(f"5th - 95th Percentile : ${mc.p5_net_profit:+,.2f} to ${mc.p95_net_profit:+,.2f}")
+    print(f"Median Max Drawdown   : {mc.median_max_drawdown_pct:.2f}%")
+    print(f"95% VaR Max Drawdown  : {mc.var_95_max_drawdown_pct:.2f}%")
+    print(f"99% CVaR Max Drawdown : {mc.cvar_99_max_drawdown_pct:.2f}%")
+    print(f"Probability of Profit : {mc.probability_of_profit_pct:.2f}%")
+    return 0
+
+
+def cmd_optimize(symbol: str, num_bars: int, seed: int) -> int:
