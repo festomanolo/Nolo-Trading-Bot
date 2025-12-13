@@ -38,3 +38,11 @@ def cmd_backtest(symbol: str, num_bars: int, seed: int) -> int:
     print(f"Profit Factor   : {rep.profit_factor:.3f}")
     print(f"Sharpe / Sortino: {rep.sharpe_ratio:.2f} / {rep.sortino_ratio:.2f}")
     print(f"Max Drawdown    : {rep.max_drawdown_pct:.2f}%")
+    print(f"MT5 OnTester    : {rep.on_tester_score:.2f}")
+    print(f"Regime Split    : {json.dumps(rep.regime_breakdown)}")
+    print(f"Strategy Split  : {json.dumps(rep.strategy_breakdown)}")
+    return 0
+
+
+def cmd_montecarlo(symbol: str, num_bars: int, iterations: int, seed: int) -> int:
+    start_price = 152.50 if "JPY" in symbol.upper() else 1.0850
