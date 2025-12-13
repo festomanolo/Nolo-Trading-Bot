@@ -46,3 +46,12 @@ def cmd_backtest(symbol: str, num_bars: int, seed: int) -> int:
 
 def cmd_montecarlo(symbol: str, num_bars: int, iterations: int, seed: int) -> int:
     start_price = 152.50 if "JPY" in symbol.upper() else 1.0850
+    bars = RealisticForexDataGenerator.generate_bars(
+        symbol=symbol, timeframe="M5", num_bars=num_bars, start_price=start_price, seed=seed
+    )
+    bt = EventDrivenBacktester(initial_balance=10000.0, config=BotConfig())
+    result = bt.run(bars)
+    mc = MonteCarloStressTester.run_simulations(10000.0, result.trades, iterations=iterations, seed=seed)
+    print(f"=== MONTE CARLO STRESS TEST ({iterations} runs on {symbol}) ===")
+    print(f"Median Net Profit     : ${mc.median_net_profit:+,.2f}")
+    print(f"5th - 95th Percentile : ${mc.p5_net_profit:+,.2f} to ${mc.p95_net_profit:+,.2f}")
