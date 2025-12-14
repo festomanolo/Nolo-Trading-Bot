@@ -79,3 +79,11 @@ def cmd_optimize(symbol: str, num_bars: int, seed: int) -> int:
 
 
 def main(argv: List[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Nolo Trading Bot v4.0 Real-Time Quant CLI")
+    sub = parser.add_subparsers(dest="command")
+
+    p_bt = sub.add_parser("backtest", help="Run event-driven multi-regime backtest")
+    p_bt.add_argument("--symbol", default="EURUSD")
+    p_bt.add_argument("--bars", type=int, default=600)
+    p_bt.add_argument("--seed", type=int, default=2025)
+
