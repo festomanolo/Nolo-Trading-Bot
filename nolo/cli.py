@@ -63,3 +63,11 @@ def cmd_montecarlo(symbol: str, num_bars: int, iterations: int, seed: int) -> in
 
 
 def cmd_optimize(symbol: str, num_bars: int, seed: int) -> int:
+    start_price = 152.50 if "JPY" in symbol.upper() else 1.0850
+    bars = RealisticForexDataGenerator.generate_bars(
+        symbol=symbol, timeframe="M5", num_bars=num_bars, start_price=start_price, seed=seed
+    )
+    opt = WalkForwardOptimizer()
+    candidates = opt.optimize(bars)
+    print(f"=== WALK-FORWARD OPTIMIZATION TOP CANDIDATES ({symbol}) ===")
+    for idx, c in enumerate(candidates[:5], start=1):
