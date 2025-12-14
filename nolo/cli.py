@@ -71,3 +71,11 @@ def cmd_optimize(symbol: str, num_bars: int, seed: int) -> int:
     candidates = opt.optimize(bars)
     print(f"=== WALK-FORWARD OPTIMIZATION TOP CANDIDATES ({symbol}) ===")
     for idx, c in enumerate(candidates[:5], start=1):
+        print(
+            f"#{idx} Params={c.params} | Fitness={c.fitness_score:.3f} | "
+            f"PF={c.profit_factor:.2f} | WR={c.win_rate_pct:.1f}% | DD={c.max_drawdown_pct:.2f}%"
+        )
+    return 0
+
+
+def main(argv: List[str] | None = None) -> int:
