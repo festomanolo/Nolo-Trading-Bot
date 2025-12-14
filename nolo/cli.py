@@ -87,3 +87,11 @@ def main(argv: List[str] | None = None) -> int:
     p_bt.add_argument("--bars", type=int, default=600)
     p_bt.add_argument("--seed", type=int, default=2025)
 
+    p_mc = sub.add_parser("montecarlo", help="Run Monte Carlo permutation stress test")
+    p_mc.add_argument("--symbol", default="EURUSD")
+    p_mc.add_argument("--bars", type=int, default=600)
+    p_mc.add_argument("--iterations", type=int, default=500)
+    p_mc.add_argument("--seed", type=int, default=2025)
+
+    p_opt = sub.add_parser("optimize", help="Run Walk-Forward hyperparameter optimization")
+    p_opt.add_argument("--symbol", default="EURUSD")
