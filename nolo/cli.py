@@ -95,3 +95,11 @@ def main(argv: List[str] | None = None) -> int:
 
     p_opt = sub.add_parser("optimize", help="Run Walk-Forward hyperparameter optimization")
     p_opt.add_argument("--symbol", default="EURUSD")
+    p_opt.add_argument("--bars", type=int, default=400)
+    p_opt.add_argument("--seed", type=int, default=2025)
+
+    args = parser.parse_args(argv)
+    if args.command == "montecarlo":
+        return cmd_montecarlo(args.symbol, args.bars, args.iterations, args.seed)
+    if args.command == "optimize":
+        return cmd_optimize(args.symbol, args.bars, args.seed)
