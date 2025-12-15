@@ -103,3 +103,12 @@ def main(argv: List[str] | None = None) -> int:
         return cmd_montecarlo(args.symbol, args.bars, args.iterations, args.seed)
     if args.command == "optimize":
         return cmd_optimize(args.symbol, args.bars, args.seed)
+    return cmd_backtest(
+        getattr(args, "symbol", "EURUSD"),
+        getattr(args, "bars", 600),
+        getattr(args, "seed", 2025),
+    )
+
+
+if __name__ == "__main__":
+    sys.exit(main())
