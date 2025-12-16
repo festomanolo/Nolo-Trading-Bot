@@ -22,3 +22,11 @@ class TestQuantModules(unittest.TestCase):
         self.assertAlmostEqual(states[-1].level, prices[-1], places=2)
 
     def test_hurst_exponent_trending_vs_mean_reverting(self) -> None:
+        trending = [1.0500 + (i**1.15) * 0.0003 for i in range(80)]
+        oscillating = [1.0800 + (0.0020 if i % 2 == 0 else -0.0020) for i in range(80)]
+        h_trend = HurstAnalyzer.compute_hurst(trending)
+        h_osc = HurstAnalyzer.compute_hurst(oscillating)
+        self.assertGreater(h_trend, h_osc)
+        self.assertTrue(0.05 <= h_trend <= 0.95)
+        self.assertTrue(0.05 <= h_osc <= 0.95)
+
