@@ -30,3 +30,11 @@ class TestQuantModules(unittest.TestCase):
         self.assertTrue(0.05 <= h_trend <= 0.95)
         self.assertTrue(0.05 <= h_osc <= 0.95)
 
+    def test_entropy_and_efficiency_ratio(self) -> None:
+        clean_trend = [1.1000 + i * 0.0004 for i in range(30)]
+        choppy = [1.1000 + (0.0010 if i % 2 == 0 else -0.0010) for i in range(30)]
+        er_trend = MarketEntropy.efficiency_ratio(clean_trend, period=14)
+        er_chop = MarketEntropy.efficiency_ratio(choppy, period=14)
+        self.assertAlmostEqual(er_trend, 1.0, places=5)
+        self.assertLess(er_chop, 0.25)
+
