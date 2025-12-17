@@ -38,3 +38,11 @@ class TestQuantModules(unittest.TestCase):
         self.assertAlmostEqual(er_trend, 1.0, places=5)
         self.assertLess(er_chop, 0.25)
 
+    def test_indicators_shapes_and_bounds(self) -> None:
+        n = 60
+        closes = [1.0800 + math.sin(i * 0.25) * 0.0050 + i * 0.0001 for i in range(n)]
+        highs = [c + 0.0008 for c in closes]
+        lows = [c - 0.0008 for c in closes]
+
+        rsi = IndicatorEngine.rsi(closes, 14)
+        self.assertEqual(len(rsi), n)
