@@ -46,3 +46,11 @@ class TestQuantModules(unittest.TestCase):
 
         rsi = IndicatorEngine.rsi(closes, 14)
         self.assertEqual(len(rsi), n)
+        self.assertTrue(all(0.0 <= x <= 100.0 for x in rsi))
+
+        adx, pdi, mdi = IndicatorEngine.adx(highs, lows, closes, 14)
+        self.assertEqual(len(adx), n)
+        self.assertEqual(len(pdi), n)
+        self.assertEqual(len(mdi), n)
+
+        st_line, st_dir = IndicatorEngine.supertrend(highs, lows, closes, 14, 2.5)
