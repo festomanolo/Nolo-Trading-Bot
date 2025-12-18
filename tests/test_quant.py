@@ -54,3 +54,11 @@ class TestQuantModules(unittest.TestCase):
         self.assertEqual(len(mdi), n)
 
         st_line, st_dir = IndicatorEngine.supertrend(highs, lows, closes, 14, 2.5)
+        self.assertEqual(len(st_line), n)
+        self.assertTrue(all(d in (-1, 1) for d in st_dir))
+
+        sq_on, sq_mom = IndicatorEngine.ttm_squeeze(highs, lows, closes)
+        self.assertEqual(len(sq_on), n)
+        self.assertEqual(len(sq_mom), n)
+
+    def test_ornstein_uhlenbeck_fit_and_correlation(self) -> None:
