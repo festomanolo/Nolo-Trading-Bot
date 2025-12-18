@@ -62,3 +62,12 @@ class TestQuantModules(unittest.TestCase):
         self.assertEqual(len(sq_mom), n)
 
     def test_ornstein_uhlenbeck_fit_and_correlation(self) -> None:
+        mr_series = [1.0850 + math.sin(i * 0.8) * 0.0020 for i in range(60)]
+        ou = OrnsteinUhlenbeckEstimator.fit(mr_series, window=50)
+        self.assertAlmostEqual(ou.mu, 1.0850, places=2)
+        corr = QuantitativeStatistics.pearson_correlation(mr_series, mr_series)
+        self.assertAlmostEqual(corr, 1.0, places=6)
+
+
+if __name__ == "__main__":
+    unittest.main()
