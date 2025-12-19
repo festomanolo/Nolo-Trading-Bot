@@ -23,3 +23,11 @@ class TestMicrostructure(unittest.TestCase):
 
     def test_smc_bullish_fvg_detection(self) -> None:
         t0 = datetime(2025, 4, 1, 10, 0, tzinfo=timezone.utc)
+        bars = []
+        for i in range(20):
+            bars.append(
+                Bar("EURUSD", "M5", t0 + timedelta(minutes=5 * i), 1.0800, 1.0805, 1.0795, 1.0801, 100.0)
+            )
+        # Create explicit 3-bar bullish impulse FVG
+        bars.append(Bar("EURUSD", "M5", t0 + timedelta(minutes=105), 1.0802, 1.0804, 1.0798, 1.0799, 120.0))
+        bars.append(Bar("EURUSD", "M5", t0 + timedelta(minutes=110), 1.0800, 1.0835, 1.0800, 1.0832, 450.0))
