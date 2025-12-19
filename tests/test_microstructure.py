@@ -31,3 +31,12 @@ class TestMicrostructure(unittest.TestCase):
         # Create explicit 3-bar bullish impulse FVG
         bars.append(Bar("EURUSD", "M5", t0 + timedelta(minutes=105), 1.0802, 1.0804, 1.0798, 1.0799, 120.0))
         bars.append(Bar("EURUSD", "M5", t0 + timedelta(minutes=110), 1.0800, 1.0835, 1.0800, 1.0832, 450.0))
+        bars.append(Bar("EURUSD", "M5", t0 + timedelta(minutes=115), 1.0830, 1.0838, 1.0815, 1.0820, 200.0))
+
+        smc = SmartMoneyAnalyzer()
+        snap = smc.analyze(bars)
+        self.assertTrue(len(snap.active_zones) >= 1)
+
+    def test_orderflow_and_volume_profile(self) -> None:
+        bars = RealisticForexDataGenerator.generate_bars("GBPUSD", "M5", num_bars=80, seed=99)
+        oflow = OrderFlowAnalyzer()
