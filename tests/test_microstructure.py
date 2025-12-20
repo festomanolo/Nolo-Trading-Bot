@@ -48,3 +48,12 @@ class TestMicrostructure(unittest.TestCase):
     def test_currency_strength_and_correlation(self) -> None:
         csm = CurrencyStrengthMeter(lookback=15)
         csm.update_pair_prices("EURUSD", [1.0800 + i * 0.0005 for i in range(25)])
+        csm.update_pair_prices("USDJPY", [150.00 - i * 0.05 for i in range(25)])
+        strengths = csm.compute_strengths()
+        self.assertGreater(strengths["EUR"], strengths["USD"])
+        div = csm.pair_divergence_score("EURUSD")
+        self.assertGreater(div, 0.0)
+
+
+if __name__ == "__main__":
+    unittest.main()
