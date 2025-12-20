@@ -40,3 +40,11 @@ class TestMicrostructure(unittest.TestCase):
     def test_orderflow_and_volume_profile(self) -> None:
         bars = RealisticForexDataGenerator.generate_bars("GBPUSD", "M5", num_bars=80, seed=99)
         oflow = OrderFlowAnalyzer()
+        snap = oflow.analyze_bars(bars)
+        self.assertTrue(0.0 <= snap.buy_pressure_ratio <= 1.0)
+        self.assertTrue(0.0 <= snap.vpin_toxicity <= 1.0)
+        self.assertGreaterEqual(snap.vah_price, snap.val_price)
+
+    def test_currency_strength_and_correlation(self) -> None:
+        csm = CurrencyStrengthMeter(lookback=15)
+        csm.update_pair_prices("EURUSD", [1.0800 + i * 0.0005 for i in range(25)])
