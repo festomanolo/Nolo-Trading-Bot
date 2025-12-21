@@ -21,3 +21,11 @@ class TestIntelligenceModules(unittest.TestCase):
         self.assertIn(state.regime, list(RegimeType))
         self.assertAlmostEqual(sum(state.probabilities.values()), 1.0, places=5)
 
+    def test_neural_scorer_online_learning_improves_prediction(self) -> None:
+        scorer = AdaptiveNeuralScorer()
+        strong_features = {
+            "trend_alignment": 1.0,
+            "kalman_velocity": 0.9,
+            "hurst_persistence": 0.6,
+            "efficiency_ratio": 0.8,
+            "adx_strength": 0.7,
