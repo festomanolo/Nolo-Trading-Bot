@@ -29,3 +29,11 @@ class TestIntelligenceModules(unittest.TestCase):
             "hurst_persistence": 0.6,
             "efficiency_ratio": 0.8,
             "adx_strength": 0.7,
+            "rsi_confluence": 0.8,
+            "macd_impulse": 0.7,
+            "smc_zone_confluence": 0.9,
+            "orderflow_pressure": 0.8,
+            "currency_divergence": 0.6,
+            "htf_confirmation": 1.0,
+            "volatility_quality": 0.85,
+        }
