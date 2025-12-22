@@ -53,3 +53,11 @@ class TestIntelligenceModules(unittest.TestCase):
         w_b = bandit.get_strategy_weight(RegimeType.TREND_UP, "StratB")
         self.assertGreater(w_a, w_b)
 
+    def test_economic_calendar_guard_blocks_high_impact_and_nfp(self) -> None:
+        ev_time = datetime(2025, 5, 7, 18, 0, tzinfo=timezone.utc)
+        guard = EconomicCalendarGuard(
+            [NewsEvent("FOMC Rate Decision", "USD", ev_time, impact="HIGH")]
+        )
+        blocked, reason = guard.is_embargoed("EURUSD", datetime(2025, 5, 7, 17, 45, tzinfo=timezone.utc))
+        self.assertTrue(blocked)
+        self.assertIn("FOMC", reason or "")
