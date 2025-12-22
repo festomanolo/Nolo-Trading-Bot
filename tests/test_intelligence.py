@@ -37,3 +37,11 @@ class TestIntelligenceModules(unittest.TestCase):
             "htf_confirmation": 1.0,
             "volatility_quality": 0.85,
         }
+        p_initial = scorer.predict_probability(strong_features)
+        for _ in range(10):
+            scorer.partial_fit(strong_features, is_win=True, r_multiple=2.0)
+        p_after = scorer.predict_probability(strong_features)
+        self.assertGreater(p_after, p_initial)
+        self.assertGreater(p_after, 0.75)
+
+    def test_contextual_bandit_shifts_weights_to_winner(self) -> None:
