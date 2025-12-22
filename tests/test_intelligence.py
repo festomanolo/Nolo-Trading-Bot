@@ -45,3 +45,11 @@ class TestIntelligenceModules(unittest.TestCase):
         self.assertGreater(p_after, 0.75)
 
     def test_contextual_bandit_shifts_weights_to_winner(self) -> None:
+        bandit = RegimeContextualBandit(["StratA", "StratB"])
+        for _ in range(12):
+            bandit.record_outcome(RegimeType.TREND_UP, "StratA", is_win=True, r_multiple=2.2)
+            bandit.record_outcome(RegimeType.TREND_UP, "StratB", is_win=False, r_multiple=-1.0)
+        w_a = bandit.get_strategy_weight(RegimeType.TREND_UP, "StratA")
+        w_b = bandit.get_strategy_weight(RegimeType.TREND_UP, "StratB")
+        self.assertGreater(w_a, w_b)
+
