@@ -61,3 +61,11 @@ class TestIntelligenceModules(unittest.TestCase):
         blocked, reason = guard.is_embargoed("EURUSD", datetime(2025, 5, 7, 17, 45, tzinfo=timezone.utc))
         self.assertTrue(blocked)
         self.assertIn("FOMC", reason or "")
+
+        # First Friday NFP check (May 2, 2025 was a Friday, 13:30 UTC)
+        nfp_blocked, _ = guard.is_embargoed("GBPUSD", datetime(2025, 5, 2, 13, 30, tzinfo=timezone.utc))
+        self.assertTrue(nfp_blocked)
+
+
+if __name__ == "__main__":
+    unittest.main()
