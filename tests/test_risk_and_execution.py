@@ -14,3 +14,12 @@ from nolo.risk.exposure_manager import CurrencyExposureManager
 from nolo.risk.position_sizer import PositionSizer
 from nolo.types import OrderSide, Position, RegimeType
 
+
+class TestRiskExecutionAndBacktest(unittest.TestCase):
+    def test_position_sizer_respects_broker_lot_limits(self) -> None:
+        cfg = BotConfig()
+        sizer = PositionSizer(cfg)
+        spec = cfg.get_symbol_spec("EURUSD")
+        eff_pct = sizer.compute_effective_risk_pct(signal_win_prob=0.68, risk_multiplier=1.2)
+        lots = sizer.calculate_lots(
+            account_balance=10000.0,
