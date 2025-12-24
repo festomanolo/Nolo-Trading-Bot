@@ -39,3 +39,12 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
 
     def test_currency_exposure_blocks_correlated_positions(self) -> None:
         cfg = BotConfig()
+        mgr = CurrencyExposureManager(cfg)
+        pos = Position(
+            ticket=1,
+            symbol="EURUSD",
+            side=OrderSide.BUY,
+            open_time=datetime(2025, 6, 10, 10, 0, tzinfo=timezone.utc),
+            open_price=1.0850,
+            current_price=1.0860,
+            initial_lots=0.5,
