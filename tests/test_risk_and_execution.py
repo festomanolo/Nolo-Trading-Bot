@@ -23,3 +23,11 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
         eff_pct = sizer.compute_effective_risk_pct(signal_win_prob=0.68, risk_multiplier=1.2)
         lots = sizer.calculate_lots(
             account_balance=10000.0,
+            stop_loss_distance_price=0.0020,
+            spec=spec,
+            effective_risk_pct=eff_pct,
+        )
+        self.assertGreaterEqual(lots, spec.min_lot)
+        self.assertLessEqual(lots, spec.max_lot)
+
+    def test_drawdown_guard_triggers_on_daily_loss(self) -> None:
