@@ -31,3 +31,11 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
         self.assertLessEqual(lots, spec.max_lot)
 
     def test_drawdown_guard_triggers_on_daily_loss(self) -> None:
+        cfg = BotConfig()
+        guard = DrawdownAndPropGuard(initial_balance=10000.0, config=cfg)
+        now = datetime(2025, 6, 10, 14, 0, tzinfo=timezone.utc)
+        ok, _ = guard.can_open_trade(now, balance=10000.0, equity=9400.0, bars_since_last_trade=10)
+        self.assertFalse(ok)
+
+    def test_currency_exposure_blocks_correlated_positions(self) -> None:
+        cfg = BotConfig()
