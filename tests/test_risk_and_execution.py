@@ -64,3 +64,12 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
         bt = EventDrivenBacktester(initial_balance=10000.0)
         res = bt.run(bars)
         self.assertGreater(res.report.total_trades, 0)
+        self.assertGreater(res.report.final_balance, 0.0)
+
+        mc = MonteCarloStressTester.run_simulations(10000.0, res.trades, iterations=100, seed=2025)
+        self.assertEqual(mc.iterations, 100)
+        self.assertGreaterEqual(mc.cvar_99_max_drawdown_pct, mc.median_max_drawdown_pct)
+
+
+if __name__ == "__main__":
+    unittest.main()
