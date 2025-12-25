@@ -48,3 +48,11 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
             open_price=1.0850,
             current_price=1.0860,
             initial_lots=0.5,
+            current_lots=0.5,
+            stop_loss=1.0830,
+            take_profit=1.0900,
+            initial_stop_loss=1.0830,
+            strategy_name="KalmanTrendFollowing",
+            regime=RegimeType.TREND_UP,
+        )
+        # Same symbol must be blocked
