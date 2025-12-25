@@ -56,3 +56,11 @@ class TestRiskExecutionAndBacktest(unittest.TestCase):
             regime=RegimeType.TREND_UP,
         )
         # Same symbol must be blocked
+        allowed, _ = mgr.can_add_position("EURUSD", OrderSide.BUY, [pos])
+        self.assertFalse(allowed)
+
+    def test_full_event_driven_backtest_and_monte_carlo(self) -> None:
+        bars = RealisticForexDataGenerator.generate_bars("EURUSD", "M5", num_bars=450, seed=2025)
+        bt = EventDrivenBacktester(initial_balance=10000.0)
+        res = bt.run(bars)
+        self.assertGreater(res.report.total_trades, 0)
