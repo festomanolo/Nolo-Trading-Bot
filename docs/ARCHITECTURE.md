@@ -22,3 +22,11 @@ flowchart TD
     E --> E3["SMC Liquidity Sweep & Volume Breakout"]
     E --> E4["TTM Volatility Squeeze & Momentum"]
     E1 & E2 & E3 & E4 --> F["Online Neural Signal Scorer & Contextual Bandit"]
+    F --> G["Prop-Firm Risk & Portfolio Manager"]
+    G --> H["Execution & Smart Trade Lifecycle (BE, TP1/TP2, Smart Trail)"]
+```
+
+## 2. Core Quantitative Pillars
+
+1. **State-Space Kalman Filter (`nolo/quant/kalman.py` & `MQL5/Include/Nolo/KalmanFilter.mqh`)**:
+   - Models latent price level and trend velocity with dynamic innovation covariance scaling.
