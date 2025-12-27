@@ -13,3 +13,11 @@ Nolo Trading Bot v4.0 is an institutional-grade, multi-strategy MetaTrader 5 Exp
 
 ## Key Capabilities in v4.0
 
+- **Multi-Factor Bayesian & Fractal Regime Detection**:
+  - Combines **Hurst Exponent ($H$)**, **Kaufman Efficiency Ratio ($ER$)**, **Shannon Return Entropy**, **ADX (+DI/-DI)**, **2D Kalman Velocity**, and **Bollinger Bandwidth** to classify markets into `TREND_UP`, `TREND_DOWN`, `RANGE`, `BREAKOUT_UP`, `BREAKOUT_DOWN`, `VOLATILITY`, and `LIQUIDITY_SWEEP`.
+- **Institutional Smart Money Concepts (SMC)**:
+  - Real-time detection of unmitigated Bullish/Bearish **Order Blocks (OB)**, 3-bar **Fair Value Gaps (FVG)**, **Break of Structure (BOS)**, **Change of Character (CHoCH)**, and **Stop-Hunt Liquidity Sweeps**.
+- **Order Flow & G8 Currency Strength Matrix**:
+  - Computes intrabar buying/selling pressure, Cumulative Volume Delta (CVD), Volume Profile (`POC`, `VAH`, `VAL`), VPIN toxicity, and relative strength across `EUR`, `USD`, `GBP`, `JPY`, `AUD`, `CAD`, `CHF`, and `NZD`.
+- **Online Neural Signal Scorer & Contextual Bandit**:
+  - Scores every candidate entry across 12 normalized features using an online 2-layer neural network (`AdaptiveNeuralScorer`) that learns from realized trade outcomes (`partial_fit`), paired with a Discounted UCB1 / Thompson Sampling `RegimeContextualBandit`.
