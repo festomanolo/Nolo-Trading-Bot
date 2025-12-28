@@ -37,3 +37,11 @@ nolobo/
 │   ├── Include/Nolo/
 │   │   ├── CoreTypes.mqh                     # Domain enums, structs, and signal packets
 │   │   ├── KalmanFilter.mqh                  # 2D state-space kinematic Kalman filter
+│   │   ├── RegimeEngine.mqh                  # Hurst, Efficiency Ratio, ADX & Kalman regime classifier
+│   │   ├── SmartMoneyConcepts.mqh            # Order Blocks, Fair Value Gaps & Liquidity Sweeps
+│   │   ├── OrderFlowEngine.mqh               # Intrabar volume delta & surge analyzer
+│   │   ├── MultiCurrencyStrength.mqh         # G8 currency momentum & divergence meter
+│   │   ├── NeuralSignalScorer.mqh            # Online 2-layer neural perceptron scorer
+│   │   ├── NewsCalendarGuard.mqh             # Native MQL5 CalendarValueHistory & rollover guard
+│   │   ├── RiskAndPortfolioManager.mqh       # Bayesian Kelly, Prop-Firm DD guard & lot sizer
+│   │   ├── DashboardHUD.mqh                  # On-chart institutional telemetry overlay
