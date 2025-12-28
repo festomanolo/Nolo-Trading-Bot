@@ -29,3 +29,11 @@ Nolo Trading Bot v4.0 is an institutional-grade, multi-strategy MetaTrader 5 Exp
 
 ## Repository Structure
 
+```text
+nolobo/
+├── MQL5/
+│   ├── Experts/
+│   │   └── AdvancedAdaptiveTrader.mq5        # Flagship modular native MQL5 Expert Advisor
+│   ├── Include/Nolo/
+│   │   ├── CoreTypes.mqh                     # Domain enums, structs, and signal packets
+│   │   ├── KalmanFilter.mqh                  # 2D state-space kinematic Kalman filter
