@@ -21,3 +21,11 @@ Nolo Trading Bot v4.0 is an institutional-grade, multi-strategy MetaTrader 5 Exp
   - Computes intrabar buying/selling pressure, Cumulative Volume Delta (CVD), Volume Profile (`POC`, `VAH`, `VAL`), VPIN toxicity, and relative strength across `EUR`, `USD`, `GBP`, `JPY`, `AUD`, `CAD`, `CHF`, and `NZD`.
 - **Online Neural Signal Scorer & Contextual Bandit**:
   - Scores every candidate entry across 12 normalized features using an online 2-layer neural network (`AdaptiveNeuralScorer`) that learns from realized trade outcomes (`partial_fit`), paired with a Discounted UCB1 / Thompson Sampling `RegimeContextualBandit`.
+- **Prop-Firm & Institutional Risk Engine**:
+  - Supports `FIXED`, `KELLY`, `ADAPTIVE_KELLY`, `BAYESIAN_KELLY`, `ANTI_MARTINGALE`, and `VOLATILITY_PARITY` position sizing.
+  - Enforces Daily Drawdown limits, High-Water-Mark Trailing Drawdown guards, Equity Curve Moving Average throttling, Cross-Pair Correlation caps, Macroeconomic News Embargo windows, Multi-Stage Partial Take-Profit (`TP1` / `TP2`), Break-Even + Commission locks, and Volatility-Adaptive ATR Trailing Stops.
+
+---
+
+## Repository Structure
+
