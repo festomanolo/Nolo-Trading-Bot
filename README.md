@@ -61,3 +61,11 @@ nolobo/
 │   ├── risk/                                 # Bayesian Kelly Sizer, Drawdown & Exposure Guards
 │   ├── execution/                            # Smart Trade Manager, ECN Broker & MT5 Bridge
 │   ├── backtest/                             # Event-Driven Backtester, Monte Carlo & Walk-Forward
+│   ├── dashboard/                            # Real-Time JSON Telemetry & HUD Snapshot Builder
+│   └── cli.py                                # Command-line interface
+├── tests/                                    # Comprehensive unit & integration test suite
+└── docs/
+    └── ARCHITECTURE.md                       # Quantitative & system architecture guide
+```
+
+---
