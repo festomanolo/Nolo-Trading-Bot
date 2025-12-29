@@ -45,3 +45,11 @@ nolobo/
 │   │   ├── NewsCalendarGuard.mqh             # Native MQL5 CalendarValueHistory & rollover guard
 │   │   ├── RiskAndPortfolioManager.mqh       # Bayesian Kelly, Prop-Firm DD guard & lot sizer
 │   │   ├── DashboardHUD.mqh                  # On-chart institutional telemetry overlay
+│   │   └── ZeroMQBridge.mqh                  # Real-time telemetry bridge to Python engine
+│   └── Presets/
+│       ├── EURUSD_H1_Institutional.set
+│       ├── GBPUSD_M15_Breakout.set
+│       ├── USDJPY_H1_KalmanTrend.set
+│       └── PropFirm_FTMO_Challenge.set
+├── Testing Bot/
+│   └── trice.mq5                             # Standalone all-in-one v4.0 Adaptive EA
