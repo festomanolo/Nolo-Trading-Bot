@@ -53,3 +53,11 @@ nolobo/
 │       └── PropFirm_FTMO_Challenge.set
 ├── Testing Bot/
 │   └── trice.mq5                             # Standalone all-in-one v4.0 Adaptive EA
+├── nolo/                                     # Real-Time Python Quantitative & AI Engine
+│   ├── quant/                                # Kalman, Hurst, Entropy, OU Process & Indicators
+│   ├── microstructure/                       # SMC, Order Flow (CVD/VPIN) & Currency Strength
+│   ├── intelligence/                         # Regime Engine, Neural Scorer, Bandit & News Guard
+│   ├── strategies/                           # Trend, OU Range, SMC Breakout, Volatility & Ensemble
+│   ├── risk/                                 # Bayesian Kelly Sizer, Drawdown & Exposure Guards
+│   ├── execution/                            # Smart Trade Manager, ECN Broker & MT5 Bridge
+│   ├── backtest/                             # Event-Driven Backtester, Monte Carlo & Walk-Forward
