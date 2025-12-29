@@ -69,3 +69,11 @@ nolobo/
 ```
 
 ---
+
+## Quick Start
+
+### 1. MetaTrader 5 Installation
+1. Copy `MQL5/Experts/AdvancedAdaptiveTrader.mq5` and `MQL5/Include/Nolo/` into your MetaTrader 5 terminal's `MQL5/` directory (or load `Testing Bot/trice.mq5` directly).
+2. Compile in MetaEditor 5 and attach to an `M5`, `M15`, or `H1` chart (`EURUSD`, `GBPUSD`, `USDJPY`, `AUDUSD`, or `XAUUSD`).
+3. Optional: Load one of the optimized presets from `MQL5/Presets/`.
+
