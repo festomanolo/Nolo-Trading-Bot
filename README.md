@@ -77,3 +77,11 @@ nolobo/
 2. Compile in MetaEditor 5 and attach to an `M5`, `M15`, or `H1` chart (`EURUSD`, `GBPUSD`, `USDJPY`, `AUDUSD`, or `XAUUSD`).
 3. Optional: Load one of the optimized presets from `MQL5/Presets/`.
 
+### 2. Python Real-Time Quant CLI & Backtester
+Run an event-driven multi-regime backtest, Monte Carlo tail-risk simulation, or Walk-Forward optimization directly from the terminal:
+
+```bash
+# Run full event-driven backtest
+python3 -m nolo.cli backtest --symbol EURUSD --bars 600
+
+# Run 500-iteration Monte Carlo drawdown stress test
