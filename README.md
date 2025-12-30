@@ -85,3 +85,11 @@ Run an event-driven multi-regime backtest, Monte Carlo tail-risk simulation, or 
 python3 -m nolo.cli backtest --symbol EURUSD --bars 600
 
 # Run 500-iteration Monte Carlo drawdown stress test
+python3 -m nolo.cli montecarlo --symbol EURUSD --bars 600 --iterations 500
+
+# Run Walk-Forward hyperparameter optimization
+python3 -m nolo.cli optimize --symbol EURUSD --bars 400
+
+# Run the automated unit & integration test suite
+python3 -m unittest discover -s tests -v
+```
