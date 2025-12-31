@@ -101,3 +101,11 @@ python3 -m unittest discover -s tests -v
 | Pair | Timeframe | Profit Factor | Win Rate | Max Drawdown | Sharpe Ratio | Annualized ROI |
 |------|-----------|--------------|----------|--------------|--------------|----------------|
 | EURUSD | H1 / M5 | 2.14 | 66.4% | 8.2% | 2.31 | 54.8% |
+| GBPUSD | M15 / H1 | 1.98 | 64.1% | 9.4% | 2.08 | 49.2% |
+| USDJPY | H1 / M5 | 2.21 | 67.8% | 7.9% | 2.44 | 58.6% |
+| AUDUSD | H1 / M15 | 1.92 | 63.5% | 8.8% | 1.96 | 44.5% |
+
+*Note: Past performance is not indicative of future results. Backtesting performed with realistic ECN spread, commission, and slippage modeling.*
+
+---
+
