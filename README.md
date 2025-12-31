@@ -109,3 +109,11 @@ python3 -m unittest discover -s tests -v
 
 ---
 
+## License
+
+This project is licensed under the MIT License - see the [LICENCE.md](LICENCE.md) file for details.
+
+## Contact
+
+- Email: festomanolofm@gmail.com
+- GitHub: [festomanolo/Nolo-Trading-Bot](https://github.com/festomanolo/Nolo-Trading-Bot)
